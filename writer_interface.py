@@ -37,7 +37,7 @@ class Writer:
         try:
             temp = f'{datetime.now()}'
             format_timestamp = temp.replace('-', '').replace(' ', '_').replace(':', '').replace('.', '_')
-            file_path = f'./best_approach/{self.destination_folder}/{self.file_type}_{format_timestamp}.txt'
+            file_path = f'./{self.destination_folder}/{self.file_type}_{format_timestamp}.txt'
             return file_path
         except:
             print('Fail to get the file path')

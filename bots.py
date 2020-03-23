@@ -14,7 +14,7 @@ EXCEPTION_MESSAGE = "Something went wrong during the handling of this message, p
 
 
 class LoginForm(Form):
-    root_folder = f'./{u.global_folder}/{u.login_form_folder}'
+    root_folder = f'./{u.login_form_folder}'
 
     def __init__(
         self,
@@ -29,7 +29,7 @@ class LoginForm(Form):
 
 
 class RegistrationForm(Form):
-    root_folder = f'./{u.global_folder}/{u.registration_form_folder}'
+    root_folder = f'./{u.registration_form_folder}'
 
     def __init__(
         self,

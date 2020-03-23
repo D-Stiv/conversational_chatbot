@@ -49,7 +49,6 @@ interactive_enabled = False
 # training information
 
 ## folders' name
-global_folder = 'best_approach'
 training_folder = 'training_files'
 models_folder = 'models'
 registration_form_folder = 'registration_form'
