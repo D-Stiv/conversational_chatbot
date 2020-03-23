@@ -1,0 +1,26 @@
+// modify the input_value of a given generic label
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[modifyValueGeniericCamp]('training': '8000', 'testing': '2000')
+    *[1] ~[can] ~[i] ~[modify] ~[the?] @[input_field] ~[please?]
+    *[1] ~[i] ~[want] ~[to] ~[modify] ~[the?] @[input_field] ~[please?]
+    *[1] ~[i?] ~[want] ~[to?] ~[modify] ~[the?] @[input_field]
+    *[1] ~[modify] @[input_field] ~[please?]
+    *[1] ~[modify] @[input_field] @[input_field?] @[input_field?] @[input_field?] ~[please?]
+    *[1] ~[i] ~[want] ~[to] ~[modify] ~[the?] @[input_field] ~[putting] ~[the?] ~[value?] @[input_value]
+    *[1] ~[modify] ~[the?] @[input_field] ~[putting] ~[the?] ~[value] @[input_value]
+    *[1] ~[modify] ~[something?]
+    *[1] ~[modify] ~[the?] @[input_field]
+    *[1] ~[can] ~[i] ~[modify] ~[the?] @[input_field] ~[please?]
+    *[1] ~[i] ~[want] ~[to] ~[modify] ~[the?] @[input_field] ~[please?]
+    *[1] ~[i?] ~[want] ~[to?] ~[modify] ~[the?] @[input_field]
+    *[1] ~[modify] @[input_field] ~[please?]
+    *[1] ~[modify] @[input_field] @[input_field?] @[input_field?] @[input_field?] ~[please?]
+    *[1] ~[i] ~[want] ~[to] ~[modify] ~[the?] @[input_field] ~[putting] ~[the?] ~[value?] @[input_value]
+    *[1] ~[modify] ~[the?] @[input_field] ~[putting] ~[the?] ~[value] @[input_value]
+    *[1] ~[modify] ~[the?] @[input_field]
+    *[5] @[input_value#message?] ~[modify] @[input_value#message?] @[input_field] @[input_value#message?]
+    *[5] ~[i] ~[want] ~[to] ~[modify] ~[the?] @[input_field#generic] ~[putting] ~[the?] ~[value?] @[input_value#generic]

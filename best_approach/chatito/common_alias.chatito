@@ -1,0 +1,522 @@
+// Common entities to be imported and reused
+
+~[terminator]
+    terminate
+    terminator
+    end
+    stop
+    halt
+    close
+    conclude
+    finish
+    finished
+
+~[name_type]
+    first name
+    last name
+    name
+    username
+    full name 
+    your name
+    nickname
+    user name
+    middle name
+
+~[email_type]
+    email
+    email address
+    e-mail
+
+~[password_type]
+    password
+    confirm password
+    current password
+    mew password
+
+~[phone_number_type]
+    phone number
+    cell phone
+    home phone number
+    mobile number
+    home number
+
+~[country_type]
+    country
+    country of born
+    residence country
+    nationality
+    citizenship
+
+~[city_type]
+    city
+    residence city
+
+~[date_type]
+    birthday
+    birth date
+    date of birth
+    delivery date
+    expiration date
+    going date
+    return date
+    date
+    booking date
+    departure date
+    arrival date
+
+~[time_type]
+    time
+
+~[number_type]
+    passemgers
+    age
+
+~[message_type]
+    message
+    comments
+    description
+    opinion
+
+~[place_address_type]
+    address
+    primary address
+
+~[gender_type]
+    gender
+    sex
+
+~[month_type]
+    month
+
+~[day_type]
+    day
+
+~[generic_type]
+    car
+    gender
+    electronic devices
+    title
+    company
+    name of school
+    institution
+    university
+    state
+    zip code
+    postal code
+    from
+    to
+    class
+    airline
+    departure terminal
+
+~[please]
+    please
+    plz
+    pls
+
+~[can]
+    can
+    could
+    would
+
+~[repeat]
+    repeat
+    tell
+    give
+
+~[again]
+    again
+    once more
+    another time
+
+~[does]
+    does
+
+~[mean]
+    mean
+    signify
+
+~[no]
+    no
+    no i don't
+    i don't
+    no it is not
+    it is not
+    it isn't
+    no it isn't
+    no they are not
+    no they aren't
+
+~[i_do]
+    i do
+
+~[it_is]
+    it is
+    it's
+    they are
+
+~[i_do_not]
+    i do not
+    i don't
+
+~[it_is_not]
+    it is not
+    it isn't
+    they are not
+    they aren't
+
+~[yed]
+    yes
+    ok
+    okay
+    fine
+    correct
+    yep
+
+~[values]
+    values
+    choices
+
+~[required]
+    required
+    mandatory
+    obligatory
+    compulsory
+    demanded
+    prescribed
+
+~[optional]
+    optional
+    facultative
+    extra
+    voluntary
+    unforced
+    not required
+    unrestricted
+    noncompulsory
+
+~[the]
+    the
+    my
+
+~[label]
+    label
+    camp
+    field
+
+~[i]
+    I
+    i
+
+~[are]
+    are
+
+~[want]
+    want
+    would like
+
+~[to]
+    to
+
+~[not_yet]
+    not yet
+
+~[in]
+    in
+
+~[form]
+    form
+    registration form
+    login form
+    login
+    registration
+
+~[and]
+    and
+
+~[what]
+    what
+    which
+
+~[is]
+    was
+    is
+
+~[fill]
+    fill
+    complete
+    insert
+
+~[filling]
+    filling
+    completing
+    inserting
+
+~[start]
+    start
+    begin
+    initiate
+    commence
+
+~[too]
+    too
+    also
+
+~[among]
+    among
+    in
+
+~[list]
+    list
+    labels
+    camps
+    fields
+    inputs
+
+~[register]
+    register
+
+~[validate]
+    validate
+
+~[continue]
+    continue
+    go ahead
+
+~[log in]
+    log in
+
+~[next]
+    next
+
+~[submit]
+    submit
+
+~[submission]
+    submission
+
+
+~[reset]
+    reset
+    restart
+
+
+~[skip]
+    skip
+    pass
+
+~[all]
+    all
+
+~[filled]
+    filled
+    completed
+    inserted
+
+~[me]
+    me
+
+~[with]
+    with
+
+~[value]
+    value
+    information
+    choice
+
+~[it]
+    it
+
+~[for]
+    for
+
+~[thanks]
+    thanks
+    thank you
+    tks
+    ths
+
+~[something]
+    something
+
+~[this]
+    this
+
+~[remaining]
+    remaining
+    that remain
+
+~[modify]
+    modify
+    change
+    insert
+    fill
+    replace
+
+~[putting]
+    putting
+    inseting
+
+~[up_to_now]
+    up to now
+    at this moment
+    up to this point 
+    already
+    at this point
+
+~[verify]
+    verify
+
+~[still]
+    still
+
+~[camps]
+    camps
+    fields
+    labels
+
+~[everything]
+    everything
+
+~[you]
+    you
+
+~[gender]
+    male
+    female
+    m
+    f
+    other
+
+~[week_day]
+    monday
+    tuesday
+    wednesday
+    thursday
+    friday
+    saturday
+    sunday
+
+~[month]
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
+    11
+    12
+    january
+    february
+    march
+    april
+    may
+    june
+    july
+    august
+    september
+    october
+    november
+    december
+
+~[day]
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
+    11
+    12
+    13
+    14
+    15
+    16
+    17
+    18
+    19
+    20
+    21
+    22
+    23
+    24
+    25
+    26
+    27
+    28
+    29
+    30
+    31
+
+~[alphabet]
+    a
+    b
+    c 
+    d
+    e
+    f
+    g
+    h
+    i
+    j
+    k
+    l
+    m
+    n
+    o
+    p
+    q
+    r
+    s
+    t
+    u
+    v
+    w
+    x
+    y
+    z
+
+// list of special characters: " !"#$%&'()*+,-../:;<=>?@[\]^_`{|}~"
+~[special_character]
+    space
+    exclamation
+    double quote
+    hash
+    dollar
+    percent
+    ampersand
+    single quote
+    left parenthesis
+    right parenthesis
+    asterisk
+    plus
+    comma
+    minus
+    dot
+    full stop
+    slash
+    Colon
+    semicolon
+    less than
+    equal
+    greater than
+    question mark
+    at
+    left bracket
+    backslash
+    right bracket
+    caret
+    underscore
+    backlick
+    left brace
+    vertical bar
+    right brace
+    tilde

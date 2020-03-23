@@ -1,0 +1,21 @@
+// to start the form filling
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[fillForm]('training': '8000', 'testing': '2000')
+    *[1] ~[i] ~[want] ~[to] ~[fill] ~[in?] ~[the] ~[form]
+    *[1] ~[start] ~[the] ~[filling] ~[in]
+    *[1] ~[start]
+    *[1] ~[fill] ~[in?] ~[the?] ~[form]
+    *[1] ~[fill] 
+    *[5] @[input_value#message?] ~[filling] ~[in] ~[the?] ~[form] @[input_value#message?]
+    *[5] @[input_value#message?] ~[fill] ~[in] ~[the?] ~[form] @[input_value#message?]
+    *[5] @[input_value#message?] ~[filling] ~[the?] ~[form] @[input_value#message?]
+    *[5] @[input_value#message?] ~[fill] ~[in?] ~[form] @[input_value#message?]
+    *[1] ~[continue] ~[to] ~[fill]
+    *[1] ~[continue] ~[the?] ~[filling]
+    *[1] ~[continue] ~[the] ~[filling] ~[of] ~[the] ~[form]
+    *[1] ~[continue] ~[with] ~[the] ~[filling]
+    *[1] ~[continue] ~[with] ~[the] ~[filling] ~[of] ~[the] ~[form]

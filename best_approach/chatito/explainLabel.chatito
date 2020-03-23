@@ -1,0 +1,11 @@
+// explain a label that the user does not understand
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[explainLabel]('training': '8000', 'testing': '2000')
+    *[1] ~[what] ~[does] ~[it] ~[mean] ~[please?]
+    *[1] ~[what] ~[is] ~[it] ~[please?]
+    *[1] ~[what] ~[is] @[input_field] ~[please?]
+    *[1] ~[please?] ~[can] ~[you] ~[tell] ~[me?] ~[what] ~[is] @[input_field]

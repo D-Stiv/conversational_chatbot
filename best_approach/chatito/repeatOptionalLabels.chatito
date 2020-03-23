@@ -1,0 +1,12 @@
+// repeat the list of optional labels of the form
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[repeatOptionalLabels]('training': '8000', 'testing': '2000')
+    *[5] ~[what] ~[are] ~[the?] ~[optional] ~[camps]
+    *[5] ~[please?] ~[repeat?] ~[optional] ~[camps]
+    *[5] ~[please?] ~[repeat] ~[the?] ~[optional] ~[camps]
+    *[5] ~[please?] ~[repeat] ~[me] ~[the] ~[optional] ~[camps]
+    *[1] @[input_value#message?] ~[repeat] @[input_value#message?] ~[optional] ~[camps] @[input_value#message?]

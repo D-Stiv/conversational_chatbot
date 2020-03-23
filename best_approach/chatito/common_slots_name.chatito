@@ -1,0 +1,63 @@
+// commomn slot names / labels to be imported and reused
+
+@[input_field#name]
+    ~[name_type]
+
+@[input_field#email]
+    ~[email_type]
+
+@[input_field#password]
+    ~[password_type]
+
+@[input_field#phone_number]
+    ~[phone_number_type]
+
+@[input_field#country]
+    ~[country_type]
+
+@[input_field#city]
+    ~[city_type]
+
+@[input_field#date]
+    ~[date_type]
+
+@[input_field#time]
+    ~[time_type]
+
+@[input_field#number]
+    ~[number_type]
+
+@[input_field#message]
+    ~[message_type]
+
+@[input_field#place_address]
+    ~[place_address_type]
+
+@[input_field#gender]
+    ~[gender_type]
+
+@[input_field#month]
+    ~[month_type]
+
+@[input_field#day]
+    ~[day_type]
+
+@[input_field#generic]
+    ~[generic_type]
+
+@[input_field]
+    ~[name_type]
+    ~[email_type]
+    ~[password_type]
+    ~[phone_number_type]
+    ~[country_type]
+    ~[city_type]
+    ~[date_type]
+    ~[tima_type]
+    ~[number_type]
+    ~[place_address_type]
+    ~[gender_type]
+    ~[month_type]
+    ~[day_type]
+    ~[generic_type]
+    ~[message_type]

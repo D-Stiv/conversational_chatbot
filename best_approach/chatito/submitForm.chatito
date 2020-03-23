@@ -1,0 +1,17 @@
+// submit the form, pressing the button submit, register, validate
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[submitForm]('training': '8000', 'testing': '2000')
+    *[3] ~[yes?] ~[i?] ~[want] ~[to?] ~[submit] ~[the] ~[form?]
+    *[3] ~[yes?] ~[continue] ~[with] ~[the?] ~[submission]
+    *[5] ~[yes?] ~[submit] ~[the?] ~[form]
+    *[5] ~[yes?] ~[register] ~[it?]
+    *[5] ~[yes?] ~[validate] ~[it?]
+    *[5] ~[yes?] ~[continue]
+    *[5] ~[yes?] ~[log in]
+    *[5] ~[yes?] ~[next]
+    *[5] ~[yes?] ~[submit] ~[it?]
+    *[5] ~[yes] ~[for] ~[the] ~[submission]

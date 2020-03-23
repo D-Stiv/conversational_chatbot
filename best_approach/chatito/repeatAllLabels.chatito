@@ -1,0 +1,13 @@
+// repeat all labels
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[repeatAllLabels]('training': '8000', 'testing': '2000')
+    *[5] ~[what] ~[are] ~[the?] ~[camps] ~[of] ~[this] ~[form]
+    *[5] ~[what] ~[are] ~[the?] ~[camps] ~[of] ~[the] ~[form]
+    *[5] ~[please?] ~[repeat?] ~[all] ~[the?] ~[camps]
+    *[5] ~[please?] ~[repeat] ~[the?] ~[camps] ~[present]
+    *[5] ~[please?] ~[repeat] ~[me] ~[the] ~[camps]
+    *[1] @[input_value#message?] ~[repeat] @[input_value#message?] ~[all?] ~[camps] @[input_value#message?]

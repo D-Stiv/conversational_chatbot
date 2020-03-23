@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <h2>HTML Forms</h2>
+
+  <form action="http://localhost/ecobusiness/" bot-tag="registration_form_tag" bot-title="registration form sample" bot-desc="presents various fields types in order to test the different kind of input we can have and different actions">
+    First name:<br>
+    <input type="text" name="firstname" bot-field="First name" field-type="text" field-spelling>
+    <br><br>
+    Last name:<br>
+    <input type="text" name="lastname" value="Mouse" bot-field="Last name" field-type="text" field-desc = "your first name">
+    <br><br>
+    Password:<br>
+    <input type="password" id="myPwd" name="pwd" bot-field="Password" field-type="password">
+    <br>
+    Show password:    
+    <input type="checkbox" onclick="myFunction()">
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myPwd");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+        }
+    </script>
+    <br><br>
+    Email address:<br>
+    <input type="email" name="e_mail" bot-field="Email address" field-type="email">
+    <br><br>
+    Birthday:<br>
+    <input type="date" name="bday" bot-field="Birthday" field-type="date">
+    <br><br>
+    Car:<br>
+    <select name="cars" bot-field="Car" field-type="dropdown">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="fiat">Fiat</option>
+        <option value="audi">Audi</option>
+    </select>
+    <br><br>
+    Gender:<br>
+    <label><input type="radio" name="gender" value="male" bot-field="Gender" field-type="radio" required>Male</label>
+    <label><input type="radio" name="gender" value="female">Female</label>
+    <label><input type="radio" name="gender" value="other">Other</label>
+    <br><br>
+    Electronic devices:<br>
+    <input type="checkbox" id="comp" name="e_device" value="computer" bot-field="Electronic devices" field-type="checkbox">  
+    <label for="comp">Computer</label>
+    <input type="checkbox" id="smar" name="e_device" value="smartphone">  
+    <label for="smar">Smartphone</label>
+    <input type="checkbox" id="tab" name="e_device" value="tablet">  
+    <label for="tab">Tablet</label>
+    <input type="checkbox" id="none" name="e_device" value="tablet" checked>  
+    <label for="none">None</label>
+    <br><br>
+    Message:<br>
+    <textarea name="message" rows="10" cols="30" bot-field="Message" field-type="text_area">The cat was playing in the garden.</textarea>
+    <br><br>
+    <input type="submit" value="Submit" bot-button="submit">
+    <br><br>
+    <input type="reset" value="Reset" bot-button="reset">
+  </form>
+
+</body>
+
+</html>

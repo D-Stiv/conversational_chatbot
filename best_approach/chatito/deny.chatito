@@ -1,0 +1,11 @@
+// to manage a denial of the user
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[deny]('training': '8000', 'testing': '2000')
+    *[1] ~[no] ~[it_is_not?]
+    *[1] ~[no] ~[i_do_not?]
+    *[1] ~[it_is_not] ~[no?]
+    *[1] ~[i_do_not] ~[no?]

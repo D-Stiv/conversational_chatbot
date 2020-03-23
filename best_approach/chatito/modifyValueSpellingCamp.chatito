@@ -1,0 +1,16 @@
+// modify the input_value of a given spelling label
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[modifyValueSpellingCamp]('training': '8000', 'testing': '2000')
+    *[1] ~[can] ~[i] ~[modify] ~[the?] @[spelling_input_field] ~[please?]
+    *[1] ~[i] ~[want] ~[to] ~[modify] ~[the?] @[spelling_input_field] ~[please?]
+    *[1] ~[i?] ~[want] ~[to?] ~[modify] ~[the?] @[spelling_input_field]
+    *[1] ~[modify] @[spelling_input_field] ~[please?]
+    *[1] ~[modify] @[spelling_input_field] @[spelling_input_field?] @[spelling_input_field?] @[spelling_input_field?] ~[please?]
+    *[1] ~[i] ~[want] ~[to] ~[modify] ~[the?] @[spelling_input_field] ~[putting] ~[the?] ~[value?] @[spelling_input_value]
+    *[1] ~[modify] ~[the?] @[spelling_input_field] ~[putting] ~[the?] ~[value] @[spelling_input_value]
+    *[1] ~[modify] ~[the?] @[spelling_input_field]
+    *[5] @[input_value#message?] ~[modify] @[input_value#message?] @[spelling_input_field] @[input_value#message?]

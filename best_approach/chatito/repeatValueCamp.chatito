@@ -1,0 +1,14 @@
+// repeat the value of a repeatn label
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[repeatValueCamp]('training': '8000', 'testing': '2000')
+    *[1] ~[can] ~[you] ~[repeat] ~[the?] @[input_field] @[input_field?] @[input_field?] ~[and?] ~[the?] @[input_field?] ~[again?] ~[please?]
+    *[1] ~[what] ~[is] ~[the?] @[input_field] @[input_field?] @[input_field?] ~[and?] ~[the?] @[input_field?]
+    *[1] ~[please?] ~[repeat] ~[me?] ~[the?] @[input_field] @[input_field?] @[input_field?] ~[and?] ~[the?] @[input_field?]
+    *[1] ~[repeat] ~[the?] @[input_field] @[input_field?] @[input_field?] ~[and?] ~[the?] @[input_field?] ~[again?] ~[please?]
+    *[1] ~[please?] ~[repeat] ~[the?] @[input_field] @[input_field?] @[input_field?] ~[and?] ~[the?] @[input_field?] ~[again?]
+    *[1] ~[repeat] ~[please?]
+    *[1] ~[please?] ~[repeat]

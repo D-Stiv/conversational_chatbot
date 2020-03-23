@@ -1,0 +1,8 @@
+// to test chatito code
+
+%[repeatRequiredLabels]('training': '8000', 'testing': '2000')
+    *[5] ~[what] ~[are] ~[the?] ~[required] ~[camps] ~[not_yet] ~[filled]
+    *[5] ~[please?] ~[repeat?] ~[required] ~[camps] ~[not_yet] ~[filled]
+    *[5] ~[please?] ~[repeat] ~[the?] ~[required] ~[camps] ~[not_yet] ~[filled]
+    *[5] ~[please?] ~[repeat] ~[me] ~[the] ~[required] ~[camps] ~[not_yet] ~[filled]
+    *[1] @[input_value#message?] ~[repeat] @[input_value#message?] ~[required] ~[camps] ~[not_yet] ~[filled] @[input_value#message?]

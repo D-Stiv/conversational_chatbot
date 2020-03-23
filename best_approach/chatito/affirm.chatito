@@ -1,0 +1,11 @@
+// to manage an affirmation of the user
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[affirm]('training': '8000', 'testing': '2000')
+    *[1] ~[yes] ~[it_is?]
+    *[1] ~[yes] ~[i_do?]
+    *[1] ~[it_is] ~[yes?]
+    *[1] ~[i_do] ~[yes?]

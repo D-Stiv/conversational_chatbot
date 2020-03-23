@@ -1,0 +1,18 @@
+// to repeat the explanations given to describe the file
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[repeatFormName]('training': '8000', 'testing': '2000')
+    *[5] ~[what] ~[is] ~[the?] ~[form_explanation]
+    *[5] ~[please?] ~[repeat?] ~[form_explanation]
+    *[5] ~[please?] ~[repeat] ~[the?] ~[form_explanation]
+    *[5] ~[please?] ~[repeat] ~[me] ~[the] ~[form_explanation]
+    *[1] @[input_value#message?] ~[repeat] @[input_value#message?] ~[form_explanation] @[input_value#message?]
+
+~[form_explanation]
+    form's explanatioms
+    explanations of the form
+    form's details
+    details of the form

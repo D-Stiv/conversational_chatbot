@@ -1,0 +1,16 @@
+// to chech if a given label is present in the form
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[verifyPresenceOfLabel]('training': '8000', 'testing': '2000')
+    *[5] ~[is] ~[the?] ~[camp] @[input_value#message] ~[present] ~[too?]
+    *[5] ~[is] ~[there] ~[the] @[input_value#message] ~[too?]
+    *[5] ~[is] ~[the?] ~[camp] @[input_value#message] ~[among] ~[the] ~[list] ~[too?]
+    *[5] ~[is] ~[there] ~[the] @[input_value#message] ~[among] ~[the] ~[list] ~[too?]
+    *[5] ~[is] ~[the?] ~[camp] @[input_field] ~[present] ~[too?]
+    *[5] ~[is] ~[the?] @[input_field] ~[present] ~[too?]
+    *[5] ~[is] ~[there] ~[the?] @[input_field] ~[too?]
+    *[5] ~[is] ~[the?] ~[camp] @[input_field] ~[among] ~[the] ~[list] ~[too?]
+    *[5] ~[is] ~[there] ~[the] @[input_field] ~[among] ~[the] ~[list] ~[too?]

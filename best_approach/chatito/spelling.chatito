@@ -1,0 +1,12 @@
+// to receive input in modality spelling or close prompt
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[spelling]('training': '8000', 'testing': '2000')
+    *[14] @[spelling#alphabet]
+    *[3] @[spelling#special_character]
+    *[2] @[input_value#number]
+    *[1] @[spelling#terminator]
+

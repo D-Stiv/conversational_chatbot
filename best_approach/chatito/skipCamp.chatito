@@ -1,0 +1,11 @@
+// skip a camp and go to the next one
+
+import ./common_alias.chatito
+import ./common_slots_name.chatito
+import ./common_slots_value.chatito
+
+%[skipCamp]('training': '8000', 'testing': '2000')
+    *[1] ~[skip] ~[it?]
+    *[1] ~[i] ~[want] ~[to] ~[skip] ~[this] ~[camp]
+    *[1] ~[skip] ~[this] ~[camp]
+    *[1] ~[skip] ~[the] ~[camp]

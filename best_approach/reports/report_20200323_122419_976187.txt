@@ -1,0 +1,66 @@
+HEADER
+
+	Date and Hour: 2020-03-23 12:24:19.914351
+
+SUMMARY
+
+	There are 1 completed sessions
+
+REPORT LOG
+
+
+0.	--- DIALOGUE 1 ---
+
+1.	I- Form element
+
+2.		[browser_name: chrome - page_title: HYPERCLINIC – Have a new vision of the world - URL: http://localhost/ecobusiness/]
+
+3.	II- Slots
+
+4.		[slot_name: first name - slot_value: j - required: False - spelling: True]
+5.		[slot_name: last name - slot_value: None - required: False - spelling: True]
+6.		[slot_name: password - slot_value: None - required: False - spelling: True]
+7.		[slot_name: email address - slot_value: None - required: False - spelling: False]
+8.		[slot_name: birthday - slot_value: None - required: False - spelling: False]
+9.		[slot_name: gender - slot_value: female - required: True - spelling: False]
+10.		[slot_name: electronic devices - slot_value: None - required: False - spelling: False]
+11.		[slot_name: car - slot_value: None - required: False - spelling: False]
+12.		[slot_name: message - slot_value: None - required: False - spelling: False]
+
+13.	III-Messages
+
+14.		Message_0
+15.			Text: j
+16.			Intent: [name: spelling - confidence: 0.9877]
+17.			Entities: [entity: spelling, value: j]
+18.		Message_1
+19.			Text: done
+20.			Intent: [name: spelling - confidence: 0.8089]
+21.			Entities: [entity: input_value, value: done]
+22.		Message_2
+23.			Text: end
+24.			Intent: [name: spelling - confidence: 0.9888]
+25.			Entities: [entity: spelling, value: end]
+26.		Message_3
+27.			Text: gender
+28.			Intent: [name: fillGenericCamp - confidence: 0.6232]
+29.			Entities: [entity: input_field, value: gender]
+30.		Message_4
+31.			Text: female
+32.			Intent: [name: spelling - confidence: 0.8431]
+33.			Entities: [entity: input_value, value: female]
+34.		Message_5
+35.			Text: gender female
+36.			Intent: [name: fillGenericCamp - confidence: 0.9984]
+37.			Entities: [entity: input_field, value: gender], [entity: input_value, value: female]
+38.		Message_6
+39.			Text: submit
+40.			Intent: [name: submitForm - confidence: 1.0000]
+41.			Entities: 
+42.		Message_7
+43.			Text: yes
+44.			Intent: [name: affirm - confidence: 0.9753]
+45.			Entities: 
+
+
+
