@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>submission form</title>
+  <style>
+    .horizontal_alignment div {
+        float: left;
+        clear: none;
+        margin-right: 5px;
+    }
+    </style>
+</head>
+
+<body>
+
+  <h2>HTML Forms</h2>
+
+  <form action="http://localhost/ecobusiness/" id="my_form" bot-title="registration form sample" bot-dec="presents various fields types in order to test the different kind of input we can have and different actions">
+    <div bot-block="input_section" block-desc="block of input section with name and value">
+      <div bot-entity="input_field">
+        First name
+      </div>
+      <div bot-entity="input_value" entity-type="text" bot-dec="your first name">
+        <input type="text" name="firstname" value="Mickey">
+      </div>
+    </div>
+    <br>
+    <div bot-block="input_section">
+      <div bot-entity="input_field">
+        Last name
+      </div>
+      <div bot-entity="input_value" entity-type="text">
+        <input type="text" name="lastname" value="Mouse">
+      </div>
+    </div>
+    <br>
+    <div bot-block="input_section">
+      <div bot-entity="input_field">
+        Password
+      </div>
+      <div bot-entity="input_value" entity-type="password">
+        <input type="password" id="myPwd" name="pwd">
+        <div>
+          <div>Show password</div>
+          <input type="checkbox" onclick="myFunction()"> 
+          <script>
+            function myFunction() {
+              var x = document.getElementById("myPwd");
+              if (x.type === "password") {
+                x.type = "text";
+              } else {
+                x.type = "password";
+              }
+            }
+            </script> 
+        </div>
+      </div>
+    </div>
+    <br>
+    <div bot-block="input_section">
+      <div bot-entity="input_field">
+        Email address
+      </div>
+      <div bot-entity="input_value" entity-type="email">
+        <input type="email" name="e_mail">
+      </div>
+    </div>
+    <br>
+    <div bot-block="input_section">
+      <div bot-entity="input_field">
+        Birthday
+      </div>
+      <div bot-entity="input_value" entity-type="date">
+        <input type="date" name="bday">
+      </div>
+    </div>
+    <br>
+    <div bot-block="input_section">
+      <div bot-entity="input_field">
+        Car
+      </div>
+      <div bot-entity="input_value" entity-type="dropdown" bot-dec="The car brand you pefer">
+        <select name="cars">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="fiat">Fiat</option>
+          <option value="audi">Audi</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <div bot-block="input_section">
+      <div bot-entity="input_field">
+        Message
+      </div>
+      <div bot-entity="input_value" entity-type="text_area" bot-dec="your wishes for this year">
+        <textarea name="message" rows="10" cols="30">The cat was playing in the garden.</textarea>
+      </div>
+    </div>
+    <br>
+    <div bot-block="input_section">
+      <div bot-entity="input_field">
+        Gender
+      </div>
+      <div class="horizontal_alignment" bot-entity="input_value" entity-type="radio">
+        <div>
+          <div>Male</div>
+          <input type="radio" name="gender" value="male" checked>  
+        </div>
+        <div>
+          <div>Female</div>
+          <input type="radio" name="gender" value="female"> 
+        </div>
+        <div>
+          <div>Other</div>
+          <input type="radio" name="gender" value="other"> 
+        </div>
+      </div> 
+    </div>
+    <br>
+    <div bot-block="input_section">
+      <div bot-entity="input_field">
+        Electronic devices
+      </div>
+      <div class="horizontal_alignment" bot-entity="input_value" entity-type="checkbox" bot-dec="the electonic devices you own">
+        <div>
+          <div>Computer</div>
+          <input type="checkbox" name="e_device" value="computer" checked>  
+        </div>
+        <div>
+          <div>Tablet</div>
+          <input type="checkbox" name="e_device" value="tablet"> 
+        </div>
+        <div>
+          <div>Smartphone</div>
+          <input type="checkbox" name="e_device" value="smartphone"> 
+        </div>
+        <div>
+          <div>None</div>
+          <input type="checkbox" name="e_device" value="none"> 
+        </div>
+      </div> 
+    </div>
+
+    <br><br>
+    <div bot-block="submit_section">
+      <input type="submit" value="Submit">
+    </div>
+    <br>
+    <div bot-block="reset_section">
+      <input type="reset" value="Reset">
+    </div>
+  </form>
+
+  <p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+
+</body>
+
+</html>

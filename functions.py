@@ -184,59 +184,6 @@ def get_input_fields(form_element):
     # return the list of slots containing matching of input_field name with input_value name
     # also returns the number of required camps and the total number of camps
     try:
-        if u.NEW_ANNOTATION:
-            return get_input_fields_new(form_element)
-        slots = []
-        elems = form_element.find_elements_by_xpath(
-            ".//div[@bot-block='input_section']")
-        first_found = False
-        for elem in elems:
-            Field = elem.find_element_by_xpath(
-                ".//div[@bot-entity = 'input_field']").text
-            # We use lower case to have a uniforme case such that the field_name = entity_value of the intent
-            field = Field.lower()
-            if not first_found:
-                first = field
-                first_found = True
-            value_name, value_type, required = get_value_name(elem)
-            slot = {
-                "slot_value": None,         # value corresponding to a label
-                "slot_name": field,         # label
-                "value_name": value_name,   # name_id of the value camp for a label
-                "value_type": value_type,   # type tha the value should have
-                "required": required        # is the filling of a label required or not
-            }
-            slots.append(slot)
-        slot_requested = {
-            "slot_name": u.REQUESTED_SLOT,
-            "slot_value": first
-        }
-        slots.append(slot_requested)
-        return slots
-    except:
-        print("Fail to extract the form's input fields labels")
-        raise Exception
-
-
-def get_field_description_new(field, driver):
-    try:
-        elems_input = driver.find_elements_by_xpath("//input")   
-        elems_dropdown = driver.find_elements_by_xpath("//select")
-        elems_textarea = driver.find_elements_by_xpath("//textarea")
-        elems = elems_input + elems_dropdown + elems_textarea
-        for elem in elems:
-            if elem.get_attribute(u.bot_field) == field:
-                desc = elem.get_attribute('bot-desc')
-                return desc
-        # description not present
-        return None
-    except:
-        print(f'Fail to get the description of the field {field}')
-        raise Exception
-
-
-def get_input_fields_new(form_element):
-    try:
         elems_input = form_element.find_elements_by_xpath(".//input")   
         elems_dropdown = form_element.find_elements_by_xpath(".//select")
         elems_textarea = form_element.find_elements_by_xpath(".//textarea")
@@ -277,7 +224,24 @@ def get_input_fields_new(form_element):
         slots.append(requested_slot)
         return slots
     except:
-        print('Fail to get the input field name')
+        print("Fail to extract the names of the form's input fields")
+        raise Exception
+
+
+def get_field_description(field, driver):
+    try:
+        elems_input = driver.find_elements_by_xpath("//input")   
+        elems_dropdown = driver.find_elements_by_xpath("//select")
+        elems_textarea = driver.find_elements_by_xpath("//textarea")
+        elems = elems_input + elems_dropdown + elems_textarea
+        for elem in elems:
+            if elem.get_attribute(u.bot_field) == field:
+                desc = elem.get_attribute('bot-desc')
+                return desc
+        # description not present
+        return None
+    except:
+        print(f'Fail to get the description of the field {field}')
         raise Exception
 
 

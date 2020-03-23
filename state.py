@@ -247,7 +247,7 @@ class State:
                         return slot_name, required
             # arriving here means that all the camps have been filled, so there is no next slot
             self.set_slot(slot_name=u.REQUESTED_SLOT, slot_value=None)
-            self.set_next_slot(slot_name=None, required = None)
+            self.set_next_slot(slot_name=None, required=None)
             return None, None
         except:
             print("A problem occured while getting the next slot")
@@ -642,29 +642,14 @@ class State:
             if not is_present:
                 raise Exception(
                     "You are trying to get a description of a not existing field {}".format(field))
-            if u.NEW_ANNOTATION:
-                desc = fn.get_field_description_new(field, self.form_element)
-                if desc is None:
-                    sorry_style = styles.get_sorry()
-                    text = "there is no explanation provided for the field {} {}".format(
-                        field, sorry_style)
-                    return text
-                # the description is present in the html file
-                return desc
-            value_name = fn.get_value_name(field)
-            elems = self.form_element.find_elements_by_xpath(
-                ".//div[@bot-entity='input_value']")
-            for elem in elems:
-                value_name_elem, _, _ = fn.get_value_name(elem)
-                if value_name == value_name_elem:
-                    desc = elem.get_attribute('description')
-                    if desc is None:
-                        sorry_style = styles.get_sorry()
-                        text = "there is no explanation provided for the field {} {}".format(
-                            field, sorry_style)
-                        return text
-                    # the description is present in the html file
-                    return desc
+            desc = fn.get_field_description(field, self.form_element)
+            if desc is None:
+                sorry_style = styles.get_sorry()
+                text = "there is no explanation provided for the field {} {}".format(
+                    field, sorry_style)
+                return text
+            # the description is present in the html file
+            return desc
         except:
             print(f'Fail to get the description of the field {field}')
             raise Exception
@@ -688,7 +673,7 @@ class State:
 
     def manage_next_step(self):
         try:
-            slot_name = self.next_slot 
+            slot_name = self.next_slot
             next_slot_required = self.next_slot_required
             if slot_name is not None:
                 if u.DEBUG:
@@ -700,8 +685,8 @@ class State:
                 if slot_name in self.get_spelling_fields() and u.READY_FOR_SPELLING:
                     self.add_spelling_name(slot_name)
                     please_style = styles.get_please()
-                    string = (f'{string}\nSince it is a field requiring the spelling, we are going to take' + 
-                        f' its value one character at a time.\n{please_style} insert the first character')
+                    string = (f'{string}\nSince it is a field requiring the spelling, we are going to take' +
+                              f' its value one character at a time.\n{please_style} insert the first character')
             else:
                 string = self.submit_string()
                 self.set_possible_next_action('submitForm')
@@ -737,7 +722,7 @@ class State:
             """the slot have been filled and now we have to update the state by modifying the
             necessary variables which are: 'num_required_remaining', 'all_required_filled'
             when the slot was required and num_required_remaining = 0 after modif"""
-            
+
             if slot_name == u.REQUESTED_SLOT:
                 # theoretically should never occur
                 return
@@ -780,7 +765,7 @@ class State:
                 else:
                     slot_required = False
                 # we prepare the slot for the next value coming
-                self.set_next_slot(slot_name, slot_required) 
+                self.set_next_slot(slot_name, slot_required)
                 string = self.manage_next_step()
                 return string
             if numValue >= numSlot:
@@ -800,7 +785,8 @@ class State:
             # we find the slot that refers to that entity, if there are many slots, we take the first empty
             # one, and if all are full we take the first one
             # Another hypothesis is that each slot is directly followed or directly preceeded by its value
-            particular_case = self.managed_particular_case(slot_name_list, slot_value_list)
+            particular_case = self.managed_particular_case(
+                slot_name_list, slot_value_list)
             if particular_case:
                 return self.manage_next_step()
             # we are not in a checkbox with more than one choice made
@@ -888,7 +874,7 @@ class State:
             fields = fn.get_string_from_list(empty_slots_names)
             modify_style = styles.get_modify()
             intro = ("You wanted to {} the fields {} but you did not insert their" +
-                         "values\n").format(modify_style, fields)
+                     "values\n").format(modify_style, fields)
             string = "{}\n{}".format(intro, ready_string)
 
             return string
@@ -907,7 +893,7 @@ class State:
                     thanks_style = styles.get_thanks()
                     text = ("{} the field {} is not present in this form. \nthe fields of this form are" +
                             " the following: {}\n{} precise the action you want to perform {}").format(sorry_style,
-                                                                                                      slot_name, self.get_fields_list(), please_style, thanks_style)
+                                                                                                       slot_name, self.get_fields_list(), please_style, thanks_style)
                     self.set_warning_message(text)
                     raise Exception
         except:

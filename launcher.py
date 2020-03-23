@@ -28,10 +28,7 @@ if u.interactive_enabled:
 else:
     browser = u.browsers[0]
 
-if u.NEW_ANNOTATION:
-    url = u.new_url
-else:
-    url = u.old_url
+url = u.form_url
 
 # The Access level calls the Interaction level for the initialization of the bots
 # for all the Forms present in thee Web page

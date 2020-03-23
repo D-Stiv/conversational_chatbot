@@ -26,9 +26,6 @@ READY_FOR_SPELLING = True  # True when we are ready to manage the spelling corre
 # when READY_FOR_SPELLING is False, fillSpellingCamp calls fillGenericCamp
 tag_registration_form = "registration_form_tag"
 
-# to parse the html file containing the new and adopted anotation
-NEW_ANNOTATION = True
-
 # decides whether we have to train the model or not
 train_model = False
 
@@ -37,8 +34,7 @@ write_log = True
 write_report = True
 
 # URL of the form to fill
-new_url = "http://localhost/ecobusiness/new-project-form/"
-old_url = "http://localhost/ecobusiness/project-form/"
+form_url = "http://localhost/ecobusiness/new-project-form/"
 
 # browser to user to open the url, Chrome - Firefox - Edge
 browsers = ['chrome', 'firefox', 'edge']
