@@ -1,0 +1,122 @@
+HEADER
+
+	Date and Hour: 2020-03-23 20:30:45.837180
+
+SUMMARY
+
+	There are 1 completed sessions
+
+REPORT LOG
+
+
+0.	--- DIALOGUE 1 ---
+
+1.	I- Form element
+
+2.		[browser_name: chrome - page_title: HYPERCLINIC – Have a new vision of the world - URL: http://localhost/ecobusiness/]
+
+3.	II- Slots
+
+4.		[slot_name: first name - slot_value: steve - required: False - spelling: True]
+5.		[slot_name: last name - slot_value: ludovic - required: True - spelling: False]
+6.		[slot_name: password - slot_value: pass&word - required: False - spelling: False]
+7.		[slot_name: email address - slot_value: emai@addres - required: True - spelling: False]
+8.		[slot_name: birthday - slot_value: 12-07-1990 - required: False - spelling: False]
+9.		[slot_name: gender - slot_value: male - required: False - spelling: False]
+10.		[slot_name: electronic devices - slot_value: tablet - required: False - spelling: False]
+11.		[slot_name: car - slot_value: fiat - required: False - spelling: False]
+12.		[slot_name: message - slot_value: the sun shines - required: False - spelling: False]
+
+13.	III-Messages
+
+14.		Message_0
+15.			Text: s
+16.			Intent: [name: spelling - confidence: 0.7588]
+17.			Entities: [entity: spelling, value: s]
+18.		Message_1
+19.			Text: t
+20.			Intent: [name: spelling - confidence: 0.9238]
+21.			Entities: [entity: spelling, value: t]
+22.		Message_2
+23.			Text: e
+24.			Intent: [name: spelling - confidence: 0.9642]
+25.			Entities: [entity: spelling, value: e]
+26.		Message_3
+27.			Text: v
+28.			Intent: [name: spelling - confidence: 0.9632]
+29.			Entities: [entity: spelling, value: v]
+30.		Message_4
+31.			Text: e
+32.			Intent: [name: spelling - confidence: 0.9642]
+33.			Entities: [entity: spelling, value: e]
+34.		Message_5
+35.			Text: terminate
+36.			Intent: [name: spelling - confidence: 0.9133]
+37.			Entities: [entity: spelling, value: terminate]
+38.		Message_6
+39.			Text: ludovic
+40.			Intent: [name: spelling - confidence: 0.6402]
+41.			Entities: [entity: input_value, value: ludovic]
+42.		Message_7
+43.			Text: ludovic
+44.			Intent: [name: spelling - confidence: 0.6402]
+45.			Entities: [entity: input_value, value: ludovic]
+46.		Message_8
+47.			Text: ludovic please
+48.			Intent: [name: fillGenericCamp - confidence: 0.9858]
+49.			Entities: [entity: input_value, value: ludovic]
+50.		Message_9
+51.			Text: pass_word
+52.			Intent: [name: fillGenericCamp - confidence: 0.8716]
+53.			Entities: [entity: input_value, value: pass_word]
+54.		Message_10
+55.			Text: pass&word
+56.			Intent: [name: fillGenericCamp - confidence: 0.6083]
+57.			Entities: [entity: input_value, value: pass&word]
+58.		Message_11
+59.			Text: email@address
+60.			Intent: [name: fillGenericCamp - confidence: 0.9307]
+61.			Entities: [entity: input_field, value: email@address]
+62.		Message_12
+63.			Text: emai@addres
+64.			Intent: [name: fillGenericCamp - confidence: 0.9687]
+65.			Entities: [entity: spelling, value: emai@addres]
+66.		Message_13
+67.			Text: my birthday is 12 july 1990
+68.			Intent: [name: fillGenericCamp - confidence: 0.9998]
+69.			Entities: [entity: input_field, value: birthday], [entity: input_value, value: 12 july 1990]
+70.		Message_14
+71.			Text: I am a male
+72.			Intent: [name: fillGenericCamp - confidence: 0.9715]
+73.			Entities: [entity: input_value, value: I am a male]
+74.		Message_15
+75.			Text: male thanks
+76.			Intent: [name: fillGenericCamp - confidence: 0.9926]
+77.			Entities: [entity: input_value, value: male thanks]
+78.		Message_16
+79.			Text: male
+80.			Intent: [name: fillGenericCamp - confidence: 0.9858]
+81.			Entities: [entity: input_value, value: male]
+82.		Message_17
+83.			Text: tablet
+84.			Intent: [name: fillGenericCamp - confidence: 0.9653]
+85.			Entities: [entity: input_value, value: tablet]
+86.		Message_18
+87.			Text: fiat
+88.			Intent: [name: fillGenericCamp - confidence: 0.9846]
+89.			Entities: [entity: input_value, value: fiat]
+90.		Message_19
+91.			Text: the sun shines
+92.			Intent: [name: fillGenericCamp - confidence: 0.6911]
+93.			Entities: [entity: input_value, value: the sun shines]
+94.		Message_20
+95.			Text: yes
+96.			Intent: [name: affirm - confidence: 0.9894]
+97.			Entities: 
+98.		Message_21
+99.			Text: yes
+100.			Intent: [name: affirm - confidence: 0.9894]
+101.			Entities: 
+
+
+

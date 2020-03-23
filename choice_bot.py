@@ -3,7 +3,7 @@ from state import State
 import utility as u
 import functions as fn
 
-EXCEPTION_MESSAGE = "Something went wrong during the handling of this message, please try another message !!"
+EXCEPTION_MESSAGE = "Something went wrong during the handling of this message.\n what can i precisely do for you please ?"
 
 
 class BotsManager:
@@ -13,8 +13,6 @@ class BotsManager:
         try:
             # for the moment we assume that the user input goes to registration form which
             # is the only type we have up to now
-            if u.DEBUG:
-                print("run_action - slots: {}".format(state.get_slots_value()))
             bot = None
             for element in self.botList:
                 if element["tag"] == tag:
@@ -36,12 +34,12 @@ class BotsManager:
             utterance = bot.findActionAndRun(state=state, intent=intent)
             return utterance
         except:
-            print("A problem occured while trying to run the action for user input <<{}>> and bot tag <<{}>>".format(
-                userInput, tag))
             if state.warning_present:
                 utterance = state.warning_message
             else:
                 utterance = EXCEPTION_MESSAGE
+                print("A problem occured while trying to run the action for user input <<{}>> and bot tag <<{}>>".format(
+                        userInput, tag))
             return utterance
 
     def create_bots(self, driver):

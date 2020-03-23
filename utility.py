@@ -72,7 +72,7 @@ spec_char_symbol = [' ', '!', '"', '#', '$', '%', '&', '(', ')', '*', '+', '-', 
 terminator = ['terminate', 'terminator', 'conclude',
               'end', 'stop', 'close', 'finish', 'finished', 'halt']
 number_0_9 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-password_spec_chars = ['!', '@', '#', '$', '%', '^', '&', '*']
+password_spec_chars = ['!', '@', '#', '$', '%', '^', '&', '*', '_']
 
 # styles
 again_styles = ['again', 'once more', 'another time', '']

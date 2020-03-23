@@ -515,11 +515,10 @@ class State:
                 if value == choice:
                     if not elem.is_selected():
                         elem.click()
-                        return
+                    return
                 else:
                     if elem.is_selected():
                         elem.click()
-                        return
             # no match to be implement modifying warning
             sorry_style = styles.get_sorry()
             please_style = styles.get_please()
@@ -529,8 +528,9 @@ class State:
             self.set_warning_message(text)
             raise Exception
         except:
-            print("A problem occured while trying to set the choice {} in the checkbox with name {}".format(
-                choice, name))
+            if not self.warning_present:
+                print("A problem occured while trying to set the choice {} in the checkbox with name {}".format(
+                    choice, name))
             raise Exception
 
     # Select the choices of the user for the checkbox with the given name
@@ -562,9 +562,10 @@ class State:
                 self.set_warning_message(text)
                 raise Exception
         except:
-            choices_list = fn.get_string_from_list(choices)
-            print("A problem occured while trying to set the choices {} in the checkbox with name {}".format(
-                choices_list, name))
+            if not self.warning_present:
+                choices_list = fn.get_string_from_list(choices)
+                print("A problem occured while trying to set the choices {} in the checkbox with name {}".format(
+                    choices_list, name))
             raise Exception
 
     # Finds the submit button inside the form and restitutes it

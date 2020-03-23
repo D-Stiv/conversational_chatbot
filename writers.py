@@ -127,7 +127,10 @@ class ReportWriter(Writer):
             fe = form_element
             url_tot = fe.parent.current_url
             # we troncate the url just before the question mark
-            url = url_tot[:url_tot.index('?')]
+            if '?' in url_tot:
+                url = url_tot[:url_tot.index('?')]
+            else:
+                url = url_tot
 #            url_resp =url_tot[1 + url_tot.index('?'):]
             line = f'[browser_name: {fe.parent.name} - page_title: {fe.parent.title} - URL: {url}]'
             form_element_content = self.add_line(line, tab=tab)

@@ -53,7 +53,7 @@ class RegistrationForm(Form):
             # nlu training
             loop = asyncio.get_event_loop()
             loop.run_until_complete(rasa.nlu.train(
-                nlu_config=self.nlu_config_file_path, data=self.nlu_data_file_path, path=self.model_path, fixed_model_name=u.tag_registration_form))[1]
+                nlu_config=self.nlu_config_file_path, data=self.nlu_data_file_path, path=self.model_folder, fixed_model_name=u.tag_registration_form))[1]
         except:
             print('Fail to train the conversational model')
             raise Exception
@@ -104,21 +104,7 @@ class RegistrationForm(Form):
 
             # we start by checking if the filling already started or not
             if state.filling_started:
-                if state.skip_enabled:
-                    next_slot = state.next_slot
-                    next_slot_required = state.next_slot_required
-                else:
-                    next_slot, next_slot_required = state.get_next_slot()
-                # style for 'again'
-                again_style = styles.get_again()
-                if next_slot is None:
-                    string = "would you like to have the recap {}?".format(
-                        again_style)
-                    # i set the probable next action in case of affirm
-                    state.set_possible_next_action('repeatAllLabels')
-                else:
-                    string = state.get_next_slot_text(
-                        next_slot, next_slot_required)
+                string = state.manage_next_step()
                 return string
             # the filling did not start
             state.filling_started = True
@@ -237,6 +223,8 @@ class RegistrationForm(Form):
             # we set the message to be returned to the user
             string = (f'{intro}\n{please_style} insert the first character, you will be able to use SPACE for spacing' +
                       f'and TERMINATE to {end_style} the spelling')
+            if u.DEBUG:
+                print(f'[Current spelling input: {self.current_spelling_input_value} ]')
             return string
         except:
             if not state.warning_present:
@@ -477,11 +465,8 @@ class RegistrationForm(Form):
             required_fields = state.get_fields_list(only_required=True)
             ans = "{} the required fields are the following {}.".format(
                 sure_style, required_fields)
-            slot_name, next_slot_required = state.get_next_slot()
-            req = fn.get_required_string(next_slot_required)
-            insert_style = styles.get_insert()
-            string = "{} \n{} the value for the field {}, {}".format(
-                ans, insert_style, slot_name, req)
+            string = state.manage_next_step()
+            string = f"{ans}\n{string}"
             return string
         except:
             if not state.warning_present:
@@ -500,11 +485,8 @@ class RegistrationForm(Form):
             optional_fields = state.get_string_from_list(optional_list)
             ans = "{} the optional fields are the following {}.".format(
                 sure_style, optional_fields)
-            slot_name, next_slot_required = state.get_next_slot()
-            req = fn.get_required_string(next_slot_required)
-            insert_style = styles.get_insert()
-            string = "{} \n{} the value for the field {}, {}".format(
-                ans, insert_style, slot_name, req)
+            string = state.manage_next_step()
+            string = f"{ans}\n{string}"
             return string
         except:
             if not state.warning_present:
@@ -518,14 +500,8 @@ class RegistrationForm(Form):
             all_fields = state.get_fields_list()
             ans = "{} the fields present in this form are the following {}.".format(
                 sure_style, all_fields)
-            slot_name, next_slot_required = state.get_next_slot()
-            if slot_name is None:
-                string = state.manage_next_step()
-                return string
-            req = fn.get_required_string(next_slot_required)
-            insert_style = styles.get_insert()
-            string = "{} \n{} the value for the field {}, {}".format(
-                ans, insert_style, slot_name, req)
+            string = state.manage_next_step()
+            string = f"{ans}\n{string}"
             return string
         except:
             if not state.warning_present:
@@ -539,14 +515,8 @@ class RegistrationForm(Form):
             remaining_required_fields = state.get_fields_list(remaining=True)
             ans = "{} the remaining required fields are the following {}.".format(
                 sure_style, remaining_required_fields)
-            slot_name, next_slot_required = state.get_next_slot()
-            if slot_name is None:
-                string = state.manage_next_step()
-                return string
-            req = fn.get_required_string(next_slot_required)
-            insert_style = styles.get_insert()
-            string = "{} \n{} the value for the field {}, {}".format(
-                ans, insert_style, slot_name, req)
+            string = state.manage_next_step()
+            string = f"{ans} \n{string}"
             return string
         except:
             if not state.warning_present:
@@ -625,7 +595,7 @@ class RegistrationForm(Form):
 
     def repeatFormName(self, state):
         try:
-            form_title = state.get_form_name()
+            form_title = state.get_form_title()
             if form_title is None:
                 string = "this form does not have a title."
             else:
