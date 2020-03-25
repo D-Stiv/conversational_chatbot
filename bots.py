@@ -223,8 +223,6 @@ class RegistrationForm(Form):
             # we set the message to be returned to the user
             string = (f'{intro}\n{please_style} insert the first character, you will be able to use SPACE for spacing' +
                       f'and TERMINATE to {end_style} the spelling')
-            if u.DEBUG:
-                print(f'[Current spelling input: {self.current_spelling_input_value} ]')
             return string
         except:
             if not state.warning_present:
@@ -342,6 +340,9 @@ class RegistrationForm(Form):
 
     def spelling(self, state):
         try:
+            if len(state.spelling_list) == 0:
+                string = self.fillGenericCamp(state)
+                return string
             alphabet = u.alphabet
             special_characters = u.special_characters
             spec_char_symbol = u.spec_char_symbol

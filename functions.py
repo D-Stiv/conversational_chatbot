@@ -184,7 +184,7 @@ def get_input_fields(form_element):
     # return the list of slots containing matching of input_field name with input_value name
     # also returns the number of required camps and the total number of camps
     try:
-        elems_input = form_element.find_elements_by_xpath(".//input")   
+        elems_input = form_element.find_elements_by_xpath(".//input")
         elems_dropdown = form_element.find_elements_by_xpath(".//select")
         elems_textarea = form_element.find_elements_by_xpath(".//textarea")
         elems = elems_input + elems_dropdown + elems_textarea
@@ -210,12 +210,16 @@ def get_input_fields(form_element):
                     spelling = False
                 slot = {
                     u.slot_value: None,         # value corresponding to a label
-                    u.slot_name: field.lower(), # label
+                    u.slot_name: field.lower(),  # label
                     u.value_name: value_name,   # name_id of the value camp for a label
                     u.value_type: value_type,   # type tha the value should have
                     u.required: required,       # is the filling of a label required or not
                     u.spelling: spelling
                 }
+                # in case of field with choices, we insert the list of choices
+                if value_type in [u.radio, u.checkbox, u.dropdowm]:
+                    choice_list = get_choice_list(value_name, value_type, form_element)
+                    slot[u.choice_list] = choice_list
                 slots.append(slot)
         requested_slot = {
             "slot_value": first_field,
@@ -228,11 +232,11 @@ def get_input_fields(form_element):
         raise Exception
 
 
-def get_field_description(field, driver):
+def get_field_description(field, form_element):
     try:
-        elems_input = driver.find_elements_by_xpath("//input")   
-        elems_dropdown = driver.find_elements_by_xpath("//select")
-        elems_textarea = driver.find_elements_by_xpath("//textarea")
+        elems_input = form_element.find_elements_by_xpath("//input")
+        elems_dropdown = form_element.find_elements_by_xpath("//select")
+        elems_textarea = form_element.find_elements_by_xpath("//textarea")
         elems = elems_input + elems_dropdown + elems_textarea
         for elem in elems:
             if elem.get_attribute(u.bot_field) == field:
@@ -245,6 +249,28 @@ def get_field_description(field, driver):
         raise Exception
 
 
+def get_choice_list(choice_name, choice_type, web_elem):
+    try:
+        if choice_type == u.dropdowm:
+            name = choice_name.lower()
+            elem = web_elem.find_element_by_name(name)
+            choice_list = []
+            options = elem.find_elements_by_xpath(".//option")
+            for option in options:
+                choice_list.append(option.text)
+        elif choice_type in [u.radio, u.checkbox]:
+            name = choice_name.lower()
+            elems = web_elem.find_elements_by_name(name)
+            choice_list = []
+            for elem in elems:
+                value = elem.get_attribute("value")
+                choice_list.append(value)
+        return choice_list
+    except:
+        print(f'Fail to get the list for the slot {name}')
+        raise Exception
+
+
 def get_required_string(required):
     if required:
         req = "this field is required"
@@ -254,12 +280,13 @@ def get_required_string(required):
 
 
 def is_required(element):
-    # verifies if a driver element (corresponds to an input in our case) is required or not
+    # verifies if a form_element element (corresponds to an input in our case) is required or not
     value = element.get_attribute(u.required)
     if value != None:
         return True
     else:
         return False
+
 
 def get_proposals(values):
     try:
@@ -276,6 +303,7 @@ def get_proposals(values):
     except:
         print(f'Fail to get the proposals')
         raise Exception
+
 
 def get_num_fields(constructs):
     try:

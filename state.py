@@ -118,7 +118,7 @@ class State:
         self.spelling_list = spelling_list
 
     def reset_current_spelling_input_value(self):
-        self.current_input_value = ""
+        self.current_spelling_input_value = ""
 
     def reset_spelling_list(self):
         self.spelling_list = []
@@ -287,23 +287,22 @@ class State:
     def get_next_slot_text(self, slot_name, slot_required):
         try:
             types_with_options = [u.dropdowm, u.checkbox, u.radio]
-            for slot in self.form_slots():
-                if slot[u.slot_name].lower() == slot_name.lower():
-                    value_name = slot[u.value_name]
-                    value_type = slot[u.value_type]
-                    break
+            slot = self.get_slot(slot_name)
+            value_type = slot[u.value_type]
             required_string = fn.get_required_string(slot_required)
             if value_type in types_with_options:
+                choice_list = slot[u.choice_list]
+                option_string = fn.get_string_from_list(choice_list)
                 if value_type == u.dropdowm:
-                    option_string = self.get_dropdown_list(value_name)
                     string = f"Select the {slot_name} in the following list {option_string}. {required_string}"
                 else:
                     if value_type == u.checkbox:
-                        option_string = self.get_checkbox_list(value_name)
                         string = f"Select your {slot_name} in the following list {option_string}. {required_string}"
                     elif value_type == u.radio:
-                        option_string = self.get_radio_list(value_name)
                         string = f"Choose your {slot_name} in the following list {option_string}. {required_string}"
+                if u.DEBUG:
+                    print("choice list")
+                    print(choice_list)
             else:
                 insert_style = styles.get_insert()
                 please_style = styles.get_please()
@@ -321,14 +320,9 @@ class State:
                 is_none = True
             # substitute the underscores with spaces to outpu the right message
             input_type_list = u.input_type_list
-            value_name = ""
-            value_type = ""
-            for slot in self.form_slots():
-                if slot[u.slot_name] != u.REQUESTED_SLOT:
-                    if slot[u.slot_name].lower() == slot_name.lower():
-                        value_name = slot[u.value_name]
-                        value_type = slot[u.value_type]
-                        break
+            slot = self.get_slot(slot_name)
+            value_type = slot[u.value_type]
+            value_name = slot[u.value_name]
             if not is_none:
                 if u.DEBUG:
                     print("value_name: {}, value_type: {}".format(
@@ -354,13 +348,13 @@ class State:
                 slot_value = slot_value.lower()
             if value_type == u.dropdowm:
                 self.set_choice_dropdown(
-                    name=value_name, choice=slot_value)
+                    slot_name=slot_name, choice_value=slot_value)
             elif value_type == u.checkbox:
                 self.set_choice_checkbox(
-                    name=value_name, choice=slot_value)
+                    slot_name=slot_name, choice_value=slot_value)
             elif value_type == u.radio:
                 self.set_choice_radio(
-                    name=value_name, choice=slot_value)
+                    slot_name=slot_name, choice_value=slot_value)
             if is_none:
                 return ""
             return slot_value
@@ -370,114 +364,53 @@ class State:
                     slot_value, slot_name))
             raise Exception
 
-    # Restitutes the choices list inside the dropdown with the given name
-    def get_dropdown_list(self, name, tag='str'):
+    # Select the choice_value of the user for the dropdown with the given name
+    def set_choice_dropdown(self, slot_name, choice_value):
         try:
-            name = name.lower()
-            elem = self.form_element.find_element_by_name(name)
-            dropdowm_list = []
-            options = elem.find_elements_by_xpath(".//option")
-            for option in options:
-                dropdowm_list.append(option.text)
-            if u.DEBUG:
-                print("dropdown list")
-                print(dropdowm_list)
-            if tag != 'str':
-                return dropdowm_list
-            string = fn.get_string_from_list(dropdowm_list)
-            return string
-        except:
-            print(
-                "A problem occured while fetching the dropdown list with the name {}".format(name))
-            raise Exception
-
-    # Restitutes the choices list inside the checkbox with the given name
-    def get_checkbox_list(self, name, tag='str'):
-        try:
-            name = name.lower()
-            elems = self.form_element.find_elements_by_name(name)
-            checkbox_list = []
-            for elem in elems:
-                value = elem.get_attribute("value")
-                checkbox_list.append(value)
-            if u.DEBUG:
-                print("checkbox list")
-                print(checkbox_list)
-            if tag != 'str':
-                return checkbox_list
-            string = fn.get_string_from_list(checkbox_list)
-            return string
-        except:
-            print(
-                "A problem occured while fetching the checkbox list with the name {}".format(name))
-            raise Exception
-
-    # Restitutes the choices list inside the radio with the given name
-    def get_radio_list(self, name, tag='str'):
-        try:
-            name = name.lower()
-            elems = self.form_element.find_elements_by_name(name)
-            radio_list = []
-            for elem in elems:
-                value = elem.get_attribute("value")
-                radio_list.append(value)
-            if u.DEBUG:
-                print("radio list")
-                print(radio_list)
-            if tag != 'str':
-                return radio_list
-            string = fn.get_string_from_list(radio_list)
-            return string
-        except:
-            print(
-                "A problem occured while fetching the radio list with the name {}".format(name))
-            raise Exception
-
-    # Select the choice of the user for the dropdown with the given name
-    def set_choice_dropdown(self, name, choice):
-        try:
-            name = name.lower()
-            select = Select(self.form_element.find_element_by_name(name))
-            if choice is None:
-                # the choice is to select the first element
+            slot = self.get_slot(slot_name)
+            choice_name = slot[u.slot_value].lower()
+            select = Select(self.form_element.find_element_by_name(choice_name))
+            if choice_value is None:
+                # the choice_value is to select the first element
                 select.select_by_index(0)
             else:
-                choice = choice.lower()
-                # verify if the choice is in the dropdown list
+                choice_value = choice_value.lower()
+                # verify if the choice_value is in the dropdown list
                 # if not warning for no match with choice
-                choice_list = self.get_dropdown_list(name, 'list')
+                choice_list = slot[u.choice_list]
                 # we transform the choice_list in lowercase
                 for index in range(len(choice_list)):
                     choice_list[index] = choice_list[index].lower()
-                if choice in choice_list:
+                if choice_value in choice_list:
                     select.select_by_value(choice)
                 else:
                     sorry_style = styles.get_sorry()
                     please_style = styles.get_please()
-                    text = (f"{sorry_style} the choice {choice} is not valid for the field {self.next_slot}" +
+                    text = (f"{sorry_style} the choice_value {choice} is not valid for the field {self.next_slot}" +
                             f"{please_style} choose one in the following list: {choice_list}")
                     self.set_warning_message(text)
                     raise Exception
         except:
-            print("A problem occured while trying to set the choice {} in the dropdown with name {}".format(
-                choice, name))
+            print("A problem occured while trying to set the choice_value {} in the dropdown with name {}".format(
+                choice_value, choice_name))
             raise Exception
 
-    # Select the choice of the user for the radio with the given name
-    def set_choice_radio(self, name, choice):
+    # Select the choice_value of the user for the radio with the given name
+    def set_choice_radio(self, slot_name, choice_value):
         try:
-            name = name.lower()
-            elems = self.form_element.find_elements_by_name(name)
-            if choice is None:
+            slot = self.get_slot(slot_name)
+            choice_name = slot[u.slot_value].lower()
+            elems = self.form_element.find_elements_by_name(choice_name)
+            if choice_value is None:
                 # we select the first element of the list
                 elems[0].click()
                 return
-            choice = choice.lower()
-            choice_list = self.get_radio_list(name, 'list')
+            choice_value = choice.lower()
+            choice_list = slot[u.choice_list]
             # we transform the choice_list in lowercase
             for index in range(len(choice_list)):
                 choice_list[index] = choice_list[index].lower()
-            if choice in choice_list:
+            if choice_value in choice_list:
                 for elem in elems:
                     value = elem.get_attribute("value")
                     if value == choice:
@@ -486,28 +419,29 @@ class State:
             # no match to be implement modifying warning
             sorry_style = styles.get_sorry()
             please_style = styles.get_please()
-            text = (f"{sorry_style} the choice {choice} is not valid for the field {name}" +
+            text = (f"{sorry_style} the choice_value {choice} is not valid for the field {name}" +
                     f"{please_style} choose one in the following list: {choice_list}")
             self.set_warning_message(text)
             raise Exception
         except:
             if not self.warning_present:
-                print("A problem occured while trying to set the choice {} in the radio with name {}".format(
-                    choice, name))
+                print("A problem occured while trying to set the choice_value {} in the radio with name {}".format(
+                    choice_value, choice_name))
             raise Exception
 
-    # Select the choice of the user for the checkbox with the given name
-    def set_choice_checkbox(self, name, choice):
+    # Select the choice_value of the user for the checkbox with the given name
+    def set_choice_checkbox(self, slot_name, choice_value):
         try:
-            name = name.lower()
-            elems = self.form_element.find_elements_by_name(name)
-            choice_list = self.get_checkbox_list(name)
-            if choice is None:
+            slot = self.get_slot(slot_name)
+            choice_name = slot[u.slot_value].lower()
+            elems = self.form_element.find_elements_by_name(choice_name)
+            choice_list = slot[u.choice_list]
+            if choice_value is None:
                 for elem in elems:
                     if elem.is_selected():
                         elem.click()
                         return
-            choice = choice.lower()
+            choice_value = choice.lower()
             if u.DEBUG:
                 print("choice: {}".format(choice))
             for elem in elems:
@@ -522,25 +456,26 @@ class State:
             # no match to be implement modifying warning
             sorry_style = styles.get_sorry()
             please_style = styles.get_please()
-            text = ("{} the choice {} is not valid for the field {}" +
+            text = ("{} the choice_value {} is not valid for the field {}" +
                     "{} choose one in the following list: {}").format(sorry_style,
                                                                       choice, please_style, choice_list)
             self.set_warning_message(text)
             raise Exception
         except:
             if not self.warning_present:
-                print("A problem occured while trying to set the choice {} in the checkbox with name {}".format(
-                    choice, name))
+                print("A problem occured while trying to set the choice_value {} in the checkbox with name {}".format(
+                    choice_value, choice_name))
             raise Exception
 
     # Select the choices of the user for the checkbox with the given name
-    def set_choices_checkbox(self, name, choices):
+    def set_choices_checkbox(self, slot_name, choice_values):
         try:
-            name = name.lower()
+            slot = self.get_slot(slot_name)
+            choice_name = slot[u.slot_value].lower()
             choices_lower = []
-            for choice in choices:
-                choices_lower.append(choice.lower())
-            elems = self.form_element.find_elements_by_name(name)
+            for choice_value in choice_values:
+                choices_lower.append(choice_value.lower())
+            elems = self.form_element.find_elements_by_name(choice_name)
             value_present = False
             for elem in elems:
                 value = elem.get_attribute("value")
@@ -553,7 +488,7 @@ class State:
                         elem.click()
                         value_present = True
             if not value_present:
-                choices_string = fn.get_string_from_list(choices)
+                choices_string = fn.get_string_from_list(choice_values)
                 sorry_style = styles.get_sorry()
                 please_style = styles.get_please()
                 text = ("{} none of the choices {} you proposed is valid for the field {}" +
@@ -563,9 +498,9 @@ class State:
                 raise Exception
         except:
             if not self.warning_present:
-                choices_list = fn.get_string_from_list(choices)
+                choices_list = fn.get_string_from_list(choice_values)
                 print("A problem occured while trying to set the choices {} in the checkbox with name {}".format(
-                    choices_list, name))
+                    choices_list, choice_name))
             raise Exception
 
     # Finds the submit button inside the form and restitutes it
@@ -602,6 +537,8 @@ class State:
 
     def complete_spelling_value(self, string):
         self.current_spelling_input_value = self.current_spelling_input_value + string
+        if u.DEBUG:
+            print(f'[Current spelling input: {self.current_spelling_input_value} ]')
 
     # returns a string containing the list of fields, we can precise if we want only the
     # remaining ones, only the required ones
@@ -698,21 +635,18 @@ class State:
 
     def managed_particular_case(self, slot_name_list, slot_value_list):
         try:
-            # The particular case refers to a checkbox with more than one choice made
+            # The particular case refers to a checkbox with more than one choice_value made
             if len(slot_name_list) != 1:
                 return False
             if len(slot_name_list) >= len(slot_value_list):
                 return False
-            slot = slot_name_list[0]
-            for slot in self.form_slots():
-                if slot[u.slot_name].lower() == slot.lower():
-                    value_name = slot[u.value_name]
-                    value_type = slot[u.value_type]
-                    break
+            slot_name = slot_name_list[0]
+            slot = self.get_slot(slot_name)
+            value_type = slot[u.value_type]
             if value_type != "checkbox":
                 return False
             self.set_choices_checkbox(
-                name=value_name, choices=slot_value_list)
+                slot_name=slot_name, choice_values=slot_value_list)
             return True
         except:
             print("Fail to check particular case")
@@ -790,7 +724,7 @@ class State:
                 slot_name_list, slot_value_list)
             if particular_case:
                 return self.manage_next_step()
-            # we are not in a checkbox with more than one choice made
+            # we are not in a checkbox with more than one choice_value made
             ready_to_submit = False
             numSlot = len(slot_name_list)
             numValue = len(slot_value_list)
@@ -854,7 +788,7 @@ class State:
                 slot_name = slot_name_list[index]
                 empty_slots_names.append(slot_name)
             # the choie here is to reset all the fields that the user wanted to modify but did not give the
-            # values. Another choice could be to leave them as they are
+            # values. Another choice_value could be to leave them as they are
             for slot_name in empty_slots_names:
                 self.fill_input(slot_name, slot_value=None)
                 self.set_slot(slot_name, slot_value=None)

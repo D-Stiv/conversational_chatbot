@@ -1,5 +1,8 @@
 DEBUG = True
 
+# maximum number of dialogues
+MAX_DIALOGUES = 10
+
 # minimum and maximum year acceptable for the date
 min_year = 1500
 max_year = 3000
@@ -32,6 +35,9 @@ train_model = False
 # decides whether or not write the log and the report
 write_log = True
 write_report = True
+
+# whether or not we use the simulator
+simulation_enabled = False
 
 # URL of the form to fill
 form_url = "http://localhost/ecobusiness/new-project-form/"
@@ -171,6 +177,7 @@ value_name = 'value_name'   # given by the name attribute
 value_type = 'value_type'   # given by the bot-type or type attribute
 spelling = 'spelling'       # given by field-spelling attribute
 required = 'required'       # given by required attribute
+choice_list = 'choice_list' # list of choices in case of dropdown, radio or checkbox
 
 # annotations of the web_page
 bot_title = 'bot-title'
