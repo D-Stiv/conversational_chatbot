@@ -108,8 +108,6 @@ class RegistrationForm(Form):
                 return string
             # the filling did not start
             state.filling_started = True
-            # we initialize the next_slot
-            state.get_next_slot()
             form_title = state.get_form_title()
             if form_title is None:
                 form_intro = "this form does not have a title."
@@ -169,7 +167,7 @@ class RegistrationForm(Form):
                 else:
                     string = "{}\n{}".format(intro, concl)
             # we verify if the spelling_list is empty or not
-            if len(state.spelling_list) != 0:
+            if len(state.get_spelling_list()) != 0:
                 string = self.fillSpellingCamp(state)
             return string
         except:
@@ -181,23 +179,23 @@ class RegistrationForm(Form):
     def fillSpellingCamp(self, state):
         try:
             # we have to verify if we just finished the spelling of a field
-            if state.after_spelling:
+            if state.get_after_spelling():
                 # after spelling is desabled since we are going to insert the vale for a field
                 state.set_after_spelling(False)
-                slot_name = state.spelling_list[0]
-                slot_value = state.current_spelling_input_value
+                slot_name = state.get_spelling_list()[0]
+                slot_value = state.get_current_spelling_input_value()
                 # we go to the filling procedure
                 state.filling_procedure(slot_name, slot_value)
                 state.reset_current_spelling_input_value()
                 # verify if all the fields in spelling list have been completed
-                if len(state.spelling_list) - 1 == 0:
+                if len(state.get_spelling_list()) - 1 == 0:
                     state.reset_spelling_list()
                     string = state.manage_next_step()
                 else:
                     # there are still fields to spell
                     state.update_spelling_list(slot_name)
                     state.set_close_prompt_enabled()
-                    next_field = state.spelling_list[0]
+                    next_field = state.get_spelling_list()[0]
                     please_style = styles.get_please()
                     string = ("Now you are going to spell the value for the field {}.\n" +
                             "{} insert the first character").format(next_field, please_style)
@@ -213,7 +211,7 @@ class RegistrationForm(Form):
             # we add styles to the output
             please_style = styles.get_please()
             end_style = styles.get_end()
-            slot_name_list = state.spelling_list
+            slot_name_list = state.get_spelling_list()
             fields_string = fn.get_string_from_list(slot_name_list)
             if len(slot_name_list) == 1:
                 intro = f"you will have to spell the value of the field {slot_name_list[0]}."
@@ -290,7 +288,7 @@ class RegistrationForm(Form):
                 state.message_history)-1]["entities"]
             count = len(entities)
             if count == 0:
-                slot_name, _ = state.get_next_slot()
+                slot_name = state.get_next_slot()
                 if slot_name is None:
                     string = state.manage_next_step()
                     return string
@@ -340,7 +338,7 @@ class RegistrationForm(Form):
 
     def spelling(self, state):
         try:
-            if len(state.spelling_list) == 0:
+            if len(state.get_spelling_list()) == 0:
                 string = self.fillGenericCamp(state)
                 return string
             alphabet = u.alphabet
@@ -377,9 +375,6 @@ class RegistrationForm(Form):
                 index = special_characters.index(text)
                 text = spec_char_symbol[index]
             # we proceed by completting the current spelling input value
-            if state.current_spelling_input_value == '':
-                # each time we start a new spelling, we put after_spelling to False
-                state.set_after_spelling(False)
             state.complete_spelling_value(text)
             # we add styles to the output
             next_style = styles.get_next()
@@ -425,6 +420,8 @@ class RegistrationForm(Form):
                     else:
                         value = slot['slot_value']
                     string = string + "\n\t" + text.format(key, value)
+            continue_string = state.manage_next_step()
+            string = f'{string}\n{continue_string}'
             return string
         except:
             if not state.warning_present:
@@ -435,10 +432,9 @@ class RegistrationForm(Form):
     def skipCamp(self, state):
         try:
             # we set the actual slot to campare it later with the next slot
-            actual_slot_name = state.next_slot
-            # we enable the skipping mode
-            state.set_skip_enabled()
-            # we get the next slot and we provide it to the user
+            actual_slot_name, _ = state.get_next_slot()
+            # we get the next slot without having filled the current slot and we verify if it is the last field
+            state.set_next_slot_basic()
             next_slot_name, _ = state.get_next_slot()
             if actual_slot_name == next_slot_name:
                 sorry_style = styles.get_sorry()
@@ -451,8 +447,8 @@ class RegistrationForm(Form):
                 string = ("{} it is required to be able to submit the form" +
                           "{}\n{}").format(text, self.fillForm(state), opt)
                 return string
-            string = self.fillForm(state)
-            state.set_skip_enabled(False)
+            # we got to the next step
+            string = state.manage_next_step()
             return string
         except:
             if not state.warning_present:
@@ -539,14 +535,8 @@ class RegistrationForm(Form):
                 remaining_optional_list)
             ans = "{} the remaining optional fields are the following {}.".format(
                 sure_style, optional_fields)
-            slot_name, next_slot_required = state.get_next_slot()
-            if slot_name is None:
-                string = state.manage_next_step()
-                return string
-            req = fn.get_required_string(next_slot_required)
-            insert_style = styles.get_insert()
-            string = "{} \n{} the value for the field {}, {}".format(
-                ans, insert_style, slot_name, req)
+            string = state.manage_next_step()
+            string = f'{ans}\n{string}'
             return string
         except:
             if not state.warning_present:
@@ -560,14 +550,8 @@ class RegistrationForm(Form):
             all_remaining_fields = state.get_fields_list(remaining=True)
             ans = "{} the remaining fields present in this form are the following {}.".format(
                 sure_style, all_remaining_fields)
-            slot_name, next_slot_required = state.get_next_slot()
-            if slot_name is None:
-                string = state.manage_next_step()
-                return string
-            req = fn.get_required_string(next_slot_required)
-            insert_style = styles.get_insert()
-            string = "{} \n{} the value for the field {}, {}".format(
-                ans, insert_style, slot_name, req)
+            string = state.manage_next_step()
+            string = f'{ans}\n{string}'
             return string
         except:
             if not state.warning_present:
@@ -584,9 +568,8 @@ class RegistrationForm(Form):
                         filled_slots.append(slot)
             filled_string = fn.get_pairs(filled_slots)
             next_step_string = state.manage_next_step()
-            string = ("the fieds you already completed are the following: {}\n" +
-                      "the stars indicate the required fields\n{}").format(filled_string, next_step_string)
-
+            string = (f"the fieds you already completed are the following: {filled_string}\n" +
+                     f"the stars indicate the required fields\n{next_step_string}")
             return string
         except:
             if not state.warning_present:
@@ -601,6 +584,8 @@ class RegistrationForm(Form):
                 string = "this form does not have a title."
             else:
                 string = "the title of this form is {}.".format(form_title)
+            next_step_string = state.manage_next_step()
+            string = f'{string}\n{next_step_string}'
             return string
         except:
             if not state.warning_present:
@@ -618,6 +603,8 @@ class RegistrationForm(Form):
             else:
                 sure_style = styles.get_sure()
                 string = "{} here it is: {}.".format(sure_style, form_desc)
+            next_step_string = state.manage_next_step()
+            string = f'{string}\n{next_step_string}'
             return string
         except:
             if not state.warning_present:
@@ -627,6 +614,15 @@ class RegistrationForm(Form):
 
     def resetAllCamps(self, state):
         try:
+            if not state.reset_alarm_enabled:
+                string = "we are about to reset all the field and restart the process.\n are you sure you want to continue with this action ?"
+                state.set_possible_next_action('resetAllCamps')
+                # we enable the alarm
+                state.reset_alarm_enabled = True
+                return string
+            # we disable the alarm before continuing
+            state.reset_alarm_enabled = False
+            # we reset the web form and then we reset the slots 
             elem = state.get_reset_button()
             elem.click()
             slots = state.form_slots()
@@ -642,10 +638,8 @@ class RegistrationForm(Form):
                 elif slot_name != u.REQUESTED_SLOT:
                     # we go to the filling procedure
                     state.filling_procedure(slot_name, slot_value)
-            next_slot, next_slot_required = state.get_next_slot()
-            req = fn.get_required_string(next_slot_required)
-            string = "All the fields have been reset, please fill the {}. {}".format(
-                next_slot, req)
+            text = state.manage_next_step()
+            string = f"All the fields have been reset, now we restart the process.\n{text}"
             return string
         except:
             if not state.warning_present:
@@ -676,7 +670,7 @@ class RegistrationForm(Form):
             elem.click()
             # we signify that the submit is done to have the title page
             state.submit_done = True
-            string = 'submit done'
+            string = 'submission done'
             return string
         except:
             if not state.warning_present:
