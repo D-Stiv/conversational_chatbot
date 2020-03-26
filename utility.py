@@ -187,3 +187,13 @@ bot_desc = 'bot-desc'
 field_type = 'field-type'
 field_spelling = 'field-spelling'
 field_desc = 'field-desc'
+
+# keys for the spelling state structure
+close_prompt_enabled = 'close_prompt_enabled'
+current_spelling_input_value = 'current_spelling_input_value'
+spelling_interrupted = 'spelling_interrupted'
+spelling_list = 'spelling_list'
+waiting_intent = 'waiting_intent'
+after_spelling = 'after_spelling'
+saved_spelling_fields = 'saved_spelling_fields'
+saved_spelling_values = 'saved_spelling_values'  # goes with the spelling field at the same index
