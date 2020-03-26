@@ -8,6 +8,8 @@ import writers as w
 import asyncio
 from views import ViewChatPannel
 import styles
+from user_manager import User
+from random import randint
 
 PREPROCESSING_EXCEPTION = "A problem occured during the preprocessing phase, take a look into the code and restart later"
 
@@ -22,6 +24,7 @@ class DialogueManager:
         # initialize the the preprocessor
         self.url = url
         self.browser = browser
+        self.user = None
         self.driver = None
         self.log_writer = w.LogWriter()
         self.counter = 0
@@ -32,6 +35,8 @@ class DialogueManager:
         self.in_session = False
         self.restart = False
         self.states_list = []
+        self.total_iterations = randint(1, u.MAX_DIALOGUES)
+        self.iteration_number = 0
 
     def create_form_bots(self):
         try:
@@ -46,6 +51,9 @@ class DialogueManager:
             # we start a session
             self.in_session = True
             self.current_bot = self.bot_manager.get_bot(bot_tag)
+            if u.simulation_enabled:
+                # we initialize the user
+                self.user = User(self.current_bot['state'])
             if u.train_model:
                 self.current_bot['bot'].train_model()
             self.conversation_prologue()
@@ -53,6 +61,10 @@ class DialogueManager:
             if u.write_log:
                 self.log_writer.start()
             if self.restart:
+                if self.iteration_number > self.total_iterations:
+                    return
+                # we increment the nunmer of iteration
+                self.iteration_number += 1
                 # we reset the botList for the new session
                 self.bot_manager.botList = []
                 self.create_form_bots()
@@ -97,8 +109,12 @@ class DialogueManager:
         try:
             my_state = self.current_bot['state']
             # beginning of the interaction
+            text = ''
             while True and self.in_session:
-                a = input("Your input: ")
+                if u.simulation_enabled:
+                    a = self.user.get_answer(text)
+                else:
+                    a = input("Your input: ")
                 if a == 'stop':
                     self.chatbot_view.show_end_of_conversation(self.counter)
                     self.restart = False
@@ -137,10 +153,14 @@ class DialogueManager:
             # we add the tate to the list
             self.states_list.append(self.current_bot['state'])
             restart = 1
-            if u.interactive_enabled:
+            if u.interactive_enabled or u.simulation_enabled:
                 restart = None
                 while restart is None:
-                    answer = input('do you want to start a new session ?\t1- Yes\t0- No\n>>> Response: ')
+                    text = 'do you want to start a new session ?\t1- Yes\t0- No\n>>> Response: '
+                    if simulation_enabled:
+                        answer = self.user.get_answer(text)
+                    else:
+                        answer = input(text)
                     restart = fn.convert_to_int(answer)
                     if restart is None:
                         sorry_style = styles.get_sorry()

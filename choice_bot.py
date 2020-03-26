@@ -31,10 +31,12 @@ class BotsManager:
             # find the intent
             intent = latest_message["intent"]["name"]
             state.set_warning_present(False)
-            utterance = bot.findActionAndRun(state=state, intent=intent)
+            utterance = self.get_utterance(bot, state, intent)
             return utterance
         except:
             if state.warning_present:
+                # the message of the user was either out of context or not understood
+                state.set_possible_next_action(None)
                 utterance = state.warning_message
             else:
                 utterance = EXCEPTION_MESSAGE
@@ -88,4 +90,44 @@ class BotsManager:
                     return bot
         except:
             print('Fail to get the bot')
+            raise Exception
+
+    def get_utterance(self, bot, state, intent):
+        try:
+            if state.get_spelling_interrupted():
+                # In the past the user interrupted a spelling and we wait for the response on whether to save the state or not
+                if intent not in ['affirm', 'deny']:
+                    utterance = ('please i would like to have a clear answer.\nwould you like to save the state of the field ' +
+                        'that you started spelling ?\nIn case of negative response, tahat input will simply be canceled')
+                    return utterance
+                state.set_spelling_interrupted(False)
+                state.set_close_prompt_enabled(False)
+                if intent == 'affirm':
+                    # we insert the first element of the spelling list in the saved spelling
+                    spelling_list = self.get_spelling_list()
+                    field = spelling_list[0]
+                    state.add_spelling_field_to_save(field)
+                    spelling_list.remove(field)
+                    # we insert the current spelling value in the list of saved values 
+                    state.add_spelling_value_to_save(self.get_current_spelling_input_value())
+                # we reset the current value
+                state.reset_current_spelling_string_value()
+            elif intent != 'spelling' and state.get_current_spelling_input_value() != '':
+                # the user started to spell an input and suddently interrupts it
+                state.set_spelling_interrupted()
+                state.set_waiting_intent(intent)
+                utterance = ('do you want to save the state of the field that you started spelling ?\nIn case of negative response, ' +
+                    'tahat input will simply be canceled')
+            elif state.get_waiting_intent() is not None:
+                # the user interrupted a spelling and decided eiher to save or not to save. Now we go on with the action 
+                # that interrupted the spelling
+                intent = state.get_waiting_intent()
+                state.set_waiting_intent(None)
+                utterance = bot.findActionAndRun(state=state, intent=intent)
+            else:
+                # normal path, there is no spelling issue
+                utterance = bot.findActionAndRun(state=state, intent=intent)
+            return utterance
+        except:
+            print('Fail to get the utterance')
             raise Exception
