@@ -33,8 +33,8 @@ tag_registration_form = "registration_form_tag"
 train_model = False
 
 # decides whether or not write the log and the report
-write_log = True
-write_report = True
+write_log = False
+write_report = False
 
 # whether or not we use the simulator
 simulation_enabled = False
@@ -197,3 +197,24 @@ waiting_intent = 'waiting_intent'
 after_spelling = 'after_spelling'
 saved_spelling_fields = 'saved_spelling_fields'
 saved_spelling_values = 'saved_spelling_values'  # goes with the spelling field at the same index
+
+# keys for parameters of the machine (will be use for the state machine)
+possible_next_action = 'possible_next_action'
+all_required_filled = 'all_required_filled'
+warning_message = 'warning_message'
+warning_present = 'warning_present'
+next_slot = 'next_slot'
+next_slot_required = 'next_slot_required'
+submit_alarm_enabled = 'submit_alarm_enabled'
+reset_alarm_enabled = 'reset_alarm_enabled'
+submit_done = 'submit_done'
+filling_started = 'filling_started'
+
+# names of actions useful
+affirm_action = 'affirm'
+deny_action = 'deny'
+fill_form_action = 'fillForm'
+fill_field_action = 'fillGenericCamp'
+reset_all_fields_action = 'resetAllCamps'
+spelling_action = 'spelling'
+submit_action = 'submitForm'

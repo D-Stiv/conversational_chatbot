@@ -127,7 +127,7 @@ class DialogueManager:
                         state=my_state, userInput=a, tag=u.tag_registration_form)
                     text = f"response: {response}"
                     # we verify wheteher or not the submission have benn done
-                    if not my_state.submit_done:
+                    if not my_state.get_submit_done():
                         self.chatbot_view.show_text(self.counter, text)
                         self.counter += 1
                     else:

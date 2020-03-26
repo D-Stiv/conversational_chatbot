@@ -23,25 +23,29 @@ class State:
             self.message_history = []
             self.constructs = constructs
             self.form_element = form_element
-            self.current_action = None
-            self.possible_next_action = None
-            self.all_required_filled = False
             self.num_total_fields, self.num_required_fields, self.num_optional_fields = fn.get_num_fields(
                 constructs)
             self.num_required_remaining = self.num_required_fields
-            self.warning_message = ""
-            self.warning_present = False
-            self.next_slot = constructs['form']['slots'][0][u.slot_name]
-            self.next_slot_required = constructs['form']['slots'][0][u.required]
-            self.submit_alarm_enabled = False
-            self.reset_alarm_enabled = False
-            self.submit_done = False
-            self.filling_started = False
-
             self.spelling_state = self.initialize_spelling_sate()
+            self.machine_parameters = self.initialize_machine_parameters(first_slot=constructs['form']['slots'][0])
         except:
             print("A problem occured while initializing the state")
         
+    def initialize_machine_parameters(self, first_slot):
+        machine_parameters = {
+            u.filling_started: False,
+            u.submit_done: False,
+            u.reset_alarm_enabled: False,
+            u.submit_alarm_enabled: False,
+            u.warning_present: False,
+            u.all_required_filled: False,
+            u.possible_next_action: None,
+            u.warning_message: '',
+            u.next_slot: first_slot[u.slot_name],   # in principle it should never be u.REQUESTED_SLOT
+            u.next_slot_required: first_slot[u.required]
+        }
+        return machine_parameters
+
     def initialize_spelling_sate(self):
         spelling_state = {
             u.close_prompt_enabled: False,   # True when we are in spelling mode
@@ -54,7 +58,34 @@ class State:
             u.saved_spelling_values: []
         }
         return spelling_state
+
+    def get_latest_message(self):
+        return self.message_history[len(self.message_history)-1]
+
+    def set_possible_next_action(self, action_name):
+        self.machine_parameters[u.possible_next_action] = action_name
+
+    def get_possible_next_action(self):
+        return self.machine_parameters[u.possible_next_action]
+
+    def set_reset_alarm_enabled(self, value=True):
+        self.machine_parameters[u.reset_alarm_enabled] = value
+
+    def get_reset_alarm_enabled(self):
+        return self.machine_parameters[u.reset_alarm_enabled]
     
+    def set_submit_done(self, value=True):
+        self.machine_parameters[u.submit_done] = value
+
+    def get_submit_done(self):
+        return self.machine_parameters[u.submit_done]
+
+    def set_filling_started(self, value=True):
+        self.machine_parameters[u.filling_started] = value
+
+    def get_filling_started(self):
+        return self.machine_parameters[u.filling_started]
+
     def add_spelling_field_to_save(self, field):
         self.spelling_state[u.saved_spelling_fields].append(field)
 
@@ -79,7 +110,7 @@ class State:
     def set_spelling_interrupted(self, value=True):
         self.spelling_state[u.spelling_interrupted] = value
 
-    def get_spellint_list(self):
+    def get_spelling_list(self):
         return self.spelling_state[u.spelling_list]
 
     def set_spelling_list(self, slot_name_list, slot_value_list):
@@ -142,8 +173,8 @@ class State:
 
     def set_next_slot(self, slot_name, required):
         try:
-            self.next_slot = slot_name
-            self.next_slot_required = required
+            self.machine_parameters[u.next_slot] = slot_name
+            self.machine_parameters[u.next_slot_required] = required
         except:
             print(f'Fail to set the next slot to be {slot_name}')
             raise Exception
@@ -171,7 +202,10 @@ class State:
         self.message_history.append(message)
 
     def set_warning_present(self, value=True):
-        self.warning_present = value
+        self.machine_parameters[u.warning_present] = value
+    
+    def get_warning_present(self):
+        return self.machine_parameters[u.warning_present]
 
     # extracts and restitutes the slots present in the form with their values
     def form_slots(self):
@@ -218,9 +252,12 @@ class State:
     def set_warning_message(self, text):
         next_slot_string = self.manage_next_step()
         text = f'{text}\n{next_slot_string}'
-        self.warning_message = text
+        self.machine_parameters[u.warning_message] = text
         # we also set the warning present to True since there is a message
         self.set_warning_present()
+
+    def get_warning_message(self):
+        return self.machine_parameters[u.warning_message]
 
     # return all the slots with their name and their value
     def get_slots_value(self):
@@ -267,7 +304,7 @@ class State:
     # Restitutes the next slot's name
     def get_next_slot(self):
         try:
-            return self.next_slot, self.next_slot_required
+            return self.machine_parameters[u.next_slot], self.machine_parameters[u.next_slot_required]
         except:
             print("A problem occured while getting the next slot")
             raise Exception
@@ -275,7 +312,7 @@ class State:
     # sets the next field (slot) according to the order of the web form
     def set_next_slot_basic(self):
         try:
-            slot_name = self.next_slot
+            slot_name = self.get_next_slot()
             # we try to take in sequence the first empty field after the current field
             actual_found = False
             for slot in self.form_slots():
@@ -378,7 +415,7 @@ class State:
                 return ""
             return slot_value
         except:
-            if not self.warning_present:
+            if not self.get_warning_present():
                 print("A problem occured while trying to insert in the web page the value {} for the label {}".format(
                     slot_value, slot_name))
             raise Exception
@@ -443,7 +480,7 @@ class State:
             self.set_warning_message(text)
             raise Exception
         except:
-            if not self.warning_present:
+            if not self.get_warning_present():
                 print("A problem occured while trying to set the choice_value {} in the radio with name {}".format(
                     choice_value, choice_name))
             raise Exception
@@ -481,7 +518,7 @@ class State:
             self.set_warning_message(text)
             raise Exception
         except:
-            if not self.warning_present:
+            if not self.get_warning_present():
                 print("A problem occured while trying to set the choice_value {} in the checkbox with name {}".format(
                     choice_value, choice_name))
             raise Exception
@@ -516,7 +553,7 @@ class State:
                 self.set_warning_message(text)
                 raise Exception
         except:
-            if not self.warning_present:
+            if not self.get_warning_present():
                 choices_list = fn.get_string_from_list(choice_values)
                 print("A problem occured while trying to set the choices {} in the checkbox with name {}".format(
                     choices_list, choice_name))
@@ -552,7 +589,10 @@ class State:
         self.num_required_remaining += scale
 
     def set_all_required_filled(self, value):
-        self.all_required_filled = value
+        self.machine_parameters[u.all_required_filled] = value
+
+    def get_all_required_filled(self):
+        return self.machine_parameters[u.all_required_filled]
 
     def complete_spelling_value(self, char):
         self.spelling_state[u.current_spelling_input_value] = f'{self.spelling_state[u.current_spelling_input_value]}{char}'
@@ -617,9 +657,6 @@ class State:
             print(f'Fail to get the description of the field {field}')
             raise Exception
 
-    def set_possible_next_action(self, action):
-        self.possible_next_action = action
-
     def submit_string(self):
         try:
             first = "all the fields have been completed\n"
@@ -667,15 +704,15 @@ class State:
                         string = (f'{string}\nSince it is a field requiring the spelling, we are going to take' +
                                 f' its value one character at a time.\n{please_style} insert the first character')
                     # possible next action is spelling
-                    self.set_possible_next_action('spelling')
+                    self.set_possible_next_action(u.spelling_action)
                     return string
                 else:
                     # possible nest action is fillGenericCamp
-                    self.set_possible_next_action('fillGenericCamp')
+                    self.set_possible_next_action(u.fill_field_action)
                     return string
             else:
                 string = self.submit_string()
-                self.set_possible_next_action('submitForm')
+                self.set_possible_next_action(u.submit_action)
                 return string
         except:
             print("Fail to manage the next step")
@@ -759,7 +796,7 @@ class State:
                     slot_name_list, slot_value_list)
             return string
         except:
-            if not self.warning_present:
+            if not self.get_warning_present():
                 print("Fail to fill the slots")
             raise Exception
 
@@ -809,7 +846,7 @@ class State:
                               " submit")
             return string
         except:
-            if not self.warning_present:
+            if not self.get_warning_present():
                 print(
                     'Fail to fill the slots when there are more values than field names')
             raise Exception
@@ -862,7 +899,7 @@ class State:
 
             return string
         except:
-            if not self.warning_present:
+            if not self.get_warning_present():
                 print('Fail to fill slots when there are more names than values')
             raise Exception
 
@@ -880,7 +917,7 @@ class State:
                     self.set_warning_message(text)
                     raise Exception
         except:
-            if not self.warning_present:
+            if not self.get_warning_present():
                 print('Fail to verify presence of all fields')
             raise Exception
 
@@ -893,6 +930,6 @@ class State:
             string = self.update(slot_name, slot_value)
             return string
         except:
-            if not self.warning_present:
+            if not self.get_warning_present():
                 print('Fail to complete the filling procedure')
             raise Exception

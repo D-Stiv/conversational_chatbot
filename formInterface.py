@@ -46,7 +46,7 @@ class Form:
                 print("FORM INTERFACE fillForm")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to fill the form")
             raise Exception
 
@@ -57,7 +57,7 @@ class Form:
                 print("FORM INTERFACE submitForm")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to submit a form")
             raise Exception
 
@@ -68,7 +68,7 @@ class Form:
                 print("FORM INTERFACE fillGenericCamp")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to fill a camp")
             raise Exception
 
@@ -79,7 +79,7 @@ class Form:
                 print("FORM INTERFACE repeatCamp")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to repeat a camp")
             raise Exception
 
@@ -90,7 +90,7 @@ class Form:
                 print("FORM INTERFACE modifyValueGenericCamp")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to modify a generic camp")
             raise Exception
 
@@ -104,7 +104,7 @@ class Form:
                 print("FORM INTERFACE modifyValueSpellingCamp")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to modify a spelling camp")
             raise Exception
 
@@ -125,7 +125,7 @@ class Form:
                 print("FORM INTERFACE resetAllCamps")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to reset all the camps")
             raise Exception
 
@@ -136,7 +136,7 @@ class Form:
                 print("FORM INTERFACE skipCamp")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to skip the camp")
             raise Exception
 
@@ -147,7 +147,7 @@ class Form:
                 print("FORM INTERFACE repeatRequiredLabels")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to repeat the Required labels")
             raise Exception
 
@@ -158,7 +158,7 @@ class Form:
                 print("FORM INTERFACE repeatOptionalLabels")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to repeat the optional labels")
             raise Exception
     
@@ -169,7 +169,7 @@ class Form:
                 print("FORM INTERFACE repeatAllLabels")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to repeat all the labels")
             raise Exception
 
@@ -180,7 +180,7 @@ class Form:
                 print("FORM INTERFACE giveRemainingRequiredLabels ")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to give the remaining Required labels")
             raise Exception
 
@@ -191,7 +191,7 @@ class Form:
                 print("FORM INTERFACE giveRemainingOptionalLabels ")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to give the remaining optional labels")
             raise Exception
 
@@ -202,7 +202,7 @@ class Form:
                 print("FORM INTERFACE giveAllRemainingLabels")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to give all the remaining labels")
             raise Exception
 
@@ -213,7 +213,7 @@ class Form:
                 print("FORM INTERFACE verifyValueFilledCamps")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to verify the value of the filled camps")
             raise Exception
 
@@ -224,7 +224,7 @@ class Form:
                 print("FORM INTERFACE repeatFormName")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to repeat the form's name")
             raise Exception
 
@@ -235,7 +235,7 @@ class Form:
                 print("FORM INTERFACE repeatFormExplanation")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to repeat the form explanation")
             raise Exception
 
@@ -246,7 +246,7 @@ class Form:
                 print("FORM INTERFACE verifyPresenceOfLabel")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to verify the presence of a label in the label list")
             raise Exception
 
@@ -257,7 +257,7 @@ class Form:
                 print("FORM INTERFACE explainLabel")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to explain the label")
             raise Exception
 
@@ -268,7 +268,7 @@ class Form:
                 print("FORM INTERFACE affirm")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to get an affirmation")
             raise Exception
 
@@ -279,7 +279,7 @@ class Form:
                 print("FORM INTERFACE deny")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to get a denial from the user")
             raise Exception
 
@@ -293,7 +293,7 @@ class Form:
                 print("FORM INTERFACE fillSpellingCamp")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to fill a spelling camp")
             raise Exception
 
@@ -308,7 +308,7 @@ class Form:
                 print("FORM INTERFACE spelling")
             return message
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print("A problem occured while trying to get a spelling character")
             raise Exception
 

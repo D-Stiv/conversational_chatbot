@@ -34,10 +34,10 @@ class BotsManager:
             utterance = self.get_utterance(bot, state, intent)
             return utterance
         except:
-            if state.warning_present:
+            if state.get_warning_present():
                 # the message of the user was either out of context or not understood
                 state.set_possible_next_action(None)
-                utterance = state.warning_message
+                utterance = state.get_warning_message()
             else:
                 utterance = EXCEPTION_MESSAGE
                 print("A problem occured while trying to run the action for user input <<{}>> and bot tag <<{}>>".format(
@@ -96,7 +96,7 @@ class BotsManager:
         try:
             if state.get_spelling_interrupted():
                 # In the past the user interrupted a spelling and we wait for the response on whether to save the state or not
-                if intent not in ['affirm', 'deny']:
+                if intent not in [u.affirm_action, u.deny_action]:
                     utterance = ('please i would like to have a clear answer.\nwould you like to save the state of the field ' +
                         'that you started spelling ?\nIn case of negative response, tahat input will simply be canceled')
                     return utterance
@@ -112,7 +112,7 @@ class BotsManager:
                     state.add_spelling_value_to_save(self.get_current_spelling_input_value())
                 # we reset the current value
                 state.reset_current_spelling_string_value()
-            elif intent != 'spelling' and state.get_current_spelling_input_value() != '':
+            elif intent != u.spelling_action and state.get_current_spelling_input_value() != '':
                 # the user started to spell an input and suddently interrupts it
                 state.set_spelling_interrupted()
                 state.set_waiting_intent(intent)

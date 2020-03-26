@@ -88,11 +88,10 @@ class RegistrationForm(Form):
             # find the action corresponding to the intent and run it
             utterance = "No action matches the intent"
             action = super().get_action(intent)
-            state.current_action = action.__name__
             utterance = action(self, state)
             return utterance
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to find the action to execute")
             raise Exception
@@ -103,11 +102,11 @@ class RegistrationForm(Form):
             # with the next input_field.state variables to observe are num_camps, num_remaining, ...
 
             # we start by checking if the filling already started or not
-            if state.filling_started:
+            if state.get_filling_started():
                 string = state.manage_next_step()
                 return string
             # the filling did not start
-            state.filling_started = True
+            state.set_filling_started()
             form_title = state.get_form_title()
             if form_title is None:
                 form_intro = "this form does not have a title."
@@ -124,15 +123,14 @@ class RegistrationForm(Form):
                       f" and {state.num_optional_fields} are optional.\nhere we go:\n{first_string}")
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to start filling the form")
             raise Exception
 
     def fillGenericCamp(self, state):
         try:
-            entities = state.message_history[len(
-                state.message_history)-1]["entities"]
+            entities = state.get_latest_message()["entities"]
             count = len(entities)
             if count == 0:
                 # in principle should never happen given the training we made
@@ -152,7 +150,7 @@ class RegistrationForm(Form):
                 # there is at least one generic info
                 if len(slot_value_list) == 1 and len(slot_name_list) == 0:
                     # we are inserting a value for the current field
-                    slot_name = state.next_slot
+                    slot_name = state.get_next_slot()
                     slot_value = slot_value_list[0]
                     # the slot value can change, being put in the right format
                     # we go to the filling procedure
@@ -171,7 +169,7 @@ class RegistrationForm(Form):
                 string = self.fillSpellingCamp(state)
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to fill a camp")
             raise Exception
@@ -223,15 +221,14 @@ class RegistrationForm(Form):
                       f'and TERMINATE to {end_style} the spelling')
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to fill a spelling camp")
             raise Exception
 
     def modifyValueGenericCamp(self, state):
         try:
-            entities = state.message_history[len(
-                state.message_history)-1]["entities"]
+            entities = state.get_latest_message()["entities"]
             count = len(entities)
 
             if count == 0:
@@ -250,15 +247,14 @@ class RegistrationForm(Form):
                 string = "{} \n{}".format(intro, concl)
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to modify a camp")
             raise Exception
 
     def verifyPresenceOfLabel(self, state):
         try:
-            entities = state.message_history[len(
-                state.message_history)-1]["entities"]
+            entities = state.get_latest_message()["entities"]
             count = len(entities)
             if count == 0:
                 # in principle should never occur given the training
@@ -277,15 +273,14 @@ class RegistrationForm(Form):
                 string = string + text
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to verify the presence of a label")
             raise Exception
 
     def explainLabel(self, state):
         try:
-            entities = state.message_history[len(
-                state.message_history)-1]["entities"]
+            entities = state.get_latest_message()["entities"]
             count = len(entities)
             if count == 0:
                 slot_name = state.get_next_slot()
@@ -301,7 +296,7 @@ class RegistrationForm(Form):
             string = state.get_field_description(slot_name_list[0])
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to explain a label")
             raise Exception
@@ -315,7 +310,7 @@ class RegistrationForm(Form):
             string = action(self, state)
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to get an affirmation")
             raise Exception
@@ -328,10 +323,10 @@ class RegistrationForm(Form):
             good_style = styles.get_good()
             string = "{}, what do you want to do now ?".format(good_style)
             # if the submit alarm is enabled, we have to disable it
-            state.submit_alarm_enabled = False
+            state.set_submit_alarm_enabled(False)
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to get a denial")
             raise Exception
@@ -346,7 +341,7 @@ class RegistrationForm(Form):
             spec_char_symbol = u.spec_char_symbol
             terminator = u.terminator
             all_types = alphabet + special_characters + terminator
-            text = state.message_history[len(state.message_history)-1]["text"]
+            text = state.get_latest_message()["text"]
             # verify if text is a number
             is_number = False
             new_text = fn.convert_to_int(text)
@@ -385,7 +380,7 @@ class RegistrationForm(Form):
                       ' and the expression TERMINATE to {} the spelling').format(please_style, next_style, end_style)
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to get a spelling")
             raise Exception
@@ -395,15 +390,14 @@ class RegistrationForm(Form):
             string = self.fillSpellingCamp(state)
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to skip a camp")
             raise Exception
 
     def repeatValueCamp(self, state):
         try:
-            entities = state.message_history[len(
-                state.message_history)-1]["entities"]
+            entities = state.get_latest_message()["entities"]
             count = len(entities)
             fields = []
             for index in range(count):
@@ -424,7 +418,7 @@ class RegistrationForm(Form):
             string = f'{string}\n{continue_string}'
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to repeat a camp")
             raise Exception
@@ -443,7 +437,7 @@ class RegistrationForm(Form):
                 opt = ""
                 if not slot['required']:
                     opt = "do you want to submit now ?"
-                    state.set_possible_next_action('submitForm')
+                    state.set_possible_next_action(u.submit_action)
                 string = ("{} it is required to be able to submit the form" +
                           "{}\n{}").format(text, self.fillForm(state), opt)
                 return string
@@ -451,7 +445,7 @@ class RegistrationForm(Form):
             string = state.manage_next_step()
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to skip a camp")
             raise Exception
@@ -466,7 +460,7 @@ class RegistrationForm(Form):
             string = f"{ans}\n{string}"
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to repeat Required labels")
             raise Exception
@@ -486,7 +480,7 @@ class RegistrationForm(Form):
             string = f"{ans}\n{string}"
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to repeat optional labels")
             raise Exception
@@ -501,7 +495,7 @@ class RegistrationForm(Form):
             string = f"{ans}\n{string}"
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to repeat all the labels")
             raise Exception
@@ -516,7 +510,7 @@ class RegistrationForm(Form):
             string = f"{ans} \n{string}"
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to give the remaining Required labels")
             raise Exception
@@ -539,7 +533,7 @@ class RegistrationForm(Form):
             string = f'{ans}\n{string}'
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to give the remaining optional labels")
             raise Exception
@@ -554,7 +548,7 @@ class RegistrationForm(Form):
             string = f'{ans}\n{string}'
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to give all the remaining labels")
             raise Exception
@@ -572,7 +566,7 @@ class RegistrationForm(Form):
                      f"the stars indicate the required fields\n{next_step_string}")
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to verify the value of the filled camps")
             raise Exception
@@ -588,7 +582,7 @@ class RegistrationForm(Form):
             string = f'{string}\n{next_step_string}'
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to repeat the form's name")
             raise Exception
@@ -607,21 +601,21 @@ class RegistrationForm(Form):
             string = f'{string}\n{next_step_string}'
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to repeat the form's explanation")
             raise Exception
 
     def resetAllCamps(self, state):
         try:
-            if not state.reset_alarm_enabled:
+            if not state.get_reset_alarm_enabled():
                 string = "we are about to reset all the field and restart the process.\n are you sure you want to continue with this action ?"
-                state.set_possible_next_action('resetAllCamps')
+                state.set_possible_next_action(u.reset_all_fields_action)
                 # we enable the alarm
-                state.reset_alarm_enabled = True
+                state.set_reset_alarm_enabled()
                 return string
             # we disable the alarm before continuing
-            state.reset_alarm_enabled = False
+            state.set_reset_alarm_enabled(False)
             # we reset the web form and then we reset the slots 
             elem = state.get_reset_button()
             elem.click()
@@ -642,7 +636,7 @@ class RegistrationForm(Form):
             string = f"All the fields have been reset, now we restart the process.\n{text}"
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to reset all the camps")
             raise Exception
@@ -650,7 +644,7 @@ class RegistrationForm(Form):
     def submitForm(self, state):
         try:
             # we first verify that all the required fields are filled
-            if not state.all_required_filled:
+            if not state.get_all_required_filled():
                 remaining_required = state.get_fields_list(
                     remaining=True, only_required=True)
                 string = ("not all the required fields are completed.\n you still have" +
@@ -658,22 +652,22 @@ class RegistrationForm(Form):
                 return f'{string}\n{state.manage_next_step()}'
             if u.DEBUG:
                 print("inside submitForm")
-            if not state.submit_alarm_enabled:
+            if not state.get_submit_alarm_enabled():
                 string = "we are about to submit, are you sure you want to continue with this action ?"
-                state.set_possible_next_action('submitForm')
+                state.set_possible_next_action(u.submit_action)
                 # we enable the alarm
-                state.submit_alarm_enabled = True
+                state.set_submit_alarm_enabled()
                 return string
             # we disable the alarm
-            state.submit_alarm_enabled = False
+            state.set_submit_alarm_enabled(False)
             elem = state.get_submit_button()
             elem.click()
             # we signify that the submit is done to have the title page
-            state.submit_done = True
+            state.set_submit_done()
             string = 'submission done'
             return string
         except:
-            if not state.warning_present:
+            if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to submit a form")
             raise Exception
