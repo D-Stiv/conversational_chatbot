@@ -23,26 +23,64 @@ class State:
             self.message_history = []
             self.constructs = constructs
             self.form_element = form_element
-            self.spelling_list = []
-            self.after_spelling = False
-            self.current_action = 'fillForm'
-            self.possible_next_action = 'submitForm'
-            self.close_prompt_enabled = False   # True when we are in spelling mode
+            self.current_action = None
+            self.possible_next_action = None
             self.all_required_filled = False
             self.num_total_fields, self.num_required_fields, self.num_optional_fields = fn.get_num_fields(
                 constructs)
             self.num_required_remaining = self.num_required_fields
-            self.current_spelling_input_value = ""
             self.warning_message = ""
             self.warning_present = False
-            self.skip_enabled = False
-            self.next_slot = ''
-            self.next_slot_required = False
+            self.next_slot = constructs['form']['slots'][0][u.slot_name]
+            self.next_slot_required = constructs['form']['slots'][0][u.required]
             self.submit_alarm_enabled = False
+            self.reset_alarm_enabled = False
             self.submit_done = False
             self.filling_started = False
+
+            self.spelling_state = self.initialize_spelling_sate()
         except:
             print("A problem occured while initializing the state")
+        
+    def initialize_spelling_sate(self):
+        spelling_state = {
+            u.close_prompt_enabled: False,   # True when we are in spelling mode
+            u.current_spelling_input_value: '',
+            u.spelling_interrupted: False,
+            u.spelling_list: [],
+            u.after_spelling: False,
+            u.waiting_intent: None,
+            u.saved_spelling_fields: [],
+            u.saved_spelling_values: []
+        }
+        return spelling_state
+    
+    def add_spelling_field_to_save(self, field):
+        self.spelling_state[u.saved_spelling_fields].append(field)
+
+    def get_saved_spelling_fields(self):
+        return self.spelling_state[u.saved_spelling_fields]
+
+    def add_spelling_value_to_save(self, value):
+        self.spelling_state[u.saved_spelling_values].append(value)
+    
+    def get_saved_spelling_values(self):
+        return self.spelling_state[u.saved_spelling_values]
+
+    def get_waiting_intent(self):
+        return self.spelling_state[u.waiting_intent]
+    
+    def set_waiting_intent(self, intent):
+        self.spelling_state[u.waiting_intent] = intent
+
+    def get_spelling_interrupted(self):
+        return self.spelling_state[u.spelling_interrupted]
+
+    def set_spelling_interrupted(self, value=True):
+        self.spelling_state[u.spelling_interrupted] = value
+
+    def get_spellint_list(self):
+        return self.spelling_state[u.spelling_list]
 
     def set_spelling_list(self, slot_name_list, slot_value_list):
         try:
@@ -68,7 +106,7 @@ class State:
                 for index in range(len(slot_name_list), num_value):
                     slot_value = slot_value_list[index]
                     value_list.append(slot_value)
-            self.spelling_list = spelling_list
+            self.spelling_state[u.spelling_list] = spelling_list
             return name_list, value_list
         except:
             print('Fail to get the spelling list')
@@ -87,8 +125,8 @@ class State:
             raise Exception
 
     def add_spelling_name(self, slot_name):
-        if slot_name not in self.spelling_list:
-            self.spelling_list.append(slot_name)
+        if slot_name not in self.spelling_state[u.spelling_list]:
+            self.spelling_state[u.spelling_list].append(slot_name)
 
     def get_required_fields(self):
         try:
@@ -111,26 +149,22 @@ class State:
             raise Exception
 
     def update_spelling_list(self, slot_name):
-        spelling_list = []
-        for name in self.spelling_list:
-            if name != slot_name:
-                spelling_list.append(name)
-        self.spelling_list = spelling_list
+        self.spelling_state[u.spelling_list].remove(slot_name)
 
     def reset_current_spelling_input_value(self):
-        self.current_spelling_input_value = ""
+        self.spelling_state[u.current_spelling_input_value] = ""
 
     def reset_spelling_list(self):
-        self.spelling_list = []
+        self.spelling_state[u.spelling_list] = []
 
     def set_after_spelling(self, value=True):
-        self.after_spelling = value
-
-    def set_skip_enabled(self, value=True):
-        self.skip_enabled = value
+        self.spelling_state[u.after_spelling] = value
+    
+    def get_after_spelling(self):
+        return self.spelling_state[u.after_spelling]
 
     def set_close_prompt_enabled(self, value=True):
-        self.close_prompt_enabled = value
+        self.spelling_state[u.close_prompt_enabled] = value
 
     # Modifies the state inserting the latest message which is the intent of the last user input
     def add_latest_message(self, message):
@@ -233,28 +267,13 @@ class State:
     # Restitutes the next slot's name
     def get_next_slot(self):
         try:
-            if self.skip_enabled:
-                return self.get_next_slot_skipping()
-            # this function updates the state modifying the required slot each time
-            for slot in self.form_slots():
-                if slot[u.slot_name] != u.REQUESTED_SLOT:
-                    if slot[u.slot_value] == None:
-                        slot_name = slot[u.slot_name]
-                        required = slot[u.required]
-                        self.set_slot(slot_name=u.REQUESTED_SLOT,
-                                      slot_value=slot_name)
-                        self.set_next_slot(slot_name, required)
-                        return slot_name, required
-            # arriving here means that all the camps have been filled, so there is no next slot
-            self.set_slot(slot_name=u.REQUESTED_SLOT, slot_value=None)
-            self.set_next_slot(slot_name=None, required=None)
-            return None, None
+            return self.next_slot, self.next_slot_required
         except:
             print("A problem occured while getting the next slot")
             raise Exception
 
-    # gets the next slot when the user skips fields
-    def get_next_slot_skipping(self):
+    # sets the next field (slot) according to the order of the web form
+    def set_next_slot_basic(self):
         try:
             slot_name = self.next_slot
             # we try to take in sequence the first empty field after the current field
@@ -266,7 +285,7 @@ class State:
                         if slot[u.slot_value] is None:
                             self.set_next_slot(
                                 slot[u.slot_name], slot[u.required])
-                            return slot[u.slot_name], slot[u.required]
+                            return 
                     if slot[u.slot_name] == slot_name:
                         actual_found = True
             # there is no empty field after the current field, we try to look before
@@ -275,10 +294,10 @@ class State:
                     if slot[u.slot_value] is None:
                         self.set_next_slot(
                             slot[u.slot_name], slot[u.required])
-                        return slot[u.slot_name], slot[u.required]
+                        return 
                     if slot[u.slot_name] == slot_name:
-                        # we returned at the starting point
-                        return slot[u.slot_name], slot[u.required]
+                        # we returned at the starting point, so we don't have to set the next slot
+                        return 
         except:
             print('Fail to get the next slot for skipping case')
             raise Exception
@@ -535,10 +554,16 @@ class State:
     def set_all_required_filled(self, value):
         self.all_required_filled = value
 
-    def complete_spelling_value(self, string):
-        self.current_spelling_input_value = self.current_spelling_input_value + string
+    def complete_spelling_value(self, char):
+        self.spelling_state[u.current_spelling_input_value] = f'{self.spelling_state[u.current_spelling_input_value]}{char}'
         if u.DEBUG:
-            print(f'[Current spelling input: {self.current_spelling_input_value} ]')
+            print(f'[Current spelling input: {self.spelling_state[u.current_spelling_input_value]} ]')
+
+    def get_current_spelling_input_value(self):
+        return self.spelling_state[u.current_spelling_input_value]
+    
+    def set_current_spelling_input_value(self, value):
+        self.spelling_state[u.current_spelling_input_value] = value
 
     # returns a string containing the list of fields, we can precise if we want only the
     # remaining ones, only the required ones
@@ -611,8 +636,7 @@ class State:
 
     def manage_next_step(self):
         try:
-            slot_name = self.next_slot
-            next_slot_required = self.next_slot_required
+            slot_name, next_slot_required = self.get_next_slot()
             if slot_name is not None:
                 if u.DEBUG:
                     print("the next slot is: " + slot_name)
@@ -622,13 +646,37 @@ class State:
                     self.get_next_slot_text(slot_name, next_slot_required))
                 if slot_name in self.get_spelling_fields() and u.READY_FOR_SPELLING:
                     self.add_spelling_name(slot_name)
+                    # we enable the close prompt. It will be disabled when the user will insert the terminator
+                    self.set_close_prompt_enabled()
                     please_style = styles.get_please()
-                    string = (f'{string}\nSince it is a field requiring the spelling, we are going to take' +
-                              f' its value one character at a time.\n{please_style} insert the first character')
+                    # we verify if the field has been previously saved 
+                    saved_fields = self.get_saved_spelling_fields()
+                    if slot_name in saved_fields:
+                        saved_values = self.get_saved_spelling_values()
+                        # we set the saved value as current input value 
+                        index = saved_fields.index(slot_name)
+                        value = saved_value[index]
+                        self.set_current_spelling_input_value(value)
+                        # we remove the field from saved state
+                        saved_fields.remove(slot_name)
+                        saved_values.remove(value)
+                        next_style = styles.get_next()
+                        string = (f'You started filling this field and the current value is {value} ' +
+                            f'\n{please_style} insert the {next_style} character')
+                    else:
+                        string = (f'{string}\nSince it is a field requiring the spelling, we are going to take' +
+                                f' its value one character at a time.\n{please_style} insert the first character')
+                    # possible next action is spelling
+                    self.set_possible_next_action('spelling')
+                    return string
+                else:
+                    # possible nest action is fillGenericCamp
+                    self.set_possible_next_action('fillGenericCamp')
+                    return string
             else:
                 string = self.submit_string()
                 self.set_possible_next_action('submitForm')
-            return string
+                return string
         except:
             print("Fail to manage the next step")
             raise Exception
@@ -662,7 +710,7 @@ class State:
                 # theoretically should never occur
                 return
             # we update the next field
-            self.get_next_slot()
+            self.set_next_slot_basic()
             slots = self.form_slots()
             for sl in slots:
                 if sl[u.slot_name] == slot_name:
@@ -755,7 +803,7 @@ class State:
                             ready_to_submit = True
             string = ""
             if ready_to_submit:
-                next_slot_name = self.get_next_slot()
+                next_slot_name, _ = self.get_next_slot()
                 if next_slot_name is not None:
                     string = (" all the required fields have been completed form now on you can" +
                               " submit")
@@ -800,7 +848,7 @@ class State:
             # now we prepare the output string
             ready_string = ""
             if ready_to_submit:
-                next_slot_name = self.get_next_slot()
+                next_slot_name, _ = self.get_next_slot()
                 if next_slot_name is not None:
                     ready_string = (" all the required fields have been completed form now on you can" +
                                     " submit")
