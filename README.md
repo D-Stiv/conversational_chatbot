@@ -21,20 +21,20 @@ The project is made of **three** main parts. One part completely related to the 
 
 Having only this part, we should have a user physically present for the dialogue to take place. We descibe here its elements.
 
-###### The Laucher (launcher.py)
+#### The Laucher (launcher.py)
 
 Since the idea is to have the Conversational Chatbot connected to an **Access Level**. The Access Level is a kind of global controller, if we imagine a scenario in which the Form is inside a Web page and so it is a construct among others, the Access Level is the component of the global structure which receives the message/input of the user and decides which construct should handle it. The Access Level is connected to a Virtual Assistant in order to have the speech enabled, the launcher is the linker between the chatbot and the Access Level. It initializes the Chatbot infrastructure (URL, browser, fields, etc).
 
-###### The Dialogue Manager (dialogue_manager.py)
+#### The Dialogue Manager (dialogue_manager.py)
 
 At the beginning of the interaction it crates the Form bots of the Web page (for each Form present on the Web page there is a bot). During the interaction (When the focus is put on the specific bot), it receives a *bot_tag* and makes a kind of **preprocessing** consisting of getting the corresponding bot from the Bots Manager, eventually training the conversational model for that bot and by preparing the **conversation prologue** (some information about the Form like the title, the list of fields and some statistics about required and optional fields). After the preprocessing phase it starts the **dialogue** alternating from the chatbot and the user until the user writes **stop** to conclude the interaction or the user completes the filling and submission of the Web Form.
 
-###### The Bots Manager (choice_bot.py)
+#### The Bots Manager (choice_bot.py)
 
 It is in charge of constituting and saving the bots list of the Web page at the beginning of the interaction. Each bot has a _tag_ and a _state_. While creating the bot, it parses the Web Form code to extract the **slots** which are going to constitute the internal representation of the fields present on the Web Form. The slots are taken with all there characteristics which are *name, value, type*, if they are *required* and if they are *spelling fields* (they need to be spelt character by character). The information about the _form Web element_ (*title* and *description*) are stored in a special slot called **requested_slot** (its principal role is to save the next field to be completed).
 During the interaction (when the focus is placed on a specfic form) it find the appropriate bot for that form given the corresponding *tag*. During the dialogue, it *interprets* the message of the user that it receives, extracts the *intent*. From the intent of the user input and the state, it gets the *utterance* (response) of the chatbot to be delivered to the user.
 
-###### The Form Bots Interface (formInterface.py)
+#### The Form Bots Interface (formInterface.py)
 
 It defines the actions that the Chatbot can perform on the Web Form, but those actions have to be implemented by the real bots it is only an interface. Each action in our implementation corresponds to an intent and the different possible intents are the following:
 * *affirm*: when the user gives a positive answer
@@ -59,28 +59,28 @@ It defines the actions that the Chatbot can perform on the Web Form, but those a
 * *verifyPresenceOfLabel*: if the user wants to know if a given field is present in yhe Web Form
 * *verifyValueFilledCamps*: when the user wants to have a recap about the fields completed up to that moment
 
-###### The Form Bots (bots.py)
+#### The Form Bots (bots.py)
 
 Contains all the Form bots that we can find in a Web Form. Here we only implemented the **Registration Form Bot**. The Registration Form Bot implement some of the functions contained in the Form Bot Interface. While implementing the actions it has to update the **State** of the Dialogue ana at the same time the Web Form. The idea is to modify the Web Form in real time and modifying the fields of the Web Form in real time, it also have to modify the slots to keep the two entities coherent since the reprent the same thing.
 
-###### The State of the Dialogue (state.py)
+#### The State of the Dialogue (state.py)
 
 It represents the snapshot of the dialogue at each instant. The main components of the State are the **messages history**, the **constructs**, the **spalling state** and the **machine parameters**.
 
-######### The messages history
+##### The messages history
 
 Contains the list of _messages_ (data structure resulting from the interpretation of the user input) during an entire dialogue. A message is made of the *intent*, the *text* and the *entities* contained in the text.
 
-######### The Contructs
+###### The Contructs
 
 Contains the constructs for which we emplement the bots and in our case the construct is the **form**, and inside the form the main element is the **slots**. Each slot represents a field and in addition there is a particular slot to store the next field to be completed.
 
-######### The spelling state
+###### The spelling state
 
 Contains some variables to control the spelling process to know at each moment we know what to do about the spelling. Those variables are the *spelling fields and values saved* in case the the spelling of a field have been interrupted, the *waiting intent* to temporary save the intent in case of the interruption of the spelling and to allow the user to decide whether he/she wants to save the current spelling value or not, the *spelling list* containing the list of spelling fields that the user wants to complete, fields present in a single user input ad the *current spelling value* keeping the partial value of the field in spelling mode. 
 There are also some **flags** useful to indicate some transitions like *close prompt enabled* which becomes True when we enter in spelling mode and False when we terminate the spelling of a given field. *spelling interrupted* becomes True when we interrupt a spelling and the user has to decide to save the inserted value or not, as soon as the user makes the choice, it returns to be False. *after spelling* is used to indicate that we just finished to spell the value of a field and so we have to insert that value in the Web Form, as soon as the value is inserted in the Web Form and the slots are updated, it returns to be False.
 
-######### The machine parameters
+###### The machine parameters
 
 Contains some parameters important for the dynamic of the dialogue (eventually useful to represent the dialogue flow as a state machine). The main parameters are boolean and they are the following:
 * *filling started*: to indicate that the we already started the filling process (the prologue of the dialogue have been done)
@@ -90,14 +90,14 @@ Contains some parameters important for the dynamic of the dialogue (eventually u
 * *all required filled*: to indicate that all the required fields of the Web Form have been filled, and so at any moment the user can ask to submit the Web Form
 * *warning present*: indicates that the message we inserted was not understood by the bot and so we have to precise the action we need to do
 
-###### Auxiliary chatbot python files
+#### Auxiliary chatbot python files
 
 * **utility.py**: CONSTANT file containing useful constants for the development of the bot like *file names*, *dictionary keys*, *names*, *value types constants*
 * **styles.py**: API file containing functions to change the style of the sentences we return to the user
 * **functions.py**: API file containing functions used by the state, the bots and other files. It is a kind of helper for everyone and the functions are independent
 * **compatibility.py**: API file containing only the function used for the validation of the input types (date, time, email, password, etc)
 
-###### Chatito folder
+#### Chatito folder
 
 Contains the chatito files to generate the training data. In fact **chatito** is the instrument we use to generate the training data, it is open-source and free. Each intent has an associated file and moreover we have differents files for the *alias*(specifying similar expressions that can be used in place of a given expression), the *slot values* (samples of values for a given slot value. eg. slot: name, samples:bob, alice) and the *slots names* (synonyms for a give field name. eg. slot: name, samples: first name, last name).
 
@@ -115,6 +115,7 @@ It is mainly constituted by the view to format the messages denpending on whethe
 
 * **writer_interface.py**: writer interface containing some functions to be used by the LogWriter and the ReportWriter
 * **writers**: each writer implements the functions necessary to generate the text file.
+
 
 ### The Simulation part
 
