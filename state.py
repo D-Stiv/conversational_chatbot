@@ -73,6 +73,12 @@ class State:
 
     def get_reset_alarm_enabled(self):
         return self.machine_parameters[u.reset_alarm_enabled]
+
+    def set_submit_alarm_enabled(self, value=True):
+        self.machine_parameters[u.submit_alarm_enabled] = value
+
+    def get_submit_alarm_enabled(self):
+        return self.machine_parameters[u.submit_alarm_enabled]
     
     def set_submit_done(self, value=True):
         self.machine_parameters[u.submit_done] = value
@@ -629,23 +635,36 @@ class State:
 
     def get_form_title(self):
         try:
-            title = self.form_element.get_attribute('bot-title')
+            requested_slot = self.get_slot(u.REQUESTED_SLOT)
+            title = requested_slot[u.title]
+            if title is None:
+                sorry_style = styles.get_sorry()
+                text = f"{sorry_style} there is no title provided for this form"
+                return text
+            # the title is present in the html file
             return title
         except:
             print('Fail to get the title of the form')
             raise Exception
 
     def get_form_description(self):
-        desc = self.form_element.get_attribute('bot-desc')
-        return desc
+        try:
+            requested_slot = self.get_slot(u.REQUESTED_SLOT)
+            desc = requested_slot[u.description]
+            if desc is None:
+                sorry_style = styles.get_sorry()
+                text = f"{sorry_style} there is no explanation provided for this form"
+                return text
+            # the description is present in the html file
+            return desc
+        except:
+            print('Fail to get the description of the form')
+            raise Exception
 
     def get_field_description(self, field):
         try:
-            _, is_present = fn.verify_presence(field, self.form_slots())
-            if not is_present:
-                raise Exception(
-                    "You are trying to get a description of a not existing field {}".format(field))
-            desc = fn.get_field_description(field, self.form_element)
+            slot = self.get_slot(field)
+            desc = slot[u.description]
             if desc is None:
                 sorry_style = styles.get_sorry()
                 text = "there is no explanation provided for the field {} {}".format(

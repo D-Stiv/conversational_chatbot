@@ -178,6 +178,8 @@ value_type = 'value_type'   # given by the bot-type or type attribute
 spelling = 'spelling'       # given by field-spelling attribute
 required = 'required'       # given by required attribute
 choice_list = 'choice_list' # list of choices in case of dropdown, radio or checkbox
+description = 'description' # description/explanation of the field. given by field-desc attribute
+title = 'title'             # form the form. the description also used for the form
 
 # annotations of the web_page
 bot_title = 'bot-title'
