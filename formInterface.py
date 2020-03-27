@@ -30,6 +30,17 @@ class Form:
                 userInput))
             raise Exception
 
+    def findActionAndRun(self, state, intent):
+        try:
+            # find the action corresponding to the intent and run it
+            utterance = "No action matches the intent"
+            action = self.get_action(intent)
+            utterance = action(self, state)
+            return utterance
+        except:
+            print("A problem occured while trying to find an action to run")
+            raise Exception
+
     def get_action(self, action_name):
         try:
             for action in self.actions:
@@ -74,9 +85,9 @@ class Form:
 
     def repeatValueCamp(self, state):
         try:
-            message = self.repeatCamp(state)
+            message = self.repeatValueCamp(state)
             if u.DEBUG:
-                print("FORM INTERFACE repeatCamp")
+                print("FORM INTERFACE repeatValueCamp")
             return message
         except:
             if not state.get_warning_present():
@@ -85,37 +96,14 @@ class Form:
 
     def modifyValueGenericCamp(self, state):
         try:
-            message = self.modifyValueGenericCamp(state)
+            # almost identical to fillGenericCamp
+            message = self.fillGenericCamp(state)
             if u.DEBUG:
                 print("FORM INTERFACE modifyValueGenericCamp")
             return message
         except:
             if not state.get_warning_present():
                 print("A problem occured while trying to modify a generic camp")
-            raise Exception
-
-    def modifyValueSpellingCamp(self, state):
-        try:
-            if not u.READY_FOR_SPELLING:
-                message = self.modifyValueGenericCamp(state)
-            else:
-                message = self.modifyValueSpellingCamp(state)
-            if u.DEBUG:
-                print("FORM INTERFACE modifyValueSpellingCamp")
-            return message
-        except:
-            if not state.get_warning_present():
-                print("A problem occured while trying to modify a spelling camp")
-            raise Exception
-
-    def findActionAndRun(self, intent):
-        try:
-            message = self.findActionAndRun(state)
-            if u.DEBUG:
-                print("FORM INTERFACE findActionAndRun")
-            return message
-        except:
-            print("A problem occured while trying to find an action to run")
             raise Exception
         
     def resetAllCamps(self, state):
@@ -217,11 +205,11 @@ class Form:
                 print("A problem occured while trying to verify the value of the filled camps")
             raise Exception
 
-    def repeatFormName(self, state):
+    def repeatFormTitle(self, state):
         try:
-            message = self.repeatFormName(state)
+            message = self.repeatFormTitle(state)
             if u.DEBUG:
-                print("FORM INTERFACE repeatFormName")
+                print("FORM INTERFACE repeatFormTitle")
             return message
         except:
             if not state.get_warning_present():
@@ -283,20 +271,6 @@ class Form:
                 print("A problem occured while trying to get a denial from the user")
             raise Exception
 
-    def fillSpellingCamp(self, state):
-        try:
-            if not u.READY_FOR_SPELLING:
-                message = self.fillGenericCamp(state)
-            else:
-                message = self.fillSpellingCamp(state)
-            if u.DEBUG:
-                print("FORM INTERFACE fillSpellingCamp")
-            return message
-        except:
-            if not state.get_warning_present():
-                print("A problem occured while trying to fill a spelling camp")
-            raise Exception
-
     def spelling(self, state):
         try:
             # if the spelling is not yet operational, we treat the spelling as fillGenericCamp
@@ -316,7 +290,6 @@ class Form:
     actions = [submitForm, fillGenericCamp, modifyValueGenericCamp, repeatValueCamp,  
                 skipCamp, repeatRequiredLabels, repeatOptionalLabels,
                 repeatAllLabels, giveRemainingRequiredLabels, verifyValueFilledCamps,
-                giveRemainingOptionalLabels, giveAllRemainingLabels, repeatFormName,
+                giveRemainingOptionalLabels, giveAllRemainingLabels, repeatFormTitle,
                 repeatFormExplanation, verifyPresenceOfLabel, explainLabel, affirm, 
-                deny, spelling, fillSpellingCamp, fillForm, modifyValueSpellingCamp,
-                resetAllCamps]
+                deny, spelling, fillForm, resetAllCamps]

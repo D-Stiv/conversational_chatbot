@@ -197,6 +197,7 @@ def get_input_fields(form_element):
                     first_field = field.lower()
                 value_name = elem.get_attribute('name')
                 value_type = elem.get_attribute(u.field_type)
+                description = elem.get_attribute(u.field_desc)
                 if not value_type:
                     # the bot-type would be the same as the input type, so we avoid putting it
                     value_type = elem.get_attribute('type')
@@ -214,6 +215,7 @@ def get_input_fields(form_element):
                     u.value_name: value_name,   # name_id of the value camp for a label
                     u.value_type: value_type,   # type tha the value should have
                     u.required: required,       # is the filling of a label required or not
+                    u.description: description, # description/explanation of a field
                     u.spelling: spelling
                 }
                 # in case of field with choices, we insert the list of choices
@@ -221,31 +223,19 @@ def get_input_fields(form_element):
                     choice_list = get_choice_list(value_name, value_type, form_element)
                     slot[u.choice_list] = choice_list
                 slots.append(slot)
+        # we save the form description and title inside the requested slot
+        description = form_element.get_attribute(u.bot_desc)
+        title = form_element.get_attribute(u.bot_title)
         requested_slot = {
-            "slot_value": first_field,
-            "slot_name": u.REQUESTED_SLOT
+            u.slot_value: first_field,
+            u.slot_name: u.REQUESTED_SLOT,
+            u.description: description,
+            u.title: title
         }
         slots.append(requested_slot)
         return slots
     except:
         print("Fail to extract the names of the form's input fields")
-        raise Exception
-
-
-def get_field_description(field, form_element):
-    try:
-        elems_input = form_element.find_elements_by_xpath("//input")
-        elems_dropdown = form_element.find_elements_by_xpath("//select")
-        elems_textarea = form_element.find_elements_by_xpath("//textarea")
-        elems = elems_input + elems_dropdown + elems_textarea
-        for elem in elems:
-            if elem.get_attribute(u.bot_field) == field:
-                desc = elem.get_attribute('bot-desc')
-                return desc
-        # description not present
-        return None
-    except:
-        print(f'Fail to get the description of the field {field}')
         raise Exception
 
 

@@ -94,6 +94,12 @@ class BotsManager:
 
     def get_utterance(self, bot, state, intent):
         try:
+            if state.get_reset_alarm_enabled() or state.get_submit_alarm_enabled():
+                # we disable the alarm mainly in case intent not in [affirm, deny]
+                if state.get_reset_alarm_enabled():
+                    state.set_reset_alarm_enabled(False)
+                else:
+                    state.set_submit_alarm_enabled(False)
             if state.get_spelling_interrupted():
                 # In the past the user interrupted a spelling and we wait for the response on whether to save the state or not
                 if intent not in [u.affirm_action, u.deny_action]:

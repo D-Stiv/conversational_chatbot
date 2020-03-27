@@ -40,7 +40,10 @@ class DialogueManager:
 
     def create_form_bots(self):
         try:
-            self.instantiate_driver()
+            if u.simulation_enabled:
+                self.instantiate_driver(True)
+            else:
+                self.instantiate_driver()
             self.bot_manager.create_bots(self.driver)
         except:
             print('Fail to create the form bots')
@@ -72,8 +75,13 @@ class DialogueManager:
         except:
             print(PREPROCESSING_EXCEPTION)
 
-    def instantiate_driver(self):
+    def instantiate_driver(self, random=False):
         try:
+            if random:
+                browsers = u.browsers
+                index = randint(0, len(browsers))
+                browser = brows[index]
+                self.browser = browser
             if self.browser == 'chrome':
                 driver = webdriver.Chrome()
             elif self.browser == 'firefox':

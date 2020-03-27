@@ -83,19 +83,6 @@ class RegistrationForm(Form):
                 userInput))
             raise Exception
 
-    def findActionAndRun(self, state, intent):
-        try:
-            # find the action corresponding to the intent and run it
-            utterance = "No action matches the intent"
-            action = super().get_action(intent)
-            utterance = action(self, state)
-            return utterance
-        except:
-            if not state.get_warning_present():
-                print(
-                    "A problem occured while a registration form bot tries to find the action to execute")
-            raise Exception
-
     def fillForm(self, state):
         try:
             # if the filling did not start, we give the form info to the user, otherwise we continue
@@ -133,8 +120,11 @@ class RegistrationForm(Form):
             entities = state.get_latest_message()["entities"]
             count = len(entities)
             if count == 0:
-                # in principle should never happen given the training we made
-                string = self.modifyValueGenericCamp(state)
+                # the user wants to modify a field but did not specify which field
+                modify_style = styles.get_modify()
+                insert_style = styles.get_insert()
+                string = (f"Which field exactly do you want to {modify_style}, and which value" +
+                          f" do you want to {insert_style} for tha field ?")
                 return string
             slot_name_list, slot_value_list = fn.extract_fields_names_and_values(
                 entities)
@@ -226,32 +216,6 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to fill a spelling camp")
             raise Exception
 
-    def modifyValueGenericCamp(self, state):
-        try:
-            entities = state.get_latest_message()["entities"]
-            count = len(entities)
-
-            if count == 0:
-                modify_style = styles.get_modify()
-                inser_style = styles.get_insert()
-                string = (f"Which field exactly do you want to {modify_style}, and which value" +
-                          f" do you want to {inser_style} for tha field ?")
-            else:
-                slot_name_list, slot_value_list = fn.extract_fields_names_and_values(
-                    entities)
-                # we first verify if each slot_name corresponds to a field in the dorm
-                state.all_fields_present(slot_name_list)
-                intro = state.fill_generic_slots(
-                    slot_name_list=slot_name_list, slot_value_list=slot_value_list)
-                concl = state.manage_next_step()
-                string = "{} \n{}".format(intro, concl)
-            return string
-        except:
-            if not state.get_warning_present():
-                print(
-                    "A problem occured while a registration form bot tries to modify a camp")
-            raise Exception
-
     def verifyPresenceOfLabel(self, state):
         try:
             entities = state.get_latest_message()["entities"]
@@ -322,8 +286,6 @@ class RegistrationForm(Form):
             # another choice can be simply to ask the user what he wants to do.
             good_style = styles.get_good()
             string = "{}, what do you want to do now ?".format(good_style)
-            # if the submit alarm is enabled, we have to disable it
-            state.set_submit_alarm_enabled(False)
             return string
         except:
             if not state.get_warning_present():
@@ -383,16 +345,6 @@ class RegistrationForm(Form):
             if not state.get_warning_present():
                 print(
                     "A problem occured while a registration form bot tries to get a spelling")
-            raise Exception
-
-    def modifyValueSpellingCamp(self, state):
-        try:
-            string = self.fillSpellingCamp(state)
-            return string
-        except:
-            if not state.get_warning_present():
-                print(
-                    "A problem occured while a registration form bot tries to skip a camp")
             raise Exception
 
     def repeatValueCamp(self, state):
@@ -571,7 +523,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to verify the value of the filled camps")
             raise Exception
 
-    def repeatFormName(self, state):
+    def repeatFormTitle(self, state):
         try:
             form_title = state.get_form_title()
             if form_title is None:

@@ -24,7 +24,7 @@ if u.interactive_enabled:
         index = input(f'which browser do you want to user among the following ?\n{fn.get_proposals(u.browsers)}')
         if index not in range(number):
             print(f'your input is not valid, your should insert a number between 0 and {number-1}')
-    browser = u.browsers[index]
+    browser = u.browsers[index]    
 else:
     browser = u.browsers[0]
 
@@ -46,5 +46,4 @@ if u.write_report:
     states_list = manager.states_list
     report_writer = w.ReportWriter(states_list)
     report_writer.start()
-
-print('End of the session, the logs are in the folder logs and the report is in the folder reports')
+    print('End of the session, the logs are in the folder logs and the report is in the folder reports')
