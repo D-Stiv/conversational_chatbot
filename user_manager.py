@@ -2,33 +2,21 @@ from random import randint, shuffle
 import utility as u
 import simulation_constants as cts
 import json
+from state_machine_actions import Actions
 
 
 class User:
     def __init__(
         self,
-        dialogue_state
+        choices_lists
     ):
         # we initialize the user
-        self.dialogue_state = dialogue_state
-        self.spelling_mode = False
         self.spelling_string = ''
         self.spelling_string_index = 0
-        self.choices_lists = self.initialize_choices_state()
+        self.choices_lists = choices_lists
         self.data = self.initialize_data()
+        self.actions_manager = Actions(self)
 
-    def initialize_choices_state(self):
-        try:
-            slots = self.dialogue_state.construct['fom']['slots']
-            choices_lists = {}
-            for slot in slots:
-                if u.choice_list in slot.keys():
-                    choices_lists[slot[u.value_name]] = slot[u.choice_list]
-            return choices_state
-        except:
-            print('Fail to initialize the choices state')
-            raise Exception
-    
     def initialize_data(self):
         try:
             data = {
@@ -62,7 +50,7 @@ class User:
             print('Fail to initialize the data')
             raise Exception
 
-    def get_answer(self, text=''):
+    def get_answer(self, dialogue_state):
         try:
             """we are mainly going to use the state to construct the response but 
             in some precise situtions the text coul be useful for an immediate answer"""

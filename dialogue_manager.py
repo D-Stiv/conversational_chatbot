@@ -55,10 +55,9 @@ class DialogueManager:
             self.in_session = True
             self.current_bot = self.bot_manager.get_bot(bot_tag)
             if u.simulation_enabled:
-                # we initialize the user
-                self.user = User(self.current_bot['state'])
+                self.user = User(self.get_choices_lists())
             if u.train_model:
-                self.current_bot['bot'].train_model()
+                self.current_bot.train_model()
             self.conversation_prologue()
             self.start_dialogue()
             if u.write_log:
@@ -99,13 +98,11 @@ class DialogueManager:
 
     def conversation_prologue(self):
         try:
-            bot = self.current_bot['bot']
-            my_state = self.current_bot['state']
             # call fillForm woith a predefined message and present the form
             initial_string = 'fill the form'
-            message = bot.interpreteMessage(initial_string)
-            introduction = bot.findActionAndRun(my_state, message["intent"]["name"])
-            stop_string = "Start of the conversation, to end your should type 'stop'."
+            message = self.current_bot.interpreteMessage(initial_string)
+            introduction = self.current_bot.findActionAndRun(message["intent"]["name"])
+            stop_string = f"Start of the conversation, to end your should type {u.stop}."
             text = f'{stop_string}\n{introduction}'
             self.chatbot_view.show_text(self.counter, text)
             self.counter += 1
@@ -115,15 +112,16 @@ class DialogueManager:
 
     def start_dialogue(self):
         try:
-            my_state = self.current_bot['state']
+            my_state = self.current_bot.get_state()
             # beginning of the interaction
             text = ''
             while True and self.in_session:
                 if u.simulation_enabled:
-                    a = self.user.get_answer(text)
+                    dialogue_state = self.get_dialogue_state()
+                    a = self.user.get_answer(dialogue_state)
                 else:
                     a = input("Your input: ")
-                if a == 'stop':
+                if a == u.stop:
                     self.chatbot_view.show_end_of_conversation(self.counter)
                     self.restart = False
                     break
@@ -132,7 +130,7 @@ class DialogueManager:
                     self.user_view.show_text(self.counter, text)
                     self.counter += 1
                     response = self.bot_manager.run_action(
-                        state=my_state, userInput=a, tag=u.tag_registration_form)
+                        userInput=a, tag=u.tag_registration_form)
                     text = f"response: {response}"
                     # we verify wheteher or not the submission have benn done
                     if not my_state.get_submit_done():
@@ -159,7 +157,7 @@ class DialogueManager:
             self.chatbot_view.show_text(self.counter, text)
             self.counter += 1
             # we add the tate to the list
-            self.states_list.append(self.current_bot['state'])
+            self.states_list.append(self.current_bot.get_state())
             restart = 1
             if u.interactive_enabled or u.simulation_enabled:
                 restart = None
@@ -191,3 +189,33 @@ class DialogueManager:
         self.counter = 0
         self.current_bot = None
         self.driver = None
+
+    def get_dialogue_state(self):
+        try:
+            state = self.current_bot.get_state()
+            dialogue_state = {
+                u.close_prompt_enabled: state.get_close_prompt_enabled(),
+                u.spelling_interrupted: state.get_spelling_interrupted(),
+                u.warning_present: state.get_warning_present(),
+                u.all_required_filled: state.get_all_required_filled(),
+                u.submit_alarm_enabled: state.get_submit_alarm_enabled(),
+                u.reset_alarm_enabled: state.get_reset_alarm_enabled(),
+                u.submit_done: state.get_submit_done(),
+                u.possible_next_action: state.get_possible_next_action()
+            }
+            return dialogue_state
+        except:
+            print('Fail to get the state of the dialogue')
+            raise Exception
+
+    def get_choices_lists(self):
+        try:
+            slots = self.current_bot.get_state().get_slots()
+            choices_lists = {}
+            for slot in slots:
+                if u.choice_list in slot.keys():
+                    choices_lists[slot[u.value_name]] = slot[u.choice_list]
+            return choices_lists
+        except:
+            print('Fail to get the choices lists')
+            raise Exception

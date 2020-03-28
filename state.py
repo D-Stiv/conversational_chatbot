@@ -59,6 +59,9 @@ class State:
         }
         return spelling_state
 
+    def get_slots(self):
+        return self.constructs[u.form_construct][u.slots]
+
     def get_latest_message(self):
         return self.message_history[len(self.message_history)-1]
 
@@ -202,6 +205,9 @@ class State:
 
     def set_close_prompt_enabled(self, value=True):
         self.spelling_state[u.close_prompt_enabled] = value
+
+    def get_close_prompt_enabled(self):
+        return self.spelling_state[u.close_prompt_enabled]
 
     # Modifies the state inserting the latest message which is the intent of the last user input
     def add_latest_message(self, message):
@@ -730,6 +736,8 @@ class State:
                     self.set_possible_next_action(u.fill_field_action)
                     return string
             else:
+                # the submit button here is one shot so we enable the alarm
+                self.set_submit_alarm_enabled()
                 string = self.submit_string()
                 self.set_possible_next_action(u.submit_action)
                 return string

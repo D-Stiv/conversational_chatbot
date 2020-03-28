@@ -62,6 +62,9 @@ nlu_data_file = 'nlu_data.json'
 nlu_config_file = 'nlu_config.yml'
 
 
+# string to stop the session
+stop = 'stop'
+
 # restricted actions, not self defining actions, need state to decide what to do
 restricted_actions = ['affirm', 'deny']
 
@@ -186,6 +189,7 @@ bot_title = 'bot-title'
 bot_field = 'bot-field'
 bot_button = 'bot-button'
 bot_desc = 'bot-desc'
+bot_tag = 'bot-tag'
 field_type = 'field-type'
 field_spelling = 'field-spelling'
 field_desc = 'field-desc'
@@ -211,6 +215,8 @@ submit_alarm_enabled = 'submit_alarm_enabled'
 reset_alarm_enabled = 'reset_alarm_enabled'
 submit_done = 'submit_done'
 filling_started = 'filling_started'
+# we add a key for state of the state machine
+state_name = 'state_name'
 
 # names of actions useful
 affirm_action = 'affirm'
@@ -220,3 +226,9 @@ fill_field_action = 'fillGenericCamp'
 reset_all_fields_action = 'resetAllCamps'
 spelling_action = 'spelling'
 submit_action = 'submitForm'
+
+# keys for the constructs data structure of the state of the dialogue
+text_construct = 'text'
+list_construct = 'list'
+form_construct = 'form'
+slots = 'slots'
