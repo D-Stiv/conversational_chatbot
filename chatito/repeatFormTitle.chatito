@@ -4,7 +4,7 @@ import ./common_alias.chatito
 import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
-%[repeatFormName]('training': '8000', 'testing': '2000')
+%[repeatFormTitle]('training': '8000', 'testing': '2000')
     *[5] ~[what] ~[is] ~[the?] ~[form_name]
     *[5] ~[please?] ~[repeat?] ~[form_name]
     *[5] ~[please?] ~[repeat] ~[the?] ~[form_name]
