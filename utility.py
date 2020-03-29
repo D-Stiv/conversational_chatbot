@@ -65,9 +65,6 @@ nlu_config_file = 'nlu_config.yml'
 # string to stop the session
 stop = 'stop'
 
-# restricted actions, not self defining actions, need state to decide what to do
-restricted_actions = ['affirm', 'deny']
-
 # spelling
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
             'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
@@ -111,7 +108,7 @@ text = 'text'
 time = 'time'
 url = 'url'
 week = 'week'
-dropdowm = 'dropdown'
+dropdown = 'dropdown'
 radio = 'radio'
 checkbox = 'checkbox'
 text_area = 'text_area'
@@ -120,6 +117,7 @@ text_area = 'text_area'
 input_type_list = [text_area, color, date, datetime_local, email, file_type, hidden, image,
     month, number, password, range_type, reset, search, submit, tel, text, time, url, week]
 
+choices_list = [radio, checkbox, dropdown]
 
 # length phone number
 min_length_phone_number = 3     # this is without plus (117, 112, ...)
@@ -155,6 +153,9 @@ o_clock = "o'clock"
 am = 'am'
 pm = 'pm'
 
+months = [january, february, march, april, may, june, july, august,
+          september, october, november, december]
+time_refs = [o_clock, am, pm]
 
 # logs and reports folder's name
 logs_folder = 'logs'
@@ -232,3 +233,7 @@ text_construct = 'text'
 list_construct = 'list'
 form_construct = 'form'
 slots = 'slots'
+
+
+# restricted actions, not self defining actions, need state to decide what to do
+restricted_actions = [affirm_action, deny_action]

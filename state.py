@@ -132,7 +132,8 @@ class State:
             value_list = []
             spelling_list = []
             num_value = len(slot_value_list)
-            for index in range(len(slot_name_list)):
+            length = len(slot_name_list)
+            for index in range(length):
                 slot_name = slot_name_list[index]
                 if slot_name in spelling_fields:
                     spelling_list.append(slot_name)
@@ -143,7 +144,8 @@ class State:
                         slot_value = slot_value_list[index]
                         value_list.append(slot_value)
             if len(slot_name_list) < num_value:
-                for index in range(len(slot_name_list), num_value):
+                length = len(slot_name_list)
+                for index in range(length, num_value):
                     slot_value = slot_value_list[index]
                     value_list.append(slot_value)
             self.spelling_state[u.spelling_list] = spelling_list
@@ -155,7 +157,8 @@ class State:
     def get_spelling_fields(self):
         try:
             spelling_fields = []
-            for slot in self.form_slots():
+            slots = self.form_slots()
+            for slot in slots:
                 if slot[u.slot_name] != u.REQUESTED_SLOT:
                     if slot[u.spelling]:
                         spelling_fields.append(slot[u.slot_name])
@@ -171,7 +174,8 @@ class State:
     def get_required_fields(self):
         try:
             required_fields = []
-            for slot in self.form_slots():
+            slots = self.form_slots()
+            for slot in slots:
                 if slot[u.slot_name] != u.REQUESTED_SLOT:
                     if slot[u.required]:
                         required_fields.append(slot[u.slot_name])
@@ -231,7 +235,8 @@ class State:
     # Gets the value of a given slot
     def get_slot(self, slot_name):
         try:
-            for slot in self.form_slots():
+            slots = self.form_slots()
+            for slot in slots:
                 if slot[u.slot_name] == slot_name:
                     return slot
             text = "Trying to access a non existing slot {}".format(slot_name)
@@ -274,7 +279,8 @@ class State:
     # return all the slots with their name and their value
     def get_slots_value(self):
         slots_value = {}
-        for slot in self.form_slots():
+        slots = self.form_slots()
+        for slot in slots:
             slot_name = slot[u.slot_name]
             slot_value = slot[u.slot_value]
             slots_value[slot_name] = slot_value
@@ -284,12 +290,14 @@ class State:
     def set_requested_slot(self, slot_name):
         try:
             exists = False
-            for existing_slot in self.form_slots():
+            slots = self.form_slots()
+            for existing_slot in slots:
                 if slot_name == existing_slot[u.slot_name]:
                     exists = True
                     break
             if exists:
-                for slot in self.form_slots():
+                slots = self.form_slots()
+                for slot in slots:
                     if slot[u.slot_name] == slot_name:
                         slot[u.slot_value] == u.REQUESTED_SLOT
             else:
@@ -305,7 +313,8 @@ class State:
     # Restitutes the value (slot) of the required slot
     def get_requested_slot(self):
         try:
-            for slot in self.form_slots():
+            slots = self.form_slots()
+            for slot in slots:
                 if slot[u.slot_name] == u.REQUESTED_SLOT:
                     slot_name = slot[u.slot_value]
             return slot_name
@@ -327,7 +336,8 @@ class State:
             slot_name = self.get_next_slot()
             # we try to take in sequence the first empty field after the current field
             actual_found = False
-            for slot in self.form_slots():
+            slots = self.form_slots()
+            for slot in slots:
                 if slot[u.slot_name] != u.REQUESTED_SLOT:
                     if actual_found:
                         # we are after the actual field
@@ -338,7 +348,8 @@ class State:
                     if slot[u.slot_name] == slot_name:
                         actual_found = True
             # there is no empty field after the current field, we try to look before
-            for slot in self.form_slots():
+            slots = self.form_slots()
+            for slot in slots:
                 if slot[u.slot_name] != u.REQUESTED_SLOT:
                     if slot[u.slot_value] is None:
                         self.set_next_slot(
@@ -354,14 +365,14 @@ class State:
     # Transforms the choices list into text and restitutes
     def get_next_slot_text(self, slot_name, slot_required):
         try:
-            types_with_options = [u.dropdowm, u.checkbox, u.radio]
+            types_with_options = u.choices_type
             slot = self.get_slot(slot_name)
             value_type = slot[u.value_type]
             required_string = fn.get_required_string(slot_required)
             if value_type in types_with_options:
                 choice_list = slot[u.choice_list]
                 option_string = fn.get_string_from_list(choice_list)
-                if value_type == u.dropdowm:
+                if value_type == u.dropdown:
                     string = f"Select the {slot_name} in the following list {option_string}. {required_string}"
                 else:
                     if value_type == u.checkbox:
@@ -414,7 +425,7 @@ class State:
             # the value is put in lowercase to coincide with the choice
             if not is_none:
                 slot_value = slot_value.lower()
-            if value_type == u.dropdowm:
+            if value_type == u.dropdown:
                 self.set_choice_dropdown(
                     slot_name=slot_name, choice_value=slot_value)
             elif value_type == u.checkbox:
@@ -447,7 +458,8 @@ class State:
                 # if not warning for no match with choice
                 choice_list = slot[u.choice_list]
                 # we transform the choice_list in lowercase
-                for index in range(len(choice_list)):
+                length = len(choice_list)
+                for index in range(length):
                     choice_list[index] = choice_list[index].lower()
                 if choice_value in choice_list:
                     select.select_by_value(choice)
@@ -476,7 +488,8 @@ class State:
             choice_value = choice.lower()
             choice_list = slot[u.choice_list]
             # we transform the choice_list in lowercase
-            for index in range(len(choice_list)):
+            length = len(choice_list)
+            for index in range(length):
                 choice_list[index] = choice_list[index].lower()
             if choice_value in choice_list:
                 for elem in elems:
@@ -622,7 +635,8 @@ class State:
     def get_fields_list(self, only_required=False, remaining=False):
         try:
             list_fields = []
-            for slot in self.form_slots():
+            slots = self.form_slots()
+            for slot in slots:
                 if slot[u.slot_name] != u.REQUESTED_SLOT:
                     # we descard the slot u.REQUESTED_SLOT because it does not represent a field
                     if slot[u.required]:
@@ -855,7 +869,8 @@ class State:
             for index in range(numSlot, numValue):
                 # we want to complete in sequence the empty fields with the values not
                 # explicitely associated to any field
-                for slot in self.form_slots():
+                slots = self.form_slots()
+                for slot in slots:
                     slot_name = slot[u.slot_name]
                     if self.get_slot(slot_name) is None:
                         slot_value = self.fill_input(
