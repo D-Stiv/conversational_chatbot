@@ -5,18 +5,19 @@ import rasa
 from rasa.nlu.convert import convert_training_data
 import utility as u
 from state import State
+import simulation_constants as cts
 
 from selenium import webdriver
 """
-driver = webdriver.Edge()
-driver.minimize_window()
-#webPath = "http://www.polimi.it"
-webPath = u.new_url
-driver.get(webPath)
-form_elements = driver.find_elements_by_tag_name('form')
+form_element = webdriver.Edge()
+form_element.minimize_window()
+# webPath = "http://www.polimi.it"
+webPath = u.form_url
+form_element.get(webPath)
+form_elements = form_element.find_elements_by_tag_name('form')
 for form_element in form_elements:
 
-    inputs = form_element.find_elements_by_xpath(".//input")   
+    inputs = form_element.find_elements_by_xpath(".//input")
 
     elems = inputs
 
@@ -40,7 +41,12 @@ constructs = {
             }
 my_state = State(form_element=form_element, constructs=constructs)"""
 
-root_folder = f'./{u.global_folder}/{u.registration_form_folder}'
-model_path=f'{root_folder}/{u.models_folder}/{u.tag_registration_form}/{u.tag_registration_form}'
-interpreter = Interpreter.load(model_path)
-print('ok')
+my_list = [1,2,3,4,5]
+print(my_list)
+my_list.remove(3)
+print(my_list)
+my_list = [15] + my_list
+print(my_list)
+print(my_list[1:])
+
+print('TTTT'.lower())

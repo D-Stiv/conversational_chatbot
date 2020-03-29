@@ -238,21 +238,18 @@ class RegistrationForm(Form):
                 is_number = True
             # verify if the text is valid
             if text.lower() not in all_types and not is_number:
-                string = 'Your input {} is not valid, try to insert only the character again please'.format(
-                    text)
+                string = f'Your input {text} is not valid, try to insert only the character again please'
                 self.state.set_warning_message(string)
-                self.state.set_warning_present()
                 raise Exception
             # verify if the input is for termination of the spelling
             for term in terminator:
                 if term in text.lower():
                     # we make sure the current spelling string is not void
-                    value = self.state.get_current_spelling_input_value.replace(' ', '')
+                    value = self.state.get_current_spelling_input_value().replace(' ', '')
                     if value == '':
                         # we ask the user to insert at least one value different from blank.
                         text = self.state.manage_next_step()
-                        text = f"You should insert at least one character different from blank.\n{text}"
-                        string = f'{text}\n{self.state.manage_next_step()}'
+                        string = f"You should insert at least one character different from blank.\n{text}"
                         return string
                     # we finished the spelling of a field and we have to fill it
                     self.state.set_after_spelling()
