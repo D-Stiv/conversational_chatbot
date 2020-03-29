@@ -1,5 +1,7 @@
 # the constants concerning the simulation
 
+import utility as u
+
 # data folder
 data_folder = 'simulation_data'
 filling_folder = 'filling'  # containing the data for completing slot_value
@@ -90,3 +92,157 @@ phone_prefixes = [1, 7, 20, 27, 30, 31, 32, 33, 34, 36, 39, 40, 41, 43, 44, 45, 
     674, 675, 676, 677, 678, 679, 680, 681, 682, 683, 685, 686, 687, 688, 689, 690, 691, 692, 850, 852, 853, 
     855, 856, 880, 886, 960, 961, 962, 963, 964, 965, 966, 967, 968, 970, 971, 972, 973, 974, 975, 976, 977, 
     992, 993, 994, 995, 996, 998]
+
+# some trigger to avoid be blocked in a given state due to the randomness of some choices
+Counter_trigger = 20
+max_execution_number = 3
+cardinality_interval_number = 5
+R = 0
+inf = 100
+complete_field_cardinality = 40
+spelling_cardinality = 20
+submit_cardinality = 15
+affirm_cardinality = 10
+deny_cardinality = 5
+
+
+# keys to control the weight of each action
+max_execution = 'max_execution'
+cardinality_interval = 'cardinality_interval'
+action_name = 'action_name'
+
+initial_active_list = [complete_field, u.spelling_action, u.submit_action, u.affirm_action, 
+    u.deny_action] + interaction_keys[1:]
+
+action_complete_field = {
+    action_name: complete_field,
+    max_execution: inf,
+    cardinality_interval: complete_field_cardinality
+}
+
+action_spelling = {
+    action_name: u.spelling_action,
+    max_execution: inf,
+    cardinality_interval: spelling_cardinality
+}
+
+action_submit = {
+    action_name: u.submit_action,
+    max_execution: inf,
+    cardinality_interval: submit_cardinality
+}
+
+action_affirm = {
+    action_name: u.affirm_action,
+    max_execution: inf,
+    cardinality_interval: affirm_cardinality
+}
+
+action_deny = {
+    action_name: u.deny_action,
+    max_execution: inf,
+    cardinality_interval: deny_cardinality
+}
+
+action_explain_field = {
+    action_name: explain_field,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_fill_form = {
+    action_name: fill_form,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_ = {
+    action_name: '',
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_give_all_remaining_fields = {
+    action_name: give_all_remaining_fields,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_give_remaining_optional_fields = {
+    action_name: give_remaining_optional_fields,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_give_remaining_required_fields = {
+    action_name: give_remaining_required_fields,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_modify_value_field = {
+    action_name: modify_value_field,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_repeat_all_fields = {
+    action_name: repeat_all_fields,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_repeat_optional_fields = {
+    action_name: repeat_optional_fields,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_repeat_required_fields = {
+    action_name: repeat_required_fields,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_repeat_form_explanation = {
+    action_name: repeat_form_explanation,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_repeat_value_field = {
+    action_name: repeat_value_field,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_reset_all_fields = {
+    action_name: reset_all_fields,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_skip_field = {
+    action_name: skip_field,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_verify_presence_field = {
+    action_name: verify_presence_field,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+action_verify_value_for_completed_fields = {
+    action_name: verify_value_for_completed_fields,
+    max_execution: max_execution_number,
+    cardinality_interval: cardinality_interval_number
+}
+
+actions_list = [action_complete_field, action_spelling, action_submit, action_affirm, action_deny, 
+    action_explain_field, action_fill_form, action_give_all_remaining_fields, action_give_remaining_optional_fields, 
+    action_give_remaining_required_fields, action_modify_value_field, action_repeat_all_fields, 
+    action_repeat_optional_fields, action_repeat_required_fields, action_repeat_form_explanation, 
+    action_repeat_value_field, action_reset_all_fields, action_skip_field, action_verify_presence_field, 
+    action_verify_value_for_completed_fields]
