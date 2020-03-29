@@ -2,20 +2,22 @@ from random import randint, shuffle
 import utility as u
 import simulation_constants as cts
 import json
-from state_machine_actions import Actions
+import data_type_generator as gen
 
 
 class User:
     def __init__(
         self,
+        fields,
         choices_lists
     ):
         # we initialize the user
+        self.fields = fields
         self.spelling_string = ''
         self.spelling_string_index = 0
         self.choices_lists = choices_lists
         self.data = self.initialize_data()
-        self.actions_manager = Actions(self)
+        self.counter = cts.Counter_trigger
 
     def initialize_data(self):
         try:
@@ -50,11 +52,32 @@ class User:
             print('Fail to initialize the data')
             raise Exception
 
+    def get_choice_list(self, choice_name):
+        try:
+            return self.choices_lists[choice_name]
+        except:
+            print(f'Fail to get the list for the choice {choice_name}')
+            raise Exception
+
+    def get_filling_data(self, key):
+        try:
+            return self.data[cts.filling][key]
+        except:
+            print(f'Fail to get the filling data {key}')
+            raise Exception
+
+    def get_interaction_data(self, key):
+        try:
+            return self.data[cts.interaction][key]
+        except:
+            print(f'Fail to get the interaction data {key}')
+            raise Exception
+
     def get_answer(self, dialogue_state):
         try:
             """we are mainly going to use the state to construct the response but 
             in some precise situtions the text coul be useful for an immediate answer"""
-            return ''
+            return self.find_action_and_run(dialogue_state)
         except:
             print('Fail to get the user answer')
             raise Exception
@@ -73,194 +96,141 @@ class User:
             print(f'Fail to construct a filling message')
             raise Exception
 
-    def generate_choice(self, choice_name):
+
+    def find_action_and_run(self, dialogue_state):
         try:
-            choice_value = self.get_random_value(self.choices_lists[choice_name])
-            return choice_value
+            state_name = self.get_state_name(dialogue_state)
+            action_name = f'action_{state_name}'
+            action = self.get_action(action_name)
+            answer = action(dialogue_state[u.value_name], dialogue_state[u.value_type], dialogue_state[u.spelling])
+            return answer
         except:
-            print(f'Fail to generate the choice for {choice_name}')
+            print('Fail to find the action and run')
+
+    def get_action(self, action_name):
+        try:
+            for action in self.actions:
+                if action.__name__ == action_name:
+                    return action
+        except: 
+            print(f'Fail to get the action {action_name}')
+            raise Exception
+    
+    def action_state_00(self, value_name, value_type, spelling):
+        try:
+            pass
+        except:
+            print('Fail to get an answer for the state "00"')
             raise Exception
 
-    def generate_choices(self, choice_name):
+    def action_state_01(self, value_name, value_type, spelling):
         try:
-            # useful when you have a checkbox and you can select many values
-            total_choices = self.choices_lists[choice_name]
-            number = len(total_choices)
-            num_choices = randint(1, min(2, number))
-            if num_choices == number:
-                return total_choices
-            partial_choices = []
-            for _ in range(num_choices):
-                choice = self.get_random_value(total_choices)
-                partial_choices.append(choice)
-                total_choices.remove(choice)
-            return partial_choices
+            return self.action_state_01_04(value_name, value_type, spelling)
         except:
-            print(f'Fail to generate the choice for {choice_name}')
+            print('Fail to get an answer for the state "01"')
+            raise Exception
+        
+    def action_state_02(self, value_name, value_type, spelling):
+        try:
+            pass
+        except:
+            print('Fail to get an answer for the state "02"')
+            raise Exception
+        
+    def action_state_03(self, value_name, value_type, spelling):
+        try:
+            pass
+        except:
+            print('Fail to get an answer for the state "03"')
+            raise Exception
+        
+    def action_state_04(self, value_name, value_type, spelling):
+        try:
+            return self.action_state_01_04(value_name, value_type, spelling)
+        except:
+            print('Fail to get an answer for the state "04"')
+            raise Exception
+        
+    def action_state_05(self, value_name, value_type, spelling):
+        try:
+            return self.action_state_05_06(value_name, value_type, spelling)
+        except:
+            print('Fail to get an answer for the state "05"')
+            raise Exception
+        
+    def action_state_06(self, value_name, value_type, spelling):
+        try:
+            return self.action_state_05_06(value_name, value_type, spelling)
+        except:
+            print('Fail to get an answer for the state "06"')
+            raise Exception
+        
+    def action_state_07(self, value_name, value_type, spelling):
+        try:
+            pass
+        except:
+            print('Fail to get an answer for the state "07"')
+            raise Exception
+        
+    def action_state_08(self, value_name, value_type, spelling):
+        try:
+            pass
+        except:
+            print('Fail to get an answer for the state "08"')
+            raise Exception
+        
+    def action_state_09(self, value_name, value_type, spelling):
+        try:
+            pass
+        except:
+            print('Fail to get an answer for the state "09"')
+            raise Exception
+          
+    def action_state_10(self, value_name, value_type, spelling):
+        try:
+            pass
+        except:
+            print('Fail to get an answer for the state "10"')
+            raise Exception
+         
+    def action_state_11(self, value_name, value_type, spelling):
+        try:
+            pass
+        except:
+            print('Fail to get an answer for the state "11"')
+            raise Exception
+         
+    def action_state_12(self, value_name, value_type, spelling):
+        try:
+            pass
+        except:
+            print('Fail to get an answer for the state "12"')
+            raise Exception
+         
+    def action_state_13(self, value_name, value_type, spelling):
+        try:
+            pass
+        except:
+            print('Fail to get an answer for the state "13"')
+            raise Exception
+       
+    def action_state_01_04(self, value_name, value_type, spelling):
+        try:
+            pass
+        except:
+            print('Fail to get an answer for the state "01_04"')
+            raise Exception
+        
+    def action_state_05_06(self, value_name, value_type, spelling):
+        try:
+            pass
+        except:
+            print('Fail to get an answer for the state "05_06"')
             raise Exception
 
-    def generate_date(self):
-        try:
-            min_year = 1900
-            max_year = 2019
-            year = randint(min_year, max_year)
-            month_letter = randint(0,1)
-            month_dic = self.data[cts.months]
-            day = randint(1, month_dic['number_days'])
-            if day < 10:
-                day = f'0{day}'
-            if month_letter:
-                # month in letters
-                month = self.get_random_value(month_dic['month'])
-                separator = ' '
-            else:
-                month = month_dic['month_letter']
-                separator = self.get_random_value(['-', '/', ''])
-            # there are two main styles, day before month and month before day
-            style_one = randint(0,1)
-            if style_one:
-                # day before month
-                date = f'{day}{separator}{month}{separator}{year}'
-            else:
-                # month before day
-                date = f'{month}{separator}{day}{separator}{year}'
-            return date
-        except:
-            print(f'Fail to generate a data')
-            raise Exception
-
-    def generate_time(self):
-        try:
-            # different formats
-            meridians = ['am', 'pm', "o'clock", '']
-            separator = randint(o,1)
-            separator_types = ['.', ':', "'"]
-            meridian = self.get_random_value(meridians)
-            hour_part = self.give_hour(meridian)
-            if separator:
-                separator_type = self.get_random_value(separator_types)
-                minute_part = self.get_minute
-            else:
-                separator_type = ''
-                minute_part = ''
-            time = f'{hour_part}{separator_type}{minute_part} {meridian}'
-            return time
-        except:
-            print(f'Fail to generate a time')
-            raise Exception
-
-    def give_hour(self, meridian):
-        try:
-            # returns a string representing the hour part of the time
-            min_hour = 0
-            if meridian in ['am', 'pm']:
-                max_hour = 12
-            else:
-                max_hour = 24
-            double_digit = randint(0,1)
-            if double_digit:
-                hour = randint(min_hour, max_hour)
-                if hour < 10:
-                    hour = f'0{hour}'
-            else:
-                hour = randint(min_hour, 9)
-            hour_part = f'{hour}'
-            return hour_part
-        except:
-            print('Fail to give an hour')
-            raise Exception
-
-    def give_minute(self):
-        try:
-            min_mm = 0
-            max_mm = 59
-            double_digit = randint(0,1)
-            if double_digit:
-                minute = randint(min_mm, max_mm)
-                if minute < 10:
-                    minute = f'0{minute}'
-            else:
-                minute = randint(min_mm, 9)
-            minute_part = f'{minute}'
-            return minute_part
-        except:
-            print('Fail to give minutes')
-            raise Exception
-
-    def generate_name(self):
-        try:
-            name = self.get_random_value(self.data[cts.names])
-            return name
-        except:
-            print(f'Fail to generate a name')
-            raise Exception
-
-    def generate_country(self):
-        try:
-            country = self.get_random_value(self.data[cts.countries])
-            return country
-        except:
-            print(f'Fail to generate a country')
-            raise Exception
-
-    def generate_city(self):
-        try:
-            city = self.get_random_value(self.data[cts.cities])
-            return city
-        except:
-            print(f'Fail to generate a city')
-            raise Exception
-
-    def generate_place_address(self):
-        try:
-            min_num = 10
-            max_num = 50
-            # we have 3 styles french, british, italian
-            styles = ['french', 'british', 'italian']
-            style = self.get_random_value(styles)
-            if style == 'french':
-                # format is number type name
-                types = ['rue', 'place', 'avenue', 'boulevard']
-            elif style == 'british':
-                # the format is number name type
-                types = ['street', 'road', 'avenue', 'boulevard']
-            elif style == 'italian':
-                # the format is type name number
-                types = ['via', 'viale', 'piazza', 'pzle']
-            my_type = self.get_random_value(types)
-            my_name = self.get_random_value(self.data[cts.address_namse])
-            my_number = randint(min_num, max_num)
-            text = '{} {} {}'
-            if style == 'french':
-                # format is number type name
-                place_address = text.format(my_number, my_type, my_name)
-            elif style == 'british':
-                # the format is number name type
-                place_address = text.format(my_number, my_name, my_type)
-            elif style == 'italian':
-                # the format is type name number
-                place_address = text.format(my_type, my_name, my_number)
-            return place_address
-        except:
-            print(f'Fail to generate a place address')
-            raise Exception
-
-    def generate_phone_number(self):
-        try:
-            prefixes = cts.phone_prefixes
-            signs = ['00', '+']
-            length = u.min_length_phone_number + 5
-            phone_number = f'{self.get_random_value(signs)}{self.get_random_value(prefixes)}'
-            for _ in range(length):
-                phone_number = f'{phone_number}{randint(0, 9)}'
-            return phone_number
-        except:
-            print(f'Fail to generate a phone number')
-            raise Exception
-
-    def get_random_value(self, my_list):
-        index = randint(0, len(my_list))
-        return my_list[index]
+    actions_list = [action_state_00, action_state_01, action_state_02, action_state_03, action_state_04,
+        action_state_05, action_state_06, action_state_07, action_state_08, action_state_09, action_state_10,
+        action_state_11, action_state_12, action_state_13]   
 
 
 class BadUser(User):

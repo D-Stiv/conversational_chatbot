@@ -249,10 +249,11 @@ class RegistrationForm(Form):
                     # we make sure the current spelling string is not void
                     value = self.state.get_current_spelling_input_value.replace(' ', '')
                     if value == '':
+                        # we ask the user to insert at least one value different from blank.
                         text = self.state.manage_next_step()
                         text = f"You should insert at least one character different from blank.\n{text}"
-                        self.state.set_warning_message(text)
-                        raise Exception
+                        string = f'{text}\n{self.state.manage_next_step()}'
+                        return string
                     # we finished the spelling of a field and we have to fill it
                     self.state.set_after_spelling()
                     self.state.set_close_prompt_enabled(False)
@@ -630,6 +631,7 @@ class RegistrationForm(Form):
             elem.click()
             # we signify that the submit is done to have the title page
             self.state.set_submit_done()
+            self.state.set_possible_next_action(None)
             string = 'submission done'
             return string
         except:

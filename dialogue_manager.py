@@ -55,7 +55,8 @@ class DialogueManager:
             self.in_session = True
             self.current_bot = self.bot_manager.get_bot(bot_tag)
             if u.simulation_enabled:
-                self.user = User(self.get_choices_lists())
+                fields, choices_lists = self.get_choices_lists()
+                self.user = User(fields, choices_lists)
             if u.train_model:
                 self.current_bot.train_model()
             self.conversation_prologue()
@@ -193,6 +194,11 @@ class DialogueManager:
     def get_dialogue_state(self):
         try:
             state = self.current_bot.get_state()
+            next_slot_name, _ = state.get_next_slot()
+            slot = state.get_slot(next_slot_name)
+            value_name = slot[u.value_name]
+            value_type = slot[u.value_type]
+
             dialogue_state = {
                 u.close_prompt_enabled: state.get_close_prompt_enabled(),
                 u.spelling_interrupted: state.get_spelling_interrupted(),
@@ -201,7 +207,9 @@ class DialogueManager:
                 u.submit_alarm_enabled: state.get_submit_alarm_enabled(),
                 u.reset_alarm_enabled: state.get_reset_alarm_enabled(),
                 u.submit_done: state.get_submit_done(),
-                u.possible_next_action: state.get_possible_next_action()
+                u.possible_next_action: state.get_possible_next_action(),
+                u.value_name: value_name,
+                u.value_type: value_type
             }
             return dialogue_state
         except:
@@ -210,12 +218,15 @@ class DialogueManager:
 
     def get_choices_lists(self):
         try:
-            slots = self.current_bot.get_state().get_slots()
+            # give the choices lists and the list of fields
+            state = self.current_bot.get_state()
+            fields = state.get_fields_list()
+            slots = state.get_slots()
             choices_lists = {}
             for slot in slots:
                 if u.choice_list in slot.keys():
                     choices_lists[slot[u.value_name]] = slot[u.choice_list]
-            return choices_lists
+            return fields, choices_lists
         except:
             print('Fail to get the choices lists')
             raise Exception
