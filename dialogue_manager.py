@@ -55,8 +55,9 @@ class DialogueManager:
             self.in_session = True
             self.current_bot = self.bot_manager.get_bot(bot_tag)
             if u.simulation_enabled:
-                fields, choices_lists = self.get_choices_lists()
-                self.user = User(fields, choices_lists)
+                text_fields = self.get_text_fields()
+                choices_lists = self.get_choices_lists()
+                self.user = User(text_fields, choices_lists)
             if u.train_model:
                 self.current_bot.train_model()
             self.conversation_prologue()
@@ -209,7 +210,8 @@ class DialogueManager:
                 u.submit_done: state.get_submit_done(),
                 u.possible_next_action: state.get_possible_next_action(),
                 u.value_name: value_name,
-                u.value_type: value_type
+                u.value_type: value_type,
+                u.slot_name: next_slot_name
             }
             return dialogue_state
         except:
@@ -220,13 +222,26 @@ class DialogueManager:
         try:
             # give the choices lists and the list of fields
             state = self.current_bot.get_state()
-            fields = state.get_fields_list()
             slots = state.get_slots()
             choices_lists = {}
             for slot in slots:
                 if u.choice_list in slot.keys():
                     choices_lists[slot[u.value_name]] = slot[u.choice_list]
-            return fields, choices_lists
+            return choices_lists
         except:
             print('Fail to get the choices lists')
+            raise Exception
+
+    def get_text_fields(self):
+        # retrieves the fields of type text
+        try:
+            state = self.current_bot.get_state()
+            slots = state.get_slots()
+            text_fields = []
+            for slot in slots:
+                if slot[u.value_type] == u.text:
+                    text_fields.append(slot[u.slot_name])
+            return text_fields
+        except:
+            print('Fail to get the fields of type text')
             raise Exception
