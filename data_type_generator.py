@@ -3,39 +3,14 @@
 from random import randint
 
 
-def generate_choice(choice_name):
-    try:
-        choice_value = get_random_value(choices_lists[choice_name])
-        return choice_value
-    except:
-        print(f'Fail to generate the choice for {choice_name}')
-        raise Exception
-
-def generate_choices(choice_name):
-    try:
-        # useful when you have a checkbox and you can select many values
-        total_choices = choices_lists[choice_name]
-        number = len(total_choices)
-        num_choices = randint(1, min(2, number))
-        if num_choices == number:
-            return total_choices
-        partial_choices = []
-        for _ in range(num_choices):
-            choice = get_random_value(total_choices)
-            partial_choices.append(choice)
-            total_choices.remove(choice)
-        return partial_choices
-    except:
-        print(f'Fail to generate the choice for {choice_name}')
-        raise Exception
-
-def generate_date():
+def generate_date(months):
+    # receive the data structure of the months, list of dictionaries
     try:
         min_year = 1900
         max_year = 2019
         year = randint(min_year, max_year)
         month_letter = randint(0,1)
-        month_dic = data[cts.months]
+        month_dic = get_random_value(months)
         day = randint(1, month_dic['number_days'])
         if day < 10:
             day = f'0{day}'
@@ -117,31 +92,7 @@ def give_minute():
         print('Fail to give minutes')
         raise Exception
 
-def generate_name():
-    try:
-        name = get_random_value(data[cts.names])
-        return name
-    except:
-        print(f'Fail to generate a name')
-        raise Exception
-
-def generate_country():
-    try:
-        country = get_random_value(data[cts.countries])
-        return country
-    except:
-        print(f'Fail to generate a country')
-        raise Exception
-
-def generate_city():
-    try:
-        city = get_random_value(data[cts.cities])
-        return city
-    except:
-        print(f'Fail to generate a city')
-        raise Exception
-
-def generate_place_address():
+def generate_place_address(address_names):
     try:
         min_num = 10
         max_num = 50
@@ -158,7 +109,7 @@ def generate_place_address():
             # the format is type name number
             types = ['via', 'viale', 'piazza', 'pzle']
         my_type = get_random_value(types)
-        my_name = get_random_value(data[cts.address_namse])
+        my_name = get_random_value(address_namse)
         my_number = randint(min_num, max_num)
         text = '{} {} {}'
         if style == 'french':
@@ -188,7 +139,73 @@ def generate_phone_number():
         print(f'Fail to generate a phone number')
         raise Exception
 
-def get_random_value(my_list):
-        index = randint(0, len(my_list))
-        return my_list[index]
+def generate_email(name):
+    try:
+        name = name.replace(' ', '.')
+        # format is first_part@damain_name.extension
+        domain_names = ['yahoo', 'gmail', 'hotmail', 'polimi', 'outlook']
+        extensions = ['cm', 'com', 'uk', 'it', 'fr']
+        min_length_first_part = 5
+        max_length_first_part = 9
+        # first part computation
+        length = randint(min_length_first_part, max_length_first_part)
+        first_part = name
+        if length > len(name):            
+            diff = length - len(name)
+            possible_char = u.alphabet + u.number_0_9
+            for _ in range(diff):
+                char = get_random_value(possible_char)
+                if randint(0,1):
+                    first_part = f'{first_part}{char}'
+                else:
+                    first_part = f'{char}{first_part}'
+        # domain
+        domain = get_random_value(domain_names)
+        # extension
+        extension = get_random_value(extensions)
+        email = f'{first_part}@{domain}.{extension}'
+        return email
+    except:
+        print('Fail to generate an email')
+        raise Exception
+
+def generate_password(name):
+    try:
+        name = name.replace(' ', '.')
+        min_length_password = 5
+        max_length_password = 9
+        # first part computation
+        length = randint(min_length_password, max_length_password)
+        password = name
+        if length > len(name):            
+            diff = length - len(name)
+            possible_char = u.alphabet + u.number_0_9 + u.password_spec_chars
+            for _ in range(diff):
+                char = get_random_value(possible_char)
+                if randint(0,1):
+                    password = f'{password}{char}'
+                else:
+                    password = f'{char}{password}'
+        return password
+    except:
+        print('Fail to generate a password')
+        raise Exception
+
+def get_random_value(my_list, number=1):
+    # get a random value in a list of objects
+    try:
+        if number != 1:
+            values = []
+            for _ in range(number):
+                value = my_list[randint(0, len(my_list)-1)]
+                while value in values:
+                    value = my_list[randint(0, len(my_list)-1)]
+                values.append(value)
+            return values
+        else:
+            index = randint(0, len(my_list)-1)
+            return my_list[index]
+    except:
+        print('Fail to get a random')
+        raise Exception
 
