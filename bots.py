@@ -126,7 +126,7 @@ class RegistrationForm(Form):
                 modify_style = styles.get_modify()
                 insert_style = styles.get_insert()
                 string = (f"Which field exactly do you want to {modify_style}, and which value" +
-                          f" do you want to {insert_style} for tha field ?")
+                          f" do you want to {insert_style} for tha field?")
                 return string
             slot_name_list, slot_value_list = fn.extract_fields_names_and_values(
                 entities)
@@ -351,7 +351,7 @@ class RegistrationForm(Form):
             # is possible_next_action
             # another choice can be simply to ask the user what he wants to do.
             good_style = styles.get_good()
-            string = "{}, what do you want to do now ?".format(good_style)
+            string = "{}, what do you want to do now?".format(good_style)
             return string
         except:
             if not self.state.get_warning_present():
@@ -400,7 +400,7 @@ class RegistrationForm(Form):
                     sorry_style)
                 opt = ""
                 if not slot['required']:
-                    opt = "do you want to submit now ?"
+                    opt = "do you want to submit now?"
                     self.state.set_possible_next_action(u.submit_action)
                 string = ("{} it is required to be able to submit the form" +
                           "{}\n{}").format(text, self.fillForm(), opt)
@@ -433,7 +433,8 @@ class RegistrationForm(Form):
         try:
             sure_style = styles.get_sure()
             optional_list = []
-            for slot in self.form_slots():
+            slots = self.state.form_slots()
+            for slot in slots:
                 if slot['slot_name'] != u.REQUESTED_SLOT:
                     if not slot['required']:
                         optional_list.append(slot['slot_name'])
@@ -483,7 +484,8 @@ class RegistrationForm(Form):
         try:
             sure_style = styles.get_sure()
             remaining_optional_list = []
-            for slot in self.form_slots():
+            slots = self.state.form_slots()
+            for slot in slots:
                 if slot['slot_name'] != u.REQUESTED_SLOT:
                     if not slot['required']:
                         if slot['slot_value'] is None:
@@ -520,7 +522,8 @@ class RegistrationForm(Form):
     def verifyValueFilledCamps(self):
         try:
             filled_slots = []
-            for slot in self.state.form_slots():
+            slots = self.state.form_slots()
+            for slot in slots:
                 if slot['slot_name'] != u.REQUESTED_SLOT:
                     if slot['slot_name'] is not None:
                         filled_slots.append(slot)
@@ -573,7 +576,7 @@ class RegistrationForm(Form):
     def resetAllCamps(self):
         try:
             if not self.state.get_reset_alarm_enabled():
-                string = "we are about to reset all the field and restart the process.\n are you sure you want to continue with this action ?"
+                string = "we are about to reset all the field and restart the process.\n are you sure you want to continue with this action?"
                 self.state.set_possible_next_action(u.reset_all_fields_action)
                 # we enable the alarm
                 self.state.set_reset_alarm_enabled()
@@ -617,7 +620,7 @@ class RegistrationForm(Form):
             if u.DEBUG:
                 print("inside submitForm")
             if not self.state.get_submit_alarm_enabled():
-                string = "we are about to submit, are you sure you want to continue with this action ?"
+                string = "we are about to submit, are you sure you want to continue with this action?"
                 self.state.set_possible_next_action(u.submit_action)
                 # we enable the alarm
                 self.state.set_submit_alarm_enabled()

@@ -3,9 +3,8 @@ import functions as fn
 import styles
 import utility as u
 
-months = [u.january, u.february, u.march, u.april, u.may, u.june, u.july, u.august,
-          u.september, u.october, u.november, u.december]
-time_refs = [u.o_clock, u.am, u.pm]
+months = u.months
+time_refs = u.time_refs
 
 
 def verify_compatibility_generic(value):
