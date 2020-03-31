@@ -482,8 +482,8 @@ class RegistrationForm(Form):
             remaining_required_fields = self.state.get_fields_list(remaining=True)
             ans = "{} the remaining required fields are the following {}.".format(
                 sure_style, remaining_required_fields)
-            string = self.state.manage_next_step()
-            string = f"{ans} \n{string}"
+            next_step_string = self.state.manage_next_step()
+            string = f"{ans} \n{next_step_string}"
             return string
         except:
             if not self.state.get_warning_present():

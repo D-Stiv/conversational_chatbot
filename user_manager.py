@@ -98,6 +98,10 @@ class User:
             intent_data = self.get_intent_data(intent_name)
             intent_data[cts.max_execution] -= 1
             if intent_data[cts.max_execution] == 0:
+                # we update the interval
+                intent_data[cts.min_number] = 0
+                intent_data[cts.max_number] = 0
+                # we remove it from the active list
                 self.active_list.remove(intent_name)
                 # given that the active list have been modified we have to recompute the intervals
                 self.compute_intervals()
