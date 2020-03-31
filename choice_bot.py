@@ -114,7 +114,7 @@ class BotsManager:
                     # we insert the current spelling value in the list of saved values 
                     state.add_spelling_value_to_save(self.get_current_spelling_input_value())
                 # we reset the current value
-                state.reset_current_spelling_string_value()
+                state.reset_current_spelling_input_value()
                 # the user interrupted a spelling and decided eiher to save or not to save. Now we go on with the action 
                 # that interrupted the spelling
                 intent = state.get_waiting_intent()
@@ -125,7 +125,7 @@ class BotsManager:
                 state.set_spelling_interrupted()
                 state.set_waiting_intent(intent)
                 utterance = ('do you want to save the state of the field that you started spelling ?\nIn case of negative response, ' +
-                    'tahat input will simply be canceled')
+                    'that input will simply be canceled')
                 state.set_warning_message(utterance)
                 raise Exception
             else:

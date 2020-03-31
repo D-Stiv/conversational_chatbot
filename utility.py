@@ -1,7 +1,11 @@
-DEBUG = True
+DEBUG = False
 
 # maximum number of dialogues
 MAX_DIALOGUES = 10
+
+# frequency control: interval for being able to manually stop the simulation in term of number of message exchanged
+CONTROL_FREQUENCE = 40
+
 
 # minimum and maximum year acceptable for the date
 min_year = 1500
@@ -37,13 +41,13 @@ write_log = False
 write_report = False
 
 # whether or not we use the simulator
-simulation_enabled = False
+simulation_enabled = True
 
 # URL of the form to fill
 form_url = "http://localhost/ecobusiness/new-project-form/"
 
 # browser to user to open the url, Chrome - Firefox - Edge
-browsers = ['chrome', 'firefox', 'edge']
+browsers = ['edge', 'firefox', 'chrome']
 
 # interactive enabled to choose the browser
 interactive_enabled = False
@@ -117,7 +121,7 @@ text_area = 'text_area'
 input_type_list = [text_area, color, date, datetime_local, email, file_type, hidden, image,
     month, number, password, range_type, reset, search, submit, tel, text, time, url, week]
 
-choices_list = [radio, checkbox, dropdown]
+choices_type_list = [radio, checkbox, dropdown]
 
 # length phone number
 min_length_phone_number = 3     # this is without plus (117, 112, ...)

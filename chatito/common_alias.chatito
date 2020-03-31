@@ -196,9 +196,12 @@
     extra
     voluntary
     unforced
-    not required
+    ~[not] ~[required]
     unrestricted
     noncompulsory
+
+~[not]
+    not
 
 ~[the]
     the
@@ -278,12 +281,6 @@
     fields
     inputs
 
-~[register]
-    register
-
-~[validate]
-    validate
-
 ~[continue]
     continue
     go ahead
@@ -296,6 +293,8 @@
 
 ~[submit]
     submit
+    register
+    validate
 
 ~[submission]
     submission

@@ -142,7 +142,7 @@ class RegistrationForm(Form):
                 # there is at least one generic info
                 if len(slot_value_list) == 1 and len(slot_name_list) == 0:
                     # we are inserting a value for the current field
-                    slot_name = self.state.get_next_slot()
+                    slot_name = self.state.get_next_slot(only_name=True)   # return also if the next slot is required or not
                     slot_value = slot_value_list[0]
                     # the slot value can change, being put in the right format
                     # we go to the filling procedure
@@ -184,7 +184,6 @@ class RegistrationForm(Form):
                 else:
                     # there are still fields to spell
                     self.state.update_spelling_list(slot_name)
-                    self.state.set_close_prompt_enabled()
                     next_field = self.state.get_spelling_list()[0]
                     please_style = styles.get_please()
                     string = ("Now you are going to spell the value for the field {}.\n" +
@@ -288,14 +287,14 @@ class RegistrationForm(Form):
                 string = "{} indicate which field you are interested to".format(
                     please_style)
                 return string
-            slot_name_list, _ = fn.extract_fields_names_and_values(
-                entities)
+            slot_name_list = fn.extract_fields_names_and_values(
+                entities, only_names=True)
             # we first verify if each slot_name corresponds to a field in the dorm
             self.state.all_fields_present(slot_name_list)
             good_style = styles.get_good()
             string = "{} ".format(good_style)
             for name in slot_name_list:
-                text, _ = fn.verify_presence(name, self.state.form_slots())
+                text = fn.verify_presence(name, self.state.form_slots(), only_text=True)
                 string = string + text
             return string
         except:
@@ -309,17 +308,26 @@ class RegistrationForm(Form):
             entities = self.state.get_latest_message()["entities"]
             count = len(entities)
             if count == 0:
-                slot_name = self.state.get_next_slot()
-                if slot_name is None:
-                    string = self.state.manage_next_step()
-                    return string
-                string = self.state.get_field_description(slot_name)
+                # the user wants to explain the current field (next slot)
+                field = self.state.get_next_slot(only_name=True)   # return also if the next slot is required or not
+                field_desc = self.state.get_field_description(field)
+                next_step_string = self.state.manage_next_step()
+                string = f'{field_desc}\n{next_step_string}'
                 return string
-            slot_name_list, _ = fn.extract_fields_names_and_values(
-                entities)
+            slot_name_list = fn.extract_fields_names_and_values(
+                entities, only_names=True)
             # we first verify if each slot_name corresponds to a field in the dorm
             self.state.all_fields_present(slot_name_list)
-            string = self.state.get_field_description(slot_name_list[0])
+            length = len(slot_name_list)
+            string = ''
+            for index in range(length):
+                field_desc = self.state.get_field_description(slot_name_list[index])
+                if string == '':
+                    string = field_desc
+                else:
+                    string = f'{string}\n{field_desc}'
+            next_step_string = self.state.manage_next_step()
+            string = f'{string}\n{next_step_string}'
             return string
         except:
             if not self.state.get_warning_present():
@@ -333,9 +341,12 @@ class RegistrationForm(Form):
             # is possible_next_action.
             action_name = self.state.get_possible_next_action()
             if action_name not in [u.submit_action, u.reset_all_fields_action]:
-                text = self.state.manage_next_step()
-                self.state.set_warning_message(text)
-                raise Exception
+                string = self.state.manage_next_step()
+                return string
+            elif action_name is None:
+                sorry_style = styles.get_sorry()
+                string = f'{sorry_style} what exactly do you want to do ?'
+                return string
             action = self.get_action(action_name)
             string = action(self)
             return string
@@ -378,8 +389,8 @@ class RegistrationForm(Form):
                     else:
                         value = slot['slot_value']
                     string = string + "\n\t" + text.format(key, value)
-            continue_string = self.state.manage_next_step()
-            string = f'{string}\n{continue_string}'
+            next_step_string = self.state.manage_next_step()
+            string = f'{string}\n{next_step_string}'
             return string
         except:
             if not self.state.get_warning_present():
@@ -390,10 +401,10 @@ class RegistrationForm(Form):
     def skipCamp(self):
         try:
             # we set the actual slot to campare it later with the next slot
-            actual_slot_name, _ = self.state.get_next_slot()
+            actual_slot_name = self.state.get_next_slot(only_name=True)    # return also if the next slot is required or not
             # we get the next slot without having filled the current slot and we verify if it is the last field
             self.state.set_next_slot_basic()
-            next_slot_name, _ = self.state.get_next_slot()
+            next_slot_name = self.state.get_next_slot(only_name=True)  # return also if the next slot is required or not
             if actual_slot_name == next_slot_name:
                 sorry_style = styles.get_sorry()
                 text = "{} this field is the last one remaining.\n".format(
@@ -491,12 +502,12 @@ class RegistrationForm(Form):
                         if slot['slot_value'] is None:
                             # we add remaining optional fields
                             remaining_optional_list.append(slot['slot_name'])
-            optional_fields = self.state.get_string_from_list(
+            optional_fields = fn.get_string_from_list(
                 remaining_optional_list)
             ans = "{} the remaining optional fields are the following {}.".format(
                 sure_style, optional_fields)
-            string = self.state.manage_next_step()
-            string = f'{ans}\n{string}'
+            next_step_string = self.state.manage_next_step()
+            string = f'{ans}\n{next_step_string}'
             return string
         except:
             if not self.state.get_warning_present():
@@ -521,16 +532,15 @@ class RegistrationForm(Form):
 
     def verifyValueFilledCamps(self):
         try:
-            filled_slots = []
             slots = self.state.form_slots()
-            for slot in slots:
-                if slot['slot_name'] != u.REQUESTED_SLOT:
-                    if slot['slot_name'] is not None:
-                        filled_slots.append(slot)
-            filled_string = fn.get_pairs(filled_slots)
+            filled_string = fn.get_pairs(slots, only_filled=True)
             next_step_string = self.state.manage_next_step()
-            string = (f"the fieds you already completed are the following: {filled_string}\n" +
-                     f"the stars indicate the required fields\n{next_step_string}")
+            if filled_string == '':
+                sorry_style = styles.get_sorry()
+                string = f'{sorry_style} up to now you did not complete any field\n{next_step_string}'
+            else:
+                string = (f"the fields you already completed are the following: \n{filled_string}\n" +
+                        f"the stars indicate the required fields\n{next_step_string}")
             return string
         except:
             if not self.state.get_warning_present():

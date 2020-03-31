@@ -43,8 +43,12 @@ class Form:
     def findActionAndRun(self, intent):
         try:
             # find the action corresponding to the intent and run it
-            utterance = "No action matches the intent"
             action = self.get_action(intent)
+            if action is None:
+                next_step_string = self.state.manage_next_step()
+                utterance = f"No action matches the intent.\n{next_step_string}"
+                self.state.set_warning_message(utterance)
+                raise Exception
             utterance = action(self)
             return utterance
         except:

@@ -80,8 +80,8 @@ class DialogueManager:
         try:
             if random:
                 browsers = u.browsers
-                index = randint(0, len(browsers))
-                browser = brows[index]
+                index = randint(0, len(browsers)-1)
+                browser = browsers[index]
                 self.browser = browser
             if self.browser == 'chrome':
                 driver = webdriver.Chrome()
@@ -104,7 +104,7 @@ class DialogueManager:
             initial_string = 'fill the form'
             message = self.current_bot.interpreteMessage(initial_string)
             introduction = self.current_bot.findActionAndRun(message["intent"]["name"])
-            stop_string = f"Start of the conversation, to end your should type {u.stop}."
+            stop_string = f"Start of the conversation, to end your should type <<{u.stop}>>."
             text = f'{stop_string}\n{introduction}'
             self.chatbot_view.show_text(self.counter, text)
             self.counter += 1
@@ -121,6 +121,13 @@ class DialogueManager:
                 if u.simulation_enabled:
                     dialogue_state = self.get_dialogue_state()
                     a = self.user.get_answer(dialogue_state)
+                    """we insert a control to be be able to manually stop the simulation"""
+                    control = self.counter % u.CONTROL_FREQUENCE
+                    if self.counter > 1 and control in [0, 1]:
+                        answer = input('[Control Message: Do you want to proceed with the simulation?\t0 - No, 1 - Yes]\n[Your response: ')
+                        if answer != '1':
+                            a = u.stop
+                    """end of the control, the simulation can proceed normally"""
                 else:
                     a = input("Your input: ")
                 if a == u.stop:
@@ -134,7 +141,7 @@ class DialogueManager:
                     response = self.bot_manager.run_action(
                         userInput=a, tag=u.tag_registration_form)
                     text = f"response: {response}"
-                    # we verify wheteher or not the submission have benn done
+                    # we verify whether or not the submission have benn done
                     if not my_state.get_submit_done():
                         self.chatbot_view.show_text(self.counter, text)
                         self.counter += 1
@@ -239,8 +246,9 @@ class DialogueManager:
             slots = state.get_slots()
             text_fields = []
             for slot in slots:
-                if slot[u.value_type] == u.text:
-                    text_fields.append(slot[u.slot_name])
+                if slot[u.slot_name] != u.REQUESTED_SLOT:
+                    if slot[u.value_type] == u.text:
+                        text_fields.append(slot[u.slot_name])
             return text_fields
         except:
             print('Fail to get the fields of type text')

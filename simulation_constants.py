@@ -2,6 +2,9 @@
 
 import utility as u
 
+# maximum number of spelling interruptions
+MAX_SPELLING_INTERRUPTIONS = 2
+
 # data folder
 data_folder = 'simulation_data'
 filling_folder = 'filling'  # containing the data for completing slot_value
@@ -103,8 +106,8 @@ phone_prefixes = [1, 7, 20, 27, 30, 31, 32, 33, 34, 36, 39, 40, 41, 43, 44, 45, 
                   992, 993, 994, 995, 996, 998]
 
 # some trigger to avoid be blocked in a given state due to the randomness of some choices
-Counter_trigger = 20
-max_execution_number = 3
+Counter_trigger = 10
+max_execution_number = 1
 cardinality_interval_number = 5
 R = 0
 inf = 100
@@ -122,8 +125,8 @@ intent_name = 'intent_name'
 min_number = 'min_number'
 max_number = 'max_number'
 
-initial_active_list = [complete_field, u.spelling_action, u.submit_action, u.affirm_action,
-                       u.deny_action] + interaction_keys[1:]
+initial_active_list = [complete_field, u.spelling_action, submit_form, affirm,
+                       deny] + interaction_keys[1:-3]
 
 intent_complete_field = {
     intent_name: complete_field,
@@ -141,8 +144,8 @@ intent_spelling = {
     max_number: 0
 }
 
-intent_submit = {
-    intent_name: u.submit_action,
+intent_submit_form = {
+    intent_name: submit_form,
     max_execution: inf,
     cardinality_interval: submit_cardinality,
     min_number: 0,
@@ -150,7 +153,7 @@ intent_submit = {
 }
 
 intent_affirm = {
-    intent_name: u.affirm_action,
+    intent_name: affirm,
     max_execution: inf,
     cardinality_interval: affirm_cardinality,
     min_number: 0,
@@ -158,7 +161,7 @@ intent_affirm = {
 }
 
 intent_deny = {
-    intent_name: u.deny_action,
+    intent_name: deny,
     max_execution: inf,
     cardinality_interval: deny_cardinality,
     min_number: 0,
@@ -175,14 +178,6 @@ intent_explain_field = {
 
 intent_fill_form = {
     intent_name: fill_form,
-    max_execution: max_execution_number,
-    cardinality_interval: cardinality_interval_number,
-    min_number: 0,
-    max_number: 0
-}
-
-intent_ = {
-    intent_name: '',
     max_execution: max_execution_number,
     cardinality_interval: cardinality_interval_number,
     min_number: 0,
@@ -294,7 +289,7 @@ intent_verify_value_for_completed_fields = {
 }
 
 essential_intents = [intent_complete_field, intent_spelling,
-                     intent_submit, intent_affirm, intent_deny]
+                     intent_submit_form, intent_affirm, intent_deny]
 non_essential_intents = [intent_explain_field, intent_fill_form, intent_give_all_remaining_fields,
                          intent_give_remaining_optional_fields, intent_give_remaining_required_fields, intent_modify_value_field,
                          intent_repeat_all_fields, intent_repeat_optional_fields, intent_repeat_required_fields,

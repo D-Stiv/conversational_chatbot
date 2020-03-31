@@ -60,7 +60,7 @@ state_04 = {
     u.submit_alarm_enabled: False,
     u.reset_alarm_enabled: False,
     u.submit_done: False,
-    u.possible_next_action: u.fill_field_action
+    u.possible_next_action: None
 }
 
 state_05 = {

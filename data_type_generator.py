@@ -1,6 +1,8 @@
 # generator of data types
 
 from random import randint
+import utility as u
+import simulation_constants as cts
 
 
 def generate_date(months):
@@ -204,7 +206,8 @@ def get_random_value(my_list, number=1):
             return values
         else:
             index = randint(0, len(my_list)-1)
-            return my_list[index]
+            value = my_list[index]
+            return value
     except:
         print('Fail to get a random')
         raise Exception

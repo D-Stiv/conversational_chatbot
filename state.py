@@ -219,6 +219,8 @@ class State:
 
     def set_warning_present(self, value=True):
         self.machine_parameters[u.warning_present] = value
+        if value == False:
+            self.machine_parameters[u.warning_message] = ''
     
     def get_warning_present(self):
         return self.machine_parameters[u.warning_present]
@@ -267,8 +269,6 @@ class State:
             raise Exception
 
     def set_warning_message(self, text):
-        next_slot_string = self.manage_next_step()
-        text = f'{text}\n{next_slot_string}'
         self.machine_parameters[u.warning_message] = text
         # we also set the warning present to True since there is a message
         self.set_warning_present()
@@ -323,9 +323,12 @@ class State:
             raise Exception
 
     # Restitutes the next slot's name
-    def get_next_slot(self):
+    def get_next_slot(self, only_name=False):
         try:
-            return self.machine_parameters[u.next_slot], self.machine_parameters[u.next_slot_required]
+            if only_name:
+                return self.machine_parameters[u.next_slot]
+            else:
+                return self.machine_parameters[u.next_slot], self.machine_parameters[u.next_slot_required]
         except:
             print("A problem occured while getting the next slot")
             raise Exception
@@ -333,7 +336,7 @@ class State:
     # sets the next field (slot) according to the order of the web form
     def set_next_slot_basic(self):
         try:
-            slot_name = self.get_next_slot()
+            slot_name = self.get_next_slot(only_name=True)
             # we try to take in sequence the first empty field after the current field
             actual_found = False
             slots = self.form_slots()
@@ -365,7 +368,7 @@ class State:
     # Transforms the choices list into text and restitutes
     def get_next_slot_text(self, slot_name, slot_required):
         try:
-            types_with_options = u.choices_type
+            types_with_options = u.choices_type_list
             slot = self.get_slot(slot_name)
             value_type = slot[u.value_type]
             required_string = fn.get_required_string(slot_required)
@@ -410,8 +413,9 @@ class State:
                 if not compatible:
                     text = "Incompatibility between the value {} and the type {}.\n{}".format(
                         slot_value, value_type, text)
-                    self.set_warning_message(text)
-                    raise Exception
+                    next_step_string = self.manage_next_step()
+                    string = f'{text}\n{next_step_string}'
+                    return string
                 # the value and the type are compatible so it is pssible that the value has been converted
                 # to an appropriate form contained in text
                 slot_value = text
@@ -643,7 +647,7 @@ class State:
                         if not remaining or slot[u.slot_value] is None:
                             # we add remaining required fields
                             list_fields.append(slot[u.slot_name])
-                    if not only_required:
+                    if not only_required and not slot[u.required]:
                         if not remaining or slot[u.slot_value] is None:
                             # we add remaining not required fields
                             list_fields.append(slot[u.slot_name])
@@ -691,7 +695,8 @@ class State:
                     field, sorry_style)
                 return text
             # the description is present in the html file
-            return desc
+            text = f'{field}: {desc}'
+            return text
         except:
             print(f'Fail to get the description of the field {field}')
             raise Exception
@@ -722,8 +727,6 @@ class State:
                     self.get_next_slot_text(slot_name, next_slot_required))
                 if slot_name in self.get_spelling_fields() and u.READY_FOR_SPELLING:
                     self.add_spelling_name(slot_name)
-                    # we enable the close prompt. It will be disabled when the user will insert the terminator
-                    self.set_close_prompt_enabled()
                     please_style = styles.get_please()
                     # we verify if the field has been previously saved 
                     saved_fields = self.get_saved_spelling_fields()
@@ -882,7 +885,7 @@ class State:
                             ready_to_submit = True
             string = ""
             if ready_to_submit:
-                next_slot_name, _ = self.get_next_slot()
+                next_slot_name = self.get_next_slot(only_name=True)    # return also if the next slot is required or not
                 if next_slot_name is not None:
                     string = (" all the required fields have been completed form now on you can" +
                               " submit")
@@ -927,7 +930,7 @@ class State:
             # now we prepare the output string
             ready_string = ""
             if ready_to_submit:
-                next_slot_name, _ = self.get_next_slot()
+                next_slot_name = self.get_next_slot(only_name=True)    # return also if the next slot is required or not
                 if next_slot_name is not None:
                     ready_string = (" all the required fields have been completed form now on you can" +
                                     " submit")
@@ -948,16 +951,16 @@ class State:
     def all_fields_present(self, slot_name_list):
         try:
             for slot_name in slot_name_list:
-                _, present = fn.verify_presence(slot_name, self.form_slots())
+                present = fn.verify_presence(slot_name, self.form_slots(), only_presence=True)
                 if not present:
                     sorry_style = styles.get_sorry()
                     please_style = styles.get_please()
                     thanks_style = styles.get_thanks()
-                    text = ("{} the field {} is not present in this form. \nthe fields of this form are" +
-                            " the following: {}\n{} precise the action you want to perform {}").format(sorry_style,
-                                                                                                       slot_name, self.get_fields_list(), please_style, thanks_style)
-                    self.set_warning_message(text)
-                    raise Exception
+                    text = (f"{sorry_style} the field {slot_name} is not present in this form. \nthe fields of this form are" +
+                            f" the following: {self.get_fields_list()}\n{please_style} precise the action you want to perform {thanks_style}")
+                    next_step_string = self.manage_next_step()
+                    string = f'{text}\n{next_step_string}'
+                    return string
         except:
             if not self.get_warning_present():
                 print('Fail to verify presence of all fields')

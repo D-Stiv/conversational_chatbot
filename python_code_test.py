@@ -6,6 +6,9 @@ from rasa.nlu.convert import convert_training_data
 import utility as u
 from state import State
 import simulation_constants as cts
+import interaction_files_keys as ifk
+import json
+from random import randint
 
 from selenium import webdriver
 """
@@ -41,7 +44,7 @@ constructs = {
             }
 my_state = State(form_element=form_element, constructs=constructs)"""
 
-my_list = [1,2,3,4,5]
+my_list = [1, 2, 3, 4, 5]
 print(my_list)
 my_list.remove(3)
 print(my_list)
@@ -49,4 +52,10 @@ my_list = [15] + my_list
 print(my_list)
 print(my_list[1:])
 
-print('TTTT'.lower())
+path = f'./{cts.data_folder}/{cts.filling_folder}/{cts.address_names_file}'
+with open(path, 'r') as fp_list:
+    data_list = json.load(fp_list)
+sentence = data_list[0]
+answer = sentence
+print(6%4)
+

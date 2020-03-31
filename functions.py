@@ -4,7 +4,7 @@ import utility as u
 import compatible as c
 
 
-def extract_fields_names_and_values(entities):
+def extract_fields_names_and_values(entities, only_names=False):
     try:
         count = len(entities)
         slot_name_list = []
@@ -20,7 +20,10 @@ def extract_fields_names_and_values(entities):
             else:
                 # it means that the entity is field's value, a slot value
                 slot_value_list.append(newDict['value'])
-        return slot_name_list, slot_value_list
+        if only_names:
+            return slot_name_list
+        else:
+            return slot_name_list, slot_value_list
     except:
         print('Fail to extract the names and values for an entity')
         raise Exception
@@ -107,7 +110,7 @@ def convert_to_int(string, tag=u.normal):
         raise Exception
 
 
-def get_pairs(slots):
+def get_pairs(slots, only_filled=False):
     try:
         string = ""
         text = "{} : {}"
@@ -117,16 +120,17 @@ def get_pairs(slots):
                 if slot[u.required]:
                     slot_name = slot_name + ' **'
                 slot_value = slot[u.slot_value]
-                string = "{}\t{}\n".format(
-                    string, text.format(slot_name, slot_value))
-
+                if slot_value is not None or not only_filled:
+                    # we do not enter when we find only filled and the value is None
+                    string = "{}\t{}\n".format(
+                        string, text.format(slot_name, slot_value))
         return string
     except:
         print("Fail to get the pairs")
         raise Exception
 
 
-def verify_presence(name, slots):
+def verify_presence(name, slots, only_presence=False, only_text=False):
     try:
         possible_names = []
         for slot in slots:
@@ -134,7 +138,12 @@ def verify_presence(name, slots):
             possible_names.append(slot_name)
         if name in possible_names:
             text = "the field {} is present.".format(name)
-            return text, True
+            if only_presence:
+                return True
+            elif only_text:
+                return text
+            else:
+                return text, True
         alternatives = []
         for pos in possible_names:
             if name in pos:
@@ -143,40 +152,22 @@ def verify_presence(name, slots):
             string_alt = get_string_from_list(alternatives)
             text = "the field {} is not present but you have these alternatives {}.".format(
                 name, string_alt)
-            return text, False
+            if only_presence:
+                return False
+            elif only_text:
+                return text
+            else:
+                return text, False
         sorry_style = styles.get_sorry()
         text = "the field {} is not present {}".format(name, sorry_style)
-        return text, False
+        if only_presence:
+            return False
+        elif only_text:
+            return text
+        else:
+            return text, False
     except:
         print(f'Fail to verify the presence of {name}')
-        raise Exception
-
-
-def get_value_name(elem):
-    try:
-        simple_type_list = [u.button, u.color, u.date, u.datetime_local, u.email, u.file_type, u.hidden, u.image,
-                            u.month, u.number, u.password, u.range_type, u.reset, u.search, u.submit, u.tel, u.text, u.time, u.url, u.week]
-        multiple_choice_type_list = [u.checkbox, u.radio]
-        el = elem.find_element_by_xpath(
-            ".//div[@bot-entity = 'input_value']")
-        value_type = el.get_attribute("entity-type")
-        required = is_required(el)
-        value_name = ""
-        if value_type in simple_type_list:
-            value_name = elem.find_element_by_xpath(
-                ".//div[@bot-entity = 'input_value']/input").get_attribute("name")
-        elif value_type == u.dropdowm:
-            value_name = elem.find_element_by_xpath(
-                ".//div[@bot-entity = 'input_value']/select").get_attribute("name")
-        elif value_type == u.text_area:
-            value_name = elem.find_element_by_xpath(
-                ".//div[@bot-entity = 'input_value']/textarea").get_attribute("name")
-        elif value_type in multiple_choice_type_list:
-            value_name = elem.find_element_by_xpath(
-                ".//div[@bot-entity = 'input_value']/div[1]/input").get_attribute("name")
-        return value_name, value_type, required
-    except:
-        print("Fail to extract the values' name and the values' type")
         raise Exception
 
 
@@ -205,7 +196,7 @@ def get_input_fields(form_element):
                     required = True
                 else:
                     required = False
-                if elem.get_attribute('field-spelling') is not None:
+                if elem.get_attribute(u.field_spelling) is not None:
                     spelling = True
                 else:
                     spelling = False
@@ -219,7 +210,7 @@ def get_input_fields(form_element):
                     u.spelling: spelling
                 }
                 # in case of field with choices, we insert the list of choices
-                if value_type in [u.radio, u.checkbox, u.dropdowm]:
+                if value_type in u.choices_type_list:
                     choice_list = get_choice_list(value_name, value_type, form_element)
                     slot[u.choice_list] = choice_list
                 slots.append(slot)
@@ -241,7 +232,7 @@ def get_input_fields(form_element):
 
 def get_choice_list(choice_name, choice_type, web_elem):
     try:
-        if choice_type == u.dropdowm:
+        if choice_type == u.dropdown:
             name = choice_name.lower()
             elem = web_elem.find_element_by_name(name)
             choice_list = []

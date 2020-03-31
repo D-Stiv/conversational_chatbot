@@ -21,12 +21,14 @@ class User:
         self.text_fields = text_fields
         self.spelling_string = ''
         self.spelling_string_index = 0
+        self.remaining_spelling_interruptions = cts.MAX_SPELLING_INTERRUPTIONS
         self.choices_lists = choices_lists  # dictionary where the keys are the value_name
-        self.data = self.initialize_data()
         self.counter = cts.Counter_trigger
         self.active_list = cts.initial_active_list
         self.dialogue_state = {}
-        
+        self.data = self.initialize_data()
+
+
     def initialize_data(self):
         try:
             # we start initializing the actions data putting the right intervals
@@ -57,9 +59,9 @@ class User:
                 # we load a given json file which is a list
                 path = f'./{cts.data_folder}/{cts.interaction_folder}/{files_names[index]}'
                 with open(path, 'r') as fp:
-                    data = json.load(fp)
+                    my_data = json.load(fp)
                 # we associate to the list loaded the corresponding key
-                data[cts.interaction][keys[index]] = data
+                data[cts.interaction][keys[index]] = my_data
             return data
         except:
             print('Fail to initialize the data')
@@ -67,7 +69,7 @@ class User:
 
     def compute_intervals(self):
         try:
-            cumulative_total = self.min_random_number
+            cumulative_total = cts.R
             length = len(self.active_list)
             for index in range(length):
                 intent_name = self.active_list[index]
@@ -103,7 +105,7 @@ class User:
             print(f'Fail to remove the intent {intent_name} in the active list')
             raise Exception
     
-    def select_intent(self):
+    def select_intent_and_execute(self, prohibited_intents=None):
         # randomly selects an intent in the active list to be executed
         try:
             number = randint(self.min_random_number, self.max_random_number)
@@ -111,7 +113,19 @@ class User:
                 intent_data = self.get_intent_data(intent_name)
                 # we verify if the random number is in the range of this intent
                 if number in range(intent_data[cts.min_number], intent_data[cts.max_number]+1):
-                    return intent_name
+                    intent_name_selected = intent_name
+                    break
+            if prohibited_intents is not None:
+                while intent_name_selected in prohibited_intents:
+                    number = randint(self.min_random_number, self.max_random_number)
+                    for intent_name in self.active_list:
+                        intent_data = self.get_intent_data(intent_name)
+                        # we verify if the random number is in the range of this intent
+                        if number in range(intent_data[cts.min_number], intent_data[cts.max_number]+1):
+                            intent_name_selected = intent_name
+                            break
+            answer = self.construct_answer(intent_name_selected)
+            return answer
         except:
             print('Fail to select the intent to be executed')
             raise Exception
@@ -123,6 +137,9 @@ class User:
         try:
             """we are mainly going to use the state to construct the response but 
             in some precise situtions the text coul be useful for an immediate answer"""
+            # we verify if the spelling have been interrupted to decrease the counter
+            if dialogue_state[u.spelling_interrupted]:
+                self.remaining_spelling_interruptions -= 1
             # we set the dialogue state which will be used by the action_states and the actions
             self.dialogue_state = dialogue_state
             state_name = self.get_state_name()
@@ -142,11 +159,13 @@ class User:
         # receives the name of an intent and perform the standard operation for generating a 
         # message coherent with that intent
         try:
-            intent_function = self.get_intent(intent_name)
+            self.update_active_list(intent_name)
+            intent_function = self.get_intent_function(intent_name)
             answer = intent_function(self)
             return answer
         except:
             print(f'Fail to construct an answer for the intent {intent_name}')
+            raise Exception
 
     def get_interaction_message(self, file_name, key=''):
         # when key is not void, the file contains a dictionary and we should go to the corresponding 
@@ -165,7 +184,7 @@ class User:
     def get_filling_message(self, file_name):
         # For the moment all the filling elements are lists
         try:
-            elements = self.data[cts.interaction][file_name]
+            elements = self.data[cts.filling][file_name]
             element = gen.get_random_value(elements)
             return element
         except:
@@ -182,7 +201,8 @@ class User:
                         found = False
                         break
                 if found:
-                    return state[u.state_name]
+                    state_name = state[u.state_name]
+                    return state_name
             # there is no state corresponding to the dialogue state
             return None
         except:
@@ -215,10 +235,8 @@ class User:
     
     def action_state_00(self):
         try:
-            if self.counter <= 0:
-                intent_name = cts.fill_form
-                return self.construct_answer(intent_name)
-            pass
+            intent_name = cts.fill_form
+            return self.construct_answer(intent_name)
         except:
             print('Fail to get an answer for the state "00"')
             raise Exception
@@ -228,7 +246,8 @@ class User:
             if self.counter <= 0:
                 intent_name = cts.complete_field
                 return self.construct_answer(intent_name)
-            return self.action_state_01_04()
+            prohibited_intents = [u.spelling_action]
+            return self.select_intent_and_execute(prohibited_intents)
         except:
             print('Fail to get an answer for the state "01"')
             raise Exception
@@ -238,7 +257,8 @@ class User:
             if self.counter <= 0:
                 intent_name = u.spelling_action
                 return self.construct_answer(intent_name)
-            pass
+            prohibited_intents = [cts.complete_field]
+            return self.select_intent_and_execute(prohibited_intents)
         except:
             print('Fail to get an answer for the state "02"')
             raise Exception
@@ -246,9 +266,15 @@ class User:
     def action_state_03(self):
         try:
             if self.counter <= 0:
-                intent_name = u.affirm_action
+                intent_name = cts.affirm
                 return self.construct_answer(intent_name)
-            pass
+            # we have only two possibilities: 0- affirm, 1-deny.
+            number = randint(0, 1)
+            if number == 0:
+                intent_name = cts.affirm
+            else:
+                intent_name = cts.deny
+            return self.construct_answer(intent_name)
         except:
             print('Fail to get an answer for the state "03"')
             raise Exception
@@ -258,7 +284,8 @@ class User:
             if self.counter <= 0:
                 intent_name = cts.complete_field
                 return self.construct_answer(intent_name)
-            return self.action_state_01_04()
+            prohibited_intents = [u.spelling_action]
+            return self.select_intent_and_execute(prohibited_intents)
         except:
             print('Fail to get an answer for the state "04"')
             raise Exception
@@ -268,7 +295,8 @@ class User:
             if self.counter <= 0:
                 intent_name = cts.complete_field
                 return self.construct_answer(intent_name)
-            return self.action_state_05_06()
+            prohibited_intents = [u.spelling_action]
+            return self.select_intent_and_execute(prohibited_intents)
         except:
             print('Fail to get an answer for the state "05"')
             raise Exception
@@ -276,9 +304,10 @@ class User:
     def action_state_06(self):
         try:
             if self.counter <= 0:
-                intent_name = u.submit_action
+                intent_name = cts.submit_form
                 return self.construct_answer(intent_name)
-            return self.action_state_05_06()
+            prohibited_intents = [u.spelling_action]
+            return self.select_intent_and_execute(prohibited_intents)
         except:
             print('Fail to get an answer for the state "06"')
             raise Exception
@@ -286,9 +315,10 @@ class User:
     def action_state_07(self):
         try:
             if self.counter <= 0:
-                intent_name = u.submit_action
+                intent_name = cts.submit_form
                 return self.construct_answer(intent_name)
-            pass
+            prohibited_intents = [u.spelling_action]
+            return self.select_intent_and_execute(prohibited_intents)
         except:
             print('Fail to get an answer for the state "07"')
             raise Exception
@@ -308,9 +338,10 @@ class User:
     def action_state_09(self):
         try:
             if self.counter <= 0:
-                intent_name = u.deny_action
+                intent_name = cts.deny
                 return self.construct_answer(intent_name)
-            pass
+            prohibited_intents = [u.spelling_action]
+            return self.select_intent_and_execute(prohibited_intents)
         except:
             print('Fail to get an answer for the state "09"')
             raise Exception
@@ -320,27 +351,30 @@ class User:
             if self.counter <= 0:
                 intent_name = u.spelling_action
                 return self.construct_answer(intent_name)
-            pass
+            prohibited_intents = [cts.complete_field]
+            return self.select_intent_and_execute(prohibited_intents)
         except:
             print('Fail to get an answer for the state "10"')
             raise Exception
          
     def action_state_11(self):
         try:
-            if self.counter <= 0:
+            if self.counter <= 0 or self.remaining_spelling_interruptions <= 0:
                 intent_name = u.spelling_action
                 return self.construct_answer(intent_name)
-            pass
+            prohibited_intents = [cts.complete_field]
+            return self.select_intent_and_execute(prohibited_intents)
         except:
             print('Fail to get an answer for the state "11"')
             raise Exception
          
     def action_state_12(self):
         try:
-            if self.counter <= 0:
+            if self.counter <= 0 or self.remaining_spelling_interruptions <= 0:
                 intent_name = u.spelling_action
                 return self.construct_answer(intent_name)
-            pass
+            prohibited_intents = [cts.complete_field]
+            return self.select_intent_and_execute(prohibited_intents)
         except:
             print('Fail to get an answer for the state "12"')
             raise Exception
@@ -348,61 +382,105 @@ class User:
     def action_state_13(self):
         try:
             if self.counter <= 0:
-                intent_name = u.affirm_action
+                intent_name = cts.affirm
                 return self.construct_answer(intent_name)
-            pass
+            # we have only two possibilities: 0- affirm, 1-deny.
+            number = randint(0, 1)
+            if number == 0:
+                intent_name = cts.affirm
+            else:
+                intent_name = cts.deny
+            return self.construct_answer(intent_name)
         except:
             print('Fail to get an answer for the state "13"')
-            raise Exception
-       
-    def action_state_01_04(self):
-        try:
-            pass
-        except:
-            print('Fail to get an answer for the state "01_04"')
-            raise Exception
-        
-    def action_state_05_06(self):
-        try:
-            pass
-        except:
-            print('Fail to get an answer for the state "05_06"')
             raise Exception
 
     actions_state_list = [action_state_00, action_state_01, action_state_02, action_state_03, action_state_04,
         action_state_05, action_state_06, action_state_07, action_state_08, action_state_09, action_state_10,
-        action_state_11, action_state_12, action_state_13]   
+        action_state_11, action_state_12, action_state_13]  
+
 
     def intent_complete_field(self):
         # we have mainly two cases, when the type is choice and when the type is not a choice
-        value_type = self.dialogue_state[u.value_type]
-        value_name = self.dialogue_state[u.value_name]
-        field = self.dialogue_state[u.slot_name].lower()
-        if value_type in u.choices_list:
-            if value_type == u.checkbox:
-                """value type is checbox so we can have more than one choice, for the simulation the maximum is two
-                we have 5 cases: 0- value, 1- name_value, 2- value_name, 3- two_values, 4- name_value_value.
-                The first 3 are linked to the fact that we decide to choose only one value, so identical to radio 
-                and dropdown. the last two are related to the selection of two values"""
-                number = randint(0, 4)
-                if number in range(3, 5):
-                    # 3 or 4
-                    values = gen.get_random_value(choice_list, number=2)
-                    if number == 3:
-                        # two_values
-                        file_key = ifk.two_values
-                        sentence = self.get_interaction_message(cts.complete_field, file_key)
-                        answer = sentence.format(values[0], values[1])
-                    else:
-                        # 4, name_value_value
-                        file_key = ifk.name_value_value
-                        sentence = self.get_interaction_message(cts.complete_field, file_key)
-                        answer = sentence.format(field, values[0], values[1])
-                    return answer
-            # 0, 1, 2 of the checkbox + dropdown + radio
-            # we have only one choice 
-            choice_list = self.choices_lists[value_name]
-            value = gen.get_random_value(choice_list)
+        try:
+            value_type = self.dialogue_state[u.value_type]
+            value_name = self.dialogue_state[u.value_name]
+            field = self.dialogue_state[u.slot_name].lower()
+            if value_type in u.choices_type_list:
+                if value_type == u.checkbox:
+                    """value type is checbox so we can have more than one choice, for the simulation the maximum is two
+                    we have 5 cases: 0- value, 1- name_value, 2- value_name, 3- two_values, 4- name_value_value.
+                    The first 3 are linked to the fact that we decide to choose only one value, so identical to radio 
+                    and dropdown. the last two are related to the selection of two values"""
+                    number = randint(0, 4)
+                    if number in range(3, 5):
+                        # 3 or 4
+                        values = gen.get_random_value(choice_list, number=2)
+                        if number == 3:
+                            # two_values
+                            file_key = ifk.two_values
+                            sentence = self.get_interaction_message(cts.complete_field, file_key)
+                            answer = sentence.format(values[0], values[1])
+                        else:
+                            # 4, name_value_value
+                            file_key = ifk.name_value_value
+                            sentence = self.get_interaction_message(cts.complete_field, file_key)
+                            answer = sentence.format(field, values[0], values[1])
+                        return answer
+                # 0, 1, 2 of the checkbox + dropdown + radio
+                # we have only one choice 
+                choice_list = self.choices_lists[value_name]
+                value = gen.get_random_value(choice_list)
+                # we select a sentence with one slot name or two slots (one name one value)
+                # so in total three cases: 0 - value, 1 - value_name, 2 - name_value
+                number = randint(0, 2)
+                if number == 0:
+                    # one value
+                    file_key = ifk.one_name
+                    sentence = self.get_interaction_message(cts.complete_field, file_key)
+                    answer = sentence.format(value)
+                elif number == 1:
+                    # value_name
+                    file_key = ifk.value_name
+                    sentence = self.get_interaction_message(cts.complete_field, file_key)
+                    answer = sentence.format(value, field)
+                else:
+                    # 2, name_value
+                    file_key = ifk.name_value
+                    sentence = self.get_interaction_message(cts.complete_field, file_key)
+                    answer = sentence.format(field, value)
+                return answer
+            # we are not in a choice, we should look if it is date, time, address not email, name, country, city
+            if value_type == u.date:
+                value = gen.generate_date(self.get_filling_message(cts.months))
+            elif value_type == u.time:
+                value = gen.generate_time()
+            elif value_type == u.text_area:
+                value = self.get_filling_message(cts.messages)
+            elif value_type == u.email:
+                name = self.get_filling_message(cts.names)
+                value = gen.generate_email(name)
+            elif value_type == u.password:
+                name = self.get_filling_message(cts.names)
+                value = gen.generate_password(name)
+            elif 'address' in field and value_type != u.email:
+                # probably a place address
+                value = gen.generate_place_address(self.get_filling_message(cts.address_names))
+            elif 'city' in field:
+                # probably a city
+                value = self.get_filling_message(cts.cities)
+            elif 'country' in field:
+                # probably a country
+                value = self.get_filling_message(cts.countries)
+            elif 'name' in field:
+                # probably a person name
+                value = self.get_filling_message(cts.names)
+            elif 'phone' in field or 'mobile' in field:
+                # probably a phone number
+                value = gen.generate_phone_number()
+            else:
+                # can be anything but we decide to put a person name
+                value = self.get_filling_message(cts.names)
             # we select a sentence with one slot name or two slots (one name one value)
             # so in total three cases: 0 - value, 1 - value_name, 2 - name_value
             number = randint(0, 2)
@@ -422,246 +500,221 @@ class User:
                 sentence = self.get_interaction_message(cts.complete_field, file_key)
                 answer = sentence.format(field, value)
             return answer
-        # we are not in a choice, we should look if it is date, time, address not email, name, country, city
-        if value_type == u.date:
-            value = gen.generate_date(self.get_filling_message(cts.months))
-        elif value_type == u.time:
-            value = gen.generate_time()
-        elif value_type == u.text_area:
-            value = gen.get_random_value(self.get_filling_message(cts.messages))
-        elif value_type == u.email:
-            name = gen.get_random_value(self.get_filling_message(cts.names))
-            value = gen.generate_email(name)
-        elif value_type == u.password:
-            name = gen.get_random_value(self.get_filling_message(cts.names))
-            value = gen.generate_password(name)
-        elif 'address' in field and value_type != u.email:
-            # probably a place address
-            value = gen.generate_place_address(self.get_filling_message(cts.address_names))
-        elif 'city' in field:
-            # probably a city
-            value = gen.get_random_value(self.get_filling_message(cts.cities))
-        elif 'country' in field:
-            # probably a country
-            value = gen.get_random_value(self.get_filling_message(cts.countries))
-        elif 'name' in field:
-            # probably a person name
-            value = gen.get_random_value(self.get_filling_message(cts.names))
-        elif 'phone' in field or 'mobile' in field:
-            # probably a phone number
-            value = gen.generate_phone_number()
-        else:
-            # can be anything but we decide to put a person name
-            value = gen.get_random_value(self.get_filling_message(cts.names))
-        # we select a sentence with one slot name or two slots (one name one value)
-        # so in total three cases: 0 - value, 1 - value_name, 2 - name_value
-        number = randint(0, 2)
-        if number == 0:
-            # one value
-            file_key = ifk.one_name
-            sentence = self.get_interaction_message(cts.complete_field, file_key)
-            answer = sentence.format(value)
-        elif number == 1:
-            # value_name
-            file_key = ifk.value_name
-            sentence = self.get_interaction_message(cts.complete_field, file_key)
-            answer = sentence.format(value, field)
-        else:
-            # 2, name_value
-            file_key = ifk.name_value
-            sentence = self.get_interaction_message(cts.complete_field, file_key)
-            answer = sentence.format(field, value)
-        return answer
+        except:
+            print('Fail in finding a message to ask to complete a field')
+            raise Exception
             
     def intent_spelling(self):
         # we have two cases, when the spelling did not start already and when the spelling already started
-        value_type = self.dialogue_state[u.value_type]
-        field = self.dialogue_state[u.slot_name].lower()
-        if self.spelling_string == '':
-            # we are not in a choice, we should look if it is date, time, address not email, name, country, city
-            if value_type == u.date:
-                value = gen.generate_date(self.get_filling_message(cts.months))
-            elif value_type == u.time:
-                value = gen.generate_time()
-            elif value_type == u.text_area:
-                value = gen.get_random_value(self.get_filling_message(cts.messages))
-            elif value_type == u.email:
-                name = gen.get_random_value(self.get_filling_message(cts.names))
-                value = gen.generate_email(name)
-            elif value_type == u.password:
-                name = gen.get_random_value(self.get_filling_message(cts.names))
-                value = gen.generate_password(name)
-            elif 'address' in field:
-                # probably a place address
-                value = gen.generate_place_address(self.get_filling_message(cts.address_names))
-            elif 'city' in field:
-                # probably a city
-                value = gen.get_random_value(self.get_filling_message(cts.cities))
-            elif 'country' in field:
-                # probably a country
-                value = gen.get_random_value(self.get_filling_message(cts.countries))
-            elif 'name' in field:
-                # probably a person name
-                value = gen.get_random_value(self.get_filling_message(cts.names))
-            elif 'phone' in field or 'mobile' in field:
-                # probably a phone number
-                value = gen.generate_phone_number()
-            else:
-                # can be anything but we decide to put a person name
-                value = gen.get_random_value(self.get_filling_message(cts.names))
-            self.spelling_string = value
-            self.spelling_string_index = -1
-        # we update first the spelling data anthen we analyze the char
-        self.spelling_string_index += 1
-        if self.spelling_string_index >= len(self.spelling_string):
-            self.spelling_string = ''
-            self.spelling_string_index = 0
-            char = gen.get_random_value(u.terminator)
+        try:
+            value_type = self.dialogue_state[u.value_type]
+            field = self.dialogue_state[u.slot_name].lower()
+            if self.spelling_string == '':
+                # we are not in a choice, we should look if it is date, time, address not email, name, country, city
+                if value_type == u.date:
+                    value = gen.generate_date(self.get_filling_message(cts.months))
+                elif value_type == u.time:
+                    value = gen.generate_time()
+                elif value_type == u.text_area:
+                    value = self.get_filling_message(cts.messages)
+                elif value_type == u.email:
+                    name = self.get_filling_message(cts.names)
+                    value = gen.generate_email(name)
+                elif value_type == u.password:
+                    name = self.get_filling_message(cts.names)
+                    value = gen.generate_password(name)
+                elif 'address' in field:
+                    # probably a place address
+                    value = gen.generate_place_address(self.get_filling_message(cts.address_names))
+                elif 'city' in field:
+                    # probably a city
+                    value = self.get_filling_message(cts.cities)
+                elif 'country' in field:
+                    # probably a country
+                    value = self.get_filling_message(cts.countries)
+                elif 'name' in field:
+                    # probably a person name
+                    value = self.get_filling_message(cts.names)
+                elif 'phone' in field or 'mobile' in field:
+                    # probably a phone number
+                    value = gen.generate_phone_number()
+                else:
+                    # can be anything but we decide to put a person name
+                    value = self.get_filling_message(cts.names)
+                self.spelling_string = value
+                self.spelling_string_index = -1
+            # we update first the spelling data anthen we analyze the char
+            self.spelling_string_index += 1
+            if self.spelling_string_index >= len(self.spelling_string):
+                self.spelling_string = ''
+                self.spelling_string_index = 0
+                char = gen.get_random_value(u.terminator)
+                return char
+            char = self.spelling_string[self.spelling_string_index]
+            # now we analyze the char, mainly the special characters
+            if char in u.spec_char_symbol:
+                index = u.spec_char_symbol.index(char)
+                char = u.special_characters[index]
             return char
-        char = self.spelling_string[self.spelling_string_index]
-        # now we analyze the char, mainly the special characters
-        if char in u.spec_char_symbol:
-            index = u.spec_char_symbol.index(char)
-            char = u.special_characters[index]
-        return char
+        except:
+            print('Fail in finding a message to spell a field')
+            raise Exception
 
-    def intent_submit(self):
+    def intent_submit_form(self):
         # we select an expression to ask the submit and we return 
-        answer = gen.get_random_value(self.get_interaction_message(cts.submit_form))
+        answer = self.get_interaction_message(cts.submit_form)
         return answer
 
     def intent_affirm(self):
         # we select an expression to affirm and we return
-        answer = gen.get_random_value(self.get_interaction_message(cts.affirm))
+        answer = self.get_interaction_message(cts.affirm)
         return answer
 
     def intent_deny(self):
         # we select an expression to deny and we return
-        answer = gen.get_random_value(self.get_interaction_message(cts.deny))
+        answer = self.get_interaction_message(cts.deny)
         return answer
 
     def intent_explain_field(self):
         # we select a sentence from the corresponding file in the database 
-        answer = gen.get_random_value(self.get_interaction_message(cts.explain_field))
-        return answer
+        try:
+            field = gen.get_random_value(self.text_fields)
+            sentence = self.get_interaction_message(cts.explain_field)
+            answer = sentence.format(field)
+            return answer
+        except:
+            print('Fail to extract a sentence to ask an explanation about a field')
+            raise Exception
 
     def intent_fill_form(self):
         # we select a sentence from the corresponding file in the database 
-        answer = gen.get_random_value(self.get_interaction_message(cts.fill_form))
+        answer = self.get_interaction_message(cts.fill_form)
         return answer
 
     def intent_give_all_remaining_fields(self):
         # we select a sentence from the corresponding file in the database 
-        answer = gen.get_random_value(self.get_interaction_message(cts.give_all_remaining_fields))
+        answer = self.get_interaction_message(cts.give_all_remaining_fields)
         return answer
 
     def intent_give_remaining_optional_fields(self):
         # we select a sentence from the corresponding file in the database 
-        answer = gen.get_random_value(self.get_interaction_message(cts.give_remaining_optional_fields))
+        answer = self.get_interaction_message(cts.give_remaining_optional_fields)
         return answer
 
     def intent_give_remaining_required_fields(self):
         # we select a sentence from the corresponding file in the database 
-        answer = gen.get_random_value(self.get_interaction_message(cts.give_remaining_required_fields))
+        answer = self.get_interaction_message(cts.give_remaining_required_fields)
         return answer
 
     def intent_modify_value_field(self):
         """we select the number and type of slots and we select a sentence 
         from the corresponding file in the database 
         there are 4 cases: 0- zero, 1- one_name, 2- name_value, 3- two_names"""
-        length = len(self.text_fields)
-        if length >= 3:
-            upper = 3
-        else:
-            upper = 2
-        number = randint(0, upper)
-        if number == 0:
-            answer = gen.get_random_value(self.get_interaction_message(cts.repeat_value_field, ifk.zero))
-        elif number == 1:
-            field = gen.get_random_value(self.text_fields)
-            sentence = gen.get_random_value(self.get_interaction_message(cts.repeat_value_field, ifk.one_name))
-            answer = sentence.format(field)
-        elif number == 2:
-            field = gen.get_random_value(self.text_fields)
-            value = gen.get_random_value(self.get_filling_message(cts.possible_fields))
-            sentence = gen.get_random_value(self.get_interaction_message(cts.repeat_value_field, ifk.name_value))
-            answer = sentence.format(field, value)
-        else:
-            # 3, two_names
-            fields = gen.get_random_value(self.text_fields, number=2)
-            sentence = gen.get_random_value(self.get_interaction_message(cts.repeat_value_field, ifk.two_names))
-            answer = sentence.format(fields[0], fields[1])
-        return answer
+        try:
+            length = len(self.text_fields)
+            if length >= 3:
+                upper = 3
+            else:
+                upper = 2
+            number = randint(0, upper)
+            if number == 0:
+                answer = self.get_interaction_message(cts.repeat_value_field, ifk.zero)
+            elif number == 1:
+                field = gen.get_random_value(self.text_fields)
+                sentence = self.get_interaction_message(cts.repeat_value_field, ifk.one_name)
+                answer = sentence.format(field)
+            elif number == 2:
+                field = gen.get_random_value(self.text_fields)
+                value = self.get_filling_message(cts.possible_fields)
+                sentence = self.get_interaction_message(cts.repeat_value_field, ifk.name_value)
+                answer = sentence.format(field, value)
+            else:
+                # 3, two_names
+                fields = gen.get_random_value(self.text_fields, number=2)
+                sentence = self.get_interaction_message(cts.repeat_value_field, ifk.two_names)
+                answer = sentence.format(fields[0], fields[1])
+            return answer
+        except:
+            print('Fail in finding a message to ask to modify the value of a field')
+            raise Exception
 
     def intent_repeat_all_fields(self):
         # we select a sentence from the corresponding file in the database 
-        answer = gen.get_random_value(self.get_interaction_message(cts.repeat_all_fields))
+        answer = self.get_interaction_message(cts.repeat_all_fields)
         return answer
 
     def intent_repeat_optional_fields(self):
         # we select a sentence from the corresponding file in the database 
-        answer = gen.get_random_value(self.get_interaction_message(cts.repeat_optional_fields))
+        answer = self.get_interaction_message(cts.repeat_optional_fields)
         return answer
 
     def intent_repeat_required_fields(self):
         # we select a sentence from the corresponding file in the database 
-        answer = gen.get_random_value(self.get_interaction_message(cts.repeat_required_fields))
+        answer = self.get_interaction_message(cts.repeat_required_fields)
         return answer
 
     def intent_repeat_form_explanation(self):
         # we select a sentence from the corresponding file in the database 
-        answer = gen.get_random_value(self.get_interaction_message(cts.repeat_form_explanation))
+        answer = self.get_interaction_message(cts.repeat_form_explanation)
         return answer
 
     def intent_repeat_value_field(self):
         """we select the number and type of slots and we select a sentence 
         from the corresponding file in the database 
         there are 3 cases: 0- zero, 1- one_name, 2- two_names"""
-        length = len(self.text_fields)
-        if length >= 2:
-            upper = 2
-        else:
-            upper = 1
-        number = randint(0, upper)
-        if number == 0:
-            answer = gen.get_random_value(self.get_interaction_message(cts.repeat_value_field, ifk.zero))
-        elif number == 1:
-            field = gen.get_random_value(self.text_fields)
-            sentence = gen.get_random_value(self.get_interaction_message(cts.repeat_value_field, ifk.one_name))
-            answer = sentence.format(field)
-        else:
-            # 2, two_names
-            fields = gen.get_random_value(self.text_fields, number=2)
-            sentence = gen.get_random_value(self.get_interaction_message(cts.repeat_value_field, ifk.two_names))
-            answer = sentence.format(fields[0], fields[1])
-        return answer
+        try:
+            length = len(self.text_fields)
+            if length >= 2:
+                upper = 2
+            else:
+                upper = 1
+            number = randint(0, upper)
+            if number == 0:
+                answer = self.get_interaction_message(cts.repeat_value_field, ifk.zero)
+            elif number == 1:
+                field = gen.get_random_value(self.text_fields)
+                sentence = self.get_interaction_message(cts.repeat_value_field, ifk.one_name)
+                answer = sentence.format(field)
+            else:
+                # 2, two_names
+                fields = gen.get_random_value(self.text_fields, number=2)
+                sentence = self.get_interaction_message(cts.repeat_value_field, ifk.two_names)
+                answer = sentence.format(fields[0], fields[1])
+            return answer
+        except:
+            print('Fail in finding a message to ask to repeat the value of a field')
+            raise Exception
 
     def intent_reset_all_fields(self):
         # we select a sentence from the corresponding file in the database 
-        answer = gen.get_random_value(self.get_interaction_message(cts.reset_all_fields))
+        answer = self.get_interaction_message(cts.reset_all_fields)
         return answer
 
     def intent_skip_field(self):
         # we select a sentence from the corresponding file in the database 
-        answer = gen.get_random_value(self.get_interaction_message(cts.skip_field))
+        answer = self.get_interaction_message(cts.skip_field)
         return answer
 
     def intent_verify_presence_field(self):
         # we select the number and type of slots and we select a sentence 
         # from the corresponding file in the database 
-        field = gen.get_random_value(self.get_filling_message(cts.possible_fields))
-        sentence = gen.get_random_value(self.get_interaction_message(cts.verify_presence_field))
-        answer = sentence.format(field)
-        return answer
+        try:
+            field = self.get_filling_message(cts.possible_fields)
+            sentence = self.get_interaction_message(cts.verify_presence_field)
+            answer = sentence.format(field)
+            return answer
+        except:
+            print('Fail in finding a message to ask to verify the presence of a field')
+            raise Exception
 
     def intent_verify_value_for_completed_fields(self):
         # we select a sentence from the corresponding file in the database 
-        answer = gen.get_random_value(self.get_interaction_message(cts.verify_value_for_completed_fields))
+        answer = self.get_interaction_message(cts.verify_value_for_completed_fields)
         return answer
 
 
     essential_intents_funcions = [intent_complete_field, intent_spelling,
-                        intent_submit, intent_affirm, intent_deny]
+                        intent_submit_form, intent_affirm, intent_deny]
     non_essential_intents_funcions = [intent_explain_field, intent_fill_form, intent_give_all_remaining_fields,
                             intent_give_remaining_optional_fields, intent_give_remaining_required_fields, intent_modify_value_field,
                             intent_repeat_all_fields, intent_repeat_optional_fields, intent_repeat_required_fields,

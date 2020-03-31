@@ -23,6 +23,8 @@ class View:
                 print(text)
             elif self.marker == u.user_marker:
                 self.writer.add_user_line(text)
+                if u.simulation_enabled:
+                    print(text)
         except:
             print(f'Fail to show the text {text}')
             raise Exception
