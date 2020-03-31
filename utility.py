@@ -1,3 +1,6 @@
+"""At the very end of this file there is a module to train the model for the 
+Conversational Chatbot. We only have to run this file for it to be done."""
+
 DEBUG = False
 
 # maximum number of dialogues
@@ -54,13 +57,13 @@ interactive_enabled = False
 
 # training information
 
-## folders' name
+# folders' name
 training_folder = 'training_files'
 models_folder = 'models'
 registration_form_folder = 'registration_form'
 login_form_folder = 'login_form'
 
-## files name
+# files name
 domain_file = 'domain_file.yml'
 nlu_data_file = 'nlu_data.json'
 nlu_config_file = 'nlu_config.yml'
@@ -117,9 +120,9 @@ radio = 'radio'
 checkbox = 'checkbox'
 text_area = 'text_area'
 
-# input type list 
+# input type list
 input_type_list = [text_area, color, date, datetime_local, email, file_type, hidden, image,
-    month, number, password, range_type, reset, search, submit, tel, text, time, url, week]
+                   month, number, password, range_type, reset, search, submit, tel, text, time, url, week]
 
 choices_type_list = [radio, checkbox, dropdown]
 
@@ -185,8 +188,9 @@ value_name = 'value_name'   # given by the name attribute
 value_type = 'value_type'   # given by the bot-type or type attribute
 spelling = 'spelling'       # given by field-spelling attribute
 required = 'required'       # given by required attribute
-choice_list = 'choice_list' # list of choices in case of dropdown, radio or checkbox
-description = 'description' # description/explanation of the field. given by field-desc attribute
+choice_list = 'choice_list'  # list of choices in case of dropdown, radio or checkbox
+# description/explanation of the field. given by field-desc attribute
+description = 'description'
 title = 'title'             # form the form. the description also used for the form
 
 # annotations of the web_page
@@ -207,7 +211,8 @@ spelling_list = 'spelling_list'
 waiting_intent = 'waiting_intent'
 after_spelling = 'after_spelling'
 saved_spelling_fields = 'saved_spelling_fields'
-saved_spelling_values = 'saved_spelling_values'  # goes with the spelling field at the same index
+# goes with the spelling field at the same index
+saved_spelling_values = 'saved_spelling_values'
 
 # keys for parameters of the machine (will be use for the state machine)
 possible_next_action = 'possible_next_action'
@@ -239,5 +244,31 @@ form_construct = 'form'
 slots = 'slots'
 
 
+#########################################################################
+
+# model training
+
+import asyncio
+import rasa
+import shutil
+from os import path
+
+root_folder = f'./{registration_form_folder}'
+domain_file_path=f'{root_folder}/{training_folder}/{domain_file}'
+model_folder=f'{root_folder}/{models_folder}'
+nlu_data_file_path=f'{root_folder}/{training_folder}/{nlu_data_file}'
+nlu_config_file_path=f'{root_folder}/{training_folder}/{nlu_config_file}'
+
 # restricted actions, not self defining actions, need state to decide what to do
 restricted_actions = [affirm_action, deny_action]
+
+# if a previous training folder exists, we remove it
+previous_model = f'{model_folder}/{tag_registration_form}'
+if path.exists(previous_model):
+    shutil.rmtree(f'{previous_model}', ignore_errors=True)
+# nlu training
+loop = asyncio.get_event_loop()
+loop.run_until_complete(rasa.nlu.train(
+    nlu_config=nlu_config_file_path, data=nlu_data_file_path, path=model_folder, fixed_model_name=tag_registration_form))[1]
+
+
