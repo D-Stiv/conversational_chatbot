@@ -202,10 +202,14 @@ class DialogueManager:
     def get_dialogue_state(self):
         try:
             state = self.current_bot.get_state()
-            next_slot_name, _ = state.get_next_slot()
-            slot = state.get_slot(next_slot_name)
-            value_name = slot[u.value_name]
-            value_type = slot[u.value_type]
+            next_slot_name = state.get_next_slot(only_name=True)
+            if next_slot_name is None:
+                value_name = None
+                value_type = None
+            else:
+                slot = state.get_slot(next_slot_name)
+                value_name = slot[u.value_name]
+                value_type = slot[u.value_type]
 
             dialogue_state = {
                 u.close_prompt_enabled: state.get_close_prompt_enabled(),

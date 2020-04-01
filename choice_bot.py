@@ -100,19 +100,19 @@ class BotsManager:
                 # In the past the user interrupted a spelling and we wait for the response on whether to save the state or not
                 if intent not in [u.affirm_action, u.deny_action]:
                     utterance = ('please i would like to have a clear answer.\nwould you like to save the state of the field ' +
-                        'that you started spelling ?\nIn case of negative response, tahat input will simply be canceled')
+                        'that you started spelling ?\nIn case of negative response, that input will simply be canceled')
                     state.set_warning_message(utterance)
                     raise Exception
                 state.set_spelling_interrupted(False)
                 state.set_close_prompt_enabled(False)
                 if intent == u.affirm_action:
                     # we insert the first element of the spelling list in the saved spelling
-                    spelling_list = self.get_spelling_list()
+                    spelling_list = state.get_spelling_list()
                     field = spelling_list[0]
                     state.add_spelling_field_to_save(field)
                     spelling_list.remove(field)
                     # we insert the current spelling value in the list of saved values 
-                    state.add_spelling_value_to_save(self.get_current_spelling_input_value())
+                    state.add_spelling_value_to_save(state.get_current_spelling_input_value())
                 # we reset the current value
                 state.reset_current_spelling_input_value()
                 # the user interrupted a spelling and decided eiher to save or not to save. Now we go on with the action 

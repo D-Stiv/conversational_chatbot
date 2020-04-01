@@ -213,7 +213,8 @@ def get_input_fields(form_element):
                 if value_type in u.choices_type_list:
                     choice_list = get_choice_list(value_name, value_type, form_element)
                     slot[u.choice_list] = choice_list
-                slots.append(slot)
+                #slots.append(slot)
+                slots = [slot] + slots
         # we save the form description and title inside the requested slot
         description = form_element.get_attribute(u.bot_desc)
         title = form_element.get_attribute(u.bot_title)

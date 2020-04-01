@@ -1,0 +1,31 @@
+HEADER
+
+	Date and Hour: 2020-04-01 01:24:03.945516
+
+SUMMARY
+
+The dialogue counts a total of 11 interactions from which 54.55% (6 turns)  made by the chatbot and 45.45% (5 turns) made by the user.
+
+CONVERSATION LOG
+
+0. Chatbot - Start of the conversation, to end your should type <<stop>>.
+the title of this form is registration form sample. presents various fields types in order to test the different kind of input we can have and different actions. this form contains the following fields first name, last name, password, email address, birthday, arrival time, living address, gender, electronic devices, car, message, from which 4 are required and 7 are optional.
+here we go:
+ complete the value for the field first name. this field is optional
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+ insert the first character
+1. User - Your input: R
+2. Chatbot - response:  insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+3. User - Your input: please repeat the value of the field living address
+4. Chatbot - response: do you want to save the state of the field that you started spelling ?
+In case of negative response, that input will simply be canceled
+5. User - Your input: yes, go ahead
+6. Chatbot - response: Something went wrong during the handling of this message.
+ what can i precisely do for you please ?
+7. User - Your input: fill the form
+8. Chatbot - response: Something went wrong during the handling of this message.
+ what can i precisely do for you please ?
+9. User - Your input: turn where i was in the procedure
+10. Chatbot - response: fine 
+11. END OF THE CONVERSATION !!!
+

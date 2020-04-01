@@ -29,7 +29,7 @@ class State:
             self.spelling_state = self.initialize_spelling_sate()
             self.machine_parameters = self.initialize_machine_parameters(first_slot=constructs['form']['slots'][0])
         except:
-            print("A problem occured while initializing the state")
+            print("ERROR: A problem occured while initializing the state")
         
     def initialize_machine_parameters(self, first_slot):
         machine_parameters = {
@@ -151,7 +151,7 @@ class State:
             self.spelling_state[u.spelling_list] = spelling_list
             return name_list, value_list
         except:
-            print('Fail to get the spelling list')
+            print('ERROR: Fail to get the spelling list')
             raise Exception
 
     def get_spelling_fields(self):
@@ -164,7 +164,7 @@ class State:
                         spelling_fields.append(slot[u.slot_name])
             return spelling_fields
         except:
-            print('Fail to get the spelling fields')
+            print('ERROR: Fail to get the spelling fields')
             raise Exception
 
     def add_spelling_name(self, slot_name):
@@ -181,15 +181,17 @@ class State:
                         required_fields.append(slot[u.slot_name])
             return required_fields
         except:
-            print('Fail to get the spelling fields')
+            print('ERROR: Fail to get the spelling fields')
             raise Exception
 
     def set_next_slot(self, slot_name, required):
         try:
             self.machine_parameters[u.next_slot] = slot_name
             self.machine_parameters[u.next_slot_required] = required
+            # we modify also the next_slot in the slots
+            self.set_slot(u.REQUESTED_SLOT, slot_name)
         except:
-            print(f'Fail to set the next slot to be {slot_name}')
+            print(f'ERROR: Fail to set the next slot to be {slot_name}')
             raise Exception
 
     def update_spelling_list(self, slot_name):
@@ -231,7 +233,7 @@ class State:
             slots = self.constructs["form"]["slots"]
             return slots
         except:
-            print("A problem occured while extracting the slots")
+            print("ERROR: A problem occured while extracting the slots")
             raise Exception
 
     # Gets the value of a given slot
@@ -241,11 +243,17 @@ class State:
             for slot in slots:
                 if slot[u.slot_name] == slot_name:
                     return slot
-            text = "Trying to access a non existing slot {}".format(slot_name)
+            # the field we are looking for is not in the form
+            if u.DEBUG:
+                print(f'the field {slot_name} is not in the form')
+            sorry_style = styles.get_sorry()
+            please_style = styles.get_please()
+            text = f"{sorry_style} the field {slot_name} is not present in this form.{please_style} could you precise the action you want to perform?"
             self.set_warning_message(text)
             raise Exception
         except:
-            print("Fail to get the slot --> {} <--".format(slot_name))
+            if not self.get_warning_present():
+                print(f"ERROR: Fail to get the field --> {slot_name} <--")
             raise Exception
 
     # inserts the value in a given slot
@@ -259,13 +267,11 @@ class State:
                     existing_slot[u.slot_value] = slot_value
                     break
             if not exists:
-                text = 'The name {} does not correspond to any label, please verify the spelling and try again'.format(
-                    slot_name)
+                text = f'The name {slot_name} does not correspond to any label, please verify the spelling and try again'
                 self.set_warning_message(text)
                 raise Exception
         except:
-            print("A problem occured while trying to put the value {} in the slot {}".format(
-                slot_value, slot_name))
+            print(f"ERROR: A problem occured while trying to put the value {slot_value} in the slot {slot_name}")
             raise Exception
 
     def set_warning_message(self, text):
@@ -306,8 +312,7 @@ class State:
                 self.set_warning_message(text)
                 raise Exception
         except:
-            print(
-                "A problem occured while trying to set required_slot with the slot {}".format(slot))
+            print(f"ERROR: A problem occured while trying to set required_slot with the slot {slot}")
             raise Exception
 
     # Restitutes the value (slot) of the required slot
@@ -319,7 +324,7 @@ class State:
                     slot_name = slot[u.slot_value]
             return slot_name
         except:
-            print("A problem occured while fetching the value of required_slot")
+            print("ERROR: A problem occured while fetching the value of required_slot")
             raise Exception
 
     # Restitutes the next slot's name
@@ -330,7 +335,7 @@ class State:
             else:
                 return self.machine_parameters[u.next_slot], self.machine_parameters[u.next_slot_required]
         except:
-            print("A problem occured while getting the next slot")
+            print("ERROR: A problem occured while getting the next slot")
             raise Exception
 
     # sets the next field (slot) according to the order of the web form
@@ -359,10 +364,14 @@ class State:
                             slot[u.slot_name], slot[u.required])
                         return 
                     if slot[u.slot_name] == slot_name:
-                        # we returned at the starting point, so we don't have to set the next slot
+                        # we returned at the starting point, so two cases:
+                        if slot[u.slot_value] is not None:
+                            # we completed all the fields, next slot is None
+                            self.set_next_slot(None, None)
+                        # otherwise the user wanted to skip but the field is the last to fill
                         return 
         except:
-            print('Fail to get the next slot for skipping case')
+            print('ERROR: Fail to get the next slot for skipping case')
             raise Exception
 
     # Transforms the choices list into text and restitutes
@@ -391,12 +400,15 @@ class State:
                 string = f"{please_style} {insert_style} the value for the field {slot_name}. {required_string}"
             return string
         except:
-            print("Fail to extract the text for the next slot")
+            print("ERROR: Fail to extract the text for the next slot")
             raise Exception
 
     # Inserts the value inside the web page (form) with the label corrisponding to the slot
     def fill_input(self, slot_name, slot_value):
+        # returns the slot value eventually modified to be in the right format, and a string to 
+        # eventuelly mention some incopatibilities
         try:
+            string = ""
             is_none = False
             if slot_value is None:
                 is_none = True
@@ -406,16 +418,15 @@ class State:
             value_type = slot[u.value_type]
             value_name = slot[u.value_name]
             if not is_none:
+                # the slot_value is not None
                 if u.DEBUG:
-                    print("value_name: {}, value_type: {}".format(
-                        value_name, value_type))
+                    print(f"value_name: {value_name}, value_type: {value_type}")
                 compatible, text = fn.is_compatible(slot_value, value_type)
                 if not compatible:
-                    text = "Incompatibility between the value {} and the type {}.\n{}".format(
-                        slot_value, value_type, text)
+                    text = f"Incompatibility between the value {slot_value} and the type {value_type}.\n{text}"
                     next_step_string = self.manage_next_step()
                     string = f'{text}\n{next_step_string}'
-                    return string
+                    return None, string
                 # the value and the type are compatible so it is pssible that the value has been converted
                 # to an appropriate form contained in text
                 slot_value = text
@@ -423,12 +434,28 @@ class State:
                 elem = self.form_element.find_element_by_name(value_name)
                 elem.clear()
                 if slot_value is None:
-                    return ""
+                    return "", string
                 elem.send_keys(slot_value)
-                return slot_value
+                return slot_value, string
+            # the value_type is in u.choices_list
             # the value is put in lowercase to coincide with the choice
             if not is_none:
+                # slot_value is not None
                 slot_value = slot_value.lower()
+            if u.DEBUG:
+                print(f"choice: {slot_value}")
+            # we verify that slot_value is in the list of choices
+            choice_list = slot[u.choice_list]
+            length = len(choice_list)
+            for index in range(length):
+                choice_list[index] = choice_list[index].lower()
+            if slot_value not in choice_list:
+                sorry_style = styles.get_sorry()
+                please_style = styles.get_please()
+                string = (f"{sorry_style} the choice_value {choice_value} is not valid for the field {slot_name}" +
+                        f"{please_style} choose one in the following list: {choice_list}")
+                return None, string
+            # we are sure that the choice of the user is in the list of choices
             if value_type == u.dropdown:
                 self.set_choice_dropdown(
                     slot_name=slot_name, choice_value=slot_value)
@@ -439,124 +466,79 @@ class State:
                 self.set_choice_radio(
                     slot_name=slot_name, choice_value=slot_value)
             if is_none:
-                return ""
-            return slot_value
+                return "", string
+            return slot_value, string
         except:
             if not self.get_warning_present():
-                print("A problem occured while trying to insert in the web page the value {} for the label {}".format(
-                    slot_value, slot_name))
+                print(f"ERROR: A problem occured while trying to insert in the web page the value {slot_value} for the label {slot_name}")
             raise Exception
 
     # Select the choice_value of the user for the dropdown with the given name
     def set_choice_dropdown(self, slot_name, choice_value):
         try:
             slot = self.get_slot(slot_name)
-            choice_name = slot[u.slot_value].lower()
+            choice_name = slot[u.value_name].lower()
             select = Select(self.form_element.find_element_by_name(choice_name))
             if choice_value is None:
                 # the choice_value is to select the first element
                 select.select_by_index(0)
             else:
-                choice_value = choice_value.lower()
-                # verify if the choice_value is in the dropdown list
-                # if not warning for no match with choice
-                choice_list = slot[u.choice_list]
-                # we transform the choice_list in lowercase
-                length = len(choice_list)
-                for index in range(length):
-                    choice_list[index] = choice_list[index].lower()
-                if choice_value in choice_list:
-                    select.select_by_value(choice)
-                else:
-                    sorry_style = styles.get_sorry()
-                    please_style = styles.get_please()
-                    text = (f"{sorry_style} the choice_value {choice} is not valid for the field {self.next_slot}" +
-                            f"{please_style} choose one in the following list: {choice_list}")
-                    self.set_warning_message(text)
-                    raise Exception
+                select.select_by_value(choice_value)                    
         except:
-            print("A problem occured while trying to set the choice_value {} in the dropdown with name {}".format(
-                choice_value, choice_name))
+            print(f"ERROR: A problem occured while trying to set the choice_value {choice_value} in the dropdown with name {choice_name}")
             raise Exception
 
     # Select the choice_value of the user for the radio with the given name
     def set_choice_radio(self, slot_name, choice_value):
         try:
             slot = self.get_slot(slot_name)
-            choice_name = slot[u.slot_value].lower()
+            choice_name = slot[u.value_name].lower()
             elems = self.form_element.find_elements_by_name(choice_name)
             if choice_value is None:
                 # we select the first element of the list
                 elems[0].click()
                 return
-            choice_value = choice.lower()
-            choice_list = slot[u.choice_list]
-            # we transform the choice_list in lowercase
-            length = len(choice_list)
-            for index in range(length):
-                choice_list[index] = choice_list[index].lower()
-            if choice_value in choice_list:
-                for elem in elems:
-                    value = elem.get_attribute("value")
-                    if value == choice:
-                        elem.click()
-                        return
-            # no match to be implement modifying warning
-            sorry_style = styles.get_sorry()
-            please_style = styles.get_please()
-            text = (f"{sorry_style} the choice_value {choice} is not valid for the field {name}" +
-                    f"{please_style} choose one in the following list: {choice_list}")
-            self.set_warning_message(text)
-            raise Exception
+            choice_value = choice_value.lower()
+            for elem in elems:
+                value = elem.get_attribute("value")
+                if value == choice_value:
+                    elem.click()
+                    return
         except:
             if not self.get_warning_present():
-                print("A problem occured while trying to set the choice_value {} in the radio with name {}".format(
-                    choice_value, choice_name))
+                print(f"ERROR: A problem occured while trying to set the choice_value {choice_value} in the radio with name {choice_name}")
             raise Exception
 
     # Select the choice_value of the user for the checkbox with the given name
     def set_choice_checkbox(self, slot_name, choice_value):
         try:
             slot = self.get_slot(slot_name)
-            choice_name = slot[u.slot_value].lower()
+            choice_name = slot[u.value_name].lower()
             elems = self.form_element.find_elements_by_name(choice_name)
-            choice_list = slot[u.choice_list]
             if choice_value is None:
                 for elem in elems:
                     if elem.is_selected():
                         elem.click()
-                        return
-            choice_value = choice.lower()
-            if u.DEBUG:
-                print("choice: {}".format(choice))
+                        return            
             for elem in elems:
                 value = elem.get_attribute("value")
-                if value == choice:
+                if value == choice_value:
                     if not elem.is_selected():
                         elem.click()
                     return
                 else:
                     if elem.is_selected():
                         elem.click()
-            # no match to be implement modifying warning
-            sorry_style = styles.get_sorry()
-            please_style = styles.get_please()
-            text = ("{} the choice_value {} is not valid for the field {}" +
-                    "{} choose one in the following list: {}").format(sorry_style,
-                                                                      choice, please_style, choice_list)
-            self.set_warning_message(text)
-            raise Exception
         except:
             if not self.get_warning_present():
-                print("A problem occured while trying to set the choice_value {} in the checkbox with name {}".format(
-                    choice_value, choice_name))
+                print(f"ERROR: A problem occured while trying to set the choice_value {choice_value} in the checkbox with name {choice_name}")
             raise Exception
 
     # Select the choices of the user for the checkbox with the given name
     def set_choices_checkbox(self, slot_name, choice_values):
         try:
             slot = self.get_slot(slot_name)
-            choice_name = slot[u.slot_value].lower()
+            choice_name = slot[u.value_name].lower()
             choices_lower = []
             for choice_value in choice_values:
                 choices_lower.append(choice_value.lower())
@@ -576,16 +558,14 @@ class State:
                 choices_string = fn.get_string_from_list(choice_values)
                 sorry_style = styles.get_sorry()
                 please_style = styles.get_please()
-                text = ("{} none of the choices {} you proposed is valid for the field {}" +
-                        "{} choose them in the following list: {}").format(sorry_style,
-                                                                           choices_string, please_style, choice_list)
+                text = (f"{sorry_style} none of the choices {choices_string} you proposed is valid for the field {slot_name}" +
+                        f"{please_style} choose them in the following list: {choice_list}")
                 self.set_warning_message(text)
                 raise Exception
         except:
             if not self.get_warning_present():
                 choices_list = fn.get_string_from_list(choice_values)
-                print("A problem occured while trying to set the choices {} in the checkbox with name {}".format(
-                    choices_list, choice_name))
+                print(f"ERROR: A problem occured while trying to set the choices {choices_list} in the checkbox with name {choice_name}")
             raise Exception
 
     # Finds the submit button inside the form and restitutes it
@@ -595,7 +575,7 @@ class State:
                 f".//input[@{u.bot_button} = 'submit']")
             return elem
         except:
-            print("A problem occured while trying to get the submit button")
+            print("ERROR: A problem occured while trying to get the submit button")
             raise Exception
 
     # Finds the reset button inside the form and restitutes it
@@ -605,7 +585,7 @@ class State:
                 f".//input[@{u.bot_button} = 'reset']")
             return elem
         except:
-            print("A problem occured while trying to get the reset button")
+            print("ERROR: A problem occured while trying to get the reset button")
             raise Exception
 
     def get_num_required_remaining(self):
@@ -654,7 +634,7 @@ class State:
             string = fn.get_string_from_list(list_fields)
             return string
         except:
-            print(f'Fail to get the list of the fields')
+            print(f'ERROR: Fail to get the list of the fields')
             raise Exception
 
     def get_form_title(self):
@@ -668,7 +648,7 @@ class State:
             # the title is present in the html file
             return title
         except:
-            print('Fail to get the title of the form')
+            print('ERROR: Fail to get the title of the form')
             raise Exception
 
     def get_form_description(self):
@@ -682,7 +662,7 @@ class State:
             # the description is present in the html file
             return desc
         except:
-            print('Fail to get the description of the form')
+            print('ERROR: Fail to get the description of the form')
             raise Exception
 
     def get_field_description(self, field):
@@ -698,7 +678,7 @@ class State:
             text = f'{field}: {desc}'
             return text
         except:
-            print(f'Fail to get the description of the field {field}')
+            print(f'ERROR: Fail to get the description of the field {field}')
             raise Exception
 
     def submit_string(self):
@@ -712,7 +692,7 @@ class State:
                 first, values, stringSubmit)
             return string
         except:
-            print('Fail to generate the submit string')
+            print('ERROR: Fail to generate the submit string')
             raise Exception
 
     def manage_next_step(self):
@@ -730,17 +710,21 @@ class State:
                     please_style = styles.get_please()
                     # we verify if the field has been previously saved 
                     saved_fields = self.get_saved_spelling_fields()
+                    if u.DEBUG:
+                        print(f'the saved fields are {saved_fields}')
                     if slot_name in saved_fields:
                         saved_values = self.get_saved_spelling_values()
                         # we set the saved value as current input value 
                         index = saved_fields.index(slot_name)
-                        value = saved_value[index]
+                        value = saved_values[index]
                         self.set_current_spelling_input_value(value)
+                        if u.DEBUG:
+                            print(f'the current value for {slot_name} is {value}')
                         # we remove the field from saved state
                         saved_fields.remove(slot_name)
                         saved_values.remove(value)
                         next_style = styles.get_next()
-                        string = (f'You started filling this field and the current value is {value} ' +
+                        string = (f'You started filling the field {slot_name} and the current value is {value} ' +
                             f'\n{please_style} insert the {next_style} character')
                     else:
                         string = (f'{string}\nSince it is a field requiring the spelling, we are going to take' +
@@ -749,7 +733,7 @@ class State:
                     self.set_possible_next_action(u.spelling_action)
                     return string
                 else:
-                    # possible nest action is fillGenericCamp
+                    # possible next action is fillGenericCamp
                     self.set_possible_next_action(u.fill_field_action)
                     return string
             else:
@@ -759,17 +743,18 @@ class State:
                 self.set_possible_next_action(u.submit_action)
                 return string
         except:
-            print("Fail to manage the next step")
+            print("ERROR: Fail to get the string for the next field")
             raise Exception
 
     def managed_particular_case(self, slot_name_list, slot_value_list):
         try:
             # The particular case refers to a checkbox with more than one choice_value made
-            if len(slot_name_list) != 1:
-                return False
             if len(slot_name_list) >= len(slot_value_list):
                 return False
-            slot_name = slot_name_list[0]
+            if len(slot_name_list) == 0:
+                slot_name = self.get_next_slot(only_name=True)
+            else:
+                slot_name = slot_name_list[0]
             slot = self.get_slot(slot_name)
             value_type = slot[u.value_type]
             if value_type != "checkbox":
@@ -778,10 +763,10 @@ class State:
                 slot_name=slot_name, choice_values=slot_value_list)
             return True
         except:
-            print("Fail to check particular case")
+            print("ERROR: Fail to check particular case")
             raise Exception
 
-    def update(self, slot_name, slot_value):
+    def update(self, slot_name):
         try:
             """the slot have been filled and now we have to update the state by modifying the
             necessary variables which are: 'num_required_remaining', 'all_required_filled'
@@ -792,29 +777,23 @@ class State:
                 return
             # we update the next field
             self.set_next_slot_basic()
-            slots = self.form_slots()
-            for sl in slots:
-                if sl[u.slot_name] == slot_name:
-                    slot = sl
-                    break
+            # we update the statistics about the number of required fields remaining
+            slot = self.get_slot(slot_name)
             text = ""
             if slot[u.required]:
                 if slot[u.slot_value] is None:
-                    # we cancel the value of a field
+                    # we cancelled the value of a field
                     self.increase_num_required_remaining()
                     return u.CANCELED
-                # we insert the value  of a field
+                # we inserted the value  in a field
                 self.decrease_num_required_remaining()
                 if self.get_num_required_remaining() == 0:
                     self.set_all_required_filled(True)
-                    next_slot_name = self.next_slot
-                    if next_slot_name is not None:
-                        text = (" all the required fields have been completed, from now on you can" +
+                    text = (" all the required fields have been completed, from now on you can" +
                                 " submit")
             return text
         except:
-            print(
-                f'Fail to update the slot {slot_name} with the value {slot_value}')
+            print(f'ERROR: Fail to update the the next slot and the other statistics related to it')
             raise Exception
 
     def fill_generic_slots(self, slot_name_list, slot_value_list):
@@ -841,7 +820,7 @@ class State:
             return string
         except:
             if not self.get_warning_present():
-                print("Fail to fill the slots")
+                print("ERROR: Fail to fill the slots")
             raise Exception
 
     def fill_slots_more_values(self, slot_name_list, slot_value_list):
@@ -862,38 +841,48 @@ class State:
                 slot_name = slot_name_list[index]
                 slot_value = slot_value_list[index]
                 if u.DEBUG:
-                    print("field label: {}, field value: {}".format(
-                        slot_name, slot_value))
-                slot_value = self.fill_input(slot_name, slot_value)
+                    print(f"field label: {slot_name}, field value: {slot_value}")
+                slot_value, comment = self.fill_input(slot_name, slot_value)
+                if slot_value is None:
+                    # incompatibility observed, the comment contains the next_step_string
+                    return comment
                 self.set_slot(slot_name, slot_value)
-                text = self.update(slot_name, slot_value)
+                text = self.update(slot_name)
                 if text != "":
                     ready_to_submit = True
+                    string = text                
             for index in range(numSlot, numValue):
                 # we want to complete in sequence the empty fields with the values not
                 # explicitely associated to any field
                 slots = self.form_slots()
                 for slot in slots:
                     slot_name = slot[u.slot_name]
-                    if self.get_slot(slot_name) is None:
-                        slot_value = self.fill_input(
-                            slot_name, slot_value_list[index])
-                        self.set_slot(slot_name, slot_value)
-                        text = self.update(
-                            slot_name, slot_value)
-                        if text != "":
-                            ready_to_submit = True
-            string = ""
+                    if slot_name != u.REQUESTED_SLOT:
+                        slot_value = slot[u.slot_value]
+                        if slot_value is None:
+                            slot_value, comment = self.fill_input(
+                                slot_name, slot_value_list[index])
+                            if slot_value is None:
+                                # incompatibility observed, the comment contains the next_step_string
+                                return comment
+                            # the Web form has been updated correctly and now we update the slots
+                            self.set_slot(slot_name, slot_value)
+                            text = self.update(slot_name)
+                            # update returns a message when we just completed the last required field
+                            if text != "":
+                                ready_to_submit = True
+                                string = text
+            next_step_string = self.manage_next_step()
             if ready_to_submit:
                 next_slot_name = self.get_next_slot(only_name=True)    # return also if the next slot is required or not
                 if next_slot_name is not None:
-                    string = (" all the required fields have been completed form now on you can" +
-                              " submit")
+                    string = f'{string}\n{next_step_string}'
+                    return string
+            string = next_step_string
             return string
         except:
             if not self.get_warning_present():
-                print(
-                    'Fail to fill the slots when there are more values than field names')
+                print('ERROR: Fail to fill the slots when there are more values than fields names')
             raise Exception
 
     def fill_slots_more_names(self, slot_name_list, slot_value_list):
@@ -908,12 +897,15 @@ class State:
                 # we fill in sequencw the fields with values
                 slot_name = slot_name_list[index]
                 slot_value = slot_value_list[index]
-                slot_value = self.fill_input(slot_name, slot_value)
+                slot_value, comment = self.fill_input(slot_name, slot_value)
+                if slot_value is None:
+                    # incompatibility observed, the comment contains the next_step_string
+                    return comment
                 self.set_slot(slot_name, slot_value)
-                text = self.update(
-                    slot_name, slot_value)
+                text = self.update(slot_name)
                 if text != "":
                     ready_to_submit = True
+                    string = text
             for index in range(numValue, numSlot):
                 slot_name = slot_name_list[index]
                 empty_slots_names.append(slot_name)
@@ -922,30 +914,26 @@ class State:
             for slot_name in empty_slots_names:
                 self.fill_input(slot_name, slot_value=None)
                 self.set_slot(slot_name, slot_value=None)
-                text = self.update(
-                    slot_name, slot_value=None)
+                text = self.update(slot_name)
+                # update return u.CANCELED when we just reset the value of a required slot
                 if text == u.CANCELED:
                     # one required value have been canceled
                     ready_to_submit = False
             # now we prepare the output string
-            ready_string = ""
+            next_step_string = self.manage_next_step()
+            empty_slots_names = self.fill_generic_slots(slot_name_list, slot_value_list)
+            fields = fn.get_string_from_list(empty_slots_names)
+            modify_style = styles.get_modify()
+            intro = (f"You wanted to {modify_style} the fields {fields} but you did not insert their values")
             if ready_to_submit:
                 next_slot_name = self.get_next_slot(only_name=True)    # return also if the next slot is required or not
                 if next_slot_name is not None:
-                    ready_string = (" all the required fields have been completed form now on you can" +
-                                    " submit")
-            empty_slots_names = self.fill_generic_slots(
-                slot_name_list=slot_name_list, slot_value_list=slot_value_list)
-            fields = fn.get_string_from_list(empty_slots_names)
-            modify_style = styles.get_modify()
-            intro = ("You wanted to {} the fields {} but you did not insert their" +
-                     "values\n").format(modify_style, fields)
-            string = "{}\n{}".format(intro, ready_string)
-
+                    string = f'{intro}\n{string}\n{next_step_string}'
+            string = f"{intro}\n{next_step_string}"
             return string
         except:
             if not self.get_warning_present():
-                print('Fail to fill slots when there are more names than values')
+                print('ERROR: Fail to fill slots when there are more names than values')
             raise Exception
 
     def all_fields_present(self, slot_name_list):
@@ -963,18 +951,21 @@ class State:
                     return string
         except:
             if not self.get_warning_present():
-                print('Fail to verify presence of all fields')
+                print('ERROR: Fail to verify presence of all fields')
             raise Exception
 
     def filling_procedure(self, slot_name, slot_value):
         try:
             # we update the Web Form
-            slot_value = self.fill_input(slot_name, slot_value)
+            slot_value, comment = self.fill_input(slot_name, slot_value)
+            if slot_value is None:
+                # incompatibility observed, the comment contains the next_step_string
+                return comment
             # Everything went fine so we update the internal structure
             self.set_slot(slot_name=slot_name, slot_value=slot_value)
-            string = self.update(slot_name, slot_value)
+            string = self.update(slot_name)
             return string
         except:
             if not self.get_warning_present():
-                print('Fail to complete the filling procedure')
+                print('ERROR: Fail to complete the filling procedure')
             raise Exception

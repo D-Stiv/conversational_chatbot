@@ -5,23 +5,26 @@ import utility as u
 import simulation_constants as cts
 
 
-def generate_date(months):
+def generate_date(month_dic):
     # receive the data structure of the months, list of dictionaries
     try:
         min_year = 1900
         max_year = 2019
         year = randint(min_year, max_year)
         month_letter = randint(0,1)
-        month_dic = get_random_value(months)
         day = randint(1, month_dic['number_days'])
         if day < 10:
             day = f'0{day}'
         if month_letter:
             # month in letters
-            month = get_random_value(month_dic['month'])
+            if u.DEBUG:
+                print('month in letter form')
+            month = get_random_value(month_dic['month_letter'])
             separator = ' '
         else:
-            month = month_dic['month_letter']
+            if u.DEBUG:
+                print('month in number form')
+            month = month_dic['month_number']
             separator = get_random_value(['-', '/', ''])
         # there are two main styles, day before month and month before day
         style_one = randint(0,1)
@@ -33,20 +36,20 @@ def generate_date(months):
             date = f'{month}{separator}{day}{separator}{year}'
         return date
     except:
-        print(f'Fail to generate a data')
+        print(f'Fail to generate a date')
         raise Exception
 
 def generate_time():
     try:
         # different formats
-        meridians = ['am', 'pm', "o'clock", '']
-        separator = randint(o,1)
+        meridians = u.time_refs + ['']
+        separator = randint(0,1)
         separator_types = ['.', ':', "'"]
         meridian = get_random_value(meridians)
         hour_part = give_hour(meridian)
         if separator:
             separator_type = get_random_value(separator_types)
-            minute_part = get_minute
+            minute_part = give_minute()
         else:
             separator_type = ''
             minute_part = ''
@@ -94,7 +97,7 @@ def give_minute():
         print('Fail to give minutes')
         raise Exception
 
-def generate_place_address(address_names):
+def generate_place_address(address_name):
     try:
         min_num = 10
         max_num = 50
@@ -111,7 +114,7 @@ def generate_place_address(address_names):
             # the format is type name number
             types = ['via', 'viale', 'piazza', 'pzle']
         my_type = get_random_value(types)
-        my_name = get_random_value(address_namse)
+        my_name = address_name
         my_number = randint(min_num, max_num)
         text = '{} {} {}'
         if style == 'french':
@@ -196,6 +199,9 @@ def generate_password(name):
 def get_random_value(my_list, number=1):
     # get a random value in a list of objects
     try:
+        if u.DEBUG:
+            print(f'list type: {type(my_list)}')
+            print(f'first element: {my_list[0]}')
         if number != 1:
             values = []
             for _ in range(number):
@@ -209,6 +215,6 @@ def get_random_value(my_list, number=1):
             value = my_list[index]
             return value
     except:
-        print('Fail to get a random')
+        print('Fail to get a random value')
         raise Exception
 

@@ -158,6 +158,10 @@ class User:
             # we return a contant string only to avoid interrupting the dialogue
             string = 'fill the form'
             return string
+        
+    def reset_spelling_data(self):
+        self.spelling_string = ''
+        self.spelling_string_index = 0
 
     def construct_answer(self, intent_name):
         # receives the name of an intent and perform the standard operation for generating a 
@@ -175,6 +179,8 @@ class User:
         # when key is not void, the file contains a dictionary and we should go to the corresponding 
         # key. when key is void, the file contains a list. The file_name here is without extension
         try:
+            if u.DEBUG:
+                print(f'file_name: {file_name}')
             if key != '':
                 elements = self.data[cts.interaction][file_name][key]
             else:
@@ -411,6 +417,7 @@ class User:
             value_name = self.dialogue_state[u.value_name]
             field = self.dialogue_state[u.slot_name].lower()
             if value_type in u.choices_type_list:
+                choice_list = self.choices_lists[value_name]
                 if value_type == u.checkbox:
                     """value type is checbox so we can have more than one choice, for the simulation the maximum is two
                     we have 5 cases: 0- value, 1- name_value, 2- value_name, 3- two_values, 4- name_value_value.
@@ -433,7 +440,6 @@ class User:
                         return answer
                 # 0, 1, 2 of the checkbox + dropdown + radio
                 # we have only one choice 
-                choice_list = self.choices_lists[value_name]
                 value = gen.get_random_value(choice_list)
                 # we select a sentence with one slot name or two slots (one name one value)
                 # so in total three cases: 0 - value, 1 - value_name, 2 - name_value
@@ -550,8 +556,7 @@ class User:
             # we update first the spelling data anthen we analyze the char
             self.spelling_string_index += 1
             if self.spelling_string_index >= len(self.spelling_string):
-                self.spelling_string = ''
-                self.spelling_string_index = 0
+                self.reset_spelling_data()
                 char = gen.get_random_value(u.terminator)
                 return char
             char = self.spelling_string[self.spelling_string_index]
@@ -575,6 +580,8 @@ class User:
         return answer
 
     def intent_deny(self):
+        # if we started the spelling we have to update the spelling data
+        self.reset_spelling_data()
         # we select an expression to deny and we return
         answer = self.get_interaction_message(cts.deny)
         return answer

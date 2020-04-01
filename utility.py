@@ -1,13 +1,13 @@
 """At the very end of this file there is a module to train the model for the 
 Conversational Chatbot. We only have to run this file for it to be done."""
 
-DEBUG = False
+DEBUG = True
 
 # maximum number of dialogues
 MAX_DIALOGUES = 10
 
 # frequency control: interval for being able to manually stop the simulation in term of number of message exchanged
-CONTROL_FREQUENCE = 40
+CONTROL_FREQUENCE = 10
 
 
 # minimum and maximum year acceptable for the date
@@ -77,13 +77,16 @@ alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'
             'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 special_characters = ['space', 'exclamation', 'double quote', 'hash', 'dollar', 'percent', 'ampersand',
                       'left parenthesis', 'right parenthesis', 'asterisk', 'plus', 'comma', 'minus', 'dot',
-                      'full stop', 'slash', 'Colon', 'semicolon', 'less than', 'equal', 'greater than',
+                      'full stop', 'slash', 'colon', 'semicolon', 'less than', 'equal', 'greater than',
                       'question mark', 'at', 'left bracket', 'backslash', 'right bracket', 'caret',
                       'underscore', 'backlick', 'left brace', 'vertical bar', 'right brace', 'tilde']
-spec_char_symbol = [' ', '!', '"', '#', '$', '%', '&', '(', ')', '*', '+', '-', '.', '.', '/', ':', ';', '<',
-                    '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~']
+spec_char_symbol = [' ', '!', '"', '#', '$', '%', '&', 
+                    '(', ')', '*', '+', ',', '-', '.', 
+                    '.', '/', ':', ';', '<', '=', '>', 
+                    '?', '@', '[', '\\', ']', '^', 
+                    '_', '`', '{', '|', '}', '~']
 terminator = ['terminate', 'terminator', 'conclude',
-              'end', 'stop', 'close', 'finish', 'finished', 'halt']
+              'end', 'close', 'finish', 'finished', 'halt']
 number_0_9 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 password_spec_chars = ['!', '@', '#', '$', '%', '^', '&', '*', '_']
 
@@ -156,7 +159,7 @@ november = 'november'
 december = 'december'
 
 # time indications
-o_clock = "o'clock"
+o_clock = "o_clock"
 am = 'am'
 pm = 'pm'
 

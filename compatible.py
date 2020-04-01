@@ -64,10 +64,12 @@ def verify_compatibility_password(value):
             text = ('the password you proposed is too short. The minimum number ' +
                     'of characters accepted is {}').format(u.min_length_password)
             return False, text
-        char = value.lower()
+        lower_value = value.lower()
         all_pwd_chars = u.alphabet + u.number_0_9 + u.password_spec_chars
-        for char in value:
+        for char in lower_value:
             if char not in all_pwd_chars:
+                if u.DEBUG:
+                    print(f'Character not accepted: {char}')
                 text = ('a non acceptable character have been inserted in the passsword.\n' +
                         'the only accepted special characters are the following {}').format(u.password_spec_chars)
                 return False, text
@@ -121,7 +123,7 @@ def verify_compatibility_time(value):
         hh = fn.convert_to_int(hh, u.hour)
         mm = fn.convert_to_int(mm, u.minute)
         if hh is not None and mm is not None:
-            text = '{}:{}'.format(get_hour_form_integer(
+            text = '{}:{}'.format(get_hour_from_integer(
                 int(hh)), get_minute_from_integer(int(mm)))
             return True, text
 
@@ -133,7 +135,7 @@ def verify_compatibility_time(value):
         hh = fn.convert_to_int(hh, u.hour)
         mm = fn.convert_to_int(mm, u.minute)
         if hh is not None and mm is not None and meridian in time_refs:
-            text = '{}:{}'.format(get_hour_form_integer(
+            text = '{}:{}'.format(get_hour_from_integer(
                 int(hh), meridian), get_minute_from_integer(int(mm)))
             return True, text
 
@@ -141,7 +143,7 @@ def verify_compatibility_time(value):
         hh = value
         hh = fn.convert_to_int(hh, u.hour)
         if hh is not None:
-            text = '{}:00'.format(get_hour_form_integer(int(hh)))
+            text = '{}:00'.format(get_hour_from_integer(int(hh)))
             return True, text
 
         # we accept <H am>
@@ -150,7 +152,7 @@ def verify_compatibility_time(value):
         meridian = meridian.replace(' ', '')
         hh = fn.convert_to_int(hh, u.hour)
         if hh is not None and meridian in time_refs:
-            text = '{}:00'.format(get_hour_form_integer(int(hh), meridian))
+            text = '{}:00'.format(get_hour_from_integer(int(hh), meridian))
             return True, text
 
         # we accept <H:MM>
@@ -159,7 +161,7 @@ def verify_compatibility_time(value):
         hh = fn.convert_to_int(hh, u.hour)
         mm = fn.convert_to_int(mm, u.minute)
         if hh is not None and mm is not None:
-            text = '{}:{}'.format(get_hour_form_integer(
+            text = '{}:{}'.format(get_hour_from_integer(
                 int(hh)), get_minute_from_integer(int(mm)))
             return True, text
 
@@ -171,7 +173,7 @@ def verify_compatibility_time(value):
         hh = fn.convert_to_int(hh, u.hour)
         mm = fn.convert_to_int(mm, u.minute)
         if hh is not None and mm is not None and meridian in time_refs:
-            text = '{}:{}'.format(get_hour_form_integer(
+            text = '{}:{}'.format(get_hour_from_integer(
                 int(hh), meridian), get_minute_from_integer(int(mm)))
             return True, text
 

@@ -126,7 +126,7 @@ class RegistrationForm(Form):
                 modify_style = styles.get_modify()
                 insert_style = styles.get_insert()
                 string = (f"Which field exactly do you want to {modify_style}, and which value" +
-                          f" do you want to {insert_style} for tha field?")
+                          f" do you want to {insert_style} for that field?")
                 return string
             slot_name_list, slot_value_list = fn.extract_fields_names_and_values(
                 entities)
@@ -140,13 +140,20 @@ class RegistrationForm(Form):
             # the spelling list have been set and we can continue
             if len(slot_value_list) + len(slot_name_list) >= 1:
                 # there is at least one generic info
-                if len(slot_value_list) == 1 and len(slot_name_list) == 0:
+                if len(slot_value_list) == 1 and len(slot_name_list) == 0 and self.state.get_possible_next_action() == u.fill_field_action:
                     # we are inserting a value for the current field
                     slot_name = self.state.get_next_slot(only_name=True)   # return also if the next slot is required or not
                     slot_value = slot_value_list[0]
                     # the slot value can change, being put in the right format
-                    # we go to the filling procedure
+                    # we go to the filling procedure insuring that the field is not spelling
                     intro = self.state.filling_procedure(slot_name, slot_value)
+                elif self.state.get_possible_next_action() != u.fill_field_action:
+                    # probably bad destination due to training
+                    sorry_style = styles.get_sorry()
+                    please_style = styles.get_please()
+                    text = f'{sorry_style} i did not understood your request, could reformulate {please_style}?'
+                    self.state.set_warning_message(text)
+                    raise Exception
                 else:
                     # we have a list of fields with their values
                     intro = self.state.fill_generic_slots(slot_name_list=slot_name_list,
@@ -340,7 +347,7 @@ class RegistrationForm(Form):
             # we have to verify the state to know what is the affirm for. the variable to check
             # is possible_next_action.
             action_name = self.state.get_possible_next_action()
-            if action_name not in [u.submit_action, u.reset_all_fields_action]:
+            if action_name in [u.submit_action, u.reset_all_fields_action]:
                 string = self.state.manage_next_step()
                 return string
             elif action_name is None:
@@ -373,29 +380,27 @@ class RegistrationForm(Form):
     def repeatValueCamp(self):
         try:
             entities = self.state.get_latest_message()["entities"]
-            count = len(entities)
-            fields = []
-            for index in range(count):
-                entity = entities[index]["entity"]
-                if "input_field" in entity:
-                    fields.append(entities[index]["value"])
+            fields = fn.extract_fields_names_and_values(
+                entities, only_names=True)
             text = "{} : {}"
             string = "Here is the answer for you: "
             slots = self.state.form_slots()
             for slot in slots:
-                if slot['slot_name'] in fields:
-                    if slot['slot_value'] is None:
+                slot_name = slot[u.slot_name]
+                slot_value = slot[u.slot_value]
+                if slot_name in fields:
+                    if slot_value is None:
                         value = "No value"
                     else:
-                        value = slot['slot_value']
-                    string = string + "\n\t" + text.format(key, value)
+                        value = slot_value
+                    string = f'{string}\n\t{text.format(slot_name, value)}'
             next_step_string = self.state.manage_next_step()
             string = f'{string}\n{next_step_string}'
             return string
         except:
             if not self.state.get_warning_present():
                 print(
-                    "A problem occured while a registration form bot tries to repeat a camp")
+                    "A problem occured while a registration form bot tries to repeat the value of a field")
             raise Exception
 
     def skipCamp(self):
@@ -410,7 +415,7 @@ class RegistrationForm(Form):
                 text = "{} this field is the last one remaining.\n".format(
                     sorry_style)
                 opt = ""
-                if not slot['required']:
+                if not slot[u.required]:
                     opt = "do you want to submit now?"
                     self.state.set_possible_next_action(u.submit_action)
                 string = ("{} it is required to be able to submit the form" +
@@ -446,10 +451,10 @@ class RegistrationForm(Form):
             optional_list = []
             slots = self.state.form_slots()
             for slot in slots:
-                if slot['slot_name'] != u.REQUESTED_SLOT:
-                    if not slot['required']:
-                        optional_list.append(slot['slot_name'])
-            optional_fields = self.state.get_string_from_list(optional_list)
+                if slot[u.slot_name] != u.REQUESTED_SLOT:
+                    if not slot[u.required]:
+                        optional_list.append(slot[u.slot_name])
+            optional_fields = fn.get_string_from_list(optional_list)
             ans = "{} the optional fields are the following {}.".format(
                 sure_style, optional_fields)
             string = self.state.manage_next_step()
@@ -465,10 +470,9 @@ class RegistrationForm(Form):
         try:
             sure_style = styles.get_sure()
             all_fields = self.state.get_fields_list()
-            ans = "{} the fields present in this form are the following {}.".format(
-                sure_style, all_fields)
-            string = self.state.manage_next_step()
-            string = f"{ans}\n{string}"
+            ans = f"{sure_style} the fields present in this form are the following {all_fields}."
+            next_step_string = self.state.manage_next_step()
+            string = f"{ans}\n{next_step_string}"
             return string
         except:
             if not self.state.get_warning_present():
@@ -497,11 +501,11 @@ class RegistrationForm(Form):
             remaining_optional_list = []
             slots = self.state.form_slots()
             for slot in slots:
-                if slot['slot_name'] != u.REQUESTED_SLOT:
-                    if not slot['required']:
-                        if slot['slot_value'] is None:
+                if slot[u.slot_name] != u.REQUESTED_SLOT:
+                    if not slot[u.required]:
+                        if slot[u.slot_value] is None:
                             # we add remaining optional fields
-                            remaining_optional_list.append(slot['slot_name'])
+                            remaining_optional_list.append(slot[u.slot_name])
             optional_fields = fn.get_string_from_list(
                 remaining_optional_list)
             ans = "{} the remaining optional fields are the following {}.".format(
@@ -599,7 +603,7 @@ class RegistrationForm(Form):
             slots = self.state.form_slots()
             first_found = False
             for slot in slots:
-                slot_name = slot['slot_name']
+                slot_name = slot[u.slot_name]
                 slot_value = None
                 if not first_found:     # the first label is put as requested slot
                     self.state.set_requested_slot(slot_name)
