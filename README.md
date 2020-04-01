@@ -134,6 +134,15 @@ The simulation is controlled by the parameter *simulation_enabled* in utility.py
 
 #### Database components
 
+* **data_type_generator.py**: FUNCTION file containing APIs to generate data type information like email, password, time, date, etc
 * **interaction_file_keys.py**: CONSTANT file containing the keys used in the json interaction files.
-* **simulation_constants.py**: CONSTANT file containing the simulation files names and the keys of the data structures used by the user manager.
+* **simulation_constants.py**: CONSTANT file containing the simulation files names and the keys of the data structures used by the user manager. Contains also the parameters of the simulation which are:
+    * *counter trigger*: which limits the random choice of the intent in each action_state. At each iteration, it is decreased and when it reaches 0, each state finds its essential intent to be retrieved.
+    * *maximun spelling interruptions*: it is the maximum number of times for which the user can interrupt the spelling of a field's value.
+    * *maximum execution number*: for the simulation we decided to assign the same maximum number of executions for all the non essential intents. This number is decreased each time the intent is selected by the user and when it reaches 0, the intent is removed from the **active list**.
+    * *cardinality intervals*: the selection of an intent is random but we decide to associate to each intent a weight defining how often it should be selected. For this to be done we decide to give to each intent an interval of integer values in such a way that if the random number we select is in that interval, that intent is the one selected. The **cardinality intervalt** is the cardinality of the interval of each intent.
 * **simulation data folder**: folder where the simulation files have been inserted. it counts two sub-folders, *filling* folder for the files related to the filling data and *interaction* for the files related to the interaction data.
+
+#### The Finite State Machine (state_machine.png)
+
+Represent the different states in which the user can be found during the dialogue. It help us to simulate the behavior of the user for each one of those states. The states are based on how the code is written and in our case, the code is written with the objective that **we have to complete the form and submit**, so must of the answers of the chatbot will end indicating to the user the next field to complete; when it is not the case, the chatbot ask the user to specify the action he/she would like to perform probably due to incomprehension. Looking at that *Finite State Machine* we can see thet there are mainly two branches when we are in a state which are the **spelling branch** when we have to deal with a spelling input, and the **not spelling branch** when the input does not require the spelling.
