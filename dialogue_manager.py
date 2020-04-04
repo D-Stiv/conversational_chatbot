@@ -13,7 +13,7 @@ from random import randint
 
 PREPROCESSING_EXCEPTION = "A problem occured during the preprocessing phase, take a look into the code and restart later"
 
-
+class_name ='DialogueManager'
 class DialogueManager:
 
     def __init__(
@@ -39,6 +39,9 @@ class DialogueManager:
         self.iteration_number = 0
 
     def create_form_bots(self):
+        function_name = 'create_form_bots'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             if u.simulation_enabled:
                 self.instantiate_driver(True)
@@ -50,6 +53,9 @@ class DialogueManager:
             raise Exception
 
     def start(self, bot_tag):
+        function_name = 'start'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             # we start a session
             self.in_session = True
@@ -62,8 +68,6 @@ class DialogueManager:
                 self.current_bot.train_model()
             self.conversation_prologue()
             self.start_dialogue()
-            if u.write_log:
-                self.log_writer.start()
             if self.restart:
                 if self.iteration_number > self.total_iterations:
                     return
@@ -72,11 +76,16 @@ class DialogueManager:
                 # we reset the botList for the new session
                 self.bot_manager.botList = []
                 self.create_form_bots()
+                if u.DEBUG:
+                    print('About to start the new dialogue')
                 self.start(bot_tag)
         except:
             print(PREPROCESSING_EXCEPTION)
 
     def instantiate_driver(self, random=False):
+        function_name = 'instantiate_driver'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             if random:
                 browsers = u.browsers
@@ -87,7 +96,7 @@ class DialogueManager:
                 driver = webdriver.Chrome()
             elif self.browser == 'firefox':
                 driver = webdriver.Firefox()
-            elif self.browser == 'egde':
+            elif self.browser == 'edge':
                 driver = webdriver.Edge()
             else:
                 driver = webdriver.Chrome()
@@ -99,6 +108,9 @@ class DialogueManager:
             raise Exception
 
     def conversation_prologue(self):
+        function_name = 'conversation_prologue'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             # call fillForm woith a predefined message and present the form
             initial_string = 'fill the form'
@@ -113,6 +125,9 @@ class DialogueManager:
             raise Exception
 
     def start_dialogue(self):
+        function_name = 'start_dialogue'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             my_state = self.current_bot.get_state()
             # beginning of the interaction
@@ -131,7 +146,6 @@ class DialogueManager:
                 else:
                     a = input("Your input: ")
                 if a == u.stop:
-                    self.chatbot_view.show_end_of_conversation(self.counter)
                     self.restart = False
                     break
                 if a != "":
@@ -147,15 +161,29 @@ class DialogueManager:
                         self.counter += 1
                     else:
                         self.after_submit()
+
+                    # we frequently show the situation of the fields
+                    notification = self.counter % u.NOTIFICATION_FREQUENCE
+                    if notification in [0,1] and self.in_session:
+                        text = self.current_bot.get_state().get_slots_value()
+                        self.chatbot_view.show_notifications(text)
                 else:
                     text = 'you did not insert any value'
                     self.chatbot_view.show_text(self.counter, text)
                     self.counter += 1
+            if u.write_log:
+                self.chatbot_view.show_end_of_conversation(self.counter)
+                self.log_writer.start()
+                if u.DEBUG:
+                    print('Log written')
         except:
             print('Problem during the dialogue')
             raise Exception
 
     def after_submit(self):
+        function_name = 'after_submit'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             """Here we conclude the submission of the form and then we start or not a new
             session. If we start a new session, we restart from the beginning.
@@ -194,12 +222,22 @@ class DialogueManager:
             raise Exception
 
     def update_parameters(self):
-        self.in_session = False
-        self.counter = 0
-        self.current_bot = None
-        self.driver = None
+        function_name = 'update_parameters'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
+        try:
+            self.in_session = False
+            self.counter = 0
+            self.current_bot = None
+            self.driver = None
+        except:
+            print('Fail to update the parameters')
+            raise Exception
 
     def get_dialogue_state(self):
+        function_name = 'get_dialogue_state'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             state = self.current_bot.get_state()
             next_slot_name = state.get_next_slot(only_name=True)
@@ -230,6 +268,9 @@ class DialogueManager:
             raise Exception
 
     def get_choices_lists(self):
+        function_name = 'get_choices_lists'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             # give the choices lists and the list of fields
             state = self.current_bot.get_state()
@@ -242,10 +283,13 @@ class DialogueManager:
         except:
             print('Fail to get the choices lists')
             raise Exception
-
+    
     def get_text_fields(self):
-        # retrieves the fields of type text
+        function_name = 'get_text_fields'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
+            # retrieves the fields of type text
             state = self.current_bot.get_state()
             slots = state.get_slots()
             text_fields = []

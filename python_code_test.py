@@ -11,7 +11,7 @@ import json
 from random import randint
 
 from selenium import webdriver
-"""
+
 form_element = webdriver.Edge()
 form_element.minimize_window()
 # webPath = "http://www.polimi.it"
@@ -33,7 +33,7 @@ for form_element in form_elements:
     print('not found')
     bot_tag = form_element.get_attribute('bot-tag')
     print(bot_tag)
-
+"""
 slots = []
 constructs = {
                 "text": None,
@@ -43,7 +43,7 @@ constructs = {
                 }
             }
 my_state = State(form_element=form_element, constructs=constructs)"""
-
+"""
 my_list = [1, 2, 3, 4, 5]
 print(my_list)
 my_list.remove(3)
@@ -58,4 +58,4 @@ with open(path, 'r') as fp_list:
 sentence = data_list[0]
 answer = sentence
 print(6%4)
-
+"""

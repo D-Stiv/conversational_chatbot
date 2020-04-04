@@ -146,8 +146,13 @@ class ReportWriter(Writer):
             slots_content = ''
             for slot in slots:
                 if slot[u.slot_name] != u.REQUESTED_SLOT:
-                    line_slot = f'[{u.slot_name}: {slot[u.slot_name]} - {u.slot_value}: {slot[u.slot_value]} - {u.required}: {slot[u.required]} - {u.spelling}: {slot[u.spelling]}]'
-                    slots_content = self.add_line(line_slot, slots_content, tab)
+                    if slot[u.value_type] in u.choices_type_list:
+                        line_slot = f'[{u.slot_name}: {slot[u.slot_name]} - {u.slot_value}: {slot[u.slot_value]} - {u.required}: {slot[u.required]} - {u.spelling}: {slot[u.spelling]} - {u.description}: {slot[u.description]} - {u.choice_list}: {slot[u.choice_list]}]'
+                    else:
+                        line_slot = f'[{u.slot_name}: {slot[u.slot_name]} - {u.slot_value}: {slot[u.slot_value]} - {u.required}: {slot[u.required]} - {u.spelling}: {slot[u.spelling]} - {u.description}: {slot[u.description]}]'
+                else:
+                    line_slot = f'[Web Form info -- {u.title}: {slot[u.title]} - {u.description}: {slot[u.description]}]'
+                slots_content = self.add_line(line_slot, slots_content, tab)
             slots_content = f'\n{slots_content}\n'
             return slots_content
         except:

@@ -15,7 +15,7 @@ class User:
     ):
         # we initialize the user
         self.intents_data = cts.intents_list
-        self.min_random_number = cts.R + 1
+        self.min_random_number = 0
         self.max_random_number = cts.inf
 
         self.text_fields = text_fields
@@ -69,7 +69,9 @@ class User:
 
     def compute_intervals(self):
         try:
-            cumulative_total = cts.R
+            R = randint(cts.min_R, cts.max_R)
+            self.min_random_number = R + 1
+            cumulative_total = R
             length = len(self.active_list)
             for index in range(length):
                 intent_name = self.active_list[index]
@@ -495,8 +497,8 @@ class User:
             # so in total three cases: 0 - value, 1 - value_name, 2 - name_value
             number = randint(0, 2)
             if number == 0:
-                # one value
-                file_key = ifk.one_name
+                # one_value
+                file_key = ifk.one_value
                 sentence = self.get_interaction_message(cts.complete_field, file_key)
                 answer = sentence.format(value)
             elif number == 1:
@@ -553,6 +555,7 @@ class User:
                     value = self.get_filling_message(cts.names)
                 self.spelling_string = value
                 self.spelling_string_index = -1
+                print(f'[User - Input to be inserted by spelling: {value}]')
             # we update first the spelling data anthen we analyze the char
             self.spelling_string_index += 1
             if self.spelling_string_index >= len(self.spelling_string):

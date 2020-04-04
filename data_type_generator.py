@@ -44,7 +44,7 @@ def generate_time():
         # different formats
         meridians = u.time_refs + ['']
         separator = randint(0,1)
-        separator_types = ['.', ':', "'"]
+        separator_types = ['.', ':']
         meridian = get_random_value(meridians)
         hour_part = give_hour(meridian)
         if separator:

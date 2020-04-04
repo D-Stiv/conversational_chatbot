@@ -7,8 +7,10 @@ DEBUG = True
 MAX_DIALOGUES = 10
 
 # frequency control: interval for being able to manually stop the simulation in term of number of message exchanged
-CONTROL_FREQUENCE = 10
+CONTROL_FREQUENCE = 30
 
+# frequence to see the change in the slots in term of interactions
+NOTIFICATION_FREQUENCE = 5
 
 # minimum and maximum year acceptable for the date
 min_year = 1500
@@ -32,6 +34,7 @@ max_minute = 60
 
 REQUESTED_SLOT = "requested_slot"
 CANCELED = "canceled"
+VOID = ''
 READY_FOR_SPELLING = True  # True when we are ready to manage the spelling correctly
 # when READY_FOR_SPELLING is False, fillSpellingCamp calls fillGenericCamp
 tag_registration_form = "registration_form_tag"
@@ -40,14 +43,15 @@ tag_registration_form = "registration_form_tag"
 train_model = False
 
 # decides whether or not write the log and the report
-write_log = False
-write_report = False
+write_log = True
+write_report = True
 
 # whether or not we use the simulator
-simulation_enabled = True
+simulation_enabled = False
 
 # URL of the form to fill
-form_url = "http://localhost/ecobusiness/new-project-form/"
+#form_url = "http://localhost/ecobusiness/new-project-form/"
+form_url = "http://localhost/ecobusiness/test-project-form/"
 
 # browser to user to open the url, Chrome - Firefox - Edge
 browsers = ['edge', 'firefox', 'chrome']

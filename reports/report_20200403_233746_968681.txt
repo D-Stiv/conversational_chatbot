@@ -1,0 +1,134 @@
+HEADER
+
+	Date and Hour: 2020-04-03 23:37:46.946739
+
+SUMMARY
+
+	There are 1 completed sessions
+
+REPORT LOG
+
+
+0.	--- DIALOGUE 1 ---
+
+1.	I- Form element
+
+2.		[browser_name: msedge - page_title: HYPERCLINIC – Have a new vision of the world - URL: http://localhost/ecobusiness/]
+
+3.	II- Slots
+
+4.		[slot_name: first name - slot_value: steve - required: True - spelling: True - description: your first name]
+5.		[slot_name: password - slot_value: pass_word - required: True - spelling: False - description: None]
+6.		[slot_name: email address - slot_value: em@il.it - required: False - spelling: False - description: the email we should use to contact you]
+7.		[slot_name: birthday - slot_value: 08-04-2005 - required: False - spelling: False - description: None]
+8.		[slot_name: arrival time - slot_value: 14:30 - required: False - spelling: False - description: the time you expect to arrive at the conference]
+
+9.	III-Messages
+
+10.		Message_0
+11.			Text: what is it?
+12.			Intent: [name: explainLabel - confidence: 0.9981]
+13.			Entities: 
+14.		Message_1
+15.			Text: s
+16.			Intent: [name: spelling - confidence: 0.9913]
+17.			Entities: [entity: spelling, value: s]
+18.		Message_2
+19.			Text: t
+20.			Intent: [name: spelling - confidence: 0.7640]
+21.			Entities: 
+22.		Message_3
+23.			Text: e
+24.			Intent: [name: spelling - confidence: 0.9896]
+25.			Entities: [entity: spelling, value: e]
+26.		Message_4
+27.			Text: v
+28.			Intent: [name: spelling - confidence: 0.9928]
+29.			Entities: [entity: spelling, value: v]
+30.		Message_5
+31.			Text: e
+32.			Intent: [name: spelling - confidence: 0.9896]
+33.			Entities: [entity: spelling, value: e]
+34.		Message_6
+35.			Text: terminate
+36.			Intent: [name: spelling - confidence: 0.9687]
+37.			Entities: [entity: spelling, value: terminate]
+38.		Message_7
+39.			Text: what are the remaining fields?
+40.			Intent: [name: giveAllRemainingLabels - confidence: 0.9996]
+41.			Entities: 
+42.		Message_8
+43.			Text: what are the remaining required fields?
+44.			Intent: [name: giveRemainingRequiredLabels - confidence: 0.9999]
+45.			Entities: 
+46.		Message_9
+47.			Text: what are the remaining optional fields?
+48.			Intent: [name: giveRemainingOptionalLabels - confidence: 0.9996]
+49.			Entities: 
+50.		Message_10
+51.			Text: my password is p_ssword
+52.			Intent: [name: fillGenericCamp - confidence: 0.9965]
+53.			Entities: [entity: input_field, value: password], [entity: input_value, value: p_ssword]
+54.		Message_11
+55.			Text: what are the fields of this form?
+56.			Intent: [name: repeatAllLabels - confidence: 0.9999]
+57.			Entities: 
+58.		Message_12
+59.			Text: what are the optional fields?
+60.			Intent: [name: repeatOptionalLabels - confidence: 0.9989]
+61.			Entities: 
+62.		Message_13
+63.			Text: what are the required fields?
+64.			Intent: [name: repeatRequiredLabels - confidence: 0.9999]
+65.			Entities: 
+66.		Message_14
+67.			Text: repeat the password please
+68.			Intent: [name: repeatValueCamp - confidence: 0.9998]
+69.			Entities: [entity: input_field, value: password]
+70.		Message_15
+71.			Text: i want to modify the password putting the value pass_word
+72.			Intent: [name: modifyValueGenericCamp - confidence: 1.0000]
+73.			Entities: [entity: input_field, value: password], [entity: input_value, value: pass_word]
+74.		Message_16
+75.			Text: 08/04/2005
+76.			Intent: [name: fillGenericCamp - confidence: 0.8574]
+77.			Entities: [entity: spelling, value: 08/04/2005]
+78.		Message_17
+79.			Text: skip
+80.			Intent: [name: skipCamp - confidence: 0.9816]
+81.			Entities: 
+82.		Message_18
+83.			Text: is the field time present in this form?
+84.			Intent: [name: verifyPresenceOfLabel - confidence: 0.8429]
+85.			Entities: [entity: input_field, value: time]
+86.		Message_19
+87.			Text: the email address is em@il.it
+88.			Intent: [name: fillGenericCamp - confidence: 0.9581]
+89.			Entities: [entity: input_field, value: email address], [entity: input_value, value: em@il.it]
+90.		Message_20
+91.			Text: can i have the completed fields?
+92.			Intent: [name: verifyValueFilledCamps - confidence: 0.9999]
+93.			Entities: 
+94.		Message_21
+95.			Text: reset
+96.			Intent: [name: resetAllCamps - confidence: 1.0000]
+97.			Entities: 
+98.		Message_22
+99.			Text: no
+100.			Intent: [name: deny - confidence: 0.9911]
+101.			Entities: 
+102.		Message_23
+103.			Text: fill the form
+104.			Intent: [name: fillForm - confidence: 0.9938]
+105.			Entities: 
+106.		Message_24
+107.			Text: 14:30
+108.			Intent: [name: fillGenericCamp - confidence: 0.4931]
+109.			Entities: [entity: input_value, value: 14:30]
+110.		Message_25
+111.			Text: yes
+112.			Intent: [name: affirm - confidence: 0.9658]
+113.			Entities: 
+
+
+

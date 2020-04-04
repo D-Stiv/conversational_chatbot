@@ -5,7 +5,7 @@ import functions as fn
 
 EXCEPTION_MESSAGE = "Something went wrong during the handling of this message.\n what can i precisely do for you please ?"
 
-
+class_name = 'BotsManager'
 class BotsManager:
     botList = []  # we assume that we don't have two forms of the same type on the same webpage
 
@@ -15,6 +15,9 @@ class BotsManager:
             self.parse_web_form(form_element)
 
     def parse_web_form(self, form_element):
+        function_name = 'parse_web_form'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             bot_tag = form_element.get_attribute(u.bot_tag)
             slots = fn.get_input_fields(form_element)
@@ -40,6 +43,9 @@ class BotsManager:
             raise Exception
 
     def get_bot(self, bot_tag):
+        function_name = 'get_bot'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             for bot in self.botList:
                 if bot.get_bot_tag() == bot_tag:
@@ -49,6 +55,9 @@ class BotsManager:
             raise Exception
 
     def run_action(self, userInput, tag):
+        function_name = 'run_action'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             # for the moment we assume that the user input goes to registration form which
             # is the only type we have up to now
@@ -87,14 +96,19 @@ class BotsManager:
             return utterance
 
     def get_utterance(self, bot, intent):
+        function_name = 'get_utterance'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             # we get the state of the bot
             state = bot.get_state()
-            if state.get_reset_alarm_enabled() or state.get_submit_alarm_enabled():
+            if state.get_reset_alarm_enabled():
                 # we disable the alarm mainly in case intent not in [affirm, deny]
-                if state.get_reset_alarm_enabled():
+                if intent not in [u.affirm_action, u.deny_action, u.reset_all_fields_action]:
                     state.set_reset_alarm_enabled(False)
-                else:
+            elif state.get_submit_alarm_enabled():
+                # we disable the alarm mainly in case intent not in [affirm, deny]
+                if intent not in [u.affirm_action, u.deny_action, u.submit_action]:                        
                     state.set_submit_alarm_enabled(False)
             if state.get_spelling_interrupted():
                 # In the past the user interrupted a spelling and we wait for the response on whether to save the state or not
@@ -120,7 +134,12 @@ class BotsManager:
                 intent = state.get_waiting_intent()
                 state.set_waiting_intent(None)
                 utterance = bot.findActionAndRun(intent=intent)
-            elif intent != u.spelling_action and state.get_current_spelling_input_value() != '':
+            elif intent not in [u.spelling_action, u.fill_form_action] and state.get_current_spelling_input_value() != '':
+            # we are going to find a solution ad hoc for the spelling 'dot'
+                if state.get_latest_message()["text"] == 'dot':
+                    intent = u.spelling_action
+                    utterance = bot.findActionAndRun(intent=intent)
+                    return utterance
                 # the user started to spell an input and suddently interrupts it
                 state.set_spelling_interrupted()
                 state.set_waiting_intent(intent)

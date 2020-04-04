@@ -63,7 +63,7 @@ def is_compatible(slot_value, value_type):
             if value_type == u.number:
                 return c.verify_compatibility_number(slot_value)
             if value_type == u.time:
-                return c.verify_compatibility_time
+                return c.verify_compatibility_time(slot_value)
         else:
             return c.verify_compatibility_generic(slot_value)
         return True, text
@@ -180,12 +180,9 @@ def get_input_fields(form_element):
         elems_textarea = form_element.find_elements_by_xpath(".//textarea")
         elems = elems_input + elems_dropdown + elems_textarea
         slots = []
-        first_field = ""
         for elem in elems:
             field = elem.get_attribute(u.bot_field)
             if field is not None:
-                if first_field == "":
-                    first_field = field.lower()
                 value_name = elem.get_attribute('name')
                 value_type = elem.get_attribute(u.field_type)
                 description = elem.get_attribute(u.field_desc)
@@ -206,20 +203,21 @@ def get_input_fields(form_element):
                     u.value_name: value_name,   # name_id of the value camp for a label
                     u.value_type: value_type,   # type tha the value should have
                     u.required: required,       # is the filling of a label required or not
-                    u.description: description, # description/explanation of a field
+                    u.description: description,  # description/explanation of a field
                     u.spelling: spelling
                 }
                 # in case of field with choices, we insert the list of choices
                 if value_type in u.choices_type_list:
-                    choice_list = get_choice_list(value_name, value_type, form_element)
+                    choice_list = get_choice_list(
+                        value_name, value_type, form_element)
                     slot[u.choice_list] = choice_list
-                #slots.append(slot)
-                slots = [slot] + slots
+                slots.append(slot)
+                #slots = [slot] + slots
         # we save the form description and title inside the requested slot
         description = form_element.get_attribute(u.bot_desc)
         title = form_element.get_attribute(u.bot_title)
         requested_slot = {
-            u.slot_value: first_field,
+            u.slot_value: slots[0][u.slot_name],
             u.slot_name: u.REQUESTED_SLOT,
             u.description: description,
             u.title: title
@@ -303,4 +301,19 @@ def get_num_fields(constructs):
         return total, required, optional
     except:
         print(f'Fail to get the number of fields')
+        raise Exception
+
+
+def next_char_string():
+    try:
+        # we add styles to the output
+        next_style = styles.get_next()
+        please_style = styles.get_please()
+        end_style = styles.get_end()
+        # we set the message to be returned to the user
+        string = (f'{please_style} insert the {next_style} character, remember that you can use the expression SPACE for the blank' +
+                  f' and the expression TERMINATE to {end_style} the spelling')
+        return string
+    except:
+        print('Fail to get the string for asking the next character')
         raise Exception

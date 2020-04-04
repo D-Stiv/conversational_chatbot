@@ -22,7 +22,7 @@ def verify_compatibility_email(value):
         text = value
         at_sign = '@'
         if at_sign not in value:
-            text = 'the email shoul contain the character < {} >'.format(
+            text = 'the email should contain the character < {} >'.format(
                 at_sign)
             return False, text
         elif at_sign == value[0]:

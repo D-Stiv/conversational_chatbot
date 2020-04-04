@@ -20,7 +20,7 @@ class ViewChatPannel(View):
         print(text)
 
     # shows the complition of the requested maximum number of iterations when it occurs
-    def show_completed_iterations(self, counter):
-        text = f"{counter}. We Stop here because the maximum number of iterations is reached"
+    def show_notifications(self, text):
+        text = f'[Situation of fields]\n{text}'
         self.writer.add_line(text)
         print(text)

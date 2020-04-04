@@ -10,6 +10,7 @@ import asyncio
 import rasa
 import shutil
 
+
 EXCEPTION_MESSAGE = "Something went wrong during the handling of this message, please try another message !!"
 
 
@@ -27,7 +28,7 @@ class LoginForm(Form):
                          nlu_data_file_path, nlu_config_file_path)
         self.restricted_actions = u.restricted_actions
 
-
+class_name = 'RegistrationForm'
 class RegistrationForm(Form):
     root_folder = f'./{u.registration_form_folder}'
 
@@ -47,6 +48,9 @@ class RegistrationForm(Form):
         self.model_path_found = False
 
     def train_model(self):
+        function_name = 'train_model'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             # if a previous training folder exists, we remove it
             previous_model = f'{self.model_folder}/{u.tag_registration_form}'
@@ -61,6 +65,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def interpreteMessage(self, userInput):
+        function_name = 'interpreteMessage'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             def get_model_path():
                 m_path = f'{self.model_folder}/{u.tag_registration_form}'
@@ -86,13 +93,20 @@ class RegistrationForm(Form):
             raise Exception
 
     def fillForm(self):
+        function_name = 'fillForm'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             # if the filling did not start, we give the form info to the user, otherwise we continue
             # with the next input_field.state variables to observe are num_camps, num_remaining, ...
 
             # we start by checking if the filling already started or not
             if self.state.get_filling_started():
-                string = self.state.manage_next_step()
+                if self.state.get_close_prompt_enabled():
+                    # we set the message to be returned to the user
+                    string = fn.next_char_string()
+                else:
+                    string = self.state.manage_next_step()
                 return string
             # the filling did not start
             self.state.set_filling_started()
@@ -118,8 +132,12 @@ class RegistrationForm(Form):
             raise Exception
 
     def fillGenericCamp(self):
+        function_name = 'fillGenericCamp'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             entities = self.state.get_latest_message()["entities"]
+            intent = self.state.get_latest_message()["intent"]["name"]
             count = len(entities)
             if count == 0:
                 # the user wants to modify a field but did not specify which field
@@ -140,14 +158,15 @@ class RegistrationForm(Form):
             # the spelling list have been set and we can continue
             if len(slot_value_list) + len(slot_name_list) >= 1:
                 # there is at least one generic info
-                if len(slot_value_list) == 1 and len(slot_name_list) == 0 and self.state.get_possible_next_action() == u.fill_field_action:
+                # the use of possible_next_action here is to mitigate training error. with a perfect training they are not necessary
+                if len(slot_value_list) == 1 and len(slot_name_list) == 0 and (self.state.get_possible_next_action() == u.fill_field_action or intent == u.fill_field_action):
                     # we are inserting a value for the current field
                     slot_name = self.state.get_next_slot(only_name=True)   # return also if the next slot is required or not
                     slot_value = slot_value_list[0]
                     # the slot value can change, being put in the right format
                     # we go to the filling procedure insuring that the field is not spelling
-                    intro = self.state.filling_procedure(slot_name, slot_value)
-                elif self.state.get_possible_next_action() != u.fill_field_action:
+                    string = self.state.filling_procedure(slot_name, slot_value)
+                elif self.state.get_possible_next_action() != u.fill_field_action and intent != u.fill_field_action:
                     # probably bad destination due to training
                     sorry_style = styles.get_sorry()
                     please_style = styles.get_please()
@@ -156,13 +175,8 @@ class RegistrationForm(Form):
                     raise Exception
                 else:
                     # we have a list of fields with their values
-                    intro = self.state.fill_generic_slots(slot_name_list=slot_name_list,
+                    string = self.state.fill_generic_slots(slot_name_list=slot_name_list,
                                                      slot_value_list=slot_value_list)
-                concl = self.state.manage_next_step()
-                if intro is None:
-                    string = concl
-                else:
-                    string = "{}\n{}".format(intro, concl)
             # we verify if the spelling_list is empty or not
             if len(self.state.get_spelling_list()) != 0:
                 string = self.fillSpellingCamp()
@@ -174,6 +188,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def fillSpellingCamp(self):
+        function_name = 'fillSpellingCamp'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             # we have to verify if we just finished the spelling of a field
             if self.state.get_after_spelling():
@@ -182,19 +199,18 @@ class RegistrationForm(Form):
                 slot_name = self.state.get_spelling_list()[0]
                 slot_value = self.state.get_current_spelling_input_value()
                 # we go to the filling procedure
-                self.state.filling_procedure(slot_name, slot_value)
+                string = self.state.filling_procedure(slot_name, slot_value)
                 self.state.reset_current_spelling_input_value()
                 # verify if all the fields in spelling list have been completed
                 if len(self.state.get_spelling_list()) - 1 == 0:
                     self.state.reset_spelling_list()
-                    string = self.state.manage_next_step()
                 else:
                     # there are still fields to spell
                     self.state.update_spelling_list(slot_name)
                     next_field = self.state.get_spelling_list()[0]
                     please_style = styles.get_please()
-                    string = ("Now you are going to spell the value for the field {}.\n" +
-                            "{} insert the first character").format(next_field, please_style)
+                    string = (f"Now you are going to spell the value for the field {next_field}.\n" +
+                            f"{please_style} insert the first character")
                 # after the spelling we insert the value for the given field and we reset the string
                 self.state.reset_current_spelling_input_value()
                 return string
@@ -223,6 +239,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def spelling(self):
+        function_name = 'spelling'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             if len(self.state.get_spelling_list()) == 0:
                 string = self.fillGenericCamp()
@@ -270,13 +289,8 @@ class RegistrationForm(Form):
                 text = spec_char_symbol[index]
             # we proceed by completting the current spelling input value
             self.state.complete_spelling_value(text)
-            # we add styles to the output
-            next_style = styles.get_next()
-            please_style = styles.get_please()
-            end_style = styles.get_end()
             # we set the message to be returned to the user
-            string = ('{} insert the {} character, remember that you can use the expression SPACE for the blank' +
-                      ' and the expression TERMINATE to {} the spelling').format(please_style, next_style, end_style)
+            string = fn.next_char_string()
             return string
         except:
             if not self.state.get_warning_present():
@@ -285,24 +299,28 @@ class RegistrationForm(Form):
             raise Exception
 
     def verifyPresenceOfLabel(self):
+        function_name = 'verifyPresenceOfLabel'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             entities = self.state.get_latest_message()["entities"]
             count = len(entities)
             if count == 0:
                 # in principle should never occur given the training
                 please_style = styles.get_please()
-                string = "{} indicate which field you are interested to".format(
-                    please_style)
+                string = f"{please_style} indicate which field you are interested to"
                 return string
             slot_name_list = fn.extract_fields_names_and_values(
                 entities, only_names=True)
             # we first verify if each slot_name corresponds to a field in the dorm
             self.state.all_fields_present(slot_name_list)
             good_style = styles.get_good()
-            string = "{} ".format(good_style)
+            string = f"{good_style}, "
             for name in slot_name_list:
                 text = fn.verify_presence(name, self.state.form_slots(), only_text=True)
-                string = string + text
+                string = f'{string}, {text}'
+            next_step_string = self.state.manage_next_step()
+            string = f'{string}\n{next_step_string}'
             return string
         except:
             if not self.state.get_warning_present():
@@ -311,6 +329,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def explainLabel(self):
+        function_name = 'explainLabel'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             entities = self.state.get_latest_message()["entities"]
             count = len(entities)
@@ -343,19 +364,22 @@ class RegistrationForm(Form):
             raise Exception
 
     def affirm(self):
+        function_name = 'affirm'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             # we have to verify the state to know what is the affirm for. the variable to check
             # is possible_next_action.
             action_name = self.state.get_possible_next_action()
             if action_name in [u.submit_action, u.reset_all_fields_action]:
-                string = self.state.manage_next_step()
+                action = self.get_action(action_name)
+                string = action(self)
                 return string
             elif action_name is None:
                 sorry_style = styles.get_sorry()
                 string = f'{sorry_style} what exactly do you want to do ?'
-                return string
-            action = self.get_action(action_name)
-            string = action(self)
+                return string            
+            string = self.state.manage_next_step()
             return string
         except:
             if not self.state.get_warning_present():
@@ -364,8 +388,11 @@ class RegistrationForm(Form):
             raise Exception
 
     def deny(self):
+        function_name = 'deny'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
-            # we have to verify the state to know what is the deny for. the variable to check
+           # we have to verify the state to know what is the deny for. the variable to check
             # is possible_next_action
             # another choice can be simply to ask the user what he wants to do.
             good_style = styles.get_good()
@@ -378,6 +405,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def repeatValueCamp(self):
+        function_name = 'repeatValueCamp'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             entities = self.state.get_latest_message()["entities"]
             fields = fn.extract_fields_names_and_values(
@@ -404,22 +434,24 @@ class RegistrationForm(Form):
             raise Exception
 
     def skipCamp(self):
+        function_name = 'skipCamp'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             # we set the actual slot to campare it later with the next slot
             actual_slot_name = self.state.get_next_slot(only_name=True)    # return also if the next slot is required or not
             # we get the next slot without having filled the current slot and we verify if it is the last field
             self.state.set_next_slot_basic()
-            next_slot_name = self.state.get_next_slot(only_name=True)  # return also if the next slot is required or not
+            next_slot_name, next_slot_required = self.state.get_next_slot()  # return also if the next slot is required or not
             if actual_slot_name == next_slot_name:
                 sorry_style = styles.get_sorry()
-                text = "{} this field is the last one remaining.\n".format(
-                    sorry_style)
+                text = f"{sorry_style} this field is the last one remaining."
                 opt = ""
-                if not slot[u.required]:
+                if not next_slot_required:
                     opt = "do you want to submit now?"
                     self.state.set_possible_next_action(u.submit_action)
-                string = ("{} it is required to be able to submit the form" +
-                          "{}\n{}").format(text, self.fillForm(), opt)
+                string = (f"{text} it is required to be able to submit the form.\n" +
+                          f"{self.fillForm()}\n{opt}")
                 return string
             # we got to the next step
             string = self.state.manage_next_step()
@@ -431,6 +463,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def repeatRequiredLabels(self):
+        function_name = 'repeatRequiredLabels'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             sure_style = styles.get_sure()
             required_fields = self.state.get_fields_list(only_required=True)
@@ -446,6 +481,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def repeatOptionalLabels(self):
+        function_name = 'repeatOptionalLabels'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             sure_style = styles.get_sure()
             optional_list = []
@@ -467,6 +505,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def repeatAllLabels(self):
+        function_name = 'repeatAllLabels'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             sure_style = styles.get_sure()
             all_fields = self.state.get_fields_list()
@@ -481,9 +522,12 @@ class RegistrationForm(Form):
             raise Exception
 
     def giveRemainingRequiredLabels(self):
+        function_name = 'giveRemainingRequiredLabels'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             sure_style = styles.get_sure()
-            remaining_required_fields = self.state.get_fields_list(remaining=True)
+            remaining_required_fields = self.state.get_fields_list(only_required=True, remaining=True)
             ans = "{} the remaining required fields are the following {}.".format(
                 sure_style, remaining_required_fields)
             next_step_string = self.state.manage_next_step()
@@ -496,6 +540,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def giveRemainingOptionalLabels(self):
+        function_name = 'giveRemainingOptionalLabels'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             sure_style = styles.get_sure()
             remaining_optional_list = []
@@ -520,6 +567,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def giveAllRemainingLabels(self):
+        function_name = 'giveAllRemainingLabels'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             sure_style = styles.get_sure()
             all_remaining_fields = self.state.get_fields_list(remaining=True)
@@ -535,6 +585,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def verifyValueFilledCamps(self):
+        function_name = 'verifyValueFilledCamps'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             slots = self.state.form_slots()
             filled_string = fn.get_pairs(slots, only_filled=True)
@@ -553,6 +606,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def repeatFormTitle(self):
+        function_name = 'repeatFormTitle'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             form_title = self.state.get_form_title()
             if form_title is None:
@@ -569,6 +625,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def repeatFormExplanation(self):
+        function_name = 'repeatFormExplanation'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             form_desc = self.state.get_form_description()
             if form_desc is None:
@@ -588,9 +647,12 @@ class RegistrationForm(Form):
             raise Exception
 
     def resetAllCamps(self):
+        function_name = 'resetAllCamps'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             if not self.state.get_reset_alarm_enabled():
-                string = "we are about to reset all the field and restart the process.\n are you sure you want to continue with this action?"
+                string = "we are about to reset all the fields and restart the process.\n are you sure you want to continue with this action?"
                 self.state.set_possible_next_action(u.reset_all_fields_action)
                 # we enable the alarm
                 self.state.set_reset_alarm_enabled()
@@ -604,17 +666,18 @@ class RegistrationForm(Form):
             first_found = False
             for slot in slots:
                 slot_name = slot[u.slot_name]
+                required = slot[u.required]
                 slot_value = None
                 if not first_found:     # the first label is put as requested slot
-                    self.state.set_requested_slot(slot_name)
+                    self.state.set_next_slot(slot_name, required)
                     # we go to the filling procedure
                     self.state.filling_procedure(slot_name, slot_value)
                     first_found = True
                 elif slot_name != u.REQUESTED_SLOT:
                     # we go to the filling procedure
                     self.state.filling_procedure(slot_name, slot_value)
-            text = self.state.manage_next_step()
-            string = f"All the fields have been reset, now we restart the process.\n{text}"
+            next_step_string = self.state.manage_next_step()
+            string = f"All the fields have been reset, now we restart the process.\n{next_step_string}"
             return string
         except:
             if not self.state.get_warning_present():
@@ -623,6 +686,9 @@ class RegistrationForm(Form):
             raise Exception
 
     def submitForm(self):
+        function_name = 'submitForm'
+        if u.DEBUG:
+            print(f'{class_name}: {function_name}')
         try:
             # we first verify that all the required fields are filled
             if not self.state.get_all_required_filled():
