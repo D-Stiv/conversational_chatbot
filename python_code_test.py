@@ -58,7 +58,6 @@ with open(path, 'r') as fp_list:
 sentence = data_list[0]
 answer = sentence
 print(6%4)
-"""
 
 now = datetime.now()
 zero = now - now
@@ -72,3 +71,6 @@ try:
     print('level 1')
 except:
     print('Fail')
+"""
+
+print(int(15/2))

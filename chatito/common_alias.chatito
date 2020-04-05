@@ -71,9 +71,13 @@
     booking date
     departure date
     arrival date
+    check-in date
 
 ~[time_type]
     time
+    arrival time
+    check-in time
+    departure time
 
 ~[number_type]
     passemgers
