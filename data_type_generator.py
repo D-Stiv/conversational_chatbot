@@ -146,7 +146,7 @@ def generate_phone_number():
 
 def generate_email(name):
     try:
-        name = name.replace(' ', '.')
+        name = name.replace(' ', '.').lower()
         # format is first_part@damain_name.extension
         domain_names = ['yahoo', 'gmail', 'hotmail', 'polimi', 'outlook']
         extensions = ['cm', 'com', 'uk', 'it', 'fr']

@@ -149,7 +149,9 @@ class RegistrationForm(Form):
             slot_name_list, slot_value_list = fn.extract_fields_names_and_values(
                 entities)
             # we first verify if each slot_name corresponds to a field in the dorm
-            self.state.all_fields_present(slot_name_list)
+            correct, string = self.state.all_fields_present(slot_name_list)
+            if not correct:
+                return string
             """we extract now the spelling field and we insert them in the spelling list
             after that we fill the generic fields before passing the floor to 
             fillSpellingCamp to complete the fields in spelling list."""
@@ -313,7 +315,9 @@ class RegistrationForm(Form):
             slot_name_list = fn.extract_fields_names_and_values(
                 entities, only_names=True)
             # we first verify if each slot_name corresponds to a field in the dorm
-            self.state.all_fields_present(slot_name_list)
+            correct, string = self.state.all_fields_present(slot_name_list)
+            if not correct:
+                return string
             good_style = styles.get_good()
             string = f"{good_style}, "
             for name in slot_name_list:
@@ -345,7 +349,9 @@ class RegistrationForm(Form):
             slot_name_list = fn.extract_fields_names_and_values(
                 entities, only_names=True)
             # we first verify if each slot_name corresponds to a field in the dorm
-            self.state.all_fields_present(slot_name_list)
+            correct, string = self.state.all_fields_present(slot_name_list)
+            if not correct:
+                return string
             length = len(slot_name_list)
             string = ''
             for index in range(length):

@@ -37,6 +37,7 @@ class DialogueManager:
         self.states_list = []
         self.total_iterations = randint(1, u.MAX_DIALOGUES)
         self.iteration_number = 0
+        self.number_fields = 0
 
     def create_form_bots(self):
         function_name = 'create_form_bots'
@@ -60,6 +61,7 @@ class DialogueManager:
             # we start a session
             self.in_session = True
             self.current_bot = self.bot_manager.get_bot(bot_tag)
+            self.number_fields = len(self.current_bot.get_state().form_slots()) - 1
             if u.simulation_enabled:
                 text_fields = self.get_text_fields()
                 choices_lists = self.get_choices_lists()
@@ -137,7 +139,7 @@ class DialogueManager:
                     dialogue_state = self.get_dialogue_state()
                     a = self.user.get_answer(dialogue_state)
                     """we insert a control to be be able to manually stop the simulation"""
-                    control = self.counter % u.CONTROL_FREQUENCE
+                    control = self.counter % min(2*self.number_fields, u.CONTROL_FREQUENCE)
                     if self.counter > 1 and control in [0, 1]:
                         answer = input('[Control Message: Do you want to proceed with the simulation?\t0 - No, 1 - Yes]\n[Your response: ')
                         if answer != '1':
@@ -163,7 +165,7 @@ class DialogueManager:
                         self.after_submit()
 
                     # we frequently show the situation of the fields
-                    notification = self.counter % u.NOTIFICATION_FREQUENCE
+                    notification = self.counter % min(2*self.number_fields, u.NOTIFICATION_FREQUENCE)
                     if notification in [0,1] and self.in_session:
                         text = self.current_bot.get_state().get_slots_value()
                         self.chatbot_view.show_notifications(text)
@@ -178,6 +180,11 @@ class DialogueManager:
                     print('Log written')
         except:
             print('Problem during the dialogue')
+            if u.write_log:
+                self.chatbot_view.show_end_of_conversation(self.counter)
+                self.log_writer.start()
+                if u.DEBUG:
+                    print('Log written')
             raise Exception
 
     def after_submit(self):
@@ -200,8 +207,9 @@ class DialogueManager:
                 restart = None
                 while restart is None:
                     text = 'do you want to start a new session ?\t1- Yes\t0- No\n>>> Response: '
-                    if simulation_enabled:
-                        answer = self.user.get_answer(text)
+                    if u.simulation_enabled:
+                        dialogue_state = self.get_dialogue_state()
+                        answer = self.user.get_answer(dialogue_state)
                     else:
                         answer = input(text)
                     restart = fn.convert_to_int(answer)

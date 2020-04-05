@@ -117,6 +117,9 @@ def verify_compatibility_time(value):
         # the format is HH:MM
         format_string = ('the acceptable formats are the following: <HH:MM>, <HHMM>, <HH:MM am>, ' +
                          '<H>, <H am>, <H:MM>, <H:MM am>')
+        # the maximum length is for hh:mm o_clock
+        if len(value) > len('hh:mm o_clock'):
+            return False, ''
         # we accept <HH:MM> and <HHMM>
         hh = value[:2]
         mm = value[-2:]
@@ -178,7 +181,8 @@ def verify_compatibility_time(value):
             return True, text
 
         # we discar all the rest
-        text = "the time you inserted is not valid.\n{}".format(format_string)
+        text = f"the time you inserted is not valid.\n{format_string}"
+        return False, text
     except:
         print(
             f'Fail faile to verify the compatibility of the value {value} for the type time')

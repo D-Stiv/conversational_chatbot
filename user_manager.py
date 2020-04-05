@@ -255,7 +255,7 @@ class User:
 
     def action_state_01(self):
         try:
-            if self.counter <= 0:
+            if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
                 intent_name = cts.complete_field
                 return self.construct_answer(intent_name)
             prohibited_intents = [u.spelling_action]
@@ -266,7 +266,7 @@ class User:
         
     def action_state_02(self):
         try:
-            if self.counter <= 0:
+            if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
                 intent_name = u.spelling_action
                 return self.construct_answer(intent_name)
             prohibited_intents = [cts.complete_field]
@@ -277,7 +277,7 @@ class User:
         
     def action_state_03(self):
         try:
-            if self.counter <= 0:
+            if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
                 intent_name = cts.affirm
                 return self.construct_answer(intent_name)
             # we have only two possibilities: 0- affirm, 1-deny.
@@ -293,7 +293,7 @@ class User:
         
     def action_state_04(self):
         try:
-            if self.counter <= 0:
+            if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
                 intent_name = cts.complete_field
                 return self.construct_answer(intent_name)
             prohibited_intents = [u.spelling_action]
@@ -304,7 +304,7 @@ class User:
         
     def action_state_05(self):
         try:
-            if self.counter <= 0:
+            if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
                 intent_name = cts.complete_field
                 return self.construct_answer(intent_name)
             prohibited_intents = [u.spelling_action]
@@ -315,7 +315,7 @@ class User:
         
     def action_state_06(self):
         try:
-            if self.counter <= 0:
+            if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
                 intent_name = cts.submit_form
                 return self.construct_answer(intent_name)
             prohibited_intents = [u.spelling_action]
@@ -326,7 +326,7 @@ class User:
         
     def action_state_07(self):
         try:
-            if self.counter <= 0:
+            if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
                 intent_name = cts.submit_form
                 return self.construct_answer(intent_name)
             prohibited_intents = [u.spelling_action]
@@ -349,7 +349,7 @@ class User:
         
     def action_state_09(self):
         try:
-            if self.counter <= 0:
+            if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
                 intent_name = cts.deny
                 return self.construct_answer(intent_name)
             prohibited_intents = [u.spelling_action]
@@ -360,7 +360,7 @@ class User:
           
     def action_state_10(self):
         try:
-            if self.counter <= 0:
+            if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
                 intent_name = u.spelling_action
                 return self.construct_answer(intent_name)
             prohibited_intents = [cts.complete_field]
@@ -371,7 +371,7 @@ class User:
          
     def action_state_11(self):
         try:
-            if self.counter <= 0 or self.remaining_spelling_interruptions <= 0:
+            if self.counter <= 0 or self.remaining_spelling_interruptions <= 0 or len(self.active_list) <= len(cts.essential_intents):
                 intent_name = u.spelling_action
                 return self.construct_answer(intent_name)
             prohibited_intents = [cts.complete_field]
@@ -382,7 +382,7 @@ class User:
          
     def action_state_12(self):
         try:
-            if self.counter <= 0 or self.remaining_spelling_interruptions <= 0:
+            if self.counter <= 0 or self.remaining_spelling_interruptions <= 0 or len(self.active_list) <= len(cts.essential_intents):
                 intent_name = u.spelling_action
                 return self.construct_answer(intent_name)
             prohibited_intents = [cts.complete_field]
@@ -393,7 +393,7 @@ class User:
          
     def action_state_13(self):
         try:
-            if self.counter <= 0:
+            if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
                 intent_name = cts.affirm
                 return self.construct_answer(intent_name)
             # we have only two possibilities: 0- affirm, 1-deny.

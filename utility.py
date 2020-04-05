@@ -1,13 +1,13 @@
 """At the very end of this file there is a module to train the model for the 
 Conversational Chatbot. We only have to run this file for it to be done."""
 
-DEBUG = True
+DEBUG = False
 
 # maximum number of dialogues
-MAX_DIALOGUES = 10
+MAX_DIALOGUES = 5
 
 # frequency control: interval for being able to manually stop the simulation in term of number of message exchanged
-CONTROL_FREQUENCE = 30
+CONTROL_FREQUENCE = 20
 
 # frequence to see the change in the slots in term of interactions
 NOTIFICATION_FREQUENCE = 5
@@ -47,7 +47,7 @@ write_log = True
 write_report = True
 
 # whether or not we use the simulator
-simulation_enabled = False
+simulation_enabled = True
 
 # URL of the form to fill
 #form_url = "http://localhost/ecobusiness/new-project-form/"

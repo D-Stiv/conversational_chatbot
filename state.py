@@ -465,7 +465,7 @@ class State:
             if slot_value not in choice_list:
                 sorry_style = styles.get_sorry()
                 please_style = styles.get_please()
-                string = (f"{sorry_style} the choice_value {choice_value} is not valid for the field {slot_name}" +
+                string = (f"{sorry_style} the choice_value {slot_value} is not valid for the field {slot_name}" +
                         f"{please_style} choose one in the following list: {choice_list}")
                 return None, string
             # we are sure that the choice of the user is in the list of choices
@@ -826,8 +826,10 @@ class State:
             if slot_name == u.REQUESTED_SLOT:
                 # theoretically should never occur
                 return None
-            # we update the next field
-            self.set_next_slot_basic()
+            # we update the next field only if the the field that have comleted is the one supposed to be completed
+            field_to_be_completed = self.get_next_slot(only_name=True)
+            if slot_name == field_to_be_completed:
+                self.set_next_slot_basic()
             # we update the statistics about the number of required fields remaining
             slot = self.get_slot(slot_name)
             if not slot[u.required]:
@@ -1005,6 +1007,8 @@ class State:
         if u.DEBUG:
             print(f'{class_name}: {function_name}')
         try:
+            # returns True if all the fields are present and False otherwise. In ca of false retruns also the next_step string
+            string =''
             for slot_name in slot_name_list:
                 present = fn.verify_presence(slot_name, self.form_slots(), only_presence=True)
                 if not present:
@@ -1015,7 +1019,8 @@ class State:
                             f" the following: {self.get_fields_list()}\n{please_style} precise the action you want to perform {thanks_style}")
                     next_step_string = self.manage_next_step()
                     string = f'{text}\n{next_step_string}'
-                    return string
+                    return False, string
+            return True, string
         except:
             if not self.get_warning_present():
                 print('ERROR: Fail to verify presence of all fields')
