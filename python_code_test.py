@@ -9,9 +9,10 @@ import simulation_constants as cts
 import interaction_files_keys as ifk
 import json
 from random import randint
-
+from datetime import datetime
 from selenium import webdriver
 
+"""
 form_element = webdriver.Edge()
 form_element.minimize_window()
 # webPath = "http://www.polimi.it"
@@ -33,7 +34,7 @@ for form_element in form_elements:
     print('not found')
     bot_tag = form_element.get_attribute('bot-tag')
     print(bot_tag)
-"""
+
 slots = []
 constructs = {
                 "text": None,
@@ -42,8 +43,7 @@ constructs = {
                     "slots": slots
                 }
             }
-my_state = State(form_element=form_element, constructs=constructs)"""
-"""
+my_state = State(form_element=form_element, constructs=constructs)
 my_list = [1, 2, 3, 4, 5]
 print(my_list)
 my_list.remove(3)
@@ -59,3 +59,16 @@ sentence = data_list[0]
 answer = sentence
 print(6%4)
 """
+
+now = datetime.now()
+zero = now - now
+print(f'zero is: {zero}')
+try:
+    days = 0
+    try:
+        days = zero.days
+    except:
+        print('level 2')
+    print('level 1')
+except:
+    print('Fail')

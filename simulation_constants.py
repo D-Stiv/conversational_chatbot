@@ -2,6 +2,9 @@
 
 import utility as u
 
+#decide to start a new session from terminal or not
+use_terminal = True
+
 # maximum number of spelling interruptions
 MAX_SPELLING_INTERRUPTIONS = 2
 

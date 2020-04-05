@@ -1,0 +1,409 @@
+HEADER
+
+	Date and Hour: 2020-04-05 18:10:19.347494
+
+SUMMARY
+
+	There are 3 completed sessions
+
+REPORT LOG
+
+
+0.	--- DIALOGUE 1 ---
+
+1.	I- Form element
+
+2.		[browser_name: firefox - page_title: HYPERCLINIC – Have a new vision of the world - URL: http://localhost/ecobusiness/]
+
+3.	II- Slots
+
+4.		[slot_name: first name - slot_value: Elizabeth - required: True - spelling: True - description: your first name]
+5.		[slot_name: password - slot_value: 3pHarperh - required: True - spelling: False - description: None]
+6.		[slot_name: email address - slot_value: robertbi@polimi.com - required: False - spelling: False - description: the email we should use to contact you]
+7.		[slot_name: birthday - slot_value: 23-11-1960 - required: False - spelling: False - description: None]
+8.		[slot_name: arrival time - slot_value: 00:00 - required: False - spelling: False - description: the time you expect to arrive at the conference]
+9.		[Web Form info -- title: registration form sample - description: presents various fields types in order to test the different kinds of input we can have and different actions]
+
+10.	III-Messages
+
+11.		Message_0
+12.			Text: what is the value inserted for first name?
+13.			Intent: [name: verifyValueFilledCamps - confidence: 0.9861]
+14.			Entities: [entity: input_field, value: first name]
+15.		Message_1
+16.			Text: E
+17.			Intent: [name: spelling - confidence: 0.9896]
+18.			Entities: [entity: spelling, value: E]
+19.		Message_2
+20.			Text: l
+21.			Intent: [name: spelling - confidence: 0.9947]
+22.			Entities: [entity: spelling, value: l]
+23.		Message_3
+24.			Text: i
+25.			Intent: [name: spelling - confidence: 0.9733]
+26.			Entities: [entity: spelling, value: i]
+27.		Message_4
+28.			Text: z
+29.			Intent: [name: spelling - confidence: 0.9847]
+30.			Entities: [entity: spelling, value: z]
+31.		Message_5
+32.			Text: a
+33.			Intent: [name: spelling - confidence: 0.9757]
+34.			Entities: [entity: spelling, value: a]
+35.		Message_6
+36.			Text: b
+37.			Intent: [name: spelling - confidence: 0.9934]
+38.			Entities: [entity: spelling, value: b]
+39.		Message_7
+40.			Text: e
+41.			Intent: [name: spelling - confidence: 0.9896]
+42.			Entities: [entity: spelling, value: e]
+43.		Message_8
+44.			Text: t
+45.			Intent: [name: spelling - confidence: 0.7640]
+46.			Entities: 
+47.		Message_9
+48.			Text: h
+49.			Intent: [name: spelling - confidence: 0.9961]
+50.			Entities: [entity: spelling, value: h]
+51.		Message_10
+52.			Text: halt
+53.			Intent: [name: spelling - confidence: 0.9895]
+54.			Entities: [entity: spelling, value: halt]
+55.		Message_11
+56.			Text: i would like to insert the value 3pHarperh
+57.			Intent: [name: modifyValueGenericCamp - confidence: 0.9987]
+58.			Entities: [entity: input_value, value: 3pHarperh]
+59.		Message_12
+60.			Text: email address has value robertbi@polimi.com
+61.			Intent: [name: fillGenericCamp - confidence: 0.9864]
+62.			Entities: [entity: input_field, value: email address], [entity: input_value, value: robertbi@polimi.com]
+63.		Message_13
+64.			Text: the birthday is May 11 1972
+65.			Intent: [name: fillGenericCamp - confidence: 0.9985]
+66.			Entities: [entity: input_field, value: birthday], [entity: input_value, value: May]
+67.		Message_14
+68.			Text: 09/19/1996 should be insert for the field birthday
+69.			Intent: [name: fillGenericCamp - confidence: 0.7815]
+70.			Entities: [entity: input_value, value: 09/19/1996 should be], [entity: input_field, value: birthday]
+71.		Message_15
+72.			Text: my birthday is april 30 1967
+73.			Intent: [name: fillGenericCamp - confidence: 0.9979]
+74.			Entities: [entity: input_field, value: birthday], [entity: input_value, value: is april 30 1967]
+75.		Message_16
+76.			Text: for the birthday i want to insert 23 november 1960
+77.			Intent: [name: modifyValueGenericCamp - confidence: 0.7596]
+78.			Entities: [entity: input_field, value: birthday], [entity: input_value, value: 23 november 1960]
+79.		Message_17
+80.			Text: for the field arrival time the value is 4 pm
+81.			Intent: [name: fillGenericCamp - confidence: 0.9975]
+82.			Entities: [entity: input_field, value: time], [entity: input_value, value: 4 pm]
+83.		Message_18
+84.			Text: fill arrival time with 8:45 o_clock
+85.			Intent: [name: fillForm - confidence: 0.5950]
+86.			Entities: [entity: input_value, value: arrival time with 8:45 o_clock]
+87.		Message_19
+88.			Text: 01.56 o_clock for the field arrival time
+89.			Intent: [name: fillGenericCamp - confidence: 0.9892]
+90.			Entities: [entity: input_value, value: 01.56 o_clock], [entity: input_field, value: time]
+91.		Message_20
+92.			Text: here is the value 01 
+93.			Intent: [name: fillGenericCamp - confidence: 0.9411]
+94.			Entities: [entity: input_value, value: here], [entity: input_value, value: 01]
+95.		Message_21
+96.			Text: i want to insert the value 1:2 
+97.			Intent: [name: modifyValueGenericCamp - confidence: 0.9831]
+98.			Entities: [entity: input_value, value: 1:2]
+99.		Message_22
+100.			Text: arrival time 09 am
+101.			Intent: [name: fillGenericCamp - confidence: 0.9858]
+102.			Entities: [entity: input_field, value: time], [entity: input_value, value: 09 am]
+103.		Message_23
+104.			Text: value 06.8 o_clock for arrival time
+105.			Intent: [name: fillGenericCamp - confidence: 0.9963]
+106.			Entities: [entity: input_value, value: 06.8 o_clock for arrival], [entity: input_field, value: time]
+107.		Message_24
+108.			Text: arrival time is 0:8 pm
+109.			Intent: [name: fillGenericCamp - confidence: 0.9977]
+110.			Entities: [entity: input_field, value: time], [entity: input_value, value: 0:8 pm]
+111.		Message_25
+112.			Text: 9:39 o_clock is my arrival time
+113.			Intent: [name: fillGenericCamp - confidence: 0.9966]
+114.			Entities: [entity: input_value, value: 9:39 o_clock], [entity: input_field, value: time]
+115.		Message_26
+116.			Text: arrival time is 13.9 o_clock
+117.			Intent: [name: fillGenericCamp - confidence: 0.9973]
+118.			Entities: [entity: input_field, value: time]
+119.		Message_27
+120.			Text: 16:5 o_clock for the field arrival time
+121.			Intent: [name: fillGenericCamp - confidence: 0.9894]
+122.			Entities: [entity: input_value, value: 16:5 o_clock], [entity: input_field, value: time]
+123.		Message_28
+124.			Text: for the field arrival time the value is 0.3 
+125.			Intent: [name: fillGenericCamp - confidence: 0.9985]
+126.			Entities: [entity: input_field, value: time], [entity: input_value, value: 0.3]
+127.		Message_29
+128.			Text: 01 pm is the arrival time
+129.			Intent: [name: fillGenericCamp - confidence: 0.9925]
+130.			Entities: [entity: input_value, value: 01 pm], [entity: input_field, value: time]
+131.		Message_30
+132.			Text: i want to insert the value 0 
+133.			Intent: [name: modifyValueGenericCamp - confidence: 0.9949]
+134.			Entities: [entity: input_value, value: 0]
+135.		Message_31
+136.			Text: i want to submit
+137.			Intent: [name: submitForm - confidence: 0.9921]
+138.			Entities: 
+
+
+139.	--- DIALOGUE 2 ---
+
+140.	I- Form element
+
+141.		[browser_name: chrome - page_title: HYPERCLINIC – Have a new vision of the world - URL: http://localhost/ecobusiness/]
+
+142.	II- Slots
+
+143.		[slot_name: first name - slot_value: Thomas - required: True - spelling: True - description: your first name]
+144.		[slot_name: password - slot_value: #Teiki4b4 - required: True - spelling: False - description: None]
+145.		[slot_name: email address - slot_value: melokuhle@gmail.uk - required: False - spelling: False - description: the email we should use to contact you]
+146.		[slot_name: birthday - slot_value: 09-10-1928 - required: False - spelling: False - description: None]
+147.		[slot_name: arrival time - slot_value: 15:54 - required: False - spelling: False - description: the time you expect to arrive at the conference]
+148.		[Web Form info -- title: registration form sample - description: presents various fields types in order to test the different kinds of input we can have and different actions]
+
+149.	III-Messages
+
+150.		Message_0
+151.			Text: yes, go on
+152.			Intent: [name: affirm - confidence: 0.8736]
+153.			Entities: [entity: input_value, value: on]
+154.		Message_1
+155.			Text: T
+156.			Intent: [name: spelling - confidence: 0.7640]
+157.			Entities: [entity: input_value, value: T]
+158.		Message_2
+159.			Text: h
+160.			Intent: [name: spelling - confidence: 0.9961]
+161.			Entities: [entity: spelling, value: h]
+162.		Message_3
+163.			Text: o
+164.			Intent: [name: spelling - confidence: 0.9820]
+165.			Entities: [entity: spelling, value: o]
+166.		Message_4
+167.			Text: m
+168.			Intent: [name: spelling - confidence: 0.9900]
+169.			Entities: [entity: spelling, value: m]
+170.		Message_5
+171.			Text: a
+172.			Intent: [name: spelling - confidence: 0.9757]
+173.			Entities: [entity: spelling, value: a]
+174.		Message_6
+175.			Text: s
+176.			Intent: [name: spelling - confidence: 0.9913]
+177.			Entities: [entity: spelling, value: s]
+178.		Message_7
+179.			Text: halt
+180.			Intent: [name: spelling - confidence: 0.9895]
+181.			Entities: [entity: spelling, value: halt]
+182.		Message_8
+183.			Text: this is the value #Teiki4b4
+184.			Intent: [name: fillGenericCamp - confidence: 0.9752]
+185.			Entities: [entity: input_value, value: #Teiki4b4]
+186.		Message_9
+187.			Text: email address: melokuhle@gmail.uk
+188.			Intent: [name: fillGenericCamp - confidence: 0.9639]
+189.			Entities: [entity: input_field, value: email address], [entity: input_value, value: melokuhle@gmail.uk]
+190.		Message_10
+191.			Text: 09-10-1928 is my birthday
+192.			Intent: [name: fillGenericCamp - confidence: 0.9988]
+193.			Entities: [entity: input_value, value: 09-10-1928], [entity: input_field, value: birthday]
+194.		Message_11
+195.			Text: i want to insert the value 02 am
+196.			Intent: [name: modifyValueGenericCamp - confidence: 0.9922]
+197.			Entities: [entity: input_value, value: 02 am]
+198.		Message_12
+199.			Text: here is the value for the field: 01.7 am
+200.			Intent: [name: fillGenericCamp - confidence: 0.9947]
+201.			Entities: [entity: input_value, value: here], [entity: input_value, value: 01.7 am]
+202.		Message_13
+203.			Text: may i complete arrival time with 0.0 pm?
+204.			Intent: [name: fillForm - confidence: 0.8435]
+205.			Entities: [entity: input_value, value: may], [entity: input_value, value: arrival time with 0.0 pm]
+206.		Message_14
+207.			Text: the value, here it is 08.8 o_clock
+208.			Intent: [name: fillGenericCamp - confidence: 0.9397]
+209.			Entities: 
+210.		Message_15
+211.			Text: here it is 04 am
+212.			Intent: [name: fillGenericCamp - confidence: 0.7090]
+213.			Entities: [entity: input_value, value: 04 am]
+214.		Message_16
+215.			Text: 05:58 am for arrival time
+216.			Intent: [name: fillGenericCamp - confidence: 0.9971]
+217.			Entities: [entity: input_value, value: 05:58 am for arrival], [entity: input_field, value: time]
+218.		Message_17
+219.			Text: for the arrival time i want to insert 17:07 o_clock
+220.			Intent: [name: modifyValueGenericCamp - confidence: 0.5681]
+221.			Entities: [entity: input_field, value: time], [entity: input_value, value: 17:07 o_clock]
+222.		Message_18
+223.			Text: 1:03 am should be insert for the field arrival time
+224.			Intent: [name: fillGenericCamp - confidence: 0.7343]
+225.			Entities: [entity: input_value, value: 1:03 am should be], [entity: input_field, value: time]
+226.		Message_19
+227.			Text: 02 am is my arrival time
+228.			Intent: [name: fillGenericCamp - confidence: 0.9960]
+229.			Entities: [entity: input_value, value: 02 am], [entity: input_field, value: time]
+230.		Message_20
+231.			Text: here is the value 12 o_clock
+232.			Intent: [name: fillGenericCamp - confidence: 0.9476]
+233.			Entities: [entity: input_value, value: here], [entity: input_value, value: 12 o_clock]
+234.		Message_21
+235.			Text: 6 am for arrival time
+236.			Intent: [name: fillGenericCamp - confidence: 0.9918]
+237.			Entities: [entity: input_value, value: 6 am for arrival], [entity: input_field, value: time]
+238.		Message_22
+239.			Text: for the arrival time i want to insert 7 o_clock
+240.			Intent: [name: modifyValueGenericCamp - confidence: 0.4531]
+241.			Entities: [entity: input_field, value: time], [entity: input_value, value: 7 o_clock]
+242.		Message_23
+243.			Text: for arrival time insert 11:18 am
+244.			Intent: [name: fillForm - confidence: 0.7630]
+245.			Entities: [entity: input_field, value: time], [entity: input_value, value: 11:18 am]
+246.		Message_24
+247.			Text: 1 am for arrival time
+248.			Intent: [name: fillGenericCamp - confidence: 0.9918]
+249.			Entities: [entity: input_value, value: 1 am for arrival], [entity: input_field, value: time]
+250.		Message_25
+251.			Text: arrival time 19:3 o_clock
+252.			Intent: [name: fillGenericCamp - confidence: 0.9904]
+253.			Entities: [entity: input_value, value: arrival time 19:3 o_clock]
+254.		Message_26
+255.			Text: 3:26  is my arrival time
+256.			Intent: [name: fillGenericCamp - confidence: 0.9982]
+257.			Entities: [entity: input_value, value: 3:26], [entity: input_field, value: time]
+258.		Message_27
+259.			Text: the arrival time is 02 pm
+260.			Intent: [name: fillGenericCamp - confidence: 0.9925]
+261.			Entities: [entity: input_field, value: time], [entity: input_value, value: 02 pm]
+262.		Message_28
+263.			Text: i would like to insert the value 03.54 pm
+264.			Intent: [name: modifyValueGenericCamp - confidence: 0.9541]
+265.			Entities: [entity: input_value, value: 03.54 pm]
+266.		Message_29
+267.			Text: submit
+268.			Intent: [name: submitForm - confidence: 0.9997]
+269.			Entities: 
+
+
+270.	--- DIALOGUE 3 ---
+
+271.	I- Form element
+
+272.		[browser_name: chrome - page_title: HYPERCLINIC – Have a new vision of the world - URL: http://localhost/ecobusiness/]
+
+273.	II- Slots
+
+274.		[slot_name: first name - slot_value: Susan - required: True - spelling: True - description: your first name]
+275.		[slot_name: password - slot_value: Blessing - required: True - spelling: False - description: None]
+276.		[slot_name: email address - slot_value: ajiez@yahoo.fr - required: False - spelling: False - description: the email we should use to contact you]
+277.		[slot_name: birthday - slot_value: 15-11-1963 - required: False - spelling: False - description: None]
+278.		[slot_name: arrival time - slot_value: 09:01 - required: False - spelling: False - description: the time you expect to arrive at the conference]
+279.		[Web Form info -- title: registration form sample - description: presents various fields types in order to test the different kinds of input we can have and different actions]
+
+280.	III-Messages
+
+281.		Message_0
+282.			Text: could you kindly provide me with the obligatory fields?
+283.			Intent: [name: repeatRequiredLabels - confidence: 1.0000]
+284.			Entities: 
+285.		Message_1
+286.			Text: S
+287.			Intent: [name: spelling - confidence: 0.9913]
+288.			Entities: [entity: spelling, value: S]
+289.		Message_2
+290.			Text: u
+291.			Intent: [name: spelling - confidence: 0.9922]
+292.			Entities: [entity: spelling, value: u]
+293.		Message_3
+294.			Text: s
+295.			Intent: [name: spelling - confidence: 0.9913]
+296.			Entities: [entity: spelling, value: s]
+297.		Message_4
+298.			Text: a
+299.			Intent: [name: spelling - confidence: 0.9757]
+300.			Entities: [entity: spelling, value: a]
+301.		Message_5
+302.			Text: n
+303.			Intent: [name: spelling - confidence: 0.9829]
+304.			Entities: [entity: spelling, value: n]
+305.		Message_6
+306.			Text: finished
+307.			Intent: [name: spelling - confidence: 0.9812]
+308.			Entities: [entity: spelling, value: finished]
+309.		Message_7
+310.			Text: Mattia for password
+311.			Intent: [name: fillGenericCamp - confidence: 0.9995]
+312.			Entities: [entity: input_value, value: Mattia], [entity: input_field, value: for], [entity: input_field, value: password]
+313.		Message_8
+314.			Text: for the field password the value is Blessing
+315.			Intent: [name: fillGenericCamp - confidence: 0.9990]
+316.			Entities: [entity: input_field, value: password], [entity: input_value, value: Blessing]
+317.		Message_9
+318.			Text: avmaui2q@gmail.fr for email address
+319.			Intent: [name: fillGenericCamp - confidence: 0.9937]
+320.			Entities: [entity: input_field, value: email address]
+321.		Message_10
+322.			Text: the value is ajiez@yahoo.fr
+323.			Intent: [name: fillGenericCamp - confidence: 0.9993]
+324.			Entities: [entity: input_value, value: ajiez@yahoo.fr]
+325.		Message_11
+326.			Text: june 28 1963 should be insert for the field birthday
+327.			Intent: [name: fillGenericCamp - confidence: 0.5958]
+328.			Entities: [entity: input_value, value: june 28 1963 should be], [entity: input_field, value: birthday]
+329.		Message_12
+330.			Text: here is the value november 13 2019
+331.			Intent: [name: fillGenericCamp - confidence: 0.9886]
+332.			Entities: [entity: input_value, value: here], [entity: input_value, value: 13 2019]
+333.		Message_13
+334.			Text: november 15 1963 is my birthday
+335.			Intent: [name: fillGenericCamp - confidence: 0.9983]
+336.			Entities: [entity: input_value, value: november 15 1963], [entity: input_field, value: birthday]
+337.		Message_14
+338.			Text: 0 o_clock should be insert for the field arrival time
+339.			Intent: [name: fillForm - confidence: 0.5168]
+340.			Entities: [entity: input_value, value: 0 o_clock should be], [entity: input_field, value: time]
+341.		Message_15
+342.			Text: arrival time 12 o_clock
+343.			Intent: [name: fillGenericCamp - confidence: 0.9699]
+344.			Entities: [entity: input_value, value: arrival], [entity: input_field, value: time], [entity: input_value, value: 12 o_clock]
+345.		Message_16
+346.			Text: the value 6  is for arrival time
+347.			Intent: [name: fillGenericCamp - confidence: 0.9980]
+348.			Entities: [entity: input_value, value: 6], [entity: input_value, value: for], [entity: input_field, value: time]
+349.		Message_17
+350.			Text: here is the value for the field: 05 am
+351.			Intent: [name: fillGenericCamp - confidence: 0.9792]
+352.			Entities: [entity: input_value, value: here], [entity: input_value, value: 05 am]
+353.		Message_18
+354.			Text: 07 pm for the field arrival time
+355.			Intent: [name: fillGenericCamp - confidence: 0.9805]
+356.			Entities: [entity: input_value, value: 07 pm], [entity: input_field, value: time]
+357.		Message_19
+358.			Text: here is the value for the field: 2.1 o_clock
+359.			Intent: [name: fillGenericCamp - confidence: 0.9897]
+360.			Entities: [entity: input_value, value: here]
+361.		Message_20
+362.			Text: for the field arrival time the value i want to insert is 9 am
+363.			Intent: [name: fillGenericCamp - confidence: 0.8668]
+364.			Entities: [entity: input_field, value: time], [entity: input_value, value: 9 am]
+365.		Message_21
+366.			Text: here it is 9:1 am
+367.			Intent: [name: fillGenericCamp - confidence: 0.9336]
+368.			Entities: [entity: input_value, value: 9:1 am]
+369.		Message_22
+370.			Text: submit the form
+371.			Intent: [name: submitForm - confidence: 0.9997]
+372.			Entities: 
+
+
+

@@ -341,7 +341,11 @@ class User:
         is to open a new dialogue in order to have more samples."""
         try:
             number = randint(0, 10)
-            answer = f'{number}'
+            if cts.use_terminal:
+                text = '\n[ALERT: Would you like to start a new session ?\t1- Yes\t0- No\n>>> Response: '
+                answer = input(text)
+            else:
+                answer = f'{number}'
             return answer
         except:
             print('Fail to get an answer for the state "08"')

@@ -28,8 +28,8 @@ class DialogueManager:
         self.driver = None
         self.log_writer = w.LogWriter()
         self.counter = 0
-        self.user_view = ViewChatPannel(self.log_writer, u.user_marker)
-        self.chatbot_view = ViewChatPannel(self.log_writer, u.chatbot_marker)
+        self.user_view = None
+        self.chatbot_view = None
         self.bot_manager = choice_bot.BotsManager()
         self.current_bot = None
         self.in_session = False
@@ -39,7 +39,13 @@ class DialogueManager:
         self.iteration_number = 0
         self.number_fields = 0
 
+    def initialize_views(self):
+        self.user_view = ViewChatPannel(self.log_writer, u.user_marker)
+        self.chatbot_view = ViewChatPannel(self.log_writer, u.chatbot_marker)
+
     def create_form_bots(self):
+        # the first think we do is to initialize the views
+        self.initialize_views()
         function_name = 'create_form_bots'
         if u.DEBUG:
             print(f'{class_name}: {function_name}')
@@ -139,7 +145,7 @@ class DialogueManager:
                     dialogue_state = self.get_dialogue_state()
                     a = self.user.get_answer(dialogue_state)
                     """we insert a control to be be able to manually stop the simulation"""
-                    control = self.counter % min(2*self.number_fields, u.CONTROL_FREQUENCE)
+                    control = self.counter % min(u.COEFF*self.number_fields, u.CONTROL_FREQUENCE)
                     if self.counter > 1 and control in [0, 1]:
                         answer = input('[Control Message: Do you want to proceed with the simulation?\t0 - No, 1 - Yes]\n[Your response: ')
                         if answer != '1':
@@ -163,28 +169,21 @@ class DialogueManager:
                         self.counter += 1
                     else:
                         self.after_submit()
-
-                    # we frequently show the situation of the fields
-                    notification = self.counter % min(2*self.number_fields, u.NOTIFICATION_FREQUENCE)
-                    if notification in [0,1] and self.in_session:
-                        text = self.current_bot.get_state().get_slots_value()
-                        self.chatbot_view.show_notifications(text)
+                    if self.in_session:
+                        # we frequently show the situation of the fields
+                        notification = self.counter % min(u.COEFF*self.number_fields, u.NOTIFICATION_FREQUENCE)
+                        if notification in [0,1] and self.in_session:
+                            text = self.current_bot.get_state().get_slots_value()
+                            self.chatbot_view.show_notifications(text)
                 else:
                     text = 'you did not insert any value'
                     self.chatbot_view.show_text(self.counter, text)
                     self.counter += 1
-            if u.write_log:
-                self.chatbot_view.show_end_of_conversation(self.counter)
-                self.log_writer.start()
-                if u.DEBUG:
-                    print('Log written')
+            if a == u.stop:
+                self.write_log()
         except:
             print('Problem during the dialogue')
-            if u.write_log:
-                self.chatbot_view.show_end_of_conversation(self.counter)
-                self.log_writer.start()
-                if u.DEBUG:
-                    print('Log written')
+            self.write_log()
             raise Exception
 
     def after_submit(self):
@@ -199,20 +198,20 @@ class DialogueManager:
             good_style = styles.get_good()
             text = f"{good_style} you have been moved to the page with title {newPageTitle}"
             self.chatbot_view.show_text(self.counter, text)
-            self.counter += 1
+            self.write_log()
             # we add the tate to the list
             self.states_list.append(self.current_bot.get_state())
             restart = 1
             if u.interactive_enabled or u.simulation_enabled:
                 restart = None
                 while restart is None:
-                    text = 'do you want to start a new session ?\t1- Yes\t0- No\n>>> Response: '
+                    text = '\n[ALERT: Would you like to start a new session ?\t1- Yes\t0- No\n>>> Response: '
                     if u.simulation_enabled:
                         dialogue_state = self.get_dialogue_state()
                         answer = self.user.get_answer(dialogue_state)
                     else:
                         answer = input(text)
-                    restart = fn.convert_to_int(answer)
+                    restart = int(fn.convert_to_int(answer))
                     if restart is None:
                         sorry_style = styles.get_sorry()
                         print(f'{sorry_style} your input is not valid')
@@ -220,11 +219,11 @@ class DialogueManager:
                 good_style = styles.get_good()
                 print(f'{good_style} we are going to start a new session')
                 self.restart = True
+                # in any case here in_session should be False to stop the session
+                # then we can restart a new session or completely finish
+                self.update_parameters()
             else:
                 self.restart = False
-            # in any case here in_session should be False to stop the session
-            # then we can restart a new session or completely finish
-            self.update_parameters()
         except:
             print('Fail to manage the after submission')
             raise Exception
@@ -238,6 +237,8 @@ class DialogueManager:
             self.counter = 0
             self.current_bot = None
             self.driver = None
+            self.chatbot_view = None
+            self.user_view = None
         except:
             print('Fail to update the parameters')
             raise Exception
@@ -309,3 +310,10 @@ class DialogueManager:
         except:
             print('Fail to get the fields of type text')
             raise Exception
+
+    def write_log(self):
+        if u.write_log:
+            self.chatbot_view.show_end_of_conversation(self.counter)
+            self.log_writer.start()
+            if u.DEBUG:
+                print('Log written')

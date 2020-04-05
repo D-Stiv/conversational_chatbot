@@ -1,0 +1,76 @@
+HEADER
+
+	Date and Hour: 2020-04-05 19:06:32.068407
+
+SUMMARY
+
+The dialogue counts a total of 25 interactions from which 52.00% (13 turns)  made by the chatbot and 48.00% (12 turns) made by the user.
+
+CONVERSATION LOG
+
+0. Chatbot - Start of the conversation, to end your should type <<stop>>.
+the title of this form is registration form sample. presents various fields types in order to test the different kinds of input we can have and different actions. this form contains the following fields first name, password, email address, birthday, arrival time, from which 2 are required and 3 are optional.
+here we go:
+please fill the value for the field first name. this field is required
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+please insert the first character
+1. User - Your input: a description about this form please
+2. Chatbot - response:  the field description is not present in this form. 
+the fields of this form are the following: first name, password, email address, birthday, arrival time
+ precise the action you want to perform thank you
+please give the value for the field first name. this field is required
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+ insert the first character
+3. User - Your input: M
+4. Chatbot - response: please insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+[Situation of fields]
+{'first name': None, 'password': None, 'email address': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'first name'}
+5. User - Your input: i
+6. Chatbot - response:  insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to halt the spelling
+7. User - Your input: a
+8. Chatbot - response:  insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+9. User - Your input: end
+10. Chatbot - response:  put the value for the field password. this field is required
+[Situation of fields]
+{'first name': 'Mia', 'password': None, 'email address': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'password'}
+11. User - Your input: here it is 8Yong78
+12. Chatbot - response: well, 
+ insert the value for the field password. this field is required
+13. User - Your input: the value, here it is 1Banelewl
+14. Chatbot - response:  all the required fields have been completed, from now on you can submit
+ fill the value for the field email address. this field is optional
+[Situation of fields]
+{'first name': 'Mia', 'password': '1Banelewl', 'email address': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'email address'}
+15. User - Your input: chloe@yahoo.it is the vslue for the field email address
+16. Chatbot - response: please fill the value for the field birthday. this field is optional
+17. User - Your input: for the birthday i want to insert March 02 1916
+18. Chatbot - response:  give the value for the field arrival time. this field is optional
+19. User - Your input: here it is 12 pm
+20. Chatbot - response: Incompatibility between the value 12 pm and the type time.
+the time you inserted is not valid.
+the acceptable formats are the following: <HH:MM>, <HHMM>, <HH:MM am>, <H>, <H am>, <H:MM>, <H:MM am>
+please insert the value for the field arrival time. this field is optional
+[Situation of fields]
+{'first name': 'Mia', 'password': '1Banelewl', 'email address': 'chloe@yahoo.it', 'birthday': '02-03-1916', 'arrival time': None, 'requested_slot': 'arrival time'}
+21. User - Your input: the value, here it is 7 
+22. Chatbot - response: all the fields have been completed
+ here is the summary: 
+	first name ** : Mia
+	password ** : 1Banelewl
+	email address : chloe@yahoo.it
+	birthday : 02-03-1916
+	arrival time : 07:07
+ 
+Is everything okay for the submission?.
+ the stars indicate the required fields
+23. User - Your input: may i submit now?
+24. Chatbot - fine you have been moved to the page with title HYPERCLINIC – Have a new vision of the world
+0. END OF THE CONVERSATION !!!
+
+Starting time: 2020-04-05 19:01:31.281766
+Ending time: 2020-04-05 19:06:32.056440
+Cummulative response time: 18 seconds
+Number of user requests: 12 requests
+Average response time: 1.50 seconds/requests
+Cummulative thinking time: 271 seconds
+

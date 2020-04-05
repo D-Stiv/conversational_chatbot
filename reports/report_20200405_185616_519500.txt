@@ -1,0 +1,103 @@
+HEADER
+
+	Date and Hour: 2020-04-05 18:56:16.468643
+
+SUMMARY
+
+	There are 1 completed sessions
+
+REPORT LOG
+
+
+0.	--- DIALOGUE 1 ---
+
+1.	I- Form element
+
+2.		[browser_name: chrome - page_title: HYPERCLINIC – Have a new vision of the world - URL: http://localhost/ecobusiness/]
+
+3.	II- Slots
+
+4.		[slot_name: first name - slot_value: William - required: True - spelling: True - description: your first name]
+5.		[slot_name: password - slot_value: Tamatoa - required: True - spelling: False - description: None]
+6.		[slot_name: email address - slot_value: tpatricia@hotmail.it - required: False - spelling: False - description: the email we should use to contact you]
+7.		[slot_name: birthday - slot_value: 20-04-1935 - required: False - spelling: False - description: None]
+8.		[slot_name: arrival time - slot_value: 15:44 - required: False - spelling: False - description: the time you expect to arrive at the conference]
+9.		[Web Form info -- title: registration form sample - description: presents various fields types in order to test the different kinds of input we can have and different actions]
+
+10.	III-Messages
+
+11.		Message_0
+12.			Text: what are the remaining fields which are obligatory
+13.			Intent: [name: giveRemainingRequiredLabels - confidence: 0.9998]
+14.			Entities: 
+15.		Message_1
+16.			Text: W
+17.			Intent: [name: spelling - confidence: 0.9878]
+18.			Entities: [entity: spelling, value: W]
+19.		Message_2
+20.			Text: i
+21.			Intent: [name: spelling - confidence: 0.9733]
+22.			Entities: [entity: spelling, value: i]
+23.		Message_3
+24.			Text: l
+25.			Intent: [name: spelling - confidence: 0.9947]
+26.			Entities: [entity: spelling, value: l]
+27.		Message_4
+28.			Text: l
+29.			Intent: [name: spelling - confidence: 0.9947]
+30.			Entities: [entity: spelling, value: l]
+31.		Message_5
+32.			Text: i
+33.			Intent: [name: spelling - confidence: 0.9733]
+34.			Entities: [entity: spelling, value: i]
+35.		Message_6
+36.			Text: a
+37.			Intent: [name: spelling - confidence: 0.9757]
+38.			Entities: [entity: spelling, value: a]
+39.		Message_7
+40.			Text: m
+41.			Intent: [name: spelling - confidence: 0.9900]
+42.			Entities: [entity: spelling, value: m]
+43.		Message_8
+44.			Text: terminate
+45.			Intent: [name: spelling - confidence: 0.9687]
+46.			Entities: [entity: spelling, value: terminate]
+47.		Message_9
+48.			Text: the value Precious is for password
+49.			Intent: [name: fillGenericCamp - confidence: 0.9993]
+50.			Entities: [entity: input_value, value: Precious], [entity: input_field, value: for], [entity: input_field, value: password]
+51.		Message_10
+52.			Text: i would like to insert the value Tamatoa
+53.			Intent: [name: modifyValueGenericCamp - confidence: 0.9990]
+54.			Entities: [entity: input_value, value: Tamatoa]
+55.		Message_11
+56.			Text: the field email address is tpatricia@hotmail.it
+57.			Intent: [name: fillGenericCamp - confidence: 0.9801]
+58.			Entities: [entity: input_field, value: email address], [entity: input_value, value: tpatricia@hotmail.it]
+59.		Message_12
+60.			Text: the value for the field is 20 april 1935
+61.			Intent: [name: fillGenericCamp - confidence: 0.9949]
+62.			Entities: [entity: input_value, value: 20 april 1935]
+63.		Message_13
+64.			Text: arrival time is 11 
+65.			Intent: [name: fillGenericCamp - confidence: 0.9956]
+66.			Entities: [entity: input_field, value: time], [entity: input_value, value: 11]
+67.		Message_14
+68.			Text: for arrival time insert 12 am
+69.			Intent: [name: fillForm - confidence: 0.8521]
+70.			Entities: [entity: input_field, value: time], [entity: input_value, value: 12 am]
+71.		Message_15
+72.			Text: the field arrival time is 02 pm
+73.			Intent: [name: fillGenericCamp - confidence: 0.9890]
+74.			Entities: [entity: input_field, value: time], [entity: input_value, value: 02 pm]
+75.		Message_16
+76.			Text: i want to insert the value 3.44 pm
+77.			Intent: [name: modifyValueGenericCamp - confidence: 0.9792]
+78.			Entities: [entity: input_value, value: 3.44 pm]
+79.		Message_17
+80.			Text: i would like to submit the form
+81.			Intent: [name: submitForm - confidence: 0.9997]
+82.			Entities: 
+
+
+

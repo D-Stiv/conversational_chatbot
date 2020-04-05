@@ -1,16 +1,24 @@
 """At the very end of this file there is a module to train the model for the 
 Conversational Chatbot. We only have to run this file for it to be done."""
 
+# statistics for the thesis
+compute_response_time = False
+
+
+
 DEBUG = False
 
 # maximum number of dialogues
-MAX_DIALOGUES = 5
+MAX_DIALOGUES = 2
 
 # frequency control: interval for being able to manually stop the simulation in term of number of message exchanged
 CONTROL_FREQUENCE = 20
 
 # frequence to see the change in the slots in term of interactions
 NOTIFICATION_FREQUENCE = 5
+
+# coefficient used to regule the dialogue and the notifications
+COEFF = 3
 
 # minimum and maximum year acceptable for the date
 min_year = 1500
