@@ -43,6 +43,13 @@ def verify_compatibility_email(value):
 
 def verify_compatibility_number(value):
     try:
+        dec_value = get_decimal(value)
+        if dec_value is None:
+            sorry_style = styles.get_sorry()
+            insert_style = styles.get_insert()
+            please_style = styles.get_please()
+            text = f'{sorry_style} the value {value} is not a number, {please_style} {insert_style} a valid value.'
+            return False, text
         return True, value
     except:
         print(f'Fail faile to verify the compatibility of the value {value} for the type number')
@@ -51,15 +58,21 @@ def verify_compatibility_number(value):
 
 def verify_compatibility_integer(value, min_value=-float('inf'), max_value=float('inf')):
     try:
-        text = value
-        text = fn.convert_to_int(value)
-        if text is None:
-            sorry_style = styles.get_sorry()
-            insert_style = styles.get_insert()
-            please_style = styles.get_please()
-            text = f'{sorry_style} the value {value} is not a number, {please_style} {insert_style} a valid value.'
+        int_value = get_integer(value)
+        sorry_style = styles.get_sorry()
+        insert_style = styles.get_insert()
+        please_style = styles.get_please()
+        if int_value is None:
+            text = f'{sorry_style} the value {value} is not an integer, {please_style} {insert_style} a valid value.'
             return False, text
-        return True, text
+        number = int(int_value)
+        if number < min_value or number > max_value:
+            if number < min_value:
+                text = f'{sorry_style} the value inserted is less than the minimum value acceptable {min_value}'
+            else:
+                text = f'{sorry_style} the value inserted is more than the maximum value acceptable {max_value}'
+            return False, text
+        return True, int_value
     except:
         print(
             f'Fail faile to verify the compatibility of the value {value} for the type integer')
@@ -68,7 +81,31 @@ def verify_compatibility_integer(value, min_value=-float('inf'), max_value=float
 
 def verify_compatibility_decimal(value, precision=2, min_value=-float('inf'), max_value=float('inf')):
     try:
-        return True, value
+        dec_value = get_decimal(value)
+        sorry_style = styles.get_sorry()
+        insert_style = styles.get_insert()
+        please_style = styles.get_please()
+        if dec_value is None:
+            text = f'{sorry_style} the value {value} is not a decimal, {please_style} {insert_style} a valid value.'
+            return False, text
+        # float takes the 'dot' as separator, so we should transform it before getting the float
+        number = float(dec_value.replace(',', '.'))
+        if number < min_value or number > max_value:
+            if number < min_value:
+                text = f'{sorry_style} the value inserted is less than the minimum value acceptable {min_value}'
+            else:
+                text = f'{sorry_style} the value inserted is more than the maximum value acceptable {max_value}'
+            return False, text
+        if ',' not in dec_value:
+            return True, dec_value
+        # the value has a decimal part
+        dec_part = dec_value[dec_value.index(',')+1 :]
+        if len(dec_part) <= 2:
+            # the precision is respected
+            return True, dec_value
+        # the precision is more accurate then what required, we decide to troncate, no rounding
+        dec_value = dec_value[: dec_value.index(',')+precision+1]
+        return True, dec_value
     except:
         print(
             f'Fail faile to verify the compatibility of the value {value} for the type decimal with precision {precision}')
@@ -304,7 +341,7 @@ def verify_compatibility_month(value):
                 else:
                     text = f"The year you inserted is not valid for <YYYY-MM>, \n{format_string}"
                     return False, text
-            text = f"The month insert is not valid for <YYYY-MM>, \n{format_string}"
+            text = f"The month inserted is not valid for <YYYY-MM>, \n{format_string}"
             return False, text
 
         # we accept < month YYYY > month only in english and any character in between
@@ -507,4 +544,113 @@ def get_time(hh=u.VOID, meridian=u.VOID, mm=u.VOID):
         return False, text
     except:
         print('Fail to retrun the time in the right format')
+        raise Exception
+
+
+def get_decimal(value):
+    try:
+        # returns a string in format ID* or ID*,D* with I in [1,9] and D in [0,9]
+        # accepts ID* or ID*,D* or ID?(.DDD)* or ID?(.DDD)*,D* or ID?(,DDD)* or ID?(,DDD)*.D*
+        num_comma = value.count(',')
+        num_dot = value.count('.')
+        # an integer value is decimal
+        if (num_comma == 0 and num_dot == 0) or (num_comma == 0 and num_dot > 1) or (num_comma > 1 and num_dot == 0):
+            return get_integer(value)
+        if num_comma > 1 and num_dot > 1:
+            return None
+        # format of type ID?D?.D* or ID?D?,D*
+        if num_comma + num_dot == 1:
+            if num_comma == 1:
+                separator = ','
+            else:
+                separator = '.'
+            before = value[:value.index(separator)]
+            after = value[value.index(separator)+1:]
+            try:
+                before = int(before)
+                # we only verify whether or not after can be cast in integer
+                int(after)
+            except:
+                return None
+            value = f'{before},{after}'
+            return value
+        # format of type ID?D?,DDD.D* or ID?D?.DDD,D*
+        if num_comma == 1 and num_dot == 1:
+            pos_comma = value.index(',')
+            pos_dot = value.index('.')
+            if pos_comma < pos_dot:
+                pos = pos_dot
+            else:
+                pos = pos_comma
+            before = get_integer(value[:pos])
+            if before is None:
+                return None
+            after = value[pos+1:]
+            try:
+                int(after)
+            except:
+                return None
+            value = f'{before},{after}'
+            return value
+        # format of type ID?D?,DDD(,DDD)+.D* or ID?D?.DDD(.DDD)+,D*
+        if (num_comma == 1 and num_dot > 1) or (num_dot == 1 and num_comma > 1):
+            if num_comma == 1:
+                pos = value.index(',')
+            else:
+                pos = value.index('.')
+            before = get_integer(value[:pos])
+            if before is None:
+                return None
+            after = value[pos+1:]
+            try:
+                int(after)
+            except:
+                return None
+            value = f'{before},{after}'
+            return value
+        # all the other cases are discarded
+        return None
+    except:
+        print('Fail to get the decimal number')
+        raise Exception
+
+
+def get_integer(value):
+    try:
+        # returns a string in format ID* with I in [1,9] and D in [0,9]
+        # accepts ID* or ID?(.DDD)* or ID?(,DDD)* 
+        if '.' not in value and ',' not in value:
+            value = value.replace(' ', '')
+            try:
+                value = int(value)
+            except:
+                print('The value contains a non acceptable character')
+                return None
+            return f'{value}'
+        if '.' in value and ',' in value:
+            # the integer cannot have both comma and dot
+            return None
+        if '.' in value:
+            separator = '.'
+        else:
+            separator = ','
+        string_value = ''
+        while len(value) > 3:
+            try:
+                # we verify whether or not the last three characters can be cast in integer
+                int(value[-3:])
+            except:
+                return None
+            string_value = f'{value[-3:]}{string_value}'
+            if value[-4,-3] != separator:
+                return None
+            value = value[:-4]
+        try:
+            first = int(value)
+        except:
+            return None
+        string_value = f'{first}{string_value}'
+        return string_value
+    except:
+        print('Fail to get the integer number')
         raise Exception
