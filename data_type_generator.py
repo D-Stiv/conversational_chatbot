@@ -5,16 +5,17 @@ import utility as u
 import simulation_constants as cts
 
 
-def generate_date(month_dic):
+def generate_date(month_dic, only_month=False):
     # receive the data structure of the months, list of dictionaries
     try:
         min_year = 1900
         max_year = 2019
         year = randint(min_year, max_year)
         month_letter = randint(0,1)
-        day = randint(1, month_dic['number_days'])
-        if day < 10:
-            day = f'0{day}'
+        if not only_month:
+            day = randint(1, month_dic['number_days'])
+            if day < 10:
+                day = f'0{day}'
         if month_letter:
             # month in letters
             if u.DEBUG:
@@ -30,10 +31,16 @@ def generate_date(month_dic):
         style_one = randint(0,1)
         if style_one:
             # day before month
-            date = f'{day}{separator}{month}{separator}{year}'
+            if not only_month:
+                date = f'{day}{separator}{month}{separator}{year}'
+            else:
+                date = f'{month}{separator}{year}'
         else:
             # month before day
-            date = f'{month}{separator}{day}{separator}{year}'
+            if not only_month:
+                date = f'{month}{separator}{day}{separator}{year}'
+            else:
+                date = f'{month}{separator}{year}'
         return date
     except:
         print(f'Fail to generate a date')

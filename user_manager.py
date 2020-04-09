@@ -469,6 +469,8 @@ class User:
             # we are not in a choice, we should look if it is date, time, address not email, name, country, city
             if value_type == u.date:
                 value = gen.generate_date(self.get_filling_message(cts.months))
+            elif value_type == u.month:
+                value = gen.generate_date(self.get_filling_message(cts.months), only_month=True)
             elif value_type == u.time:
                 value = gen.generate_time()
             elif value_type == u.text_area:
