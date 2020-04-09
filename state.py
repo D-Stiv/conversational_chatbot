@@ -263,7 +263,7 @@ class State:
                     return slot
             # the field we are looking for is not in the form
             if u.DEBUG:
-                print(f'the field {slot_name} is not in the form')
+                print(f'The field {slot_name} is not in the form')
             sorry_style = styles.get_sorry()
             please_style = styles.get_please()
             text = f"{sorry_style} the field {slot_name} is not present in this form.{please_style} could you precise the action you want to perform?"
@@ -288,7 +288,8 @@ class State:
                     existing_slot[u.slot_value] = slot_value
                     break
             if not exists:
-                text = f'The name {slot_name} does not correspond to any label, please verify the spelling and try again'
+                fields_list = self.get_fields_list()
+                text = f'The name {slot_name} does not correspond to any label. the fields present are the following {fields_list}.\nwhich field do you want to modify?'
                 self.set_warning_message(text)
                 raise Exception
         except:
@@ -400,13 +401,10 @@ class State:
             if value_type in types_with_options:
                 choice_list = slot[u.choice_list]
                 option_string = fn.get_string_from_list(choice_list)
-                if value_type == u.dropdown:
+                if value_type in [u.dropdown, u.checkbox]:
                     string = f"Select the {slot_name} in the following list {option_string}. {required_string}"
-                else:
-                    if value_type == u.checkbox:
-                        string = f"Select your {slot_name} in the following list {option_string}. {required_string}"
-                    elif value_type == u.radio:
-                        string = f"Choose your {slot_name} in the following list {option_string}. {required_string}"
+                elif value_type == u.radio:
+                    string = f"Choose your {slot_name} in the following list {option_string}. {required_string}"
                 if u.DEBUG:
                     print("choice list")
                     print(choice_list)
@@ -465,7 +463,7 @@ class State:
             if slot_value not in choice_list:
                 sorry_style = styles.get_sorry()
                 please_style = styles.get_please()
-                string = (f"{sorry_style} the choice_value {slot_value} is not valid for the field {slot_name}" +
+                string = (f"{sorry_style} the choice {slot_value} is not valid for the field {slot_name}" +
                         f"{please_style} choose one in the following list: {choice_list}")
                 return None, string
             # we are sure that the choice of the user is in the list of choices
@@ -712,8 +710,7 @@ class State:
             desc = slot[u.description]
             if desc is None:
                 sorry_style = styles.get_sorry()
-                text = "there is no explanation provided for the field {} {}".format(
-                    field, sorry_style)
+                text = f"There is no explanation provided for the field {field} {sorry_style}"
                 return text
             # the description is present in the html file
             text = f'{field}: {desc}'
@@ -727,11 +724,11 @@ class State:
         if u.DEBUG:
             print(f'{class_name}: {function_name}')
         try:
-            first = "all the fields have been completed\n"
+            first = "All the fields have been completed."
             values = fn.get_pairs(slots=self.form_slots())
             okay_style = styles.get_good()
             stringSubmit = f"Is everything {okay_style} for the submission?"
-            string = f"{first} here is the summary: \n{values} \n{stringSubmit}.\n the stars indicate the required fields"
+            string = f"{first} Here is the summary: \n{values} \n{stringSubmit}.\nThe stars indicate the required fields"
             return string
         except:
             print('ERROR: Fail to generate the submit string')
@@ -745,7 +742,7 @@ class State:
             slot_name, next_slot_required = self.get_next_slot()
             if slot_name is not None:
                 if u.DEBUG:
-                    print("the next slot is: " + slot_name)
+                    print("The next slot is: " + slot_name)
                     # to observe the modification that happened
                     print(self.get_slots_value())
                 string = "{}".format(
@@ -756,7 +753,7 @@ class State:
                     # we verify if the field has been previously saved 
                     saved_fields = self.get_saved_spelling_fields()
                     if u.DEBUG:
-                        print(f'the saved fields are {saved_fields}')
+                        print(f'The saved fields are {saved_fields}')
                     if slot_name in saved_fields:
                         saved_values = self.get_saved_spelling_values()
                         # we set the saved value as current input value 
@@ -764,7 +761,7 @@ class State:
                         value = saved_values[index]
                         self.set_current_spelling_input_value(value)
                         if u.DEBUG:
-                            print(f'the current value for {slot_name} is {value}')
+                            print(f'The current value for {slot_name} is {value}')
                         # we remove the field from saved state
                         saved_fields.remove(slot_name)
                         saved_values.remove(value)
@@ -842,7 +839,7 @@ class State:
             self.decrease_num_required_remaining()
             if self.get_num_required_remaining() == 0:
                 self.set_all_required_filled(True)
-                text = (" all the required fields have been completed, from now on you can" +
+                text = ("All the required fields have been completed, from now on you can" +
                             " submit")
                 next_step_string = self.manage_next_step()
                 string = f'{text}\n{next_step_string}'
@@ -1013,10 +1010,8 @@ class State:
                 present = fn.verify_presence(slot_name, self.form_slots(), only_presence=True)
                 if not present:
                     sorry_style = styles.get_sorry()
-                    please_style = styles.get_please()
-                    thanks_style = styles.get_thanks()
-                    text = (f"{sorry_style} the field {slot_name} is not present in this form. \nthe fields of this form are" +
-                            f" the following: {self.get_fields_list()}\n{please_style} precise the action you want to perform {thanks_style}")
+                    text = (f"{sorry_style} the field {slot_name} is not present in this form.\nThe fields of this form are" +
+                            f" the following: {self.get_fields_list()}")
                     next_step_string = self.manage_next_step()
                     string = f'{text}\n{next_step_string}'
                     return False, string

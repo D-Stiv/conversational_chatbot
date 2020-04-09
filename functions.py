@@ -64,6 +64,12 @@ def is_compatible(slot_value, value_type):
                 return c.verify_compatibility_number(slot_value)
             if value_type == u.time:
                 return c.verify_compatibility_time(slot_value)
+            if value_type == u.number:
+                return c.verify_compatibility_number(slot_value)
+            if value_type == u.integer:
+                return c.verify_compatibility_integer(slot_value)
+            if value_type == u.decimal:
+                return c.verify_compatibility_decimal(slot_value)
         else:
             return c.verify_compatibility_generic(slot_value)
         return True, text
@@ -87,7 +93,7 @@ def convert_to_int(string, tag=u.normal):
         try:
             value = int(string)
         except:
-            print(f'the string {string} cannot be transformed in integer')
+            print(f'The string {string} cannot be transformed in integer')
             return None
         if tag == u.year:
             if value not in range(u.min_year, u.max_year+1):
@@ -122,8 +128,7 @@ def get_pairs(slots, only_filled=False):
                 slot_value = slot[u.slot_value]
                 if slot_value is not None or not only_filled:
                     # we do not enter when we find only filled and the value is None
-                    string = "{}\t{}\n".format(
-                        string, text.format(slot_name, slot_value))
+                    string = f"{string}\t{text.format(slot_name, slot_value)}\n"
         return string
     except:
         print("Fail to get the pairs")
@@ -137,7 +142,7 @@ def verify_presence(name, slots, only_presence=False, only_text=False):
             slot_name = slot[u.slot_name]
             possible_names.append(slot_name)
         if name in possible_names:
-            text = "the field {} is present.".format(name)
+            text = f"The field {name} is present."
             if only_presence:
                 return True
             elif only_text:
@@ -150,8 +155,7 @@ def verify_presence(name, slots, only_presence=False, only_text=False):
                 alternatives.append(pos)
         if len(alternatives) > 0:
             string_alt = get_string_from_list(alternatives)
-            text = "the field {} is not present but you have these alternatives {}.".format(
-                name, string_alt)
+            text = f"The field {name} is not present but you have these alternatives {string_alt}."
             if only_presence:
                 return False
             elif only_text:
@@ -159,7 +163,7 @@ def verify_presence(name, slots, only_presence=False, only_text=False):
             else:
                 return text, False
         sorry_style = styles.get_sorry()
-        text = "the field {} is not present {}".format(name, sorry_style)
+        text = f"The field {name} is not present {sorry_style}"
         if only_presence:
             return False
         elif only_text:
@@ -211,6 +215,24 @@ def get_input_fields(form_element):
                     choice_list = get_choice_list(
                         value_name, value_type, form_element)
                     slot[u.choice_list] = choice_list
+                # in case of numbers we have to define the min, max and step
+                if value_type in u.number_types_list:
+                    min_value = elem.get_attribute('min')
+                    if min_value is None:
+                        min_value = - float('inf')
+                    max_value = elem.get_attribute('max')
+                    if max_value is None:
+                        max_value = float('inf')
+                    step = elem.get_attribute('step')
+                    if step is not None:
+                        precision = 0
+                        while step < 1:
+                            step *= 10
+                            precision += 1
+                    slot[u.min_value] = min_value
+                    slot[u.max_value] = max_value
+                    slot[u.precision] = precision
+                # we add the slot in the list of slots
                 slots.append(slot)
                 #slots = [slot] + slots
         # we save the form description and title inside the requested slot
@@ -253,9 +275,9 @@ def get_choice_list(choice_name, choice_type, web_elem):
 
 def get_required_string(required):
     if required:
-        req = "this field is required"
+        req = "This field is required"
     else:
-        req = "this field is optional"
+        req = "This field is optional"
     return req
 
 

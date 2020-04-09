@@ -1,0 +1,82 @@
+HEADER
+
+	Date and Hour: 2020-04-06 12:02:42.224632
+
+SUMMARY
+
+The dialogue counts a total of 33 interactions from which 51.52% (17 turns)  made by the chatbot and 48.48% (16 turns) made by the user.
+
+CONVERSATION LOG
+
+0. Chatbot - Start of the conversation, to end your should type <<stop>>.
+the title of this form is registration form sample. presents various fields types in order to test the different kinds of input we can have and different actions. this form contains the following fields first name, password, email address, birthday, arrival time, from which 2 are required and 3 are optional.
+here we go:
+please give the value for the field first name. this field is required
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+please insert the first character
+1. User - Your input: T
+2. Chatbot - response: please insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to terminate the spelling
+3. User - Your input: a
+4. Chatbot - response:  insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+[Situation of fields]
+{'first name': None, 'password': None, 'email address': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'first name'}
+5. User - Your input: m
+6. Chatbot - response:  insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+7. User - Your input: a
+8. Chatbot - response: please insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+9. User - Your input: t
+10. Chatbot - response: please insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+[Situation of fields]
+{'first name': None, 'password': None, 'email address': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'first name'}
+11. User - Your input: o
+12. Chatbot - response: please insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+13. User - Your input: a
+14. Chatbot - response:  insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+[Situation of fields]
+{'first name': None, 'password': None, 'email address': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'first name'}
+15. User - Your input: close
+16. Chatbot - response:  put the value for the field password. this field is required
+17. User - Your input: qMoeatak is the value of password
+18. Chatbot - response:  all the required fields have been completed, from now on you can submit
+ fill the value for the field email address. this field is optional
+19. User - Your input: value george@polimi.com for email address
+20. Chatbot - response: please complete the value for the field email address. this field is optional
+[Situation of fields]
+{'first name': 'Tamatoa', 'password': 'qMoeatak', 'email address': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'email address'}
+21. User - Your input: the value for the field is robertv@yahoo.cm
+22. Chatbot - response:  fill the value for the field birthday. this field is optional
+23. User - Your input: fill birthday with 11 June 1949
+24. Chatbot - response: Incompatibility between the value with 11 June 1949 and the type date.
+the date inserted is not valid
+the acceptable formats are the following: <YYYY-MM-DD>, <DD-MM-YYYY>, <MM-DD-YYYY>, <DDMMYYYY>, <DD month YYYY>, <month DD YYYY>
+ fill the value for the field birthday. this field is optional
+[Situation of fields]
+{'first name': 'Tamatoa', 'password': 'qMoeatak', 'email address': 'robertv@yahoo.cm', 'birthday': None, 'arrival time': None, 'requested_slot': 'birthday'}
+25. User - Your input: the value july 15 1988 is for birthday
+26. Chatbot - response:  complete the value for the field birthday. this field is optional
+27. User - Your input: 12021966 for birthday
+28. Chatbot - response: please fill the value for the field arrival time. this field is optional
+29. User - Your input: this is the value 6 o_clock
+30. Chatbot - response: all the fields have been completed
+ here is the summary: 
+	first name ** : Tamatoa
+	password ** : qMoeatak
+	email address : robertv@yahoo.cm
+	birthday : 12-02-1966
+	arrival time : 06:06
+ 
+Is everything okay for the submission?.
+ the stars indicate the required fields
+[Situation of fields]
+{'first name': 'Tamatoa', 'password': 'qMoeatak', 'email address': 'robertv@yahoo.cm', 'birthday': '12-02-1966', 'arrival time': '06:06', 'requested_slot': None}
+31. User - Your input: submit
+32. Chatbot - good you have been moved to the page with title HYPERCLINIC – Have a new vision of the world
+33. END OF THE CONVERSATION !!!
+
+Starting time: 2020-04-06 11:59:45.223205
+Ending time: 2020-04-06 12:02:42.222637
+Cummulative response time: 26 seconds
+Number of user requests: 16 requests
+Average response time: 1.62 sec/req
+Cummulative thinking time: 150 seconds
+

@@ -112,14 +112,14 @@ class RegistrationForm(Form):
             self.state.set_filling_started()
             form_title = self.state.get_form_title()
             if form_title is None:
-                form_intro = "this form does not have a title."
+                form_intro = "This form does not have a title."
             else:
-                form_intro = "the title of this form is {}.".format(form_title)
+                form_intro = f"The title of this form is {form_title}."
             form_desc = self.state.get_form_description()
             if form_desc is None:
                 desc_intro = "it does not have a description."
             else:
-                desc_intro = "{}.".format(form_desc)
+                desc_intro = f"{form_desc}."
             # we format the string to retrieve
             first_string = self.state.manage_next_step()
             string = (f"{form_intro} {desc_intro} this form contains the following fields {self.state.get_fields_list()}, from which {self.state.num_required_fields} are required" +
@@ -172,7 +172,7 @@ class RegistrationForm(Form):
                     # probably bad destination due to training
                     sorry_style = styles.get_sorry()
                     please_style = styles.get_please()
-                    text = f'{sorry_style} i did not understood your request, could reformulate {please_style}?'
+                    text = f'{sorry_style} i did not understand your request, could you reformulate {please_style}?'
                     self.state.set_warning_message(text)
                     raise Exception
                 else:
@@ -226,9 +226,9 @@ class RegistrationForm(Form):
             slot_name_list = self.state.get_spelling_list()
             fields_string = fn.get_string_from_list(slot_name_list)
             if len(slot_name_list) == 1:
-                intro = f"you will have to spell the value of the field {slot_name_list[0]}."
+                intro = f"You will have to spell the value of the field {slot_name_list[0]}."
             else:
-                intro = (f"you will have to spell the values of the following fields {fields_string}.\n" +
+                intro = (f"You will have to spell the values of the following fields {fields_string}.\n" +
                          f"We start by the field {slot_name_list[0]}.")
             # we set the message to be returned to the user
             string = (f'{intro}\n{please_style} insert the first character, you will be able to use SPACE for spacing' +
@@ -402,7 +402,7 @@ class RegistrationForm(Form):
             # is possible_next_action
             # another choice can be simply to ask the user what he wants to do.
             good_style = styles.get_good()
-            string = "{}, what do you want to do now?".format(good_style)
+            string = f"{good_style}, what do you want to do now?"
             return string
         except:
             if not self.state.get_warning_present():
@@ -475,8 +475,7 @@ class RegistrationForm(Form):
         try:
             sure_style = styles.get_sure()
             required_fields = self.state.get_fields_list(only_required=True)
-            ans = "{} the required fields are the following {}.".format(
-                sure_style, required_fields)
+            ans = f"{sure_style} the required fields are the following {required_fields}."
             string = self.state.manage_next_step()
             string = f"{ans}\n{string}"
             return string
@@ -499,8 +498,7 @@ class RegistrationForm(Form):
                     if not slot[u.required]:
                         optional_list.append(slot[u.slot_name])
             optional_fields = fn.get_string_from_list(optional_list)
-            ans = "{} the optional fields are the following {}.".format(
-                sure_style, optional_fields)
+            ans = f"{sure_style} the optional fields are the following {optional_fields}."
             string = self.state.manage_next_step()
             string = f"{ans}\n{string}"
             return string
@@ -534,8 +532,7 @@ class RegistrationForm(Form):
         try:
             sure_style = styles.get_sure()
             remaining_required_fields = self.state.get_fields_list(only_required=True, remaining=True)
-            ans = "{} the remaining required fields are the following {}.".format(
-                sure_style, remaining_required_fields)
+            ans = f"{sure_style} the remaining required fields are the following {remaining_required_fields}."
             next_step_string = self.state.manage_next_step()
             string = f"{ans} \n{next_step_string}"
             return string
@@ -561,8 +558,7 @@ class RegistrationForm(Form):
                             remaining_optional_list.append(slot[u.slot_name])
             optional_fields = fn.get_string_from_list(
                 remaining_optional_list)
-            ans = "{} the remaining optional fields are the following {}.".format(
-                sure_style, optional_fields)
+            ans = f"{sure_style} the remaining optional fields are the following {optional_fields}."
             next_step_string = self.state.manage_next_step()
             string = f'{ans}\n{next_step_string}'
             return string
@@ -579,8 +575,7 @@ class RegistrationForm(Form):
         try:
             sure_style = styles.get_sure()
             all_remaining_fields = self.state.get_fields_list(remaining=True)
-            ans = "{} the remaining fields present in this form are the following {}.".format(
-                sure_style, all_remaining_fields)
+            ans = f"{sure_style} the remaining fields present in this form are the following {all_remaining_fields}."
             string = self.state.manage_next_step()
             string = f'{ans}\n{string}'
             return string
@@ -602,8 +597,8 @@ class RegistrationForm(Form):
                 sorry_style = styles.get_sorry()
                 string = f'{sorry_style} up to now you did not complete any field\n{next_step_string}'
             else:
-                string = (f"the fields you already completed are the following: \n{filled_string}\n" +
-                        f"the stars indicate the required fields\n{next_step_string}")
+                string = (f"The fields you already completed are the following: \n{filled_string}\n" +
+                        f"The stars indicate the required fields\n{next_step_string}")
             return string
         except:
             if not self.state.get_warning_present():
@@ -618,9 +613,9 @@ class RegistrationForm(Form):
         try:
             form_title = self.state.get_form_title()
             if form_title is None:
-                string = "this form does not have a title."
+                string = "This form does not have a title."
             else:
-                string = "the title of this form is {}.".format(form_title)
+                string = f"The title of this form is {form_title}."
             next_step_string = self.state.manage_next_step()
             string = f'{string}\n{next_step_string}'
             return string
@@ -701,8 +696,7 @@ class RegistrationForm(Form):
                 remaining_required = self.state.get_fields_list(
                     remaining=True, only_required=True)
                 string = ("not all the required fields are completed.\n you still have" +
-                          " to complete the following required fields {}").format(remaining_required)
-                return f'{string}\n{self.state.manage_next_step()}'
+                          f" to complete the following required fields {remaining_required}")
             if u.DEBUG:
                 print("inside submitForm")
             if not self.state.get_submit_alarm_enabled():

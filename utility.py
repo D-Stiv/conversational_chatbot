@@ -51,8 +51,8 @@ tag_registration_form = "registration_form_tag"
 train_model = False
 
 # decides whether or not write the log and the report
-write_log = True
-write_report = True
+write_log = False
+write_report = False
 
 # whether or not we use the simulator
 simulation_enabled = True
@@ -60,6 +60,13 @@ simulation_enabled = True
 # URL of the form to fill
 #form_url = "http://localhost/ecobusiness/new-project-form/"
 form_url = "http://localhost/ecobusiness/test-project-form/"
+
+# URLs for the test Web Forms
+url_1 = 'http://localhost/ecobusiness/test-form-1/'
+url_2 = 'http://localhost/ecobusiness/test-form-2/'
+url_3 = 'http://localhost/ecobusiness/test-form-3/'
+
+test_url_list = [url_1, url_2, url_3]
 
 # browser to user to open the url, Chrome - Firefox - Edge
 browsers = ['edge', 'firefox', 'chrome']
@@ -134,12 +141,15 @@ dropdown = 'dropdown'
 radio = 'radio'
 checkbox = 'checkbox'
 text_area = 'text_area'
+integer = 'inetger'
+decimal = 'decimal'
 
 # input type list
 input_type_list = [text_area, color, date, datetime_local, email, file_type, hidden, image,
-                   month, number, password, range_type, reset, search, submit, tel, text, time, url, week]
+                   month, number, integer, decimal, password, range_type, reset, search, submit, tel, text, time, url, week]
 
 choices_type_list = [radio, checkbox, dropdown]
+number_types_list = [number, integer, decimal]
 
 # length phone number
 min_length_phone_number = 3     # this is without plus (117, 112, ...)
@@ -207,6 +217,9 @@ choice_list = 'choice_list'  # list of choices in case of dropdown, radio or che
 # description/explanation of the field. given by field-desc attribute
 description = 'description'
 title = 'title'             # form the form. the description also used for the form
+min_value = 'min'
+max_value = 'max'
+precision = 'precision'
 
 # annotations of the web_page
 bot_title = 'bot-title'

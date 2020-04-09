@@ -1,0 +1,154 @@
+HEADER
+
+	Date and Hour: 2020-04-06 00:45:10.784189
+
+SUMMARY
+
+The dialogue counts a total of 57 interactions from which 50.88% (29 turns)  made by the chatbot and 49.12% (28 turns) made by the user.
+
+CONVERSATION LOG
+
+0. Chatbot - Start of the conversation, to end your should type <<stop>>.
+the title of this form is registration form sample. presents various fields types in order to test the different kinds of input we can have and different actions. this form contains the following fields first name, password, email address, birthday, arrival time, from which 2 are required and 3 are optional.
+here we go:
+please fill the value for the field first name. this field is required
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+please insert the first character
+1. User - Your input: no, it was an error
+2. Chatbot - response:  give the value for the field password. this field is required
+3. User - Your input: can you give me some explanation about the form?
+4. Chatbot - response:  here it is: presents various fields types in order to test the different kinds of input we can have and different actions.
+please give the value for the field password. this field is required
+[Situation of fields]
+{'first name': 'an error', 'password': None, 'email address': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'password'}
+5. User - Your input: may i submit now?
+6. Chatbot - response: not all the required fields are completed.
+ you still have to complete the following required fields password
+please give the value for the field password. this field is required
+7. User - Your input: 105Bin% for password
+8. Chatbot - response: Incompatibility between the value 105Bin% for and the type password.
+a non acceptable character have been inserted in the passsword.
+the only accepted special characters are the following ['!', '@', '#', '$', '%', '^', '&', '*', '_']
+please give the value for the field password. this field is required
+9. User - Your input: ^^Anna!x is the value of password
+10. Chatbot - response:  all the required fields have been completed, from now on you can submit
+ insert the value for the field email address. this field is optional
+[Situation of fields]
+{'first name': 'an error', 'password': 'Anna!x', 'email address': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'email address'}
+11. User - Your input: submit the form
+12. Chatbot - response: we are about to submit, are you sure you want to continue with this action?
+13. User - Your input: yes, please
+14. Chatbot - response: Which field exactly do you want to revise, and which value do you want to fill for that field?
+[Situation of fields]
+{'first name': 'an error', 'password': 'Anna!x', 'email address': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'email address'}
+15. User - Your input: please give me the not required fields still to be completed
+16. Chatbot - response: sure the remaining optional fields are the following email address, birthday, arrival time.
+ insert the value for the field email address. this field is optional
+17. User - Your input: ioanegu@outlook.com is my email address
+18. Chatbot - response: please give the value for the field birthday. this field is optional
+19. User - Your input: for birthday insert 17 August 1940
+20. Chatbot - response: Incompatibility between the value for and the type date.
+the date inserted is not valid
+the acceptable formats are the following: <YYYY-MM-DD>, <DD-MM-YYYY>, <MM-DD-YYYY>, <DDMMYYYY>, <DD month YYYY>, <month DD YYYY>
+please insert the value for the field birthday. this field is optional
+[Situation of fields]
+{'first name': 'an error', 'password': 'Anna!x', 'email address': 'ioanegu@outlook.com', 'birthday': None, 'arrival time': None, 'requested_slot': 'birthday'}
+21. User - Your input: could you kindly provide me with the not obligatory fields?
+22. Chatbot - response: Which field exactly do you want to amend, and which value do you want to put for that field?
+23. User - Your input: are there many obligatory fields to complete?
+24. Chatbot - response: sure the remaining required fields are the following . 
+ give the value for the field birthday. this field is optional
+[Situation of fields]
+{'first name': 'an error', 'password': 'Anna!x', 'email address': 'ioanegu@outlook.com', 'birthday': None, 'arrival time': None, 'requested_slot': 'birthday'}
+25. User - Your input: yes, please
+26. Chatbot - response: Which field exactly do you want to update, and which value do you want to put for that field?
+27. User - Your input: move to the next field
+28. Chatbot - response: sure the fields present in this form are the following first name, password, email address, birthday, arrival time.
+ put the value for the field birthday. this field is optional
+29. User - Your input: can i submit the form now?
+30. Chatbot - response: we are about to submit, are you sure you want to continue with this action?
+[Situation of fields]
+{'first name': 'an error', 'password': 'Anna!x', 'email address': 'ioanegu@outlook.com', 'birthday': None, 'arrival time': None, 'requested_slot': 'birthday'}
+31. User - Your input: yes, go ahead
+32. Chatbot - response: Which field exactly do you want to adjust, and which value do you want to fill for that field?
+33. User - Your input: i would appreciate if you provide the list of remaining fields to me
+34. Chatbot - response:  the remaining fields present in this form are the following birthday, arrival time.
+ fill the value for the field birthday. this field is optional
+[Situation of fields]
+{'first name': 'an error', 'password': 'Anna!x', 'email address': 'ioanegu@outlook.com', 'birthday': None, 'arrival time': None, 'requested_slot': 'birthday'}
+35. User - Your input: birthday: october 01 1926
+36. Chatbot - response: please insert the value for the field arrival time. this field is optional
+37. User - Your input: no, i don't
+38. Chatbot - response: correct, what do you want to do now?
+39. User - Your input: sure
+40. Chatbot - response: Incompatibility between the value sure and the type time.
+the time you inserted is not valid.
+the acceptable formats are the following: <HH:MM>, <HHMM>, <HH:MM am>, <H>, <H am>, <H:MM>, <H:MM am>
+ give the value for the field arrival time. this field is optional
+[Situation of fields]
+{'first name': 'an error', 'password': 'Anna!x', 'email address': 'ioanegu@outlook.com', 'birthday': '01-10-1926', 'arrival time': None, 'requested_slot': 'arrival time'}
+41. User - Your input: here it is 12:9 am
+42. Chatbot - response: fine, 
+please give the value for the field arrival time. this field is optional
+43. User - Your input: i want to continue
+44. Chatbot - response:  fill the value for the field arrival time. this field is optional
+[Situation of fields]
+{'first name': 'an error', 'password': 'Anna!x', 'email address': 'ioanegu@outlook.com', 'birthday': '01-10-1926', 'arrival time': None, 'requested_slot': 'arrival time'}
+45. User - Your input: in the whole form, give me the fields to be completed
+46. Chatbot - response: the fields you already completed are the following: 
+	first name ** : an error
+	password ** : Anna!x
+	email address : ioanegu@outlook.com
+	birthday : 01-10-1926
+
+the stars indicate the required fields
+ put the value for the field arrival time. this field is optional
+47. User - Your input: no, i do not
+48. Chatbot - response: fine, what do you want to do now?
+49. User - Your input: 7 o_clock is the arrival time
+50. Chatbot - response: all the fields have been completed
+ here is the summary: 
+	first name ** : an error
+	password ** : Anna!x
+	email address : ioanegu@outlook.com
+	birthday : 01-10-1926
+	arrival time : 07:00
+ 
+Is everything well for the submission?.
+ the stars indicate the required fields
+[Situation of fields]
+{'first name': 'an error', 'password': 'Anna!x', 'email address': 'ioanegu@outlook.com', 'birthday': '01-10-1926', 'arrival time': '07:00', 'requested_slot': None}
+51. User - Your input: fill the form
+52. Chatbot - response: all the fields have been completed
+ here is the summary: 
+	first name ** : an error
+	password ** : Anna!x
+	email address : ioanegu@outlook.com
+	birthday : 01-10-1926
+	arrival time : 07:00
+ 
+Is everything correct for the submission?.
+ the stars indicate the required fields
+53. User - Your input: i want to submit
+54. Chatbot - well you have been moved to the page with title HYPERCLINIC – Have a new vision of the world
+55. END OF THE CONVERSATION !!!
+
+Starting time: 2020-04-06 00:14:32.507081
+Ending time: 2020-04-06 00:27:48.214452
+Cummulative response time: 117 seconds
+Number of user requests: 27 requests
+Average response time: 4.33 sec/req
+Cummulative thinking time: 653 seconds
+[Situation of fields]
+{'first name': 'an error', 'password': 'Anna!x', 'email address': 'ioanegu@outlook.com', 'birthday': '01-10-1926', 'arrival time': '07:00', 'requested_slot': None}
+55. User - Your input: 0
+56. Chatbot - well you have been moved to the page with title HYPERCLINIC – Have a new vision of the world
+57. END OF THE CONVERSATION !!!
+
+Starting time: 2020-04-06 00:14:32.507081
+Ending time: 2020-04-06 00:45:10.780447
+Cummulative response time: 185 seconds
+Number of user requests: 28 requests
+Average response time: 6.61 sec/req
+Cummulative thinking time: 1628 seconds
+

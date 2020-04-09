@@ -113,7 +113,7 @@ class BotsManager:
             if state.get_spelling_interrupted():
                 # In the past the user interrupted a spelling and we wait for the response on whether to save the state or not
                 if intent not in [u.affirm_action, u.deny_action]:
-                    utterance = ('please i would like to have a clear answer.\nwould you like to save the state of the field ' +
+                    utterance = ('Please i would like to have a clear answer.\nWould you like to save the state of the field ' +
                         'that you started spelling ?\nIn case of negative response, that input will simply be canceled')
                     state.set_warning_message(utterance)
                     raise Exception
@@ -143,7 +143,7 @@ class BotsManager:
                 # the user started to spell an input and suddently interrupts it
                 state.set_spelling_interrupted()
                 state.set_waiting_intent(intent)
-                utterance = ('do you want to save the state of the field that you started spelling ?\nIn case of negative response, ' +
+                utterance = ('Do you want to save the state of the field that you started spelling?\nIn case of negative response, ' +
                     'that input will simply be canceled')
                 state.set_warning_message(utterance)
                 raise Exception

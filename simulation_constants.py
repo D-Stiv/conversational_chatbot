@@ -109,12 +109,12 @@ phone_prefixes = [1, 7, 20, 27, 30, 31, 32, 33, 34, 36, 39, 40, 41, 43, 44, 45, 
                   992, 993, 994, 995, 996, 998]
 
 # some trigger to avoid be blocked in a given state due to the randomness of some choices
+inf = 100
 Counter_trigger = 0
 max_execution_number = 1
 cardinality_interval_number = 5
 min_R = 0
 max_R = 100
-inf = 100
 complete_field_cardinality = 40
 spelling_cardinality = 20
 submit_cardinality = 15

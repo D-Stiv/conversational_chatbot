@@ -111,7 +111,7 @@ class User:
             print(f'Fail to remove the intent {intent_name} in the active list')
             raise Exception
     
-    def select_intent_and_execute(self, prohibited_intents=None):
+    def select_intent_and_execute(self, prohibited_intents=cts.fill_form):
         # randomly selects an intent in the active list to be executed
         try:
             number = randint(self.min_random_number, self.max_random_number)
@@ -329,7 +329,7 @@ class User:
             if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
                 intent_name = cts.submit_form
                 return self.construct_answer(intent_name)
-            prohibited_intents = [u.spelling_action]
+            prohibited_intents = [u.spelling_action, cts.complete_field]
             return self.select_intent_and_execute(prohibited_intents)
         except:
             print('Fail to get an answer for the state "07"')

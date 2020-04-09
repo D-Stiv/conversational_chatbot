@@ -72,5 +72,5 @@ try:
 except:
     print('Fail')
 """
-
-print(int(15/2))
+number = 'ammamea'.count('a')
+print(number)

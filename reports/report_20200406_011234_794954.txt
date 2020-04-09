@@ -1,0 +1,93 @@
+HEADER
+
+	Date and Hour: 2020-04-06 01:11:10.230140
+
+SUMMARY
+
+	There are 1 completed sessions
+
+REPORT LOG
+
+
+0.	--- DIALOGUE 1 ---
+
+1.	I- Form element
+
+2.		[browser_name: msedge - page_title: Test Project Form – HYPERCLINIC - URL: http://localhost/ecobusiness/test-project-form/]
+
+3.	II- Slots
+
+4.		[slot_name: first name - slot_value: Mikaere - required: True - spelling: True - description: your first name]
+5.		[slot_name: password - slot_value: Tiarenq13 - required: True - spelling: False - description: None]
+6.		[slot_name: email address - slot_value: minenhle@hotmail.it should be - required: False - spelling: False - description: the email we should use to contact you]
+7.		[slot_name: birthday - slot_value: 27-09-1924 - required: False - spelling: False - description: None]
+8.		[slot_name: arrival time - slot_value: 02:24 - required: False - spelling: False - description: the time you expect to arrive at the conference]
+9.		[Web Form info -- title: registration form sample - description: presents various fields types in order to test the different kinds of input we can have and different actions]
+
+10.	III-Messages
+
+11.		Message_0
+12.			Text: M
+13.			Intent: [name: spelling - confidence: 0.9953]
+14.			Entities: [entity: spelling, value: M]
+15.		Message_1
+16.			Text: i
+17.			Intent: [name: spelling - confidence: 0.9606]
+18.			Entities: [entity: spelling, value: i]
+19.		Message_2
+20.			Text: k
+21.			Intent: [name: spelling - confidence: 0.9964]
+22.			Entities: [entity: spelling, value: k]
+23.		Message_3
+24.			Text: a
+25.			Intent: [name: spelling - confidence: 0.9912]
+26.			Entities: [entity: spelling, value: a]
+27.		Message_4
+28.			Text: e
+29.			Intent: [name: spelling - confidence: 0.9954]
+30.			Entities: [entity: spelling, value: e]
+31.		Message_5
+32.			Text: r
+33.			Intent: [name: spelling - confidence: 0.9983]
+34.			Entities: [entity: spelling, value: r]
+35.		Message_6
+36.			Text: e
+37.			Intent: [name: spelling - confidence: 0.9954]
+38.			Entities: [entity: spelling, value: e]
+39.		Message_7
+40.			Text: close
+41.			Intent: [name: spelling - confidence: 0.9975]
+42.			Entities: [entity: spelling, value: close]
+43.		Message_8
+44.			Text: the value Tiarenq13 is for password
+45.			Intent: [name: fillGenericCamp - confidence: 0.9999]
+46.			Entities: [entity: input_value, value: Tiarenq13], [entity: input_value, value: for], [entity: input_field, value: password]
+47.		Message_9
+48.			Text: minenhle@hotmail.it should be insert for the field email address
+49.			Intent: [name: modifyValueGenericCamp - confidence: 0.8118]
+50.			Entities: [entity: input_value, value: minenhle@hotmail.it should be], [entity: input_field, value: email address]
+51.		Message_10
+52.			Text: for the field birthday the value is 09/27/1924
+53.			Intent: [name: fillGenericCamp - confidence: 1.0000]
+54.			Entities: [entity: input_field, value: birthday], [entity: input_value, value: 09/27/1924]
+55.		Message_11
+56.			Text: for the arrival time i want to insert 02:24 am
+57.			Intent: [name: modifyValueGenericCamp - confidence: 0.7296]
+58.			Entities: [entity: input_field, value: arrival time], [entity: input_value, value: 02:24 am]
+59.		Message_12
+60.			Text: i want to submit
+61.			Intent: [name: submitForm - confidence: 0.9999]
+62.			Entities: 
+
+63.	IV-Statistics64.		Convergence Rate:
+65.			total number of turns: t = 27
+66.			total number of fields: n = 5
+67.			total number of spelling fields: m = 1
+68.			total number of spelling turns: m_k factor = 8
+69.			convergence rate: c = 0.89
+71.		Response Clarity Factor:
+72.			Number of required turns: 13 turns
+73.			Number of user's turns: 6 turns
+74.			Clarity factor: 0.4615
+
+

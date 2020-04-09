@@ -26,7 +26,7 @@ class DialogueManager:
         self.browser = browser
         self.user = None
         self.driver = None
-        self.log_writer = w.LogWriter()
+        self.log_writer = None
         self.counter = 0
         self.user_view = None
         self.chatbot_view = None
@@ -40,6 +40,7 @@ class DialogueManager:
         self.number_fields = 0
 
     def initialize_views(self):
+        self.log_writer = w.LogWriter()
         self.user_view = ViewChatPannel(self.log_writer, u.user_marker)
         self.chatbot_view = ViewChatPannel(self.log_writer, u.chatbot_marker)
 
@@ -172,11 +173,11 @@ class DialogueManager:
                     if self.in_session:
                         # we frequently show the situation of the fields
                         notification = self.counter % min(u.COEFF*self.number_fields, u.NOTIFICATION_FREQUENCE)
-                        if notification in [0,1] and self.in_session:
+                        if notification in [0,1]:
                             text = self.current_bot.get_state().get_slots_value()
                             self.chatbot_view.show_notifications(text)
                 else:
-                    text = 'you did not insert any value'
+                    text = 'You did not insert any value'
                     self.chatbot_view.show_text(self.counter, text)
                     self.counter += 1
             if a == u.stop:
@@ -198,6 +199,7 @@ class DialogueManager:
             good_style = styles.get_good()
             text = f"{good_style} you have been moved to the page with title {newPageTitle}"
             self.chatbot_view.show_text(self.counter, text)
+            self.counter += 1
             self.write_log()
             # we add the tate to the list
             self.states_list.append(self.current_bot.get_state())
@@ -224,6 +226,7 @@ class DialogueManager:
                 self.update_parameters()
             else:
                 self.restart = False
+                self.in_session = False
         except:
             print('Fail to manage the after submission')
             raise Exception
@@ -239,6 +242,7 @@ class DialogueManager:
             self.driver = None
             self.chatbot_view = None
             self.user_view = None
+            self.log_writer = None
         except:
             print('Fail to update the parameters')
             raise Exception

@@ -63,6 +63,8 @@ class ReportWriter(Writer):
         self.counter = 0
         self.states_list = states_list
         self.text = '{}.\t' # form elements, constructs, messages
+        self.spelling_length = 0
+
 
     def start(self):
         try:
@@ -113,7 +115,8 @@ class ReportWriter(Writer):
                 form_element_content = f'{self.text.format(self.counter)}I- Form element\n{self.get_form_element(state.form_element, tab)}'
                 slots_content = f'{self.text.format(self.counter)}II- Slots\n{self.get_slots(state.constructs["form"]["slots"], tab)}'
                 messages_content = f'{self.text.format(self.counter)}III-Messages{self.get_messages(state.message_history, tab)}'
-                dialogue = f'{dialogue}\n{form_element_content}\n{slots_content}\n{messages_content}'
+                statistics_content = f'{self.text.format(self.counter)}IV-Statistics\n{self.get_statistics(state, tab)}'
+                dialogue = f'{dialogue}\n{form_element_content}\n{slots_content}\n{messages_content}\n{statistics_content}'
                 report_log = f'{report_log}\n{dialogue}'
             report_log = f'\n{report_log}\n'
             return report_log
@@ -166,6 +169,7 @@ class ReportWriter(Writer):
             messages_content = ''
             for index in range(len(messages)):
                 message = messages[index]
+                self.manage_spelling(message)
                 line_message = f'Message_{index}'
                 line_message = self.add_line(line_message, tab=tab)
                 line_text = self.add_line(f'Text: {message["text"]}', tab=tabb)
@@ -191,4 +195,98 @@ class ReportWriter(Writer):
             return line
         except:
             print('Fail to get the entities')
+            raise Exception
+
+    def get_statistics(self, state, tab):
+        try:
+            convergence_rate_content = self.get_convergence_rate(state, tab)
+            clarity_factor_content = self.get_clarity_factor(state, tab)
+            statistics_content = f'{convergence_rate_content}\n{clarity_factor_content}'
+            self.spelling_length = 0
+            return statistics_content
+        except:
+            print('Fail to get the statistics')
+            raise Exception
+
+    def manage_spelling(self, message):
+        try:
+            intent = message["intent"]["name"]
+            if intent == u.spelling:
+                self.spelling_length += 1
+        except:
+            print('Fail to update the spelling length')
+            raise Exception
+
+    def get_spelling_slots(self, slots):
+        try:
+            spelling_slots = []
+            for slot in slots:
+                if slot[u.slot_name] != u.REQUESTED_SLOT and slot[u.spelling]:
+                    spelling_slots.append(slot)
+            return spelling_slots
+        except:
+            print('Fail to get the spelling slots')
+            raise Exception
+
+    def get_cummulative_values(self, slots):
+        try:
+            sum_length = 0
+            for slot in slots:
+                sum_length += 1 + len(slot[u.slot_value])
+            return sum_length
+        except:
+            print('Fail to compute cummulative values')
+            raise Exception
+
+    def get_convergence_rate(self, state,tab):
+        try:
+            self.increase_counter()
+            tabb = f'{tab}\t'
+            total_turns = len(state.message_history) * 2 + 1
+            slots = state.constructs["form"]["slots"]
+            total_fields = len(slots) - 1
+            spelling_slots = self.get_spelling_slots(slots)
+            total_spelling = len(spelling_slots)
+            cummulative_spelling_values = self.get_cummulative_values(spelling_slots)
+            m_k_factor = max(self.spelling_length, cummulative_spelling_values)
+            line_text = 'Convergence Rate:'
+            convergence_rate_content = self.add_line(line_text, tab=tab)
+            line_text = f'total number of turns: t = {total_turns}'
+            convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
+            line_text = f'total number of fields: n = {total_fields}'
+            convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
+            line_text = f'total number of spelling fields: m = {total_spelling}'
+            convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
+            line_text = f'total number of spelling turns: m_k factor = {m_k_factor}'
+            convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
+            line_text = f'convergence rate: c = {round(Decimal(2*(total_fields - total_spelling + m_k_factor))/Decimal(total_turns), 2)}'
+            convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
+            return convergence_rate_content
+        except:
+            print('Fail to get the convergence rate content')
+            raise Exception
+    
+    def get_clarity_factor(self, state, tab):
+        try:
+            self.increase_counter()
+            tabb = f'{tab}\t'
+            clarity_denom = len(state.message_history)
+            slots = state.constructs["form"]["slots"]
+            total_slots = len(slots) # we do not remove one because we count the submit request          
+            spelling_slots = self.get_spelling_slots(slots)
+            total_spelling = len(spelling_slots)
+            cummulative_spelling_values = self.get_cummulative_values(spelling_slots)
+            m_k_factor = max(self.spelling_length, cummulative_spelling_values)
+            clarity_num = (total_slots) - total_spelling + m_k_factor
+            line_text = 'Response Clarity Factor:'
+            clarity_factor_content = self.add_line(line_text, tab=tab)
+            line_text = f"Number of required turns: {clarity_num} turns"
+            clarity_factor_content = f'{clarity_factor_content}\n{self.add_line(line_text, tab=tabb)}'
+            line_text = f"Number of user's turns: {clarity_denom} turns"
+            clarity_factor_content = f'{clarity_factor_content}\n{self.add_line(line_text, tab=tabb)}'
+            line_text = f"Clarity factor: {round(Decimal(clarity_num)/Decimal(clarity_denom), 4)}"
+            clarity_factor_content = f'{clarity_factor_content}\n{self.add_line(line_text, tab=tabb)}'
+            return clarity_factor_content
+        except:
+            print('Fail to get the clarity factor content')
             raise Exception
