@@ -72,5 +72,5 @@ try:
 except:
     print('Fail')
 """
-number = 'ammamea'.count('a')
+number = float('12,548'.replace(',', '.'))
 print(number)

@@ -135,7 +135,7 @@ class BotsManager:
                 state.set_waiting_intent(None)
                 utterance = bot.findActionAndRun(intent=intent)
             elif intent not in [u.spelling_action, u.fill_form_action] and state.get_current_spelling_input_value() != '':
-            # we are going to find a solution ad hoc for the spelling 'dot'
+                # we are going to find a solution ad hoc for the spelling 'dot'
                 if state.get_latest_message()["text"] == 'dot':
                     intent = u.spelling_action
                     utterance = bot.findActionAndRun(intent=intent)

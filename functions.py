@@ -60,8 +60,8 @@ def is_compatible(slot_value, value_type):
                 return c.verify_compatibility_tel(slot_value)
             if value_type == u.date:
                 return c.verify_compatibility_date(slot_value)
-            if value_type == u.number:
-                return c.verify_compatibility_number(slot_value)
+            if value_type == u.month:
+                return c.verify_compatibility_month(slot_value)
             if value_type == u.time:
                 return c.verify_compatibility_time(slot_value)
             if value_type == u.number:
@@ -331,9 +331,10 @@ def next_char_string():
         # we add styles to the output
         next_style = styles.get_next()
         please_style = styles.get_please()
+        insert_style = styles.get_insert()
         end_style = styles.get_end()
         # we set the message to be returned to the user
-        string = (f'{please_style} insert the {next_style} character, remember that you can use the expression SPACE for the blank' +
+        string = (f'{please_style} {insert_style} the {next_style} character, remember that you can use the expression SPACE for the blank' +
                   f' and the expression TERMINATE to {end_style} the spelling')
         return string
     except:
