@@ -297,9 +297,11 @@ class State:
             raise Exception
 
     def set_warning_message(self, text):
+        if text != u.VOID:
+            # we also set the warning present to True since there is a message
+            self.set_warning_present()
         self.machine_parameters[u.warning_message] = text
-        # we also set the warning present to True since there is a message
-        self.set_warning_present()
+        
 
     def get_warning_message(self):
         return self.machine_parameters[u.warning_message]

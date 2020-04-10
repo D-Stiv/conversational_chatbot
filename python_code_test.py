@@ -72,5 +72,6 @@ try:
 except:
     print('Fail')
 """
-number = float('12,548'.replace(',', '.'))
-print(number)
+numbers = {"yes": "", "no": 2}.keys()
+for number in numbers:
+    print(number)
