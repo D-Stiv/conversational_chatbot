@@ -19,11 +19,14 @@ class LogWriter(Writer):
         self.number_turns_chatbot = 0
         self.number_turns_user = 0
 
-    def start(self):
+    def start(self, display_summary=True):
         header = self.construct_header()
         summary = self.construct_summary()
         conv_log = self.construct_conv_log()
-        text = f'{header}\n\n{summary}\n\n{conv_log}\n\n'
+        if display_summary:
+            text = f'{header}\n\n{summary}\n\n{conv_log}\n\n'
+        else:
+            text = f'{header}\n\n{conv_log}\n\n'
         self.create_file(text)
 
     def add_chatbot_line(self, line):
