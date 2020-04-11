@@ -5,15 +5,19 @@ import utility as u
 from writers import LogWriter
 from choice_bot import BotsManager
 from selenium import webdriver
+import functions as fn
 
 class Testing:
     bots_list = []
     functional_testing_writer = LogWriter(destination_folder='testing/testing_logs/functional')
     structural_testing_writer = LogWriter(destination_folder='testing/testing_logs/structural')
+    counter = 0
 
     def start(self):
         self.create_bots()
         self.testing(t_c.functional)
+        # we reset the counter of lines
+        self.counter = 0
         self.testing(t_c.structural)
 
     def create_bots(self):
@@ -53,14 +57,17 @@ class Testing:
                     t_c.spelling_state: self.get_difference(state_before[t_c.spelling_state], state_after[t_c.spelling_state]),
                     t_c.machine_parameters: self.get_difference(state_before[t_c.machine_parameters], state_after[t_c.machine_parameters])
                 }
-                self.write_test_case(testing_type=testing_type, initial_situation=state_before, test_case_message=test_case_message, effects=difference, response=response)
+                self.write_test_case(testing_type=testing_type, initial_situation=state_before, test_case=test_case, effects=difference, response=response)
             if testing_type == t_c.structural:
-                self.structural_testing_writer.start()
+                self.structural_testing_writer.start(display_summary=False)
             else:
-                self.functional_testing_writer.start()        
+                self.functional_testing_writer.start(display_summary=False)        
         except:
             print('Fail to complete the testing')
-            self.functional_testing_writer.start()
+            if testing_type == t_c.structural:
+                self.structural_testing_writer.start(display_summary=False)
+            else:
+                self.functional_testing_writer.start(display_summary=False)
 
     def state_preparation(self, state, test_case):
         try:
@@ -127,9 +134,43 @@ class Testing:
                 difference[key] = after[key]
         return difference
 
-    def write_test_case(self, testing_type, initial_situation, test_case_message, effects, response):
+    def write_test_case(self, testing_type, initial_situation, test_case, effects, response):
         try:
-            pass
+            escape = '\n\t'
+
+            fields_line = fn.get_pairs(initial_situation.form_slots()).replace('\n', ' ').replace('\t', ' ')
+            spelling_line = self.get_string_from_dic(initial_situation[t_c.spelling_state])
+            machine_line = self.get_string_from_dic(initial_situation[t_c.machine_parameters])
+            init_line = f'Fields - {fields_line}{escape}\tSpelling state - {spelling_line}{escape}\tMachine parameters - {machine_line}'
+            
+            test_case_line = test_case[t_c.test_case_message][t_c.text]
+            expected_line = test_case[t_c.result_expected]
+            response_line = response.replace('\n', ' ').replace('\t', ' ')
+
+            effects_fields = fn.get_pairs(effect[u.slots]).replace('\n', ' ').replace('\t', ' ')
+            effects_spelling = self.get_string_from_dic(effects[t_c.spelling_state])
+            effects_machine = self.get_string_from_dic(effects[t_c.machine_parameters])
+            effects_line = f'Modified fields - {effects_fields}{escape}\tModified spelling attributes - {effects_spelling}{escape}\tModified machine parameters - {effects_machine}'
+
+            line = f'Test case - {self.counter}{escape}[Initial situation: {init_line}] {escape}[Test case meaage: {test_case_line}] {escape}[Result expected: {expected_line}] {escape}[Result obtained: (effects: {effects_line}) (response:{response_line})]'
+            self.counter += 1
+            if testing_type == t_c.functional:
+                self.functional_testing_writer.add_line(line)
+            else:
+                self.structural_testing_writer.add_line(line)
         except:
             print('Fail to generate and summary of the test case')
+            raise Exception
+
+    def get_string_from_dic(self, dic):
+        try:
+            string = ''
+            for key in dic.keys():
+                if string == '':
+                    string = f'{key}: {dic[key]}'
+                else:
+                    string = f'{string}, {key}: {dic[key]}'
+            return string
+        except:
+            print('Fail to get the string from the dictionary')
             raise Exception
