@@ -20,8 +20,13 @@ def verify_compatibility_generic(value):
 def verify_compatibility_email(value):
     try:
         text = value
+        
         at_sign = '@'
+        dot_sign = '.'
         number_at_sign = value.count('@')
+        if dot_sign not in value:
+            text = f'The email should contain the character < {dot_sign} >'
+            return False, text
         if number_at_sign == 0:
             text = f'The email should contain the character < {at_sign} >'
             return False, text
@@ -33,6 +38,10 @@ def verify_compatibility_email(value):
             return False, text
         elif at_sign == value[len(value)-1]:
             text = f'The email should not end with the character < {at_sign} >'
+            return False, text
+        pos_at = value.index(at_sign)
+        if dot_sign not in value[pos_at :]:
+            text = f'There should be at least one character <{dot_sign}> after the character <{at_sign}>'
             return False, text
         return True, text
     except:
