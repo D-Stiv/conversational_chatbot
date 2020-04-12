@@ -71,35 +71,43 @@ class Testing:
 
     def state_preparation(self, state, test_case):
         try:
-            # we start by the spelling state
-            spelling_state = test_case[t_c.spelling_state]
-            keys = spelling_state.keys()
-            for key in keys:
-                if key == u.close_prompt_enabled:
-                    state.set_close_prompt_enabled(spelling_state[u.close_prompt_enabled])
-                elif key == u.current_spelling_input_value:
-                    state.set_current_spelling_input_value(spelling_state[u.current_spelling_input_value])
-                elif key == u.spelling_list:
-                    state.spelling_state[u.spelling_list] = spelling_state[u.spelling_list]
-                elif key == u.waiting_intent:
-                    state.set_waiting_intent(spelling_state[u.waiting_intent])
-                elif key == u.saved_spelling_fields:
-                    state.add_spelling_field_to_save(spelling_state[u.saved_spelling_fields])
-                    state.add_spelling_value_to_save(spelling_state[u.saved_spelling_values])
-            # we continue with machine parameters
-            machine_parameters = test_case[t_c.machine_parameters]
-            keys = machine_parameters.keys()
-            for key in keys:
-                if key == u.submit_done:
-                    state.set_submit_done(machine_parameters[u.submit_done])
-                elif key == u.reset_alarm_enabled:
-                    state.set_reset_alarm_enabled(machine_parameters[u.reset_alarm_enabled])
-                elif key == u.submit_alarm_enabled:
-                    state.set_submit_alarm_enabled(machine_parameters[u.submit_alarm_enabled])
-                elif key == u.possible_next_action:
-                    state.set_possible_next_action(machine_parameters[u.possible_next_action])
-                elif key == u.warning_message:
-                    state.set_warning_message(machine_parameters[u.warning_message])
+            general_keys = test_case.keys()
+            for general_key in general_keys:
+                if general_key == u.slots:
+                    # we set the slots
+                    for slot in test_case[u.slots]:
+                        state.filling_procedure(slot[u.slot_name], slot[u.slot_value])
+                elif general_key == t_c.spelling_state:
+                    # we start by the spelling state
+                    spelling_state = test_case[t_c.spelling_state]
+                    keys = spelling_state.keys()
+                    for key in keys:
+                        if key == u.close_prompt_enabled:
+                            state.set_close_prompt_enabled(spelling_state[u.close_prompt_enabled])
+                        elif key == u.current_spelling_input_value:
+                            state.set_current_spelling_input_value(spelling_state[u.current_spelling_input_value])
+                        elif key == u.spelling_list:
+                            state.spelling_state[u.spelling_list] = spelling_state[u.spelling_list]
+                        elif key == u.waiting_intent:
+                            state.set_waiting_intent(spelling_state[u.waiting_intent])
+                        elif key == u.saved_spelling_fields:
+                            state.add_spelling_field_to_save(spelling_state[u.saved_spelling_fields])
+                            state.add_spelling_value_to_save(spelling_state[u.saved_spelling_values])
+                elif general_key == t_c.machine_parameters:
+                    # we continue with machine parameters
+                    machine_parameters = test_case[t_c.machine_parameters]
+                    keys = machine_parameters.keys()
+                    for key in keys:
+                        if key == u.submit_done:
+                            state.set_submit_done(machine_parameters[u.submit_done])
+                        elif key == u.reset_alarm_enabled:
+                            state.set_reset_alarm_enabled(machine_parameters[u.reset_alarm_enabled])
+                        elif key == u.submit_alarm_enabled:
+                            state.set_submit_alarm_enabled(machine_parameters[u.submit_alarm_enabled])
+                        elif key == u.possible_next_action:
+                            state.set_possible_next_action(machine_parameters[u.possible_next_action])
+                        elif key == u.warning_message:
+                            state.set_warning_message(machine_parameters[u.warning_message])
         except:
             print('Fail to initialize the initial state for the test case')
             raise Exception
