@@ -796,6 +796,7 @@ class State:
             print(f'{class_name}: {function_name}')
         try:
             # The particular case refers to a checkbox with more than one choice_value made
+            # we update the Web Form and we set the slots
             if len(slot_name_list) >= len(slot_value_list):
                 return False
             if len(slot_name_list) == 0:
@@ -808,6 +809,8 @@ class State:
                 return False
             self.set_choices_checkbox(
                 slot_name=slot_name, choice_values=slot_value_list)
+            slot[u.slot_value] = slot_value_list
+            self.update(slot_name)
             return True
         except:
             print("ERROR: Fail to check particular case")
@@ -985,7 +988,6 @@ class State:
                     ready_to_submit = False
             # now we prepare the output string
             next_step_string = self.manage_next_step()
-            empty_slots_names = self.fill_generic_slots(slot_name_list, slot_value_list)
             fields = fn.get_string_from_list(empty_slots_names)
             modify_style = styles.get_modify()
             intro = (f"You wanted to {modify_style} the fields {fields} but you did not insert their values")
