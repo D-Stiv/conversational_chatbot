@@ -401,6 +401,9 @@ class RegistrationForm(Form):
            # we have to verify the state to know what is the deny for. the variable to check
             # is possible_next_action
             # another choice can be simply to ask the user what he wants to do.
+            if self.state.get_next_slot(only_name=True) is not None:
+                string = self.state.manage_next_step()
+                return string
             good_style = styles.get_good()
             string = f"{good_style}, what do you want to do now?"
             return string
