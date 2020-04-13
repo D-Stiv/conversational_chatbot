@@ -71,7 +71,12 @@ class Testing:
 
     def state_preparation(self, state, test_case):
         try:
-            general_keys = test_case.keys()
+            # test_case has keys message_id, test_form_number, initial_state, test_case_message, result_expected
+            if t_c.initial_state in test_case.keys():
+                initial_state = test_case[t_c.initial_state]
+            else:
+                return
+            general_keys = initial_state.keys()
             for general_key in general_keys:
                 if general_key == u.slots:
                     # we set the slots
@@ -79,11 +84,13 @@ class Testing:
                         state.filling_procedure(slot[u.slot_name], slot[u.slot_value])
                 elif general_key == t_c.spelling_state:
                     # we start by the spelling state
-                    spelling_state = test_case[t_c.spelling_state]
+                    spelling_state = initial_state[t_c.spelling_state]
                     keys = spelling_state.keys()
                     for key in keys:
                         if key == u.close_prompt_enabled:
                             state.set_close_prompt_enabled(spelling_state[u.close_prompt_enabled])
+                        elif key == u.after_spelling:
+                            state.set_after_spelling(spelling_state[u.after_spelling])
                         elif key == u.current_spelling_input_value:
                             state.set_current_spelling_input_value(spelling_state[u.current_spelling_input_value])
                         elif key == u.spelling_list:

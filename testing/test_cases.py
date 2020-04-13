@@ -13,13 +13,14 @@ repeat_value_field = 'repeatValueCamp'
 repeat_all_fields = 'repeatAllLabels'
 repeat_required_fields = 'repeatRequiredLabels'
 repeat_optional_fields = 'repeatOptionalLabels'
-give_remaining_fields = 'giveAllRemainingLabels'
+give_all_remaining_fields = 'giveAllRemainingLabels'
 give_remaining_required_fields = 'giveRemainingRequiredLabels'
 give_remaining_optional_fields = 'giveRemainingOptionalLabels'
 skip_field = 'skipCamp'
 verify_presence_field = 'verifyPresenceOfLabel'
 verify_value_fields = 'verifyValueFilledCamps'
 repeat_form_explanation = 'repeatFormExplanation'
+repeat_form_title = 'repeatFormTitle'
 explain_field = 'explainLabel'
 
 # keys
@@ -30,6 +31,9 @@ spelling_state = "spelling_state"
 machine_parameters = "machine_parameters"
 test_case_message = "test_case_message"
 result_expected = "result_expected"
+
+input_field = "input_field"
+input_value = "input_value"
 
 entities = "entities"
 intent = "intent"
@@ -50,204 +54,109 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "first name",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "mark",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "password",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "email address",
+                    u.slot_value: None
                 }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
+            ]
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: repeat_form_title,
                 confidence: 1
             },
-            text: ''
+            text: 'please tell me the title of the form again'
         },
-        result_expected: ''
+        result_expected: 'The form does not have a title'
     },
     {
         message_id: "001",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        test_form_number: 3,
+        initial_state: {},
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: repeat_form_title,
                 confidence: 1
             },
-            text: ''
+            text: 'give me the title of the form'
         },
-        result_expected: ''
+        result_expected: 'The title of this form is test form sample number 3'
     },
     {
         message_id: "002",
         test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        initial_state: {},
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: repeat_form_explanation,
                 confidence: 1
             },
-            text: ''
+            text: 'what is this form about?'
         },
-        result_expected: ''
+        result_expected: 'It does not have a description'
     },
     {
         message_id: "003",
         test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        initial_state: {},
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'add the value of the field'
         },
-        result_expected: ''
+        result_expected: 'Which field exactly would you like to {modify} and which value do you want to {insert} for that field?'
     },
     {
         message_id: "004",
         test_form_number: 1,
         initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
             machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
+                u.possible_next_action: spelling
             }
         },
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: input_field,
+                    value: 'first name'
+                },
+                {
+                    entity: 'input_value',
+                    value: 'alfred'
+                },
+                {
+                    entity: 'inpuut_value',
+                    value: '28.5'
+                },
+                {
+                    entity: input_field,
+                    value: 'mark'
                 }
             ],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'my first name is alfred and 28,5 is the mark'
         },
-        result_expected: ''
+        result_expected: '{sorry} i did not understand your request, could you reformulate {please}'
     },
     {
         message_id: "005",
@@ -255,40 +164,24 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "first name",
+                    u.slot_value: None
                 }
             ],
             spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
+                u.spelling_list: ['first name', 'email address'],
+                u.after_spelling: True
             }
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'i want to complete a field'
         },
-        result_expected: ''
+        result_expected: 'Now you are going to spell the value for the field {field}, {please} insert the first character'
     },
     {
         message_id: "006",
@@ -296,40 +189,24 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "first names",
+                    u.slot_value: None
                 }
             ],
             spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
+                u.spelling_list: ['first name'],
+                u.after_spelling: False
             }
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'i want to complete the field'
         },
-        result_expected: ''
+        result_expected: 'You will have to spell the value for the field {field}'
     },
     {
         message_id: "007",
@@ -337,40 +214,28 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "first name",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "email address",
+                    u.slot_value: None
                 }
             ],
             spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
+                u.spelling_list: ['first name', 'email address'],
+                u.after_spelling: False
             }
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'i want to complete a field'
         },
-        result_expected: ''
+        result_expected: 'You will have to spell the value for the following fieldss {fields}.  We start by the field {field}'
     },
     {
         message_id: "008",
@@ -378,40 +243,28 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "first name",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "email address",
+                    u.slot_value: None
                 }
             ],
             spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
+                u.spelling_list: ['first name', 'email address'],
+                u.after_spelling: False
             }
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'complete a field'
         },
-        result_expected: ''
+        result_expected: '… insert the first character, you will be able to use SPACE for spacing and TERMINATE to {conclude} the spelling'
     },
     {
         message_id: "009",
@@ -440,19 +293,14 @@ structural_test_cases = [
             }
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: spelling,
                 confidence: 1
             },
-            text: ''
+            text: 'rome'
         },
-        result_expected: ''
+        result_expected: 'Your input {input} is not valid, try to insert only the character please'
     },
     {
         message_id: "010",
@@ -460,327 +308,175 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "first name",
+                    u.slot_value: None
                 }
             ],
             spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
+                u.current_spelling_input_value: ''
             }
         },
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: 'spelling',
+                    value: 'terminator'
                 }
             ],
             intent: {
-                name: '',
+                name: spelling,
                 confidence: 1
             },
-            text: ''
+            text: 'terminator'
         },
-        result_expected: ''
+        result_expected: "You should insert at least one character different from 'blank'"
     },
     {
         message_id: "011",
-        test_form_number: 1,
+        test_form_number: 2,
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "phone number",
+                    u.slot_value: "3986452734"
+                },
+                {
+                    u.slot_name: "number of persons",
+                    u.slot_value: "4"
+                },
+                {
+                    u.slot_name: "birthday",
+                    u.slot_value: "12/03/2010"
                 }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
+            ]
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: verify_presence_field,
                 confidence: 1
             },
-            text: ''
+            text: 'is the field presnt in the form?'
         },
-        result_expected: ''
+        result_expected: '{please} indicate which field you are interested to'
     },
     {
         message_id: "012",
-        test_form_number: 1,
+        test_form_number: 2,
         initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
             machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
+                u.possible_next_action: None
             }
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: affirm,
                 confidence: 1
             },
-            text: ''
+            text: 'yes'
         },
-        result_expected: ''
+        result_expected: '{sorry} what exactly do you want to do?'
     },
     {
         message_id: "013",
-        test_form_number: 1,
+        test_form_number: 2,
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "arrival time",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "card expiration date",
+                    u.slot_value: None
                 }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
+            ]
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: deny,
                 confidence: 1
             },
-            text: ''
+            text: 'no'
         },
-        result_expected: ''
+        result_expected: '{well}, what do you want to do now?'
     },
     {
         message_id: "014",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        test_form_number: 2,
+        initial_state: {},
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: verify_value_fields,
                 confidence: 1
             },
-            text: ''
+            text: 'i want the recap of what have been done so far'
         },
-        result_expected: ''
+        result_expected: 'Here is the answer for you : …   '
     },
     {
         message_id: "015",
         test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        initial_state: {},
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: input_field,
+                    value: 'card espiration date'
                 }
             ],
             intent: {
-                name: '',
+                name: repeat_value_field,
                 confidence: 1
             },
-            text: ''
+            text: 'what is the value of the card expiration date?'
         },
-        result_expected: ''
+        result_expected: '… No value ….'
     },
     {
         message_id: "016",
-        test_form_number: 1,
+        test_form_number: 2,
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "card expiration date",
+                    u.slot_value: "april 2021"
                 }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
+            ]
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: skip_field,
                 confidence: 1
             },
-            text: ''
+            text: 'skip'
         },
-        result_expected: ''
+        result_expected: '{sorry} this field is the last one remaining'
     },
     {
         message_id: "017",
-        test_form_number: 1,
+        test_form_number: 2,
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "card expiration date",
+                    u.slot_value: "april 2021"
                 }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
+            ]
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: skip_field,
                 confidence: 1
             },
-            text: ''
+            text: 'skip'
         },
-        result_expected: ''
+        result_expected: '… do you want to submit now?'
     },
     {
         message_id: "018",
@@ -788,450 +484,239 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "first name",
+                    u.slot_value: "rock"
+                },
+                {
+                    u.slot_name: "mark",
+                    u.slot_value: "23,45"
+                },
+                {
+                    u.slot_name: "password",
+                    u.slot_value: "empty_pass@rt"
+                },
+                {
+                    u.slot_name: "email address",
+                    u.slot_value: None
                 }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
+            ]
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: skip_field,
                 confidence: 1
             },
-            text: ''
+            text: 'skip'
         },
-        result_expected: ''
+        result_expected: '… it is required to submit the form …'
     },
     {
         message_id: "019",
         test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        initial_state: {},
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: repeat_required_fields,
                 confidence: 1
             },
-            text: ''
+            text: 'which are the required fields?'
         },
-        result_expected: ''
+        result_expected: '{sure} the required fields are the following {fields}'
     },
     {
         message_id: "020",
         test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        initial_state: {},
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: repeat_optional_fields,
                 confidence: 1
             },
-            text: ''
+            text: 'which are the optional fields of this form?'
         },
-        result_expected: ''
+        result_expected: '{sure} the optional fields are the following {fields}'
     },
     {
         message_id: "021",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        test_form_number: 3,
+        initial_state: {},
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: repeat_all_fields,
                 confidence: 1
             },
-            text: ''
+            text: 'which are the fields of this form?'
         },
-        result_expected: ''
+        result_expected: '{sure} the fields present in this form are the following {fields}'
     },
     {
         message_id: "022",
-        test_form_number: 1,
+        test_form_number: 3,
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "car",
+                    u.slot_value: "bmw"
+                },
+                {
+                    u.slot_name: "gender",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "electronic devices",
+                    u.slot_value: "smartphone"
+                },
+                {
+                    u.slot_name: "message",
+                    u.slot_value: None
                 }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
+            ]
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: give_remaining_required_fields,
                 confidence: 1
             },
-            text: ''
+            text: 'which are the required remaining fields'
         },
-        result_expected: ''
+        result_expected: '{sure} the remaining required fields are the following {fields}'
     },
     {
         message_id: "023",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        test_form_number: 3,
+        initial_state: {},
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: give_remaining_optional_fields,
                 confidence: 1
             },
-            text: ''
+            text: 'which are the remaining optional fields?'
         },
-        result_expected: ''
+        result_expected: '{sure} the remaining optional fields are the following {fields}'
     },
     {
         message_id: "024",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        test_form_number: 3,
+        initial_state: {},
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: give_all_remaining_fields,
                 confidence: 1
             },
-            text: ''
+            text: 'which are the remaining fields'
         },
-        result_expected: ''
+        result_expected: '{sure} the remaining fields present in this form are the following {fields}'
     },
     {
         message_id: "025",
-        test_form_number: 1,
+        test_form_number: 3,
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "car",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "gender",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "electronic devices",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "message",
+                    u.slot_value: None
                 }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
+            ]
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: verify_value_fields,
                 confidence: 1
             },
-            text: ''
+            text: 'i want to have the summary please'
         },
-        result_expected: ''
+        result_expected: '{sorry} up to now you did not complete any field…'
     },
     {
         message_id: "026",
-        test_form_number: 1,
+        test_form_number: 3,
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "gender",
+                    u.slot_value: "male"
                 }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
+            ]
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: verify_value_fields,
                 confidence: 1
             },
-            text: ''
+            text: 'can i have the summary please?'
         },
-        result_expected: ''
+        result_expected: 'The fields you already complete are he following {fields}. The stars represent the required fields'
     },
     {
         message_id: "027",
         test_form_number: 1,
         initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
             machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
+                u.reset_alarm_enabled: False
             }
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: reset_all_fields,
                 confidence: 1
             },
-            text: ''
+            text: 'reset'
         },
-        result_expected: ''
+        result_expected: 'We are about to reset all the field. Are you sure you want to continue with this action?'
     },
     {
         message_id: "028",
-        test_form_number: 1,
+        test_form_number: 2,
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "phone number",
+                    u.slot_value: "3549213458"
+                },
+                {
+                    u.slot_name: "number of persons",
+                    u.slot_value: "1"
+                },
+                {
+                    u.slot_name: "birthday",
+                    u.slot_value: "12/12/2012"
                 }
             ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
             machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
+                u.reset_alarm_enabled: True
             }
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: reset_all_fields,
                 confidence: 1
             },
-            text: ''
+            text: 'reset'
         },
-        result_expected: ''
+        result_expected: 'All the fields have been reset, now we restart the process'
     },
     {
         message_id: "029",
@@ -1239,40 +724,32 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "first name",
+                    u.slot_value: "alfonso"
+                },
+                {
+                    u.slot_name: "mark",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "password",
+                    u.slot_value: "p!^ss_w%@rd"
+                },
+                {
+                    u.slot_name: "email address",
+                    u.slot_value: None
                 }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
+            ]
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: submit_form,
                 confidence: 1
             },
-            text: ''
+            text: 'submit'
         },
-        result_expected: ''
+        result_expected: 'Not all the required fields have been completed. You still have to complete the following required fields {fields}'
     },
     {
         message_id: "030",
@@ -1280,81 +757,41 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "email address",
+                    u.slot_value: "em@il.it"
                 }
             ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
             machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
+                u.submit_alarm_enabled: False
             }
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: submit_form,
                 confidence: 1
             },
-            text: ''
+            text: 'submit the form'
         },
-        result_expected: ''
+        result_expected: 'We are going to submit, are you sure you want to continue with this action?'
     },
     {
         message_id: "031",
         test_form_number: 1,
         initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
             machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
+                u.submit_alarm_enabled: True
             }
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: submit_form,
                 confidence: 1
             },
-            text: ''
+            text: 'may i submit the form?'
         },
-        result_expected: ''
+        result_expected: 'Submission done'
     },
     {
         message_id: "032",
@@ -1385,67 +822,49 @@ structural_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: input_field,
+                    value: 'name'
+                },
+                {
+                    entity: 'input_value',
+                    value: 'gorges'
                 }
             ],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'my name is gorges'
         },
-        result_expected: ''
+        result_expected: 'The name {name} does not correspond to any label. The fields present are the following {fields}. Which field do you want to modify?'
     },
     {
         message_id: "033",
         test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        initial_state: {},
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: input_field,
+                    value: 'anniversary'
                 }
             ],
             intent: {
-                name: '',
+                name: repeat_value_field,
                 confidence: 1
             },
-            text: ''
+            text: 'whait is the value of anniversary?'
         },
-        result_expected: ''
+        result_expected: '{sorry} the field {field} is not present in this form. {please} could you precise the action you want to perfect?'
     },
     {
         message_id: "034",
-        test_form_number: 1,
+        test_form_number: 3,
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "car",
+                    u.slot_value: "honda"
                 }
             ],
             spelling_state: {
@@ -1467,17 +886,17 @@ structural_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: 'gender',
+                    value: 'other'
                 }
             ],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'gender is other'
         },
-        result_expected: ''
+        result_expected: 'Select the {field} in the following list {fields} …'
     },
     {
         message_id: "035",
@@ -1485,8 +904,12 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "gender",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "car",
+                    u.slot_value: None
                 }
             ],
             spelling_state: {
@@ -1508,26 +931,38 @@ structural_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: input_field,
+                    value: 'car'
+                },
+                {
+                    entity: 'input_value',
+                    value: 'hyundai'
                 }
             ],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'the car is hyundai'
         },
-        result_expected: ''
+        result_expected: 'Choose your {field} in the following list {fields} …'
     },
     {
         message_id: "036",
-        test_form_number: 1,
+        test_form_number: 2,
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "phone number",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "number of persons",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "birthday",
+                    u.slot_value: None
                 }
             ],
             spelling_state: {
@@ -1549,69 +984,49 @@ structural_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: input_field,
+                    value: 'phone number'
+                },
+                {
+                    entity: 'input_value',
+                    value: '55483498'
                 }
             ],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'my phone number is 55483498'
         },
-        result_expected: ''
+        result_expected: '{please} {insert} the value for the field {field} …'
     },
     {
         message_id: "037",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        test_form_number: 2,
+        initial_state: {},
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: input_field,
+                    value: 'number of persons'
+                },
+                {
+                    entity: 'input_value',
+                    value: 'steve'
                 }
             ],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'the number of persons is steve'
         },
-        result_expected: ''
+        result_expected: 'Incompatibility between the value {value} and the type {type} …'
     },
     {
         message_id: "038",
-        test_form_number: 1,
+        test_form_number: 3,
         initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
             spelling_state: {
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
@@ -1631,17 +1046,21 @@ structural_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: input_field,
+                    value: 'gender'
+                },
+                {
+                    entity: input_value,
+                    value: 'man'
                 }
             ],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'my gender is man'
         },
-        result_expected: ''
+        result_expected: '{sorry} the choice {choice} is not valid for the field {field}. Please choose one in the following list: {values}'
     },
     {
         message_id: "039",
@@ -3658,10 +3077,30 @@ functional_test_cases = [
     {
         message_id: "000",
         test_form_number: 1,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: "first name",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "mark",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "password",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "email address",
+                    u.slot_value: None
+                }
+            ]
+        },
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'first name'
                 },
                 {
@@ -3848,7 +3287,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'mark'
                 },
                 {
@@ -3916,7 +3355,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'arrival time'
                 }
             ],
@@ -4000,7 +3439,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [],
             intent: {
-                name: give_remaining_fields,
+                name: give_all_remaining_fields,
                 confidence: 1
             },
             text: 'which are the fields still to be completed?'
@@ -4089,7 +3528,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'last name'
                 }
             ],
@@ -4143,7 +3582,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'message'
                 }
             ],
@@ -4200,7 +3639,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'first name'
                 },
                 {
@@ -4223,7 +3662,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'first name'
                 },
                 {
@@ -4246,7 +3685,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'mark'
                 },
                 {
@@ -4269,7 +3708,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'mark'
                 },
                 {
@@ -4292,7 +3731,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'mark'
                 },
                 {
@@ -4315,7 +3754,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'mark'
                 },
                 {
@@ -4338,7 +3777,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'mark'
                 },
                 {
@@ -4361,7 +3800,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'mark'
                 },
                 {
@@ -4384,7 +3823,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'mark'
                 },
                 {
@@ -4407,7 +3846,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'mark'
                 },
                 {
@@ -4430,7 +3869,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'mark'
                 },
                 {
@@ -4453,7 +3892,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'mark'
                 },
                 {
@@ -4476,7 +3915,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'password'
                 },
                 {
@@ -4499,7 +3938,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'password'
                 },
                 {
@@ -4522,7 +3961,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'password'
                 },
                 {
@@ -4545,7 +3984,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'email address'
                 },
                 {
@@ -4568,7 +4007,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'email address'
                 },
                 {
@@ -4591,7 +4030,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'email address'
                 },
                 {
@@ -4614,7 +4053,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'email address'
                 },
                 {
@@ -4637,7 +4076,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'email address'
                 },
                 {
@@ -4660,7 +4099,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'email address'
                 },
                 {
@@ -4706,7 +4145,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'phone number'
                 },
                 {
@@ -4729,7 +4168,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'phone number'
                 },
                 {
@@ -4752,7 +4191,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'phone number'
                 },
                 {
@@ -4775,7 +4214,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'phone number'
                 },
                 {
@@ -4798,7 +4237,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'phone number'
                 },
                 {
@@ -4821,7 +4260,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'number of persons'
                 },
                 {
@@ -4844,7 +4283,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'number of persons'
                 },
                 {
@@ -4867,7 +4306,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'number of persons'
                 },
                 {
@@ -4890,7 +4329,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'number of persons'
                 },
                 {
@@ -4913,7 +4352,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'number of persons'
                 },
                 {
@@ -4936,7 +4375,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'birthday'
                 },
                 {
@@ -4959,7 +4398,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'birthday'
                 },
                 {
@@ -4982,7 +4421,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'birthday'
                 },
                 {
@@ -5005,7 +4444,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'birthday'
                 },
                 {
@@ -5028,7 +4467,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'birthday'
                 },
                 {
@@ -5051,7 +4490,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'birthday'
                 },
                 {
@@ -5074,7 +4513,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'arrival time'
                 },
                 {
@@ -5097,7 +4536,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'arrival time'
                 },
                 {
@@ -5120,7 +4559,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'arrival time'
                 },
                 {
@@ -5143,7 +4582,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'arrival time'
                 },
                 {
@@ -5166,7 +4605,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'arrival time'
                 },
                 {
@@ -5189,7 +4628,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'arrival time'
                 },
                 {
@@ -5212,7 +4651,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'arrival time'
                 },
                 {
@@ -5235,7 +4674,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'card expiration date'
                 },
                 {
@@ -5258,7 +4697,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'card expiration date'
                 },
                 {
@@ -5281,7 +4720,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'card expiration date'
                 },
                 {
@@ -5323,7 +4762,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'car'
                 },
                 {
@@ -5346,7 +4785,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'car'
                 },
                 {
@@ -5373,7 +4812,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'gender'
                 },
                 {
@@ -5396,7 +4835,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'gender'
                 },
                 {
@@ -5423,7 +4862,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'electronic devices'
                 },
                 {
@@ -5446,7 +4885,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'electronic devices'
                 },
                 {
@@ -5473,7 +4912,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'electronic devices'
                 },
                 {
@@ -5511,7 +4950,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'message'
                 },
                 {
@@ -5541,7 +4980,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'message'
                 },
                 {
@@ -5575,7 +5014,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'message'
                 },
                 {
@@ -5609,7 +5048,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'message'
                 },
                 {
@@ -5643,7 +5082,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'message'
                 },
                 {
@@ -5673,7 +5112,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_field',
+                    entity: input_field,
                     value: 'message'
                 },
                 {
@@ -5688,5 +5127,19 @@ functional_test_cases = [
             text: 'the message is better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait.'
         },
         result_expected: "the message becomes 'better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait.'"
+    },
+    {
+        message_id: "083",
+        test_form_number: 3,
+        initial_state: {},
+        test_case_message: {
+            entities: [],
+            intent: {
+                name: repeat_form_title,
+                confidence: 1
+            },
+            text: 'what is the title of this form?'
+        },
+        result_expected: 'Gives the form title. The next field is message'
     }
 ]
