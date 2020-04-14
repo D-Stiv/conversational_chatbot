@@ -436,7 +436,7 @@ class State:
             # the slot_value is not None
             if u.DEBUG:
                 print(f"value_name: {value_name}, value_type: {value_type}")
-            compatible, text = fn.is_compatible(slot_value, value_type)
+            compatible, text = fn.is_compatible(slot_value, slot)
             if not compatible:
                 string = f"Incompatibility between the value {slot_value} and the type {value_type}.\n{text}"
                 next_step_string = self.manage_next_step()

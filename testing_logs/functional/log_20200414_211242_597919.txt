@@ -1,0 +1,51 @@
+HEADER
+
+	Date and Hour: 2020-04-14 21:12:42.597919
+
+	Testing log for *functional* test cases
+
+CONVERSATION LOG
+
+Test case - 0
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case meaage: the first name is alice] 
+	[Result expected: first name becomes alice and next field is mark] 
+	[Result obtained: (response:You will have to spell the value of the field first name. please insert the first character, you will be able to use SPACE for spacingand TERMINATE to finish the spelling)]
+Test case - 1
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case meaage: yes] 
+	[Result expected: all the fields are reset (value=None) and the next field is first name] 
+	[Result obtained: (response:All the fields have been reset, now we restart the process.  insert the value for the field first name. This field is required Since it is a field requiring the spelling, we are going to take its value one character at a time. please insert the first character)]
+Test case - 2
+	[Initial situation: Fields -  first name ** : robert;  mark : None;  password : p088w0r0;  email address ** : alice@bob.it; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: mark, next_slot_required: False] 
+	[Test case meaage: no] 
+	[Result expected: submit alarm is disabled, state 05] 
+	[Result obtained: (response: complete the value for the field mark. This field is optional)]
+Test case - 3
+	[Initial situation: Fields -  first name ** : lucie;  mark : None;  password : p088w0r0;  email address ** : dear_alice@bob.it; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: False, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: mark, next_slot_required: False] 
+	[Test case meaage: submit] 
+	[Result expected: The submit alarm will be enabledand we have to confirm the action] 
+	[Result obtained: (response:we are about to submit, are you sure you want to continue with this action?)]
+Test case - 4
+	[Initial situation: Fields -  first name ** : lucie;  mark : 27,2;  password : p088w0r0;  email address ** : alice@bob.it; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: True, warning_present: False, all_required_filled: True, possible_next_action: resetAllCamps, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: reset] 
+	[Result expected: The reset alarm is enabled and we have to confirm the action] 
+	[Result obtained: (response:we are about to reset all the fields and restart the process.  are you sure you want to continue with this action?)]
+Test case - 5
+	[Initial situation: Fields -  first name ** : adama;  mark : 27,2;  password : p088w0r0;  email address ** : alice@bob.it; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: True, warning_present: False, all_required_filled: True, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: terminate] 
+	[Result expected: The value adama is set for the first name, the next field is mark] 
+	[Result obtained: (response:All the fields have been completed. Here is the summary:   first name ** : adama  mark : 27,2  password : p088w0r0  email address ** : alice@bob.it   Is everything correct for the submission?. The stars indicate the required fields)]
+

@@ -19,9 +19,17 @@ class Testing:
     def start(self):
         self.create_bots()
         self.testing(t_c.functional)
-        # we reset the counter of lines
-        self.counter = 0
+        # we reset the whole environement
+        self.reset()
         self.testing(t_c.structural)
+    
+    def reset(self):
+        self.counter = 0
+        for bot in self.bots_list:
+            webdriver = bot.state.form_element.parent
+            webdriver.close()
+        self.bots_list = []
+        self.create_bots()
 
     def create_bots(self):
         try:
@@ -33,6 +41,7 @@ class Testing:
                 else:
                     driver = webdriver.Edge()
                 driver.get(u.test_url_list[index])
+                driver.minimize_window()
                 form_element = driver.find_element_by_tag_name('form')
                 bot_manager = BotsManager()
                 bot_manager.parse_web_form(form_element)
@@ -51,30 +60,33 @@ class Testing:
             # we analyze each test case
             for test_case in test_cases:
                 if u.DEBUG:
-                    print(f'testing_type: {testing_type} - test_case_id: {test_case[t_c.message_id]}')
+                    print(f'>>>>> testing_type: {testing_type} - test_case_id: {test_case[t_c.message_id]} <<<<<<<')
                 # we select the rigth browser
                 index = test_case[t_c.test_form_number] - 1
                 bot = self.bots_list[index]
-                # we initialize the state of the bot
-                self.state_preparation(bot.state, test_case)
-                # we add the test case message
-                bot.state.message_history.append(test_case[t_c.test_case_message])
-                # we perform the testing and we right the corresponding info in the file
-                state_before = self.get_state_summary(bot.state)
-                intent = test_case[t_c.test_case_message][t_c.intent][t_c.name]
-                response = bot.findActionAndRun(intent)
-                state_after = self.get_state_summary(bot.state)
-                difference = {
-                    u.slots: self.get_difference(state_before[u.slots], state_after[u.slots]),
-                    t_c.spelling_state: self.get_difference(state_before[t_c.spelling_state], state_after[t_c.spelling_state]),
-                    t_c.machine_parameters: self.get_difference(state_before[t_c.machine_parameters], state_after[t_c.machine_parameters])
-                }
-                self.write_test_case(testing_type=testing_type, initial_situation=state_before, test_case=test_case, effects=difference, response=response)
-            # we write the testing log
-            if testing_type == t_c.structural:
-                self.structural_testing_writer.start(display_summary=structural_summary)
-            else:
-                self.functional_testing_writer.start(display_summary=functional_summary)        
+                try:
+                    # we initialize the state of the bot
+                    self.state_preparation(bot.state, test_case)
+                    # we add the test case message
+                    bot.state.message_history.append(test_case[t_c.test_case_message])
+                    # we perform the testing and we right the corresponding info in the file
+                    state_before = self.get_state_summary(bot.state)
+                    intent = test_case[t_c.test_case_message][t_c.intent][t_c.name]
+                    response = bot.findActionAndRun(intent)
+                    state_after = self.get_state_summary(bot.state)
+                    difference = {
+                        u.slots: self.get_difference(state_before[u.slots], state_after[u.slots]),
+                        t_c.spelling_state: self.get_difference(state_before[t_c.spelling_state], state_after[t_c.spelling_state]),
+                        t_c.machine_parameters: self.get_difference(state_before[t_c.machine_parameters], state_after[t_c.machine_parameters])
+                    }
+                    self.write_test_case(testing_type=testing_type, initial_situation=state_before, test_case=test_case, effects=difference, response=response)
+                except:
+                    pass
+                # we write the testing log
+                if testing_type == t_c.structural:
+                    self.structural_testing_writer.start(display_summary=structural_summary)
+                else:
+                    self.functional_testing_writer.start(display_summary=functional_summary)        
         except:
             print('Fail to complete the testing')
             if testing_type == t_c.structural:
@@ -133,7 +145,7 @@ class Testing:
                             state.set_warning_message(machine_parameters[u.warning_message])
         except:
             print('Fail to initialize the initial state for the test case')
-            raise Exception
+            
 
     def get_state_summary(self, state):
         # returns a dictionary of essential parameters that may change during the interaction
@@ -146,7 +158,7 @@ class Testing:
             return summary
         except:
             print('Fail to get the state summary')
-            raise Exception
+            
 
     def get_difference(self, before, after):
         # receives two elements and returns only the parameters which chaged from before to after
@@ -167,7 +179,7 @@ class Testing:
             return difference
         except:
             print('Fail to get the difference')
-            raise Exception
+            
 
     def write_test_case(self, testing_type, initial_situation, test_case, effects, response):
         try:
@@ -216,4 +228,4 @@ class Testing:
             return string
         except:
             print('Fail to get the string from the dictionary')
-            raise Exception
+            

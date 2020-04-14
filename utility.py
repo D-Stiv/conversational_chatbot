@@ -6,7 +6,7 @@ compute_response_time = False
 
 
 
-DEBUG = False
+DEBUG = True
 
 # maximum number of dialogues
 MAX_DIALOGUES = 2

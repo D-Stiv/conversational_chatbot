@@ -189,7 +189,7 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first names",
+                    u.slot_name: "first name",
                     u.slot_value: None
                 }
             ],
@@ -774,24 +774,6 @@ structural_test_cases = [
             text: 'submit the form'
         },
         result_expected: 'We are going to submit, are you sure you want to continue with this action?'
-    },
-    {
-        message_id: "031",
-        test_form_number: 1,
-        initial_state: {
-            machine_parameters: {
-                u.submit_alarm_enabled: True
-            }
-        },
-        test_case_message: {
-            entities: [],
-            intent: {
-                name: submit_form,
-                confidence: 1
-            },
-            text: 'may i submit the form?'
-        },
-        result_expected: 'Submission done'
     },
     {
         message_id: "032",
@@ -2299,26 +2281,6 @@ structural_test_cases = [
         result_expected: 'There should be at least one character <{dot_sign}> after the character <{at_sign}>'
     },
     {
-        message_id: "079",
-        test_form_number: 1,
-        initial_state: {
-            machine_parameters: {
-                u.submit_alarm_enabled: True,
-                u.possible_next_action: submit_form,
-                u.submit_done: False
-            }
-        },
-        test_case_message: {
-            entities: [],
-            intent: {
-                name: affirm,
-                confidence: 1
-            },
-            text: 'yes'
-        },
-        result_expected: '{good} you have been moved to the page with title {title}'
-    },
-    {
         message_id: "080",
         test_form_number: 1,
         initial_state: {
@@ -2362,6 +2324,26 @@ structural_test_cases = [
             text: 'harry@gmailcm is my email address'
         },
         result_expected: 'The email should contain the character <{dot_sign}>'
+    },
+    {
+        message_id: "079",
+        test_form_number: 1,
+        initial_state: {
+            machine_parameters: {
+                u.submit_alarm_enabled: True,
+                u.possible_next_action: submit_form,
+                u.submit_done: False
+            }
+        },
+        test_case_message: {
+            entities: [],
+            intent: {
+                name: affirm,
+                confidence: 1
+            },
+            text: 'yes'
+        },
+        result_expected: '{good} you have been moved to the page with title {title}'
     }
 ]
 
@@ -2490,7 +2472,22 @@ functional_test_cases = [
                     u.slot_name: "email address",
                     u.slot_value: "dear_alice@bob.it"
                 }
-            ]
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_intent: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
         },
         test_case_message: {
             entities: [],
@@ -2535,12 +2532,6 @@ functional_test_cases = [
         message_id: "005",
         test_form_number: 1,
         initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
             spelling_state: {
                 u.close_prompt_enabled: True,
                 u.current_spelling_input_value: 'adama',
@@ -2573,8 +2564,27 @@ functional_test_cases = [
                 {
                     u.slot_name: "mark",
                     u.slot_value: "28"
+                },
+                {
+                    u.slot_name: "first name",
+                    u.slot_value: None
                 }
-            ]
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_intent: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
         },
         test_case_message: {
             entities: [
@@ -4433,5 +4443,23 @@ functional_test_cases = [
             text: 'what is the title of this form?'
         },
         result_expected: 'Gives the form title. The next field is message'
+    },
+    {
+        message_id: "031",
+        test_form_number: 1,
+        initial_state: {
+            machine_parameters: {
+                u.submit_alarm_enabled: True
+            }
+        },
+        test_case_message: {
+            entities: [],
+            intent: {
+                name: submit_form,
+                confidence: 1
+            },
+            text: 'may i submit the form?'
+        },
+        result_expected: 'Submission done'
     }
 ]

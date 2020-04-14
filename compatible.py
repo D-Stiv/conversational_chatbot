@@ -50,7 +50,7 @@ def verify_compatibility_email(value):
         raise Exception
 
 
-def verify_compatibility_number(value):
+def verify_compatibility_number(value, precision=2, min_value=-float('inf'), max_value=float('inf')):
     try:
         dec_value = get_decimal(value)
         if dec_value is None:

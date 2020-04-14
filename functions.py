@@ -44,11 +44,12 @@ def get_string_from_list(my_list):
         raise Exception
 
 
-def is_compatible(slot_value, value_type):
+def is_compatible(slot_value, slot):
     # Verifies the compatibility between the user input and the value type that it should have
     try:
         # if no modification is done we retun the slot_value
         text = slot_value
+        value_type = slot[u.value_type]
         # list of types that we are handling
         types_list = [u.date, u.password, u.email, u.number, u.tel, u.time]
         if value_type in types_list:
@@ -64,12 +65,16 @@ def is_compatible(slot_value, value_type):
                 return c.verify_compatibility_month(slot_value)
             if value_type == u.time:
                 return c.verify_compatibility_time(slot_value)
-            if value_type == u.number:
-                return c.verify_compatibility_number(slot_value)
-            if value_type == u.integer:
-                return c.verify_compatibility_integer(slot_value)
-            if value_type == u.decimal:
-                return c.verify_compatibility_decimal(slot_value)
+            if value_type in [u.number, u.integer, u.decimal]:
+                min_value = slot[u.min_value]
+                max_value = slot[u.max_value]
+                precision = slot[u.precision]
+                if value_type == u.number:
+                    return c.verify_compatibility_number(slot_value, precision, min_value, max_value)
+                if value_type == u.integer:
+                    return c.verify_compatibility_integer(slot_value, min_value, max_value)
+                if value_type == u.decimal:
+                    return c.verify_compatibility_decimal(slot_value, precision, min_value, max_value)
         else:
             return c.verify_compatibility_generic(slot_value)
         return True, text

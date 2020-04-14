@@ -18,6 +18,7 @@ form_element.minimize_window()
 # webPath = "http://www.polimi.it"
 webPath = u.form_url
 form_element.get(webPath)
+
 form_elements = form_element.find_elements_by_tag_name('form')
 for form_element in form_elements:
 
@@ -72,5 +73,3 @@ try:
 except:
     print('Fail')
 """
-number = 'al\tabam\nam\tate\nmare'.replace('\n', ' ').replace('\t', ' ')
-print(number)
