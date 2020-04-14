@@ -93,6 +93,8 @@ class Testing:
                             state.set_after_spelling(spelling_state[u.after_spelling])
                         elif key == u.current_spelling_input_value:
                             state.set_current_spelling_input_value(spelling_state[u.current_spelling_input_value])
+                        elif key == u.spelling_interrupted:
+                            state.set_spelling_interrupted(spelling_state[u.spelling_interrupted])
                         elif key == u.spelling_list:
                             state.spelling_state[u.spelling_list] = spelling_state[u.spelling_list]
                         elif key == u.waiting_intent:
