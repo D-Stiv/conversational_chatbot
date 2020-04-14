@@ -2213,15 +2213,19 @@ structural_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: input_field,
+                    value: 'birthday'
+                },
+                {
+                    entity: input_value,
+                    value: '20/03/0000'
                 }
             ],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'the birthday is 20/03/0000'
         },
         result_expected: 'The year you inserted is out of range, the minimum is {min_value} and the maximum is {max_value}'
     },
@@ -2232,140 +2236,76 @@ structural_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: input_value,
+                    value: '25'
+                },
+                {
+                    entity: input_field,
+                    value: 'arrival time'
                 }
             ],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: '25 is the arrival time'
         },
-        result_expected: ''
+        result_expected: 'The hour is out of range'
     },
     {
         message_id: "077",
         test_form_number: 2,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        initial_state: {},
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: input_value,
+                    value: '07:80'
+                },
+                {
+                    entity: input_field,
+                    value: 'arrival time'
                 }
             ],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: '07:80 is the arrival time'
         },
-        result_expected: ''
+        result_expected: 'The minutes are out of range'
     },
     {
         message_id: "078",
         test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
+        initial_state: {},
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
             text: ''
         },
-        result_expected: ''
+        result_expected: 'You did not insert any value'
     },
     {
         message_id: "079",
         test_form_number: 1,
         initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
             machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
+                u.submit_done: True
             }
         },
         test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
+            entities: [],
             intent: {
-                name: '',
+                name: affirm,
                 confidence: 1
             },
-            text: ''
+            text: 'yes'
         },
-        result_expected: ''
+        result_expected: '{good} you have been moved to the page with title {title}'
     },
     {
         message_id: "080",
@@ -2406,7 +2346,7 @@ structural_test_cases = [
             },
             text: ''
         },
-        result_expected: ''
+        result_expected: '{sorry} the value {value} is not a number, {please} {insert} a valid value'
     },
     {
         message_id: "081",
