@@ -7,10 +7,13 @@ from choice_bot import BotsManager
 from selenium import webdriver
 import functions as fn
 
+structural_summary = '\tTesting log for *structural* test cases'
+functional_summary = '\tTesting log for *functional* test cases'
+
 class Testing:
     bots_list = []
-    functional_testing_writer = LogWriter(destination_folder='testing/testing_logs/functional')
-    structural_testing_writer = LogWriter(destination_folder='testing/testing_logs/structural')
+    functional_testing_writer = LogWriter(destination_folder='testing_logs/functional')
+    structural_testing_writer = LogWriter(destination_folder='testing_logs/structural')
     counter = 0
 
     def start(self):
@@ -28,9 +31,9 @@ class Testing:
                 elif index == 1:
                     driver = webdriver.Chrome()
                 else:
-                    driver = webdriver.Firefox()
+                    driver = webdriver.Edge()
                 driver.get(u.test_url_list[index])
-                form_element = driver.find_elements_by_tag_name('form')
+                form_element = driver.find_element_by_tag_name('form')
                 bot_manager = BotsManager()
                 bot_manager.parse_web_form(form_element)
                 self.bots_list.append(bot_manager.botList[0])
@@ -40,39 +43,50 @@ class Testing:
 
     def testing(self, testing_type):
         try:
+            # we select the type of test cases: functional vs structural
             if testing_type == t_c.functional:
                 test_cases = t_c.functional_test_cases
             else:
                 test_cases = t_c.structural_test_cases
+            # we analyze each test case
             for test_case in test_cases:
+                if u.DEBUG:
+                    print(f'testing_type: {testing_type} - test_case_id: {test_case[t_c.message_id]}')
+                # we select the rigth browser
                 index = test_case[t_c.test_form_number] - 1
                 bot = self.bots_list[index]
+                # we initialize the state of the bot
                 self.state_preparation(bot.state, test_case)
+                # we add the test case message
+                bot.state.message_history.append(test_case[t_c.test_case_message])
+                # we perform the testing and we right the corresponding info in the file
                 state_before = self.get_state_summary(bot.state)
                 intent = test_case[t_c.test_case_message][t_c.intent][t_c.name]
                 response = bot.findActionAndRun(intent)
-                state_after = self.get_state_summary(bot_state)
+                state_after = self.get_state_summary(bot.state)
                 difference = {
                     u.slots: self.get_difference(state_before[u.slots], state_after[u.slots]),
                     t_c.spelling_state: self.get_difference(state_before[t_c.spelling_state], state_after[t_c.spelling_state]),
                     t_c.machine_parameters: self.get_difference(state_before[t_c.machine_parameters], state_after[t_c.machine_parameters])
                 }
                 self.write_test_case(testing_type=testing_type, initial_situation=state_before, test_case=test_case, effects=difference, response=response)
+            # we write the testing log
             if testing_type == t_c.structural:
-                self.structural_testing_writer.start(display_summary=False)
+                self.structural_testing_writer.start(display_summary=structural_summary)
             else:
-                self.functional_testing_writer.start(display_summary=False)        
+                self.functional_testing_writer.start(display_summary=functional_summary)        
         except:
             print('Fail to complete the testing')
             if testing_type == t_c.structural:
-                self.structural_testing_writer.start(display_summary=False)
+                self.structural_testing_writer.start(display_summary=structural_summary)
             else:
-                self.functional_testing_writer.start(display_summary=False)
+                self.functional_testing_writer.start(display_summary=functional_summary)
 
     def state_preparation(self, state, test_case):
         try:
             # test_case has keys message_id, test_form_number, initial_state, test_case_message, result_expected
-            if t_c.initial_state in test_case.keys():
+            test_cases_keys = test_case.keys()
+            if t_c.initial_state in test_cases_keys:
                 initial_state = test_case[t_c.initial_state]
             else:
                 return
@@ -80,7 +94,7 @@ class Testing:
             for general_key in general_keys:
                 if general_key == u.slots:
                     # we set the slots
-                    for slot in test_case[u.slots]:
+                    for slot in initial_state[u.slots]:
                         state.filling_procedure(slot[u.slot_name], slot[u.slot_value])
                 elif general_key == t_c.spelling_state:
                     # we start by the spelling state
@@ -104,7 +118,7 @@ class Testing:
                             state.add_spelling_value_to_save(spelling_state[u.saved_spelling_values])
                 elif general_key == t_c.machine_parameters:
                     # we continue with machine parameters
-                    machine_parameters = test_case[t_c.machine_parameters]
+                    machine_parameters = initial_state[t_c.machine_parameters]
                     keys = machine_parameters.keys()
                     for key in keys:
                         if key == u.submit_done:
@@ -136,26 +150,30 @@ class Testing:
 
     def get_difference(self, before, after):
         # receives two elements and returns only the parameters which chaged from before to after
-        if type(before) == type([]):
-            difference = []
-            length = len(before)
-            for index in range(length):
-                if before[index][u.slot_value] != after[index][u.slot_value]:
-                    difference.append(after[index])
+        try:
+            if type(before) == type([]):
+                difference = []
+                length = len(before)
+                for index in range(length):
+                    if before[index][u.slot_value] != after[index][u.slot_value]:
+                        difference.append(after[index])
+                return difference
+            # type(before) == type({})
+            difference = {}
+            keys = after.keys()
+            for key in keys:
+                if after[key] != before[key]:
+                    difference[key] = after[key]
             return difference
-        # type(before) == type({})
-        difference = {}
-        keys = after.keys()
-        for key in keys:
-            if after[key] != before[key]:
-                difference[key] = after[key]
-        return difference
+        except:
+            print('Fail to get the difference')
+            raise Exception
 
     def write_test_case(self, testing_type, initial_situation, test_case, effects, response):
         try:
             escape = '\n\t'
 
-            fields_line = fn.get_pairs(initial_situation.form_slots()).replace('\n', ' ').replace('\t', ' ')
+            fields_line = fn.get_pairs(initial_situation[u.slots]).replace('\n', '; ').replace('\t', ' ')
             spelling_line = self.get_string_from_dic(initial_situation[t_c.spelling_state])
             machine_line = self.get_string_from_dic(initial_situation[t_c.machine_parameters])
             init_line = f'Fields - {fields_line}{escape}\tSpelling state - {spelling_line}{escape}\tMachine parameters - {machine_line}'
@@ -163,21 +181,29 @@ class Testing:
             test_case_line = test_case[t_c.test_case_message][t_c.text]
             expected_line = test_case[t_c.result_expected]
             response_line = response.replace('\n', ' ').replace('\t', ' ')
-
-            effects_fields = fn.get_pairs(effect[u.slots]).replace('\n', ' ').replace('\t', ' ')
-            effects_spelling = self.get_string_from_dic(effects[t_c.spelling_state])
-            effects_machine = self.get_string_from_dic(effects[t_c.machine_parameters])
-            effects_line = f'Modified fields - {effects_fields}{escape}\tModified spelling attributes - {effects_spelling}{escape}\tModified machine parameters - {effects_machine}'
-
-            line = f'Test case - {self.counter}{escape}[Initial situation: {init_line}] {escape}[Test case meaage: {test_case_line}] {escape}[Result expected: {expected_line}] {escape}[Result obtained: (effects: {effects_line}) (response:{response_line})]'
+            effects_keys = effects.keys()
+            effects_line = ''
+            for effects_key in effects_keys:
+                if effects_key == u.slots and effects[u.slots] != []:
+                    effects_fields = fn.get_pairs(effects[u.slots]).replace('\n', '; ').replace('\t', ' ')
+                    effects_line = f'Modified fields - {effects_fields}'
+                elif effects_key == t_c.spelling_state and effects[t_c.spelling_state] != {}:
+                    effects_spelling = self.get_string_from_dic(effects[t_c.spelling_state])
+                    effects_line = f'{effects_line}{escape}\tModified spelling attributes - {effects_spelling}'
+                elif effects_key == t_c.machine_parameters and effects[t_c.machine_parameters] != {}:
+                    effects_machine = self.get_string_from_dic(effects[t_c.machine_parameters])
+                    effects_line = f'{effects_line}{escape}\tModified machine parameters - {effects_machine}'
+            if effects_line == '':
+                line = f'Test case - {self.counter}{escape}[Initial situation: {init_line}] {escape}[Test case meaage: {test_case_line}] {escape}[Result expected: {expected_line}] {escape}[Result obtained: (response:{response_line})]'
+            else:
+                line = f'Test case - {self.counter}{escape}[Initial situation: {init_line}] {escape}[Test case meaage: {test_case_line}] {escape}[Result expected: {expected_line}] {escape}[Result obtained: (effects: {effects_line}) (response:{response_line})]'
             self.counter += 1
             if testing_type == t_c.functional:
                 self.functional_testing_writer.add_line(line)
             else:
                 self.structural_testing_writer.add_line(line)
         except:
-            print('Fail to generate and summary of the test case')
-            raise Exception
+            print(f'Fail to generate and summary of the test case with id {test_case[t_c.message_id]}')
 
     def get_string_from_dic(self, dic):
         try:

@@ -224,14 +224,19 @@ def get_input_fields(form_element):
                     if max_value is None:
                         max_value = float('inf')
                     step = elem.get_attribute('step')
-                    if step is not None:
+                    if step is not None and step != u.VOID:
+                        step = float(step)
                         precision = 0
                         while step < 1:
                             step *= 10
                             precision += 1
+                    elif slot[u.value_type] in [u.number, u.decimal]:
+                        precision = float('inf')  
+                    elif slot[u.value_type] == u.integer:
+                        precision = 0
                     slot[u.min_value] = min_value
                     slot[u.max_value] = max_value
-                    slot[u.precision] = precision
+                    slot[u.precision] = precision   
                 # we add the slot in the list of slots
                 slots.append(slot)
                 #slots = [slot] + slots

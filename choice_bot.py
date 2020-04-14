@@ -34,7 +34,7 @@ class BotsManager:
                     bot = bots.RegistrationForm(my_state, bot_tag)
                 elif bot_tag == u.tag_login_form:
                     bot = bots.LoginForm(my_state, bot_tag)
-                self.botList.append(bot)
+                self.botList = [bot] + self.botList
             except:
                 print("Fail to constitute the bots list")
                 raise Exception

@@ -24,7 +24,7 @@ repeat_form_title = 'repeatFormTitle'
 explain_field = 'explainLabel'
 
 # keys
-message_id = "001"
+message_id = "message_id"
 test_form_number = "test_form_number"
 initial_state = "initial_situation"
 spelling_state = "spelling_state"
@@ -2280,21 +2280,32 @@ structural_test_cases = [
         test_form_number: 1,
         initial_state: {},
         test_case_message: {
-            entities: [],
+            entities: [
+                {
+                    entity: input_value,
+                    value: 'harry.mayson@gmailcm'
+                },
+                {
+                    entity: input_field,
+                    value: 'email address'
+                }
+            ],
             intent: {
                 name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'harry.mayson@gmailcm is the email address'
         },
-        result_expected: 'You did not insert any value'
+        result_expected: 'There should be at least one character <{dot_sign}> after the character <{at_sign}>'
     },
     {
         message_id: "079",
         test_form_number: 1,
         initial_state: {
             machine_parameters: {
-                u.submit_done: True
+                u.submit_alarm_enabled: True,
+                u.possible_next_action: submit_form,
+                u.submit_done: False
             }
         },
         test_case_message: {
@@ -2313,8 +2324,8 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "",
-                    u.slot_value: ""
+                    u.slot_name: "first name",
+                    u.slot_value: None
                 }
             ],
             spelling_state: {
@@ -2336,304 +2347,21 @@ structural_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: '',
-                    value: ''
+                    entity: input_value,
+                    value: 'harry@gmailcm'
+                },
+                {
+                    entity: input_field,
+                    value: 'email address'
                 }
             ],
             intent: {
-                name: '',
+                name: complete_field,
                 confidence: 1
             },
-            text: ''
+            text: 'harry@gmailcm is my email address'
         },
-        result_expected: '{sorry} the value {value} is not a number, {please} {insert} a valid value'
-    },
-    {
-        message_id: "081",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
-        test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
-            intent: {
-                name: '',
-                confidence: 1
-            },
-            text: ''
-        },
-        result_expected: ''
-    },
-    {
-        message_id: "082",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
-        test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
-            intent: {
-                name: '',
-                confidence: 1
-            },
-            text: ''
-        },
-        result_expected: ''
-    },
-    {
-        message_id: "083",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
-        test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
-            intent: {
-                name: '',
-                confidence: 1
-            },
-            text: ''
-        },
-        result_expected: ''
-    },
-    {
-        message_id: "084",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
-        test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
-            intent: {
-                name: '',
-                confidence: 1
-            },
-            text: ''
-        },
-        result_expected: ''
-    },
-    {
-        message_id: "085",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
-        test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
-            intent: {
-                name: '',
-                confidence: 1
-            },
-            text: ''
-        },
-        result_expected: ''
-    },
-    {
-        message_id: "086",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
-        test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
-            intent: {
-                name: '',
-                confidence: 1
-            },
-            text: ''
-        },
-        result_expected: ''
-    },
-    {
-        message_id: "087",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_intent: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
-        test_case_message: {
-            entities: [
-                {
-                    entity: '',
-                    value: ''
-                }
-            ],
-            intent: {
-                name: '',
-                confidence: 1
-            },
-            text: ''
-        },
-        result_expected: ''
+        result_expected: 'The email should contain the character <{dot_sign}>'
     }
 ]
 

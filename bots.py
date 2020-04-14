@@ -670,16 +670,17 @@ class RegistrationForm(Form):
             first_found = False
             for slot in slots:
                 slot_name = slot[u.slot_name]
-                required = slot[u.required]
-                slot_value = None
-                if not first_found:     # the first label is put as requested slot
-                    self.state.set_next_slot(slot_name, required)
-                    # we go to the filling procedure
-                    self.state.filling_procedure(slot_name, slot_value)
-                    first_found = True
-                elif slot_name != u.REQUESTED_SLOT:
-                    # we go to the filling procedure
-                    self.state.filling_procedure(slot_name, slot_value)
+                if slot_name != u.REQUESTED_SLOT:
+                    required = slot[u.required]
+                    slot_value = None
+                    if not first_found:     # the first label is put as requested slot
+                        self.state.set_next_slot(slot_name, required)
+                        # we go to the filling procedure
+                        self.state.filling_procedure(slot_name, slot_value)
+                        first_found = True
+                    else:
+                        # we go to the filling procedure
+                        self.state.filling_procedure(slot_name, slot_value)
             next_step_string = self.state.manage_next_step()
             string = f"All the fields have been reset, now we restart the process.\n{next_step_string}"
             return string

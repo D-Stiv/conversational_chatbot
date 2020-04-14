@@ -72,6 +72,5 @@ try:
 except:
     print('Fail')
 """
-numbers = {"yes": "", "no": 2}.keys()
-for number in numbers:
-    print(number)
+number = 'al\tabam\nam\tate\nmare'.replace('\n', ' ').replace('\t', ' ')
+print(number)

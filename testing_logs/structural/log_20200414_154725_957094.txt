@@ -1,0 +1,51 @@
+HEADER
+
+	Date and Hour: 2020-04-14 15:47:25.956097
+
+	Testing log for *structural* test cases
+
+CONVERSATION LOG
+
+Test case - 0
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case meaage: please tell me the title of the form again] 
+	[Result expected: The form does not have a title] 
+	[Result obtained: (response:The title of this form is sorry there is no title provided for this form.  complete the value for the field first name. This field is required Since it is a field requiring the spelling, we are going to take its value one character at a time. please insert the first character)]
+Test case - 1
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case meaage: give me the title of the form] 
+	[Result expected: The title of this form is test form sample number 3] 
+	[Result obtained: (response:The title of this form is sorry there is no title provided for this form. please complete the value for the field first name. This field is required Since it is a field requiring the spelling, we are going to take its value one character at a time. please insert the first character)]
+Test case - 2
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case meaage: what is this form about?] 
+	[Result expected: It does not have a description] 
+	[Result obtained: (response:sure here it is: sorry there is no explanation provided for this form. please insert the value for the field first name. This field is required Since it is a field requiring the spelling, we are going to take its value one character at a time.  insert the first character)]
+Test case - 3
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case meaage: add the value of the field] 
+	[Result expected: Which field exactly would you like to {modify} and which value do you want to {insert} for that field?] 
+	[Result obtained: (response:Which field exactly do you want to revise, and which value do you want to put for that field?)]
+Test case - 4
+	[Initial situation: Fields -  first name ** : None;  mark : 28.5;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case meaage: my first name is alfred and 28,5 is the mark] 
+	[Result expected: {sorry} i did not understand your request, could you reformulate {please}] 
+	[Result obtained: (response:You will have to spell the value of the field first name. please insert the first character, you will be able to use SPACE for spacingand TERMINATE to end the spelling)]
+Test case - 5
+	[Initial situation: Fields -  first name ** : None;  mark : 28.5;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['email address', 'first name'], after_spelling: True, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case meaage: i want to complete a field] 
+	[Result expected: Now you are going to spell the value for the field {email address}, {please} insert the first character] 
+	[Result obtained: (response:Which field exactly do you want to update, and which value do you want to complete for that field?)]
+

@@ -55,11 +55,11 @@ write_log = False
 write_report = False
 
 # whether or not we use the simulator
-simulation_enabled = True
+simulation_enabled = False
 
 # URL of the form to fill
-#form_url = "http://localhost/ecobusiness/new-project-form/"
-form_url = "http://localhost/ecobusiness/test-project-form/"
+form_url = "http://localhost/ecobusiness/new-project-form/"
+#form_url = "http://localhost/ecobusiness/test-project-form/"
 
 # URLs for the test Web Forms
 url_1 = 'http://localhost/ecobusiness/test-form-1/'
