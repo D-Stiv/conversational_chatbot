@@ -138,7 +138,7 @@ structural_test_cases = [
                     value: 'first name'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'alfred'
                 },
                 {
@@ -270,12 +270,6 @@ structural_test_cases = [
         message_id: "009",
         test_form_number: 1,
         initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
             spelling_state: {
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
@@ -808,7 +802,7 @@ structural_test_cases = [
                     value: 'name'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'gorges'
                 }
             ],
@@ -917,7 +911,7 @@ structural_test_cases = [
                     value: 'car'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'hyundai'
                 }
             ],
@@ -970,7 +964,7 @@ structural_test_cases = [
                     value: 'phone number'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '55483498'
                 }
             ],
@@ -993,7 +987,7 @@ structural_test_cases = [
                     value: 'number of persons'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'steve'
                 }
             ],
@@ -1694,7 +1688,7 @@ structural_test_cases = [
             },
             text: 'my mark is   and my password is p@sswRD'
         },
-        result_expected: 'The value you inserted only contains the blanks, and so it is not valid. Your input should contain at least one character different from the blank'
+        result_expected: 'The value you inserted only contains the blanks, and so it is not valid. Your input should contain at least one character different from the blank'
     },
     {
         message_id: "056",
@@ -1728,7 +1722,7 @@ structural_test_cases = [
             },
             text: 'my email address is emaddress.cm'
         },
-        result_expected: 'The email should contain the character <{@}>'
+        result_expected: 'The email should contain the character <{@}>'
     },
     {
         message_id: "057",
@@ -1751,7 +1745,7 @@ structural_test_cases = [
             },
             text: 'the email address is emai@addres@mail.it'
         },
-        result_expected: 'The email should contain only one character <{@}>'
+        result_expected: 'The email should contain only one character <{@}>'
     },
     {
         message_id: "058",
@@ -1774,7 +1768,7 @@ structural_test_cases = [
             },
             text: 'my email address is @email.it'
         },
-        result_expected: 'The email should not start with the character <{@}>'
+        result_expected: 'The email should not start with the character <{@}>'
     },
     {
         message_id: "059",
@@ -1797,7 +1791,7 @@ structural_test_cases = [
             },
             text: 'the email address is em_address@'
         },
-        result_expected: 'The email should not end with the character <{@}>'
+        result_expected: 'The email should not end with the character <{@}>'
     },
     {
         message_id: "060",
@@ -1839,7 +1833,7 @@ structural_test_cases = [
             },
             text: 'the number of persons is three'
         },
-        result_expected: '{sorry} the value {three} is not an integer, {please} {insert} a valid value.'
+        result_expected: '{sorry} the value {three} is not an integer, {please} {insert} a valid value.'
     },
     {
         message_id: "061",
@@ -1862,7 +1856,7 @@ structural_test_cases = [
             },
             text: 'the password is pass'
         },
-        result_expected: 'The password you proposed is too short. The minimum number of characters accepted is {length}'
+        result_expected: 'The password you proposed is too short. The minimum number of characters accepted is {length}'
     },
     {
         message_id: "062",
@@ -1885,7 +1879,7 @@ structural_test_cases = [
             },
             text: 'the password is pass/worf'
         },
-        result_expected: 'A non acceptable character have been inserted in the passsword. The only accepted special characters are the following {characters}'
+        result_expected: 'A non acceptable character have been inserted in the passsword. The only accepted special characters are the following {characters}'
     },
     {
         message_id: "063",
@@ -1908,7 +1902,7 @@ structural_test_cases = [
             },
             text: 'the phone number is 00+3935897654'
         },
-        result_expected: 'The character <{+}> could only be at the beginning of the number'
+        result_expected: 'The character <{+}> could only be at the beginning of the number'
     },
     {
         message_id: "064",
@@ -1931,7 +1925,7 @@ structural_test_cases = [
             },
             text: 'the phone number is +39+3598456790'
         },
-        result_expected: 'A telephone number should not contain the character < {plus_sign} > several times'
+        result_expected: 'A telephone number should not contain the character < {plus_sign} > several times'
     },
     {
         message_id: "065",
@@ -1954,7 +1948,7 @@ structural_test_cases = [
             },
             text: 'the phone number is +1'
         },
-        result_expected: '{sorry} the value {+1} is not valid, {please} {insert} a valid phone number'
+        result_expected: '{sorry} the value {+1} is not valid, {please} {insert} a valid phone number'
     },
     {
         message_id: "066",
@@ -1977,7 +1971,7 @@ structural_test_cases = [
             },
             text: 'the arrival time is am 7'
         },
-        result_expected: 'The time you inserted is not valid. …'
+        result_expected: 'The time you inserted is not valid. …'
     },
     {
         message_id: "067",
@@ -2011,7 +2005,7 @@ structural_test_cases = [
             },
             text: 'the card expiration date is apr 2010'
         },
-        result_expected: 'The date inserted is not valid …'
+        result_expected: 'The date inserted is not valid …'
     },
     {
         message_id: "068",
@@ -2034,7 +2028,7 @@ structural_test_cases = [
             },
             text: 'the card expiration date is 2o10-12'
         },
-        result_expected: 'The year you inserted is not valid for <YYYY-MM>…'
+        result_expected: 'The year you inserted is not valid for <YYYY-MM>…'
     },
     {
         message_id: "069",
@@ -2057,7 +2051,7 @@ structural_test_cases = [
             },
             text: 'the card expiration date is 2010-o9'
         },
-        result_expected: 'The month insert is not valid for <YYYY-MM>…'
+        result_expected: 'The month insert is not valid for <YYYY-MM>…'
     },
     {
         message_id: "070",
@@ -2087,7 +2081,7 @@ structural_test_cases = [
             },
             text: 'the card expiration date is may 201o'
         },
-        result_expected: 'The year is not valid for < month YYYY >…'
+        result_expected: 'The year is not valid for < month YYYY >…'
     },
     {
         message_id: "071",
@@ -2110,7 +2104,7 @@ structural_test_cases = [
             },
             text: 'the card expiration date is 201o march'
         },
-        result_expected: 'The year is not valid for < YYYY month > …'
+        result_expected: 'The year is not valid for < YYYY month > …'
     },
     {
         message_id: "072",
@@ -2133,7 +2127,7 @@ structural_test_cases = [
             },
             text: 'the card expiration date is oct 2010'
         },
-        result_expected: 'It is possible that the month you inserted is not well written'
+        result_expected: 'It is possible that the month you inserted is not well written'
     },
     {
         message_id: "073",
@@ -2156,7 +2150,7 @@ structural_test_cases = [
             },
             text: 'the birthday is 32/02/2012'
         },
-        result_expected: 'The day you inserted is out of range'
+        result_expected: 'The day you inserted is out of range'
     },
     {
         message_id: "074",
@@ -2186,7 +2180,7 @@ structural_test_cases = [
             },
             text: 'the birthday is 21 14 2018'
         },
-        result_expected: 'The month you inserted is out of range'
+        result_expected: 'The month you inserted is out of range'
     },
     {
         message_id: "075",
@@ -2209,7 +2203,7 @@ structural_test_cases = [
             },
             text: 'the birthday is 20/03/0000'
         },
-        result_expected: 'The year you inserted is out of range, the minimum is {min_value} and the maximum is {max_value}'
+        result_expected: 'The year you inserted is out of range, the minimum is {min_value} and the maximum is {max_value}'
     },
     {
         message_id: "076",
@@ -2232,7 +2226,7 @@ structural_test_cases = [
             },
             text: '25 is the arrival time'
         },
-        result_expected: 'The hour is out of range'
+        result_expected: 'The hour is out of range'
     },
     {
         message_id: "077",
@@ -2255,7 +2249,7 @@ structural_test_cases = [
             },
             text: '07:80 is the arrival time'
         },
-        result_expected: 'The minutes are out of range'
+        result_expected: 'The minutes are out of range'
     },
     {
         message_id: "078",
@@ -2278,7 +2272,7 @@ structural_test_cases = [
             },
             text: 'harry.mayson@gmailcm is the email address'
         },
-        result_expected: 'There should be at least one character <{dot_sign}> after the character <{at_sign}>'
+        result_expected: 'There should be at least one character <{dot_sign}> after the character <{at_sign}>'
     },
     {
         message_id: "080",
@@ -2323,7 +2317,7 @@ structural_test_cases = [
             },
             text: 'harry@gmailcm is my email address'
         },
-        result_expected: 'The email should contain the character <{dot_sign}>'
+        result_expected: 'The email should contain the character <{dot_sign}>'
     },
     {
         message_id: "079",
@@ -2343,7 +2337,25 @@ structural_test_cases = [
             },
             text: 'yes'
         },
-        result_expected: '{good} you have been moved to the page with title {title}'
+        result_expected: '{good} you have been moved to the page with title {title}'
+    },
+    {
+        message_id: "031",
+        test_form_number: 2,
+        initial_state: {
+            machine_parameters: {
+                u.submit_alarm_enabled: True
+            }
+        },
+        test_case_message: {
+            entities: [],
+            intent: {
+                name: submit_form,
+                confidence: 1
+            },
+            text: 'may i submit the form?'
+        },
+        result_expected: 'Submission done'
     }
 ]
 
@@ -2378,7 +2390,7 @@ functional_test_cases = [
                     value: 'first name'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'alice'
                 }
             ],
@@ -2532,6 +2544,24 @@ functional_test_cases = [
         message_id: "005",
         test_form_number: 1,
         initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: 'first name',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'mark',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'email address',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'password',
+                    u.slot_value: None
+                }
+            ],
             spelling_state: {
                 u.close_prompt_enabled: True,
                 u.current_spelling_input_value: 'adama',
@@ -2593,7 +2623,7 @@ functional_test_cases = [
                     value: 'mark'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '30'
                 }
             ],
@@ -2619,7 +2649,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '22/02/2000'
                 }
             ],
@@ -2790,7 +2820,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'audi'
                 }
             ],
@@ -2922,7 +2952,7 @@ functional_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'jack'
                 }
             ],
@@ -2945,7 +2975,7 @@ functional_test_cases = [
                     value: 'first name'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'jack bauer'
                 }
             ],
@@ -2968,7 +2998,7 @@ functional_test_cases = [
                     value: 'first name'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'estelle laure harris'
                 }
             ],
@@ -2991,7 +3021,7 @@ functional_test_cases = [
                     value: 'mark'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '28'
                 }
             ],
@@ -3014,7 +3044,7 @@ functional_test_cases = [
                     value: 'mark'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '28,1'
                 }
             ],
@@ -3029,7 +3059,41 @@ functional_test_cases = [
     {
         message_id: "026",
         test_form_number: 1,
-        initial_state: {},
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: 'first name',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'mark',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'email address',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'password',
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_intent: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
         test_case_message: {
             entities: [
                 {
@@ -3037,7 +3101,7 @@ functional_test_cases = [
                     value: 'mark'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '28,45'
                 }
             ],
@@ -3060,7 +3124,7 @@ functional_test_cases = [
                     value: 'mark'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '28,654'
                 }
             ],
@@ -3075,7 +3139,23 @@ functional_test_cases = [
     {
         message_id: "028",
         test_form_number: 1,
-        initial_state: {},
+        initial_state: {
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_intent: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
         test_case_message: {
             entities: [
                 {
@@ -3083,7 +3163,7 @@ functional_test_cases = [
                     value: 'mark'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '280'
                 }
             ],
@@ -3106,7 +3186,7 @@ functional_test_cases = [
                     value: 'mark'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '24,4567'
                 }
             ],
@@ -3129,7 +3209,7 @@ functional_test_cases = [
                     value: 'mark'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '2.001.002'
                 }
             ],
@@ -3152,7 +3232,7 @@ functional_test_cases = [
                     value: 'mark'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '3.000,54'
                 }
             ],
@@ -3175,7 +3255,7 @@ functional_test_cases = [
                     value: 'mark'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '23.211'
                 }
             ],
@@ -3198,7 +3278,7 @@ functional_test_cases = [
                     value: 'mark'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '17,002.988'
                 }
             ],
@@ -3221,7 +3301,7 @@ functional_test_cases = [
                     value: 'password'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'pass'
                 }
             ],
@@ -3244,7 +3324,7 @@ functional_test_cases = [
                     value: 'password'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'pass_word'
                 }
             ],
@@ -3267,7 +3347,7 @@ functional_test_cases = [
                     value: 'password'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'p!@ss#w$%^r&d*_'
                 }
             ],
@@ -3290,7 +3370,7 @@ functional_test_cases = [
                     value: 'email address'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'em@il.it'
                 }
             ],
@@ -3313,7 +3393,7 @@ functional_test_cases = [
                     value: 'email address'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'em_ail'
                 }
             ],
@@ -3336,7 +3416,7 @@ functional_test_cases = [
                     value: 'email address'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'e@m@il.it'
                 }
             ],
@@ -3359,7 +3439,7 @@ functional_test_cases = [
                     value: 'email address'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'em@il.mail.it'
                 }
             ],
@@ -3382,7 +3462,7 @@ functional_test_cases = [
                     value: 'email address'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'my_em@il.mail.polimi.it'
                 }
             ],
@@ -3405,7 +3485,7 @@ functional_test_cases = [
                     value: 'email address'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'em@il'
                 }
             ],
@@ -3451,7 +3531,7 @@ functional_test_cases = [
                     value: 'phone number'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '00393545345566'
                 }
             ],
@@ -3474,7 +3554,7 @@ functional_test_cases = [
                     value: 'phone number'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '+393454566789'
                 }
             ],
@@ -3497,7 +3577,7 @@ functional_test_cases = [
                     value: 'phone number'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '+39+2376758933'
                 }
             ],
@@ -3507,12 +3587,28 @@ functional_test_cases = [
             },
             text: 'the phone number is +39+2376758933'
         },
-        result_expected: 'The should be at most one <+>'
+        result_expected: 'There should be at most one <+>'
     },
     {
         message_id: "047",
         test_form_number: 2,
-        initial_state: {},
+        initial_state: {
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_intent: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
         test_case_message: {
             entities: [
                 {
@@ -3520,7 +3616,7 @@ functional_test_cases = [
                     value: 'phone number'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '14'
                 }
             ],
@@ -3535,7 +3631,26 @@ functional_test_cases = [
     {
         message_id: "048",
         test_form_number: 2,
-        initial_state: {},
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: 'phone number',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'number of persons',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'birthday',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'card expiration date',
+                    u.slot_value: None
+                }
+            ]
+        },
         test_case_message: {
             entities: [
                 {
@@ -3543,7 +3658,7 @@ functional_test_cases = [
                     value: 'phone number'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '+237899755421345456'
                 }
             ],
@@ -3566,7 +3681,7 @@ functional_test_cases = [
                     value: 'number of persons'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '-2'
                 }
             ],
@@ -3581,7 +3696,45 @@ functional_test_cases = [
     {
         message_id: "050",
         test_form_number: 2,
-        initial_state: {},
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: 'birthday',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'phone number',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'number of persons',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'arrival time',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'card expiration date',
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_intent: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
         test_case_message: {
             entities: [
                 {
@@ -3589,7 +3742,7 @@ functional_test_cases = [
                     value: 'number of persons'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '4'
                 }
             ],
@@ -3612,7 +3765,7 @@ functional_test_cases = [
                     value: 'number of persons'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '4,5'
                 }
             ],
@@ -3635,7 +3788,7 @@ functional_test_cases = [
                     value: 'number of persons'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '2,000'
                 }
             ],
@@ -3658,7 +3811,7 @@ functional_test_cases = [
                     value: 'number of persons'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '1.000'
                 }
             ],
@@ -3673,7 +3826,45 @@ functional_test_cases = [
     {
         message_id: "054",
         test_form_number: 2,
-        initial_state: {},
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: 'birthday',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'phone number',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'number of persons',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'arrival time',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'card expiration date',
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_intent: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
         test_case_message: {
             entities: [
                 {
@@ -3681,7 +3872,7 @@ functional_test_cases = [
                     value: 'birthday'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '2010-02-15'
                 }
             ],
@@ -3704,7 +3895,7 @@ functional_test_cases = [
                     value: 'birthday'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '12-10-1995'
                 }
             ],
@@ -3727,7 +3918,7 @@ functional_test_cases = [
                     value: 'birthday'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '08-15-2005'
                 }
             ],
@@ -3750,7 +3941,7 @@ functional_test_cases = [
                     value: 'birthday'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '15032002'
                 }
             ],
@@ -3765,7 +3956,45 @@ functional_test_cases = [
     {
         message_id: "058",
         test_form_number: 2,
-        initial_state: {},
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: 'birthday',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'phone number',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'number of persons',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'arrival time',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'card expiration date',
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_intent: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
         test_case_message: {
             entities: [
                 {
@@ -3773,7 +4002,7 @@ functional_test_cases = [
                     value: 'birthday'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '02 january 1988'
                 }
             ],
@@ -3796,7 +4025,7 @@ functional_test_cases = [
                     value: 'birthday'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'February 28 2020'
                 }
             ],
@@ -3819,7 +4048,7 @@ functional_test_cases = [
                     value: 'arrival time'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '15:10'
                 }
             ],
@@ -3842,7 +4071,7 @@ functional_test_cases = [
                     value: 'arrival time'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '1230'
                 }
             ],
@@ -3857,7 +4086,45 @@ functional_test_cases = [
     {
         message_id: "062",
         test_form_number: 2,
-        initial_state: {},
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: 'birthday',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'phone number',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'number of persons',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'arrival time',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'card expiration date',
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_intent: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
         test_case_message: {
             entities: [
                 {
@@ -3865,7 +4132,7 @@ functional_test_cases = [
                     value: 'arrival time'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '08:05 am'
                 }
             ],
@@ -3888,7 +4155,7 @@ functional_test_cases = [
                     value: 'arrival time'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '5 pm'
                 }
             ],
@@ -3911,7 +4178,7 @@ functional_test_cases = [
                     value: 'arrival time'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '4:15'
                 }
             ],
@@ -3934,7 +4201,7 @@ functional_test_cases = [
                     value: 'arrival time'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '2:20 pm'
                 }
             ],
@@ -3949,7 +4216,45 @@ functional_test_cases = [
     {
         message_id: "066",
         test_form_number: 2,
-        initial_state: {},
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: 'birthday',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'phone number',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'number of persons',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'arrival time',
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: 'card expiration date',
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_intent: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
         test_case_message: {
             entities: [
                 {
@@ -3957,7 +4262,7 @@ functional_test_cases = [
                     value: 'arrival time'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '7'
                 }
             ],
@@ -3980,7 +4285,7 @@ functional_test_cases = [
                     value: 'card expiration date'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '2010-02'
                 }
             ],
@@ -4003,7 +4308,7 @@ functional_test_cases = [
                     value: 'card expiration date'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'January 2015'
                 }
             ],
@@ -4026,7 +4331,7 @@ functional_test_cases = [
                     value: 'card expiration date'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: '2003 march'
                 }
             ],
@@ -4068,7 +4373,7 @@ functional_test_cases = [
                     value: 'car'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'citroen'
                 }
             ],
@@ -4091,11 +4396,11 @@ functional_test_cases = [
                     value: 'car'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'ford'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'bmw'
                 }
             ],
@@ -4118,7 +4423,7 @@ functional_test_cases = [
                     value: 'gender'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'male'
                 }
             ],
@@ -4133,7 +4438,26 @@ functional_test_cases = [
     {
         message_id: "073",
         test_form_number: 3,
-        initial_state: {},
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: "car",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "gender",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "electronic devices",
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: "message",
+                    u.slot_value: None
+                }
+            ]
+        },
         test_case_message: {
             entities: [
                 {
@@ -4141,11 +4465,11 @@ functional_test_cases = [
                     value: 'gender'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'female'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'none'
                 }
             ],
@@ -4168,7 +4492,7 @@ functional_test_cases = [
                     value: 'electronic devices'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'smartphone'
                 }
             ],
@@ -4191,11 +4515,11 @@ functional_test_cases = [
                     value: 'electronic devices'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'smartphone'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'tablet'
                 }
             ],
@@ -4218,15 +4542,15 @@ functional_test_cases = [
                     value: 'electronic devices'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'computer'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'smart watch'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'smart tv'
                 }
             ],
@@ -4256,7 +4580,7 @@ functional_test_cases = [
                     value: 'message'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'if the mountain'
                 }
             ],
@@ -4286,7 +4610,7 @@ functional_test_cases = [
                     value: 'message'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: "if the mountain won't come to muhammad"
                 }
             ],
@@ -4320,7 +4644,7 @@ functional_test_cases = [
                     value: 'message'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: "if the mountain won't come to muhammad, muhammad must go"
                 }
             ],
@@ -4354,7 +4678,7 @@ functional_test_cases = [
                     value: 'message'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: "if the mountain won't come to muhammad, muhammad must go to the mountain"
                 }
             ],
@@ -4388,7 +4712,7 @@ functional_test_cases = [
                     value: 'message'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: 'adversity and loss make a man wise. a journey of thousand miles begins with a single step.'
                 }
             ],
@@ -4418,7 +4742,7 @@ functional_test_cases = [
                     value: 'message'
                 },
                 {
-                    entity: 'input_value',
+                    entity: input_value,
                     value: "better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait."
                 }
             ],
@@ -4443,23 +4767,5 @@ functional_test_cases = [
             text: 'what is the title of this form?'
         },
         result_expected: 'Gives the form title. The next field is message'
-    },
-    {
-        message_id: "031",
-        test_form_number: 1,
-        initial_state: {
-            machine_parameters: {
-                u.submit_alarm_enabled: True
-            }
-        },
-        test_case_message: {
-            entities: [],
-            intent: {
-                name: submit_form,
-                confidence: 1
-            },
-            text: 'may i submit the form?'
-        },
-        result_expected: 'Submission done'
     }
 ]

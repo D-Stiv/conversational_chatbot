@@ -82,11 +82,11 @@ class Testing:
                     self.write_test_case(testing_type=testing_type, initial_situation=state_before, test_case=test_case, effects=difference, response=response)
                 except:
                     pass
-                # we write the testing log
-                if testing_type == t_c.structural:
-                    self.structural_testing_writer.start(display_summary=structural_summary)
-                else:
-                    self.functional_testing_writer.start(display_summary=functional_summary)        
+            # we write the testing log
+            if testing_type == t_c.structural:
+                self.structural_testing_writer.start(display_summary=structural_summary)
+            else:
+                self.functional_testing_writer.start(display_summary=functional_summary)        
         except:
             print('Fail to complete the testing')
             if testing_type == t_c.structural:
@@ -206,9 +206,9 @@ class Testing:
                     effects_machine = self.get_string_from_dic(effects[t_c.machine_parameters])
                     effects_line = f'{effects_line}{escape}\tModified machine parameters - {effects_machine}'
             if effects_line == '':
-                line = f'Test case - {self.counter}{escape}[Initial situation: {init_line}] {escape}[Test case meaage: {test_case_line}] {escape}[Result expected: {expected_line}] {escape}[Result obtained: (response:{response_line})]'
+                line = f'<{test_case[t_c.message_id]}> {testing_type} test case - {self.counter}{escape}[Initial situation: {init_line}] {escape}[Test case meaage: {test_case_line}] {escape}[Result expected: {expected_line}] {escape}[Result obtained: (response:{response_line})]'
             else:
-                line = f'Test case - {self.counter}{escape}[Initial situation: {init_line}] {escape}[Test case meaage: {test_case_line}] {escape}[Result expected: {expected_line}] {escape}[Result obtained: (effects: {effects_line}) (response:{response_line})]'
+                line = f'<{test_case[t_c.message_id]}> {testing_type} test case - {self.counter}{escape}[Initial situation: {init_line}] {escape}[Test case meaage: {test_case_line}] {escape}[Result expected: {expected_line}] {escape}[Result obtained: (effects: {effects_line}) (response:{response_line})]'
             self.counter += 1
             if testing_type == t_c.functional:
                 self.functional_testing_writer.add_line(line)

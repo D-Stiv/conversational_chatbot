@@ -1,0 +1,535 @@
+HEADER
+
+	Date and Hour: 2020-04-14 22:31:27.329533
+
+	Testing log for *structural* test cases
+
+CONVERSATION LOG
+
+<000> structural test case - 0
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case meaage: please tell me the title of the form again] 
+	[Result expected: The form does not have a title] 
+	[Result obtained: (response:The title of this form is  there is no title provided for this form.  insert the value for the field first name. This field is required Since it is a field requiring the spelling, we are going to take its value one character at a time.  insert the first character)]
+<001> structural test case - 1
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case meaage: give me the title of the form] 
+	[Result expected: The title of this form is test form sample number 3] 
+	[Result obtained: (response:The title of this form is test form sample number 3. Choose your gender in the following list male, female, other. This field is required)]
+<002> structural test case - 2
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case meaage: what is this form about?] 
+	[Result expected: It does not have a description] 
+	[Result obtained: (response:sure here it is:  there is no explanation provided for this form. please give the value for the field first name. This field is required Since it is a field requiring the spelling, we are going to take its value one character at a time. please insert the first character)]
+<003> structural test case - 3
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case meaage: add the value of the field] 
+	[Result expected: Which field exactly would you like to {modify} and which value do you want to {insert} for that field?] 
+	[Result obtained: (response:Which field exactly do you want to modify, and which value do you want to give for that field?)]
+<004> structural test case - 4
+	[Initial situation: Fields -  first name ** : None;  mark : 28.5;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case meaage: my first name is alfred and 28,5 is the mark] 
+	[Result expected: {sorry} i did not understand your request, could you reformulate {please}] 
+	[Result obtained: (response:You will have to spell the value of the field first name.  insert the first character, you will be able to use SPACE for spacingand TERMINATE to close the spelling)]
+<005> structural test case - 5
+	[Initial situation: Fields -  first name ** : None;  mark : 28.5;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['email address', 'first name'], after_spelling: True, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case meaage: i want to complete a field] 
+	[Result expected: Now you are going to spell the value for the field {email address}, {please} insert the first character] 
+	[Result obtained: (response:Which field exactly do you want to adjust, and which value do you want to insert for that field?)]
+<006> structural test case - 6
+	[Initial situation: Fields -  first name ** : None;  mark : 28.5;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case meaage: i want to complete the field] 
+	[Result expected: You will have to spell the value for the field {first name}] 
+	[Result obtained: (response:Which field exactly do you want to change, and which value do you want to insert for that field?)]
+<007> structural test case - 7
+	[Initial situation: Fields -  first name ** : None;  mark : 28.5;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name', 'email address'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case meaage: i want to complete a field] 
+	[Result expected: You will have to spell the value for the following fieldss {fields}.  We start by the field {first name}] 
+	[Result obtained: (response:Which field exactly do you want to update, and which value do you want to put for that field?)]
+<008> structural test case - 8
+	[Initial situation: Fields -  first name ** : None;  mark : 28.5;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name', 'email address'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case meaage: complete a field] 
+	[Result expected: … insert the first character, you will be able to use SPACE for spacing and TERMINATE to {conclude} the spelling] 
+	[Result obtained: (response:Which field exactly do you want to adjust, and which value do you want to complete for that field?)]
+<010> structural test case - 9
+	[Initial situation: Fields -  first name ** : None;  mark : 28.5;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name', 'email address'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: Your input rome is not valid, try to insert only the character again please, next_slot: password, next_slot_required: False] 
+	[Test case meaage: terminator] 
+	[Result expected: You should insert at least one character different from 'blank'] 
+	[Result obtained: (response:You should insert at least one character different from blank.  complete the value for the field password. This field is optional)]
+<011> structural test case - 10
+	[Initial situation: Fields -  number of persons : None;  phone number : 3986452734;  birthday : None;  arrival time : None;  card expiration date : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: is the field presnt in the form?] 
+	[Result expected: {please} indicate which field you are interested to] 
+	[Result obtained: (response: indicate which field you are interested to)]
+<012> structural test case - 11
+	[Initial situation: Fields -  number of persons : None;  phone number : 3986452734;  birthday : None;  arrival time : None;  card expiration date : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: yes] 
+	[Result expected: {sorry} what exactly do you want to do?] 
+	[Result obtained: (response: what exactly do you want to do ?)]
+<013> structural test case - 12
+	[Initial situation: Fields -  number of persons : None;  phone number : 3986452734;  birthday : None;  arrival time : None;  card expiration date : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: no] 
+	[Result expected: {well}, what do you want to do now?] 
+	[Result obtained: (response: put the value for the field number of persons. This field is optional)]
+<014> structural test case - 13
+	[Initial situation: Fields -  number of persons : None;  phone number : 3986452734;  birthday : None;  arrival time : None;  card expiration date : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: i want the recap of what have been done so far] 
+	[Result expected: Here is the answer for you : …   ] 
+	[Result obtained: (response:The fields you already completed are the following:   phone number : 3986452734  The stars indicate the required fields  insert the value for the field number of persons. This field is optional)]
+<015> structural test case - 14
+	[Initial situation: Fields -  first name ** : None;  mark : 28.5;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name', 'email address'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: Your input rome is not valid, try to insert only the character again please, next_slot: password, next_slot_required: False] 
+	[Test case meaage: what is the value of the card expiration date?] 
+	[Result expected: … No value ….] 
+	[Result obtained: (response:Here is the answer for you:  please give the value for the field password. This field is optional)]
+<016> structural test case - 15
+	[Initial situation: Fields -  number of persons : None;  phone number : 3986452734;  birthday : None;  arrival time : None;  card expiration date : april 2021; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: birthday, next_slot_required: False] 
+	[Test case meaage: skip] 
+	[Result expected: {sorry} this field is the last one remaining] 
+	[Result obtained: (response: fill the value for the field birthday. This field is optional)]
+<017> structural test case - 16
+	[Initial situation: Fields -  number of persons : None;  phone number : 3986452734;  birthday : None;  arrival time : None;  card expiration date : april 2021; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: arrival time, next_slot_required: False] 
+	[Test case meaage: skip] 
+	[Result expected: … do you want to submit now?] 
+	[Result obtained: (response: put the value for the field arrival time. This field is optional)]
+<018> structural test case - 17
+	[Initial situation: Fields -  first name ** : rock;  mark : 23,45;  password : empty_pass@rt;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name', 'email address'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: Your input rome is not valid, try to insert only the character again please, next_slot: email address, next_slot_required: True] 
+	[Test case meaage: skip] 
+	[Result expected: … it is required to submit the form …] 
+	[Result obtained: (response: this field is the last one remaining. it is required to be able to submit the form. The title of this form is  there is no title provided for this form. sorry there is no explanation provided for this form. this form contains the following fields first name, mark, password, email address, from which 2 are required and 2 are optional. here we go:  complete the value for the field email address. This field is required )]
+<019> structural test case - 18
+	[Initial situation: Fields -  first name ** : rock;  mark : 23,45;  password : empty_pass@rt;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name', 'email address'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: Your input rome is not valid, try to insert only the character again please, next_slot: email address, next_slot_required: True] 
+	[Test case meaage: which are the required fields?] 
+	[Result expected: {sure} the required fields are the following {fields}] 
+	[Result obtained: (response:sure the required fields are the following first name, email address. please give the value for the field email address. This field is required)]
+<020> structural test case - 19
+	[Initial situation: Fields -  first name ** : rock;  mark : 23,45;  password : empty_pass@rt;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name', 'email address'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: Your input rome is not valid, try to insert only the character again please, next_slot: email address, next_slot_required: True] 
+	[Test case meaage: which are the optional fields of this form?] 
+	[Result expected: {sure} the optional fields are the following {fields}] 
+	[Result obtained: (response:sure the optional fields are the following mark, password. please give the value for the field email address. This field is required)]
+<021> structural test case - 20
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case meaage: which are the fields of this form?] 
+	[Result expected: {sure} the fields present in this form are the following {fields}] 
+	[Result obtained: (response: the fields present in this form are the following gender, electronic devices, car, message. Choose your gender in the following list male, female, other. This field is required)]
+<022> structural test case - 21
+	[Initial situation: Fields -  gender ** : None;  electronic devices : smartphone;  car : bmw;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case meaage: which are the required remaining fields] 
+	[Result expected: {sure} the remaining required fields are the following {fields}] 
+	[Result obtained: (response:sure the remaining required fields are the following gender.  Choose your gender in the following list male, female, other. This field is required)]
+<023> structural test case - 22
+	[Initial situation: Fields -  gender ** : None;  electronic devices : smartphone;  car : bmw;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case meaage: which are the remaining optional fields?] 
+	[Result expected: {sure} the remaining optional fields are the following {fields}] 
+	[Result obtained: (response: the remaining optional fields are the following message. Choose your gender in the following list male, female, other. This field is required)]
+<024> structural test case - 23
+	[Initial situation: Fields -  gender ** : None;  electronic devices : smartphone;  car : bmw;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case meaage: which are the remaining fields] 
+	[Result expected: {sure} the remaining fields present in this form are the following {fields}] 
+	[Result obtained: (response:sure the remaining fields present in this form are the following gender, message. Choose your gender in the following list male, female, other. This field is required)]
+<025> structural test case - 24
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case meaage: i want to have the summary please] 
+	[Result expected: {sorry} up to now you did not complete any field…] 
+	[Result obtained: (response: up to now you did not complete any field Select the car in the following list volvo, saab, fiat, audi, citroen, ford, bmw, chevrolet, honda, kia, toyota, lexus, hyundai. This field is optional)]
+<026> structural test case - 25
+	[Initial situation: Fields -  gender ** : male;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case meaage: can i have the summary please?] 
+	[Result expected: The fields you already complete are he following {fields}. The stars represent the required fields] 
+	[Result obtained: (response:The fields you already completed are the following:   gender ** : male  The stars indicate the required fields Select the car in the following list volvo, saab, fiat, audi, citroen, ford, bmw, chevrolet, honda, kia, toyota, lexus, hyundai. This field is optional)]
+<027> structural test case - 26
+	[Initial situation: Fields -  first name ** : rock;  mark : 23,45;  password : empty_pass@rt;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name', 'email address'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: resetAllCamps, warning_message: Your input rome is not valid, try to insert only the character again please, next_slot: email address, next_slot_required: True] 
+	[Test case meaage: reset] 
+	[Result expected: We are about to reset all the field. Are you sure you want to continue with this action?] 
+	[Result obtained: (response:we are about to reset all the fields and restart the process.  are you sure you want to continue with this action?)]
+<028> structural test case - 27
+	[Initial situation: Fields -  number of persons : None;  phone number : 3549213458;  birthday : None;  arrival time : None;  card expiration date : april 2021; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: resetAllCamps, warning_message: , next_slot: arrival time, next_slot_required: False] 
+	[Test case meaage: reset] 
+	[Result expected: All the fields have been reset, now we restart the process] 
+	[Result obtained: (response:we are about to reset all the fields and restart the process.  are you sure you want to continue with this action?)]
+<029> structural test case - 28
+	[Initial situation: Fields -  first name ** : alfonso;  mark : None;  password : p!^ss_w%@rd;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name', 'email address'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: Your input rome is not valid, try to insert only the character again please, next_slot: mark, next_slot_required: False] 
+	[Test case meaage: submit] 
+	[Result expected: Not all the required fields have been completed. You still have to complete the following required fields {fields}] 
+	[Result obtained: (response:we are about to submit, are you sure you want to continue with this action?)]
+<030> structural test case - 29
+	[Initial situation: Fields -  first name ** : alfonso;  mark : None;  password : p!^ss_w%@rd;  email address ** : em@il.it; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name', 'email address'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: Your input rome is not valid, try to insert only the character again please, next_slot: mark, next_slot_required: False] 
+	[Test case meaage: submit the form] 
+	[Result expected: We are going to submit, are you sure you want to continue with this action?] 
+	[Result obtained: (response:we are about to submit, are you sure you want to continue with this action?)]
+<032> structural test case - 30
+	[Initial situation: Fields -  first name ** : alfonso;  mark : None;  password : p!^ss_w%@rd;  email address ** : em@il.it; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name', 'email address'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: sorry the field  is not present in this form. could you precise the action you want to perform?, next_slot: mark, next_slot_required: False] 
+	[Test case meaage: my name is gorges] 
+	[Result expected: The name {name} does not correspond to any label. The fields present are the following {fields}. Which field do you want to modify?] 
+	[Result obtained: (response:sorry the field name is not present in this form. The fields of this form are the following: first name, mark, password, email address please give the value for the field mark. This field is optional)]
+<033> structural test case - 31
+	[Initial situation: Fields -  first name ** : alfonso;  mark : None;  password : p!^ss_w%@rd;  email address ** : em@il.it; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name', 'email address'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: sorry the field  is not present in this form. could you precise the action you want to perform?, next_slot: mark, next_slot_required: False] 
+	[Test case meaage: what is the value of anniversary?] 
+	[Result expected: {sorry} the field {anniversary} is not present in this form. {please} could you precise the action you want to perfect?] 
+	[Result obtained: (response:Here is the answer for you:   put the value for the field mark. This field is optional)]
+<034> structural test case - 32
+	[Initial situation: Fields -  gender ** : male;  electronic devices : None;  car : honda;  message : other; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: electronic devices, next_slot_required: False] 
+	[Test case meaage: gender is other] 
+	[Result expected: Select the {gender} in the following list {fields} …] 
+	[Result obtained: (response:Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional)]
+<035> structural test case - 33
+	[Initial situation: Fields -  first name ** : alfonso;  mark : None;  password : p!^ss_w%@rd;  email address ** : em@il.it; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name', 'email address'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: The name gender does not correspond to any label. the fields present are the following first name, mark, password, email address.
+which field do you want to modify?, next_slot: mark, next_slot_required: False] 
+	[Test case meaage: the car is hyundai] 
+	[Result expected: Choose your {car} in the following list {fields} …] 
+	[Result obtained: (response: the field car is not present in this form. The fields of this form are the following: first name, mark, password, email address please insert the value for the field mark. This field is optional)]
+<036> structural test case - 34
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : april 2021; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: arrival time, next_slot_required: False] 
+	[Test case meaage: my phone number is 55483498] 
+	[Result expected: {please} {insert} the value for the field {phone number} …] 
+	[Result obtained: (response:You will have to spell the value of the field phone number. please insert the first character, you will be able to use SPACE for spacingand TERMINATE to halt the spelling)]
+<038> structural test case - 35
+	[Initial situation: Fields -  gender ** : male;  electronic devices : None;  car : honda;  message : other; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: electronic devices, next_slot_required: False] 
+	[Test case meaage: my gender is man] 
+	[Result expected: {sorry} the choice {choice} is not valid for the field {gender}. Please choose one in the following list: {values}] 
+	[Result obtained: (response: the choice man is not valid for the field genderplease choose one in the following list: ['male', 'female', 'other'])]
+<039> structural test case - 36
+	[Initial situation: Fields -  gender ** : male;  electronic devices : ['smart', 'phone'];  car : honda;  message : other; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: False, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: my electronic devices are smart and phone] 
+	[Result expected: {sorry} none of the choices {choices} you proposed is valid for the field {electronic devices}. Please choose them in the following list {values}] 
+	[Result obtained: (response:All the fields have been completed. Here is the summary:   gender ** : male  electronic devices : ['smart', 'phone']  car : honda  message : other   Is everything well for the submission?. The stars indicate the required fields)]
+<040> structural test case - 37
+	[Initial situation: Fields -  first name ** : alfonso;  mark : None;  password : p!^ss_w%@rd;  email address ** : em@il.it; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: mark, next_slot_required: False] 
+	[Test case meaage: what is mark?] 
+	[Result expected: There is no explanation provided for the field {mark} {sorry}] 
+	[Result obtained: (response:There is no explanation provided for the field mark  please insert the value for the field mark. This field is optional)]
+<042> structural test case - 38
+	[Initial situation: Fields -  first name ** : None;  mark : 23,56;  password : passitoword;  email address ** : em@il.it; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name']], saved_spelling_values: [[], [], ['alda']]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: which are the required fields?] 
+	[Result expected: You started filling the field {first name} and the current value is {alda} {please} insert the {next} character] 
+	[Result obtained: (response:sure the required fields are the following first name, email address. All the fields have been completed. Here is the summary:   first name ** : None  mark : 23,56  password : passitoword  email address ** : em@il.it   Is everything good for the submission?. The stars indicate the required fields)]
+<043> structural test case - 39
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : april 2021; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: arrival time, next_slot_required: False] 
+	[Test case meaage: which are the fields still to be completed?] 
+	[Result expected: … Since it is a field requiring the spelling, we are going to take its value one character at a time …] 
+	[Result obtained: (response:sure the remaining fields present in this form are the following number of persons, phone number, birthday, arrival time.  fill the value for the field arrival time. This field is optional)]
+<044> structural test case - 40
+	[Initial situation: Fields -  gender ** : male;  electronic devices : ['smart', 'phone'];  car : None;  message : other; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: False, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: the gender is male] 
+	[Result expected: All the required fields have been completed, from now on you can submit] 
+	[Result obtained: (response:All the fields have been completed. Here is the summary:   gender ** : male  electronic devices : ['smart', 'phone']  car : None  message : other   Is everything okay for the submission?. The stars indicate the required fields)]
+<046> structural test case - 41
+	[Initial situation: Fields -  first name ** : None;  mark : 23,56;  password : passitoword;  email address ** : em@il.it; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], []], saved_spelling_values: [[], [], ['alda'], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: What is city?] 
+	[Result expected: {sorry} the field {city} is not present in this form. The fields of this form are the following: {fields}] 
+	[Result obtained: (response:sorry the field city is not present in this form. The fields of this form are the following: first name, mark, password, email address All the fields have been completed. Here is the summary:   first name ** : None  mark : 23,56  password : passitoword  email address ** : em@il.it   Is everything fine for the submission?. The stars indicate the required fields)]
+<047> structural test case - 42
+	[Initial situation: Fields -  first name ** : None;  mark : 23,56;  password : passitoword;  email address ** : em@il.it; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], []], saved_spelling_values: [[], [], ['alda'], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: is email present in the form?] 
+	[Result expected: The field {email} is not present but you have these alternatives {email address}] 
+	[Result obtained: (response: the field email is not present in this form. The fields of this form are the following: first name, mark, password, email address All the fields have been completed. Here is the summary:   first name ** : None  mark : 23,56  password : passitoword  email address ** : em@il.it   Is everything okay for the submission?. The stars indicate the required fields)]
+<048> structural test case - 43
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : em@il.it; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: is the field password present in this form?] 
+	[Result expected: The field {password} is present] 
+	[Result obtained: (response:correct, , The field password is present. All the fields have been completed. Here is the summary:   first name ** : None  mark : None  password : None  email address ** : em@il.it   Is everything fine for the submission?. The stars indicate the required fields)]
+<049> structural test case - 44
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : em@il.it; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: is there the field suggestions in the form?] 
+	[Result expected: The field {suggestions} is not present {sorry}] 
+	[Result obtained: (response: the field suggestions is not present in this form. The fields of this form are the following: first name, mark, password, email address All the fields have been completed. Here is the summary:   first name ** : None  mark : None  password : None  email address ** : em@il.it   Is everything fine for the submission?. The stars indicate the required fields)]
+<050> structural test case - 45
+	[Initial situation: Fields -  first name ** : madiba;  mark : 23;  password : p@s%&word;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: the password is p@s%&word] 
+	[Result expected: This field is required] 
+	[Result obtained: (response:All the fields have been completed. Here is the summary:   first name ** : madiba  mark : 23  password : p@s%&word  email address ** : None   Is everything well for the submission?. The stars indicate the required fields)]
+<051> structural test case - 46
+	[Initial situation: Fields -  first name ** : madiba;  mark : 25;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: my mark is 25] 
+	[Result expected: This field is optional] 
+	[Result obtained: (response:All the fields have been completed. Here is the summary:   first name ** : madiba  mark : 25  password : None  email address ** : None   Is everything well for the submission?. The stars indicate the required fields)]
+<052> structural test case - 47
+	[Initial situation: Fields -  first name ** : madiba;  mark : 25;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: elisa, spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: a] 
+	[Result expected: {please} {insert} the {next} character, remeber that you can use the expr SPACE for the blank and the expr TERMINATE to {conclude} the spelling] 
+	[Result obtained: (response: insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to terminate the spelling)]
+<053> structural test case - 48
+	[Initial situation: Fields -  first name ** : madiba;  mark : 25;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: elisa, spelling_interrupted: True, spelling_list: ['first name'], after_spelling: False, waiting_intent: giveAllRemainingLabels, saved_spelling_fields: [[], [], ['first name'], [], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: what are the remaining fields] 
+	[Result expected: Please i would like to have a clear answer. Would you like to save the state of the field that you started spelling. In case of negative response, …] 
+	[Result obtained: (response: the remaining fields present in this form are the following password, email address. All the fields have been completed. Here is the summary:   first name ** : madiba  mark : 25  password : None  email address ** : None   Is everything well for the submission?. The stars indicate the required fields)]
+<054> structural test case - 49
+	[Initial situation: Fields -  first name ** : madiba;  mark : 25;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: elisa, spelling_interrupted: True, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: which are the required fields?] 
+	[Result expected: Do you want to save the state of the field you started spelling? In case of negative response, that input will simply be canceled] 
+	[Result obtained: (response:sure the required fields are the following first name, email address. All the fields have been completed. Here is the summary:   first name ** : madiba  mark : 25  password : None  email address ** : None   Is everything fine for the submission?. The stars indicate the required fields)]
+<055> structural test case - 50
+	[Initial situation: Fields -  first name ** : madiba;  mark : 25;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: elisa, spelling_interrupted: True, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: my mark is   and my password is p@sswRD] 
+	[Result expected: The value you inserted only contains the blanks, and so it is not valid. Your input should contain at least one character different from the blank] 
+	[Result obtained: (response:Incompatibility between the value    and the type decimal. The value you inserted only contains the blanks, and so it is not valid. Your input should contain at least one character different from the blank All the fields have been completed. Here is the summary:   first name ** : madiba  mark : 25  password : None  email address ** : None   Is everything good for the submission?. The stars indicate the required fields)]
+<056> structural test case - 51
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: elisa, spelling_interrupted: True, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: my email address is emaddress.cm] 
+	[Result expected: The email should contain the character <{@}>] 
+	[Result obtained: (response:Incompatibility between the value emaddress.cm and the type email. The email should contain the character < @ > All the fields have been completed. Here is the summary:   first name ** : None  mark : None  password : None  email address ** : None   Is everything fine for the submission?. The stars indicate the required fields)]
+<057> structural test case - 52
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: elisa, spelling_interrupted: True, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: the email address is emai@addres@mail.it] 
+	[Result expected: The email should contain only one character <{@}>] 
+	[Result obtained: (response:Incompatibility between the value emai@addres@mail.it and the type email. The email should contain only one character < @ > All the fields have been completed. Here is the summary:   first name ** : None  mark : None  password : None  email address ** : None   Is everything okay for the submission?. The stars indicate the required fields)]
+<058> structural test case - 53
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: elisa, spelling_interrupted: True, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: my email address is @email.it] 
+	[Result expected: The email should not start with the character <{@}>] 
+	[Result obtained: (response:Incompatibility between the value @email.it and the type email. The email should not start with the character < @ > All the fields have been completed. Here is the summary:   first name ** : None  mark : None  password : None  email address ** : None   Is everything good for the submission?. The stars indicate the required fields)]
+<059> structural test case - 54
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: elisa, spelling_interrupted: True, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: the email address is em_address@] 
+	[Result expected: The email should not end with the character <{@}>] 
+	[Result obtained: (response:Incompatibility between the value em_address@ and the type email. The email should contain the character < . > All the fields have been completed. Here is the summary:   first name ** : None  mark : None  password : None  email address ** : None   Is everything okay for the submission?. The stars indicate the required fields)]
+<061> structural test case - 55
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: elisa, spelling_interrupted: True, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: the password is pass] 
+	[Result expected: The password you proposed is too short. The minimum number of characters accepted is {length}] 
+	[Result obtained: (response:Incompatibility between the value pass and the type password. The password you proposed is too short. The minimum number of characters accepted is 5 All the fields have been completed. Here is the summary:   first name ** : None  mark : None  password : None  email address ** : None   Is everything fine for the submission?. The stars indicate the required fields)]
+<062> structural test case - 56
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: elisa, spelling_interrupted: True, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: the password is pass/worf] 
+	[Result expected: A non acceptable character have been inserted in the passsword. The only accepted special characters are the following {characters}] 
+	[Result obtained: (response:Incompatibility between the value pass/worf and the type password. A non acceptable character have been inserted in the passsword. The only accepted special characters are the following ['!', '@', '#', '$', '%', '^', '&', '*', '_'] All the fields have been completed. Here is the summary:   first name ** : None  mark : None  password : None  email address ** : None   Is everything good for the submission?. The stars indicate the required fields)]
+<063> structural test case - 57
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : april 2021; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: the phone number is 00+3935897654] 
+	[Result expected: The character <{+}> could only be at the beginning of the number] 
+	[Result obtained: (response:You will have to spell the value of the field phone number.  insert the first character, you will be able to use SPACE for spacingand TERMINATE to end the spelling)]
+<064> structural test case - 58
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : april 2021; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: the phone number is +39+3598456790] 
+	[Result expected: A telephone number should not contain the character < {plus_sign} > several times] 
+	[Result obtained: (response:You will have to spell the value of the field phone number. please insert the first character, you will be able to use SPACE for spacingand TERMINATE to halt the spelling)]
+<065> structural test case - 59
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: elisa, spelling_interrupted: True, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: the phone number is +1] 
+	[Result expected: {sorry} the value {+1} is not valid, {please} {insert} a valid phone number] 
+	[Result obtained: (response:sorry the field phone number is not present in this form. The fields of this form are the following: first name, mark, password, email address All the fields have been completed. Here is the summary:   first name ** : None  mark : None  password : None  email address ** : None   Is everything good for the submission?. The stars indicate the required fields)]
+<066> structural test case - 60
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : april 2021; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: the arrival time is am 7] 
+	[Result expected: The time you inserted is not valid. …] 
+	[Result obtained: (response:Incompatibility between the value am 7 and the type time. The time you inserted is not valid. The acceptable formats are the following: <HH:MM>, <HHMM>, <HH:MM am>, <H>, <H am>, <H:MM>, <H:MM am>  give the value for the field number of persons. This field is optional)]
+<067> structural test case - 61
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : apr 2010; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: the card expiration date is apr 2010] 
+	[Result expected: The date inserted is not valid …] 
+	[Result obtained: (response:please insert the value for the field number of persons. This field is optional)]
+<068> structural test case - 62
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : 2o10-12; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: the card expiration date is 2o10-12] 
+	[Result expected: The year you inserted is not valid for <YYYY-MM>…] 
+	[Result obtained: (response:please give the value for the field number of persons. This field is optional)]
+<069> structural test case - 63
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : 2010-o9; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: the card expiration date is 2010-o9] 
+	[Result expected: The month insert is not valid for <YYYY-MM>…] 
+	[Result obtained: (response:please put the value for the field number of persons. This field is optional)]
+<070> structural test case - 64
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : may 201o; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: the card expiration date is may 201o] 
+	[Result expected: The year is not valid for < month YYYY >…] 
+	[Result obtained: (response: insert the value for the field number of persons. This field is optional)]
+<071> structural test case - 65
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : 201o march; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: the card expiration date is 201o march] 
+	[Result expected: The year is not valid for < YYYY month > …] 
+	[Result obtained: (response: complete the value for the field number of persons. This field is optional)]
+<072> structural test case - 66
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : oct 2010; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: the card expiration date is oct 2010] 
+	[Result expected: It is possible that the month you inserted is not well written] 
+	[Result obtained: (response:please fill the value for the field number of persons. This field is optional)]
+<073> structural test case - 67
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : oct 2010; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: the birthday is 32/02/2012] 
+	[Result expected: The day you inserted is out of range] 
+	[Result obtained: (response:Incompatibility between the value 32/02/2012 and the type date. The date inserted is not valid The acceptable formats are the following: <YYYY-MM-DD>, <DD-MM-YYYY>, <MM-DD-YYYY>, <DDMMYYYY>, <DD month YYYY>, <month DD YYYY> please insert the value for the field number of persons. This field is optional)]
+<074> structural test case - 68
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : oct 2010; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: the birthday is 21 14 2018] 
+	[Result expected: The month you inserted is out of range] 
+	[Result obtained: (response:Incompatibility between the value 21 14 2018 and the type date. The date inserted is not valid The acceptable formats are the following: <YYYY-MM-DD>, <DD-MM-YYYY>, <MM-DD-YYYY>, <DDMMYYYY>, <DD month YYYY>, <month DD YYYY> please put the value for the field number of persons. This field is optional)]
+<075> structural test case - 69
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None;  card expiration date : oct 2010; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: the birthday is 20/03/0000] 
+	[Result expected: The year you inserted is out of range, the minimum is {min_value} and the maximum is {max_value}] 
+	[Result obtained: (response:Incompatibility between the value 20/03/0000 and the type date. The date inserted is not valid The acceptable formats are the following: <YYYY-MM-DD>, <DD-MM-YYYY>, <MM-DD-YYYY>, <DDMMYYYY>, <DD month YYYY>, <month DD YYYY> please put the value for the field number of persons. This field is optional)]
+<076> structural test case - 70
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : 02:25;  card expiration date : oct 2010; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: 25 is the arrival time] 
+	[Result expected: The hour is out of range] 
+	[Result obtained: (response: put the value for the field number of persons. This field is optional)]
+<077> structural test case - 71
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : 02:25;  card expiration date : oct 2010; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message:  i did not understand your request, could you reformulate please?, next_slot: number of persons, next_slot_required: False] 
+	[Test case meaage: 07:80 is the arrival time] 
+	[Result expected: The minutes are out of range] 
+	[Result obtained: (response:Incompatibility between the value 07:80 and the type time. The time you inserted is not valid. The acceptable formats are the following: <HH:MM>, <HHMM>, <HH:MM am>, <H>, <H am>, <H:MM>, <H:MM am> please put the value for the field number of persons. This field is optional)]
+<078> structural test case - 72
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: elisa, spelling_interrupted: True, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: harry.mayson@gmailcm is the email address] 
+	[Result expected: There should be at least one character <{dot_sign}> after the character <{at_sign}>] 
+	[Result obtained: (response:Incompatibility between the value harry.mayson@gmailcm and the type email. There should be at least one character <.> after the character <@> All the fields have been completed. Here is the summary:   first name ** : None  mark : None  password : None  email address ** : None   Is everything fine for the submission?. The stars indicate the required fields)]
+<080> structural test case - 73
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: True, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], [], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: True, all_required_filled: False, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: harry@gmailcm is my email address] 
+	[Result expected: The email should contain the character <{dot_sign}>] 
+	[Result obtained: (response:Incompatibility between the value harry@gmailcm and the type email. The email should contain the character < . > All the fields have been completed. Here is the summary:   first name ** : None  mark : None  password : None  email address ** : None   Is everything good for the submission?. The stars indicate the required fields)]
+<079> structural test case - 74
+	[Initial situation: Fields -  first name ** : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: True, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], ['first name'], [], [], [], [], [], [], []], saved_spelling_values: [[], [], ['alda'], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: True, submit_done: True, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case meaage: yes] 
+	[Result expected: {good} you have been moved to the page with title {title}] 
+	[Result obtained: (response:submission done)]
+
