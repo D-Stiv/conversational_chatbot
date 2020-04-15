@@ -923,7 +923,8 @@ class State:
                     slot_name = slot[u.slot_name]
                     if slot_name != u.REQUESTED_SLOT:
                         slot_value = slot[u.slot_value]
-                        if slot_value is None:
+                        spelling = slot[u.spelling]
+                        if slot_value is None and not spelling:
                             slot_value, comment = self.fill_input(
                                 slot_name, slot_value_list[index])
                             if slot_value is None:

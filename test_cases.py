@@ -47,6 +47,22 @@ confidence = "confidence"
 functional = "functional"
 structural = "structural"
 
+# list of fields
+first_name = 'first name'
+last_name = 'last name'
+mark = 'mark'
+password = 'password'
+email_address = 'email address'
+phone_number = 'phone number'
+number_persons = 'number persons'
+birthday = 'birthday'
+arrival_time = 'arrival time'
+card_expiration_date = 'card expiration date'
+car = 'car'
+gender = 'gender'
+electronic_devices = 'electronic devices'
+message = 'message'
+
 structural_test_cases = [
     {
         message_id: "000",
@@ -54,19 +70,19 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "mark",
+                    u.slot_name: mark,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "password",
+                    u.slot_name: password,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "email address",
+                    u.slot_name: email_address,
                     u.slot_value: None
                 }
             ]
@@ -135,26 +151,26 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'first name'
+                    value: email_address
                 },
                 {
                     entity: input_value,
-                    value: 'alfred'
+                    value: 'alfred@hot.it'
                 },
                 {
-                    entity: 'inpuut_value',
+                    entity: input_value,
                     value: '28.5'
                 },
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 }
             ],
             intent: {
                 name: complete_field,
                 confidence: 1
             },
-            text: 'my first name is alfred and 28,5 is the mark'
+            text: 'my email address is alfred@hot.it and 28,5 is the mark'
         },
         result_expected: '{sorry} i did not understand your request, could you reformulate {please}'
     },
@@ -164,12 +180,12 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: None
                 }
             ],
             spelling_state: {
-                u.spelling_list: ['email address', 'first name'],
+                u.spelling_list: [last_name, first_name],
                 u.after_spelling: True
             }
         },
@@ -181,7 +197,7 @@ structural_test_cases = [
             },
             text: 'i want to complete a field'
         },
-        result_expected: 'Now you are going to spell the value for the field {email address}, {please} insert the first character'
+        result_expected: 'Now you are going to spell the value for the field {last name}, {please} insert the first character'
     },
     {
         message_id: "006",
@@ -189,12 +205,12 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: None
                 }
             ],
             spelling_state: {
-                u.spelling_list: ['first name'],
+                u.spelling_list: [first_name],
                 u.after_spelling: False
             }
         },
@@ -214,16 +230,16 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "email address",
+                    u.slot_name: last_name,
                     u.slot_value: None
                 }
             ],
             spelling_state: {
-                u.spelling_list: ['first name', 'email address'],
+                u.spelling_list: [first_name, last_name],
                 u.after_spelling: False
             }
         },
@@ -235,7 +251,7 @@ structural_test_cases = [
             },
             text: 'i want to complete a field'
         },
-        result_expected: 'You will have to spell the value for the following fieldss {fields}.  We start by the field {first name}'
+        result_expected: 'You will have to spell the value for the following fieldss {first name, last name}.  We start by the field {first name}'
     },
     {
         message_id: "008",
@@ -243,16 +259,16 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "email address",
+                    u.slot_name: last_name,
                     u.slot_value: None
                 }
             ],
             spelling_state: {
-                u.spelling_list: ['first name', 'email address'],
+                u.spelling_list: [first_name, last_name],
                 u.after_spelling: False
             }
         },
@@ -302,7 +318,7 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: None
                 }
             ],
@@ -331,15 +347,15 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "phone number",
+                    u.slot_name: phone_number,
                     u.slot_value: "3986452734"
                 },
                 {
-                    u.slot_name: "number of persons",
+                    u.slot_name: number_persons,
                     u.slot_value: "4"
                 },
                 {
-                    u.slot_name: "birthday",
+                    u.slot_name: birthday,
                     u.slot_value: "12/03/2010"
                 }
             ]
@@ -378,11 +394,11 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "arrival time",
+                    u.slot_name: arrival_time,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "card expiration date",
+                    u.slot_name: card_expiration_date,
                     u.slot_value: None
                 }
             ]
@@ -419,7 +435,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'card espiration date'
+                    value: card_expiration_date
                 }
             ],
             intent: {
@@ -436,7 +452,7 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "card expiration date",
+                    u.slot_name: card_expiration_date,
                     u.slot_value: "april 2021"
                 }
             ]
@@ -457,7 +473,7 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "card expiration date",
+                    u.slot_name: card_expiration_date,
                     u.slot_value: "april 2021"
                 }
             ]
@@ -478,19 +494,19 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: "rock"
                 },
                 {
-                    u.slot_name: "mark",
+                    u.slot_name: mark,
                     u.slot_value: "23,45"
                 },
                 {
-                    u.slot_name: "password",
+                    u.slot_name: password,
                     u.slot_value: "empty_pass@rt"
                 },
                 {
-                    u.slot_name: "email address",
+                    u.slot_name: email_address,
                     u.slot_value: None
                 }
             ]
@@ -553,19 +569,19 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "car",
+                    u.slot_name: car,
                     u.slot_value: "bmw"
                 },
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "electronic devices",
+                    u.slot_name: electronic_devices,
                     u.slot_value: "smartphone"
                 },
                 {
-                    u.slot_name: "message",
+                    u.slot_name: message,
                     u.slot_value: None
                 }
             ]
@@ -614,19 +630,19 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "car",
+                    u.slot_name: car,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "electronic devices",
+                    u.slot_name: electronic_devices,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "message",
+                    u.slot_name: message,
                     u.slot_value: None
                 }
             ]
@@ -647,7 +663,7 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: "male"
                 }
             ]
@@ -686,15 +702,15 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "phone number",
+                    u.slot_name: phone_number,
                     u.slot_value: "3549213458"
                 },
                 {
-                    u.slot_name: "number of persons",
+                    u.slot_name: number_persons,
                     u.slot_value: "1"
                 },
                 {
-                    u.slot_name: "birthday",
+                    u.slot_name: birthday,
                     u.slot_value: "12/12/2012"
                 }
             ],
@@ -718,19 +734,19 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: "alfonso"
                 },
                 {
-                    u.slot_name: "mark",
+                    u.slot_name: mark,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "password",
+                    u.slot_name: password,
                     u.slot_value: "p!^ss_w%@rd"
                 },
                 {
-                    u.slot_name: "email address",
+                    u.slot_name: email_address,
                     u.slot_value: None
                 }
             ]
@@ -751,7 +767,7 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "email address",
+                    u.slot_name: email_address,
                     u.slot_value: "em@il.it"
                 }
             ],
@@ -773,12 +789,6 @@ structural_test_cases = [
         message_id: "032",
         test_form_number: 1,
         initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: "",
-                    u.slot_value: ""
-                }
-            ],
             spelling_state: {
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
@@ -839,7 +849,7 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "car",
+                    u.slot_name: car,
                     u.slot_value: "honda"
                 }
             ],
@@ -862,7 +872,7 @@ structural_test_cases = [
         test_case_message: {
             entities: [
                 {
-                    entity: 'gender',
+                    entity: gender,
                     value: 'other'
                 }
             ],
@@ -880,11 +890,11 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "car",
+                    u.slot_name: car,
                     u.slot_value: None
                 }
             ],
@@ -908,7 +918,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'car'
+                    value: car
                 },
                 {
                     entity: input_value,
@@ -929,15 +939,15 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "phone number",
+                    u.slot_name: phone_number,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "number of persons",
+                    u.slot_name: number_persons,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "birthday",
+                    u.slot_name: birthday,
                     u.slot_value: None
                 }
             ],
@@ -961,7 +971,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'phone number'
+                    value: phone_number
                 },
                 {
                     entity: input_value,
@@ -984,7 +994,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'number of persons'
+                    value: number_persons
                 },
                 {
                     entity: input_value,
@@ -1023,7 +1033,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'gender'
+                    value: gender
                 },
                 {
                     entity: input_value,
@@ -1062,7 +1072,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'electronic devices'
+                    value: electronic_devices
                 },
                 {
                     entity: input_value,
@@ -1105,7 +1115,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 }
             ],
             intent: {
@@ -1122,15 +1132,15 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: "harry"
                 },
                 {
-                    u.slot_name: "mark",
+                    u.slot_name: mark,
                     u.slot_value: "23,56"
                 },
                 {
-                    u.slot_name: "password",
+                    u.slot_name: password,
                     u.slot_value: "passitoword"
                 }
             ],
@@ -1154,7 +1164,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'email address'
+                    value: email_address
                 },
                 {
                     entity: input_value,
@@ -1175,7 +1185,7 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: None
                 }
             ],
@@ -1184,7 +1194,7 @@ structural_test_cases = [
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
                 u.waiting_intent: None,
-                u.saved_spelling_fields: ["first name"],
+                u.saved_spelling_fields: [first_name],
                 u.saved_spelling_values: ["alda"]
             },
             machine_parameters: {
@@ -1211,19 +1221,19 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "phone number",
+                    u.slot_name: phone_number,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "number of persons",
+                    u.slot_name: number_persons,
                     u.slot_value: "4"
                 },
                 {
-                    u.slot_name: "birthday",
+                    u.slot_name: birthday,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "ard expiration date",
+                    u.slot_name: card_expiration_date,
                     u.slot_value: "november 2010"
                 }
             ],
@@ -1259,11 +1269,11 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "car",
+                    u.slot_name: car,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: None
                 }
             ],
@@ -1287,7 +1297,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'gender'
+                    value: gender
                 },
                 {
                     entity: input_value,
@@ -1326,7 +1336,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'arrival time'
+                    value: arrival_time
                 },
                 {
                     entity: input_value,
@@ -1334,7 +1344,7 @@ structural_test_cases = [
                 },
                 {
                     entity: input_field,
-                    value: 'card expiration date'
+                    value: card_expiration_date
                 }
             ],
             intent: {
@@ -1421,11 +1431,11 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "mark",
+                    u.slot_name: mark,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "password",
+                    u.slot_name: password,
                     u.slot_value: None
                 }
             ],
@@ -1449,7 +1459,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'password'
+                    value: password
                 }
             ],
             intent: {
@@ -1485,19 +1495,19 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: "madiba"
                 },
                 {
-                    u.slot_name: "mark",
+                    u.slot_name: mark,
                     u.slot_value: "23"
                 },
                 {
-                    u.slot_name: "password",
+                    u.slot_name: password,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "email address",
+                    u.slot_name: email_address,
                     u.slot_value: None
                 }
             ]
@@ -1506,7 +1516,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'password'
+                    value: password
                 },
                 {
                     entity: input_value,
@@ -1527,19 +1537,19 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: "madiba"
                 },
                 {
-                    u.slot_name: "mark",
+                    u.slot_name: mark,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "password",
+                    u.slot_name: password,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "email address",
+                    u.slot_name: email_address,
                     u.slot_value: None
                 }
             ]
@@ -1548,7 +1558,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 },
                 {
                     entity: input_value,
@@ -1570,7 +1580,7 @@ structural_test_cases = [
             spelling_state: {
                 u.close_prompt_enabled: True,
                 u.current_spelling_input_value: 'elis',
-                u.spelling_list: ["first name"],
+                u.spelling_list: [first_name],
                 u.waiting_intent: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
@@ -1605,7 +1615,7 @@ structural_test_cases = [
             spelling_state: {
                 u.close_prompt_enabled: True,
                 u.current_spelling_input_value: 'elisa',
-                u.spelling_list: ["first name"],
+                u.spelling_list: [first_name],
                 u.waiting_intent: give_all_remaining_fields,
                 u.spelling_interrupted: True,
                 u.saved_spelling_fields: [],
@@ -1636,7 +1646,7 @@ structural_test_cases = [
             spelling_state: {
                 u.close_prompt_enabled: True,
                 u.current_spelling_input_value: 'elisa',
-                u.spelling_list: ["first name"],
+                u.spelling_list: [first_name],
                 u.waiting_intent: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
@@ -1667,7 +1677,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 },
                 {
                     entity: input_value,
@@ -1675,7 +1685,7 @@ structural_test_cases = [
                 },
                 {
                     entity: input_field,
-                    value: 'password'
+                    value: password
                 },
                 {
                     entity: input_value,
@@ -1696,11 +1706,11 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "mark",
+                    u.slot_name: mark,
                     u.slot_value: None
                 }
             ]
@@ -1709,7 +1719,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'email address'
+                    value: email_address
                 },
                 {
                     entity: input_value,
@@ -1732,7 +1742,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'email address'
+                    value: email_address
                 },
                 {
                     entity: input_value,
@@ -1755,7 +1765,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'email address'
+                    value: email_address
                 },
                 {
                     entity: input_value,
@@ -1778,7 +1788,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'email address'
+                    value: email_address
                 },
                 {
                     entity: input_value,
@@ -1799,19 +1809,19 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "phone number",
+                    u.slot_name: phone_number,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "number of persons",
+                    u.slot_name: number_persons,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "birthday",
+                    u.slot_name: birthday,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "arrival time",
+                    u.slot_name: arrival_time,
                     u.slot_value: None
                 }
             ]
@@ -1820,7 +1830,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'number of persons'
+                    value: number_persons
                 },
                 {
                     entity: input_value,
@@ -1843,7 +1853,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'password'
+                    value: password
                 },
                 {
                     entity: input_value,
@@ -1866,7 +1876,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'password'
+                    value: password
                 },
                 {
                     entity: input_value,
@@ -1889,7 +1899,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'phone number'
+                    value: phone_number
                 },
                 {
                     entity: input_value,
@@ -1912,7 +1922,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'phone number'
+                    value: phone_number
                 },
                 {
                     entity: input_value,
@@ -1935,7 +1945,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'phone number'
+                    value: phone_number
                 },
                 {
                     entity: input_value,
@@ -1958,7 +1968,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'arrival time'
+                    value: arrival_time
                 },
                 {
                     entity: input_value,
@@ -1979,11 +1989,11 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "card expiration date",
+                    u.slot_name: card_expiration_date,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "birthday",
+                    u.slot_name: birthday,
                     u.slot_value: None
                 }
             ]
@@ -1992,7 +2002,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'card expiration date'
+                    value: card_expiration_date
                 },
                 {
                     entity: input_value,
@@ -2015,7 +2025,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'card expiration date'
+                    value: card_expiration_date
                 },
                 {
                     entity: input_value,
@@ -2038,7 +2048,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'card expiration date'
+                    value: card_expiration_date
                 },
                 {
                     entity: input_value,
@@ -2059,7 +2069,7 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "card expiration date",
+                    u.slot_name: card_expiration_date,
                     u.slot_value: None
                 }
             ]
@@ -2068,7 +2078,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'card expiration date'
+                    value: card_expiration_date
                 },
                 {
                     entity: input_value,
@@ -2091,7 +2101,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'card expiration date'
+                    value: card_expiration_date
                 },
                 {
                     entity: input_value,
@@ -2114,7 +2124,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'card expiration date'
+                    value: card_expiration_date
                 },
                 {
                     entity: input_value,
@@ -2137,7 +2147,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'birthday'
+                    value: birthday
                 },
                 {
                     entity: input_value,
@@ -2158,7 +2168,7 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "phone number",
+                    u.slot_name: phone_number,
                     u.slot_value: None
                 }
             ]
@@ -2167,7 +2177,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'birthday'
+                    value: birthday
                 },
                 {
                     entity: input_value,
@@ -2190,7 +2200,7 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'birthday'
+                    value: birthday
                 },
                 {
                     entity: input_value,
@@ -2217,7 +2227,7 @@ structural_test_cases = [
                 },
                 {
                     entity: input_field,
-                    value: 'arrival time'
+                    value: arrival_time
                 }
             ],
             intent: {
@@ -2240,7 +2250,7 @@ structural_test_cases = [
                 },
                 {
                     entity: input_field,
-                    value: 'arrival time'
+                    value: arrival_time
                 }
             ],
             intent: {
@@ -2263,7 +2273,7 @@ structural_test_cases = [
                 },
                 {
                     entity: input_field,
-                    value: 'email address'
+                    value: email_address
                 }
             ],
             intent: {
@@ -2280,7 +2290,7 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: None
                 }
             ],
@@ -2308,7 +2318,7 @@ structural_test_cases = [
                 },
                 {
                     entity: input_field,
-                    value: 'email address'
+                    value: email_address
                 }
             ],
             intent: {
@@ -2366,19 +2376,19 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "mark",
+                    u.slot_name: mark,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "password",
+                    u.slot_name: password,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "email address",
+                    u.slot_name: email_address,
                     u.slot_value: None
                 }
             ]
@@ -2387,20 +2397,20 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'first name'
+                    value: email_address
                 },
                 {
                     entity: input_value,
-                    value: 'alice'
+                    value: 'alice@mail.it'
                 }
             ],
             intent: {
                 name: complete_field,
                 confidence: 1
             },
-            text: 'the first name is alice'
+            text: 'the email address is alice@mail.it'
         },
-        result_expected: 'first name becomes alice and next field is mark'
+        result_expected: 'The email address becomes alice@mail.it and next field is first name'
     },
     {
         message_id: "001",
@@ -2408,11 +2418,11 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: "bob"
                 },
                 {
-                    u.slot_name: "mark",
+                    u.slot_name: mark,
                     u.slot_value: "25,85"
                 }
             ],
@@ -2437,15 +2447,15 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "password",
+                    u.slot_name: password,
                     u.slot_value: "p088w0r0"
                 },
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: "robert"
                 },
                 {
-                    u.slot_name: "email address",
+                    u.slot_name: email_address,
                     u.slot_value: "alice@bob.it"
                 }
             ],
@@ -2477,11 +2487,11 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: "lucie"
                 },
                 {
-                    u.slot_name: "email address",
+                    u.slot_name: email_address,
                     u.slot_value: "dear_alice@bob.it"
                 }
             ],
@@ -2517,15 +2527,15 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "password",
+                    u.slot_name: password,
                     u.slot_value: "p088w0r0"
                 },
                 {
-                    u.slot_name: "email address",
+                    u.slot_name: email_address,
                     u.slot_value: "alice@bob.it"
                 },
                 {
-                    u.slot_name: "mark",
+                    u.slot_name: mark,
                     u.slot_value: "27,2"
                 }
             ]
@@ -2546,26 +2556,30 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: 'first name',
+                    u.slot_name: first_name,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'mark',
+                    u.slot_name: last_name,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'email address',
+                    u.slot_name: mark,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'password',
+                    u.slot_name: email_address,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: password,
                     u.slot_value: None
                 }
             ],
             spelling_state: {
                 u.close_prompt_enabled: True,
                 u.current_spelling_input_value: 'adama',
-                u.spelling_list: ['first name']
+                u.spelling_list: [last_name]
             },
             machine_parameters: {
                 u.possible_next_action: spelling
@@ -2584,7 +2598,7 @@ functional_test_cases = [
             },
             text: 'terminate'
         },
-        result_expected: 'The value adama is set for the first name, the next field is mark'
+        result_expected: 'The value adama is set for the last name, the next field is mark'
     },
     {
         message_id: "006",
@@ -2592,11 +2606,11 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "mark",
+                    u.slot_name: mark,
                     u.slot_value: "28"
                 },
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: None
                 }
             ],
@@ -2620,7 +2634,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 },
                 {
                     entity: input_value,
@@ -2641,7 +2655,7 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "number of persons",
+                    u.slot_name: number_persons,
                     u.slot_value: "6"
                 }
             ]
@@ -2667,19 +2681,19 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "number of persons",
+                    u.slot_name: number_persons,
                     u.slot_value: "2"
                 },
                 {
-                    u.slot_name: "arrival time",
+                    u.slot_name: arrival_time,
                     u.slot_value: "07:00"
                 },
                 {
-                    u.slot_name: "phone number",
+                    u.slot_name: phone_number,
                     u.slot_value: "00237651322430"
                 },
                 {
-                    u.slot_name: "birthday",
+                    u.slot_name: birthday,
                     u.slot_value: None
                 }
             ]
@@ -2688,7 +2702,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'arrival time'
+                    value: arrival_time
                 }
             ],
             intent: {
@@ -2747,23 +2761,23 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "phone number",
+                    u.slot_name: phone_number,
                     u.slot_value: "+223615342345"
                 },
                 {
-                    u.slot_name: "number of persons",
+                    u.slot_name: number_persons,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "birthday",
+                    u.slot_name: birthday,
                     u.slot_value: "31/05/1990"
                 },
                 {
-                    u.slot_name: "arrival time",
+                    u.slot_name: arrival_time,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "card expiration date",
+                    u.slot_name: card_expiration_date,
                     u.slot_value: "04/2020"
                 }
             ],
@@ -2798,7 +2812,7 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "phone number",
+                    u.slot_name: phone_number,
                     u.slot_value: None
                 }
             ]
@@ -2852,7 +2866,7 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: "male"
                 }
             ]
@@ -2861,16 +2875,16 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'last name'
+                    value: 'family name'
                 }
             ],
             intent: {
                 name: verify_presence_field,
                 confidence: 1
             },
-            text: 'is the field last name present in this form?'
+            text: 'is the field family name present in this form?'
         },
-        result_expected: 'The field last name is not present. The next field is electronic devices'
+        result_expected: 'The field family name is not present. The next field is electronic devices'
     },
     {
         message_id: "018",
@@ -2878,7 +2892,7 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "electronic devices",
+                    u.slot_name: electronic_devices,
                     u.slot_value: "smartphone"
                 }
             ]
@@ -2915,7 +2929,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'message'
+                    value: message
                 }
             ],
             intent: {
@@ -2932,19 +2946,19 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "first name",
+                    u.slot_name: first_name,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "mark",
+                    u.slot_name: mark,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "password",
+                    u.slot_name: password,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "email address",
+                    u.slot_name: email_address,
                     u.slot_value: None
                 }
             ],
@@ -2972,7 +2986,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'first name'
+                    value: first_name
                 },
                 {
                     entity: input_value,
@@ -2995,7 +3009,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'first name'
+                    value: first_name
                 },
                 {
                     entity: input_value,
@@ -3018,7 +3032,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 },
                 {
                     entity: input_value,
@@ -3041,7 +3055,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 },
                 {
                     entity: input_value,
@@ -3062,19 +3076,19 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: 'first name',
+                    u.slot_name: first_name,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'mark',
+                    u.slot_name: mark,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'email address',
+                    u.slot_name: email_address,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'password',
+                    u.slot_name: password,
                     u.slot_value: None
                 }
             ],
@@ -3098,7 +3112,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 },
                 {
                     entity: input_value,
@@ -3121,7 +3135,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 },
                 {
                     entity: input_value,
@@ -3160,7 +3174,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 },
                 {
                     entity: input_value,
@@ -3183,7 +3197,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 },
                 {
                     entity: input_value,
@@ -3206,7 +3220,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 },
                 {
                     entity: input_value,
@@ -3229,7 +3243,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 },
                 {
                     entity: input_value,
@@ -3252,7 +3266,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 },
                 {
                     entity: input_value,
@@ -3275,7 +3289,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'mark'
+                    value: mark
                 },
                 {
                     entity: input_value,
@@ -3298,7 +3312,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'password'
+                    value: password
                 },
                 {
                     entity: input_value,
@@ -3321,7 +3335,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'password'
+                    value: password
                 },
                 {
                     entity: input_value,
@@ -3344,7 +3358,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'password'
+                    value: password
                 },
                 {
                     entity: input_value,
@@ -3367,7 +3381,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'email address'
+                    value: email_address
                 },
                 {
                     entity: input_value,
@@ -3390,7 +3404,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'email address'
+                    value: email_address
                 },
                 {
                     entity: input_value,
@@ -3413,7 +3427,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'email address'
+                    value: email_address
                 },
                 {
                     entity: input_value,
@@ -3436,7 +3450,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'email address'
+                    value: email_address
                 },
                 {
                     entity: input_value,
@@ -3459,7 +3473,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'email address'
+                    value: email_address
                 },
                 {
                     entity: input_value,
@@ -3482,7 +3496,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'email address'
+                    value: email_address
                 },
                 {
                     entity: input_value,
@@ -3503,23 +3517,23 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "phone number",
+                    u.slot_name: phone_number,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "number of persons",
+                    u.slot_name: number_persons,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "birthday",
+                    u.slot_name: birthday,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "arrival time",
+                    u.slot_name: arrival_time,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "card expiration date",
+                    u.slot_name: card_expiration_date,
                     u.slot_value: None
                 }
             ]
@@ -3528,7 +3542,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'phone number'
+                    value: phone_number
                 },
                 {
                     entity: input_value,
@@ -3551,7 +3565,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'phone number'
+                    value: phone_number
                 },
                 {
                     entity: input_value,
@@ -3574,7 +3588,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'phone number'
+                    value: phone_number
                 },
                 {
                     entity: input_value,
@@ -3613,7 +3627,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'phone number'
+                    value: phone_number
                 },
                 {
                     entity: input_value,
@@ -3634,19 +3648,19 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: 'phone number',
+                    u.slot_name: phone_number,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'number of persons',
+                    u.slot_name: number_persons,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'birthday',
+                    u.slot_name: birthday,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'card expiration date',
+                    u.slot_name: card_expiration_date,
                     u.slot_value: None
                 }
             ]
@@ -3655,7 +3669,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'phone number'
+                    value: phone_number
                 },
                 {
                     entity: input_value,
@@ -3678,7 +3692,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'number of persons'
+                    value: number_persons
                 },
                 {
                     entity: input_value,
@@ -3699,23 +3713,23 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: 'birthday',
+                    u.slot_name: birthday,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'phone number',
+                    u.slot_name: phone_number,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'number of persons',
+                    u.slot_name: number_persons,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'arrival time',
+                    u.slot_name: arrival_time,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'card expiration date',
+                    u.slot_name: card_expiration_date,
                     u.slot_value: None
                 }
             ],
@@ -3739,7 +3753,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'number of persons'
+                    value: number_persons
                 },
                 {
                     entity: input_value,
@@ -3762,7 +3776,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'number of persons'
+                    value: number_persons
                 },
                 {
                     entity: input_value,
@@ -3785,7 +3799,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'number of persons'
+                    value: number_persons
                 },
                 {
                     entity: input_value,
@@ -3808,7 +3822,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'number of persons'
+                    value: number_persons
                 },
                 {
                     entity: input_value,
@@ -3829,23 +3843,23 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: 'birthday',
+                    u.slot_name: birthday,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'phone number',
+                    u.slot_name: phone_number,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'number of persons',
+                    u.slot_name: number_persons,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'arrival time',
+                    u.slot_name: arrival_time,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'card expiration date',
+                    u.slot_name: card_expiration_date,
                     u.slot_value: None
                 }
             ],
@@ -3869,7 +3883,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'birthday'
+                    value: birthday
                 },
                 {
                     entity: input_value,
@@ -3892,7 +3906,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'birthday'
+                    value: birthday
                 },
                 {
                     entity: input_value,
@@ -3915,7 +3929,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'birthday'
+                    value: birthday
                 },
                 {
                     entity: input_value,
@@ -3938,7 +3952,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'birthday'
+                    value: birthday
                 },
                 {
                     entity: input_value,
@@ -3959,23 +3973,23 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: 'birthday',
+                    u.slot_name: birthday,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'phone number',
+                    u.slot_name: phone_number,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'number of persons',
+                    u.slot_name: number_persons,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'arrival time',
+                    u.slot_name: arrival_time,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'card expiration date',
+                    u.slot_name: card_expiration_date,
                     u.slot_value: None
                 }
             ],
@@ -3999,7 +4013,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'birthday'
+                    value: birthday
                 },
                 {
                     entity: input_value,
@@ -4022,7 +4036,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'birthday'
+                    value: birthday
                 },
                 {
                     entity: input_value,
@@ -4045,7 +4059,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'arrival time'
+                    value: arrival_time
                 },
                 {
                     entity: input_value,
@@ -4068,7 +4082,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'arrival time'
+                    value: arrival_time
                 },
                 {
                     entity: input_value,
@@ -4089,23 +4103,23 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: 'birthday',
+                    u.slot_name: birthday,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'phone number',
+                    u.slot_name: phone_number,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'number of persons',
+                    u.slot_name: number_persons,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'arrival time',
+                    u.slot_name: arrival_time,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'card expiration date',
+                    u.slot_name: card_expiration_date,
                     u.slot_value: None
                 }
             ],
@@ -4129,7 +4143,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'arrival time'
+                    value: arrival_time
                 },
                 {
                     entity: input_value,
@@ -4152,7 +4166,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'arrival time'
+                    value: arrival_time
                 },
                 {
                     entity: input_value,
@@ -4175,7 +4189,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'arrival time'
+                    value: arrival_time
                 },
                 {
                     entity: input_value,
@@ -4198,7 +4212,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'arrival time'
+                    value: arrival_time
                 },
                 {
                     entity: input_value,
@@ -4219,23 +4233,23 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: 'birthday',
+                    u.slot_name: birthday,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'phone number',
+                    u.slot_name: phone_number,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'number of persons',
+                    u.slot_name: number_persons,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'arrival time',
+                    u.slot_name: arrival_time,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: 'card expiration date',
+                    u.slot_name: card_expiration_date,
                     u.slot_value: None
                 }
             ],
@@ -4259,7 +4273,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'arrival time'
+                    value: arrival_time
                 },
                 {
                     entity: input_value,
@@ -4282,7 +4296,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'card expiration date'
+                    value: card_expiration_date
                 },
                 {
                     entity: input_value,
@@ -4305,7 +4319,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'card expiration date'
+                    value: card_expiration_date
                 },
                 {
                     entity: input_value,
@@ -4328,7 +4342,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'card expiration date'
+                    value: card_expiration_date
                 },
                 {
                     entity: input_value,
@@ -4349,19 +4363,19 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "car",
+                    u.slot_name: car,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "electronic devices",
+                    u.slot_name: electronic_devices,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "message",
+                    u.slot_name: message,
                     u.slot_value: None
                 }
             ]
@@ -4370,7 +4384,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'car'
+                    value: car
                 },
                 {
                     entity: input_value,
@@ -4393,7 +4407,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'car'
+                    value: car
                 },
                 {
                     entity: input_value,
@@ -4420,7 +4434,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'gender'
+                    value: gender
                 },
                 {
                     entity: input_value,
@@ -4441,19 +4455,19 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "car",
+                    u.slot_name: car,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "electronic devices",
+                    u.slot_name: electronic_devices,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "message",
+                    u.slot_name: message,
                     u.slot_value: None
                 }
             ]
@@ -4462,7 +4476,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'gender'
+                    value: gender
                 },
                 {
                     entity: input_value,
@@ -4489,7 +4503,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'electronic devices'
+                    value: electronic_devices
                 },
                 {
                     entity: input_value,
@@ -4512,7 +4526,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'electronic devices'
+                    value: electronic_devices
                 },
                 {
                     entity: input_value,
@@ -4539,7 +4553,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'electronic devices'
+                    value: electronic_devices
                 },
                 {
                     entity: input_value,
@@ -4568,7 +4582,7 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: None
                 }
             ]
@@ -4577,7 +4591,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'message'
+                    value: message
                 },
                 {
                     entity: input_value,
@@ -4598,7 +4612,7 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: None
                 }
             ]
@@ -4607,7 +4621,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'message'
+                    value: message
                 },
                 {
                     entity: input_value,
@@ -4628,11 +4642,11 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "message",
+                    u.slot_name: message,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: None
                 }
             ]
@@ -4641,7 +4655,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'message'
+                    value: message
                 },
                 {
                     entity: input_value,
@@ -4662,11 +4676,11 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "message",
+                    u.slot_name: message,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: None
                 }
             ]
@@ -4675,7 +4689,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'message'
+                    value: message
                 },
                 {
                     entity: input_value,
@@ -4696,11 +4710,11 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "message",
+                    u.slot_name: message,
                     u.slot_value: None
                 },
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: None
                 }
             ]
@@ -4709,7 +4723,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'message'
+                    value: message
                 },
                 {
                     entity: input_value,
@@ -4730,7 +4744,7 @@ functional_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: "gender",
+                    u.slot_name: gender,
                     u.slot_value: None
                 }
             ]
@@ -4739,7 +4753,7 @@ functional_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: 'message'
+                    value: message
                 },
                 {
                     entity: input_value,

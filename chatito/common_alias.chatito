@@ -3,6 +3,10 @@
 ~[of]
     of
 
+~[explain]
+    explain
+    describe
+
 ~[choose]
     choose
     select
@@ -47,6 +51,7 @@
     home phone number
     mobile number
     home number
+    cellphone
 
 ~[country_type]
     country
@@ -54,10 +59,18 @@
     residence country
     nationality
     citizenship
+    depature country
+    origin country
+    arrival country
+    destination country
 
 ~[city_type]
     city
     residence city
+    departure city
+    arrival city
+    origin city
+    destination city
 
 ~[date_type]
     birthday
@@ -65,6 +78,7 @@
     date of birth
     delivery date
     expiration date
+    passport expiration date
     going date
     return date
     date
@@ -82,16 +96,22 @@
 ~[number_type]
     passemgers
     age
+    number of persons
+    mark
 
 ~[message_type]
     message
     comments
     description
     opinion
+    suggestions
 
 ~[place_address_type]
     address
     primary address
+    living address
+    residence address
+    home address
 
 ~[gender_type]
     gender
@@ -99,6 +119,7 @@
 
 ~[month_type]
     month
+    card expiration date
 
 ~[day_type]
     day
@@ -219,6 +240,9 @@
     camp
     field
 
+~[from where i was]
+    reom where i was
+
 ~[i]
     I
     i
@@ -291,6 +315,8 @@
 ~[continue]
     continue
     go ahead
+    go on
+    proceed
 
 ~[log in]
     log in
