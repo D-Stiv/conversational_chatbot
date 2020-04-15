@@ -438,7 +438,7 @@ class State:
                 print(f"value_name: {value_name}, value_type: {value_type}")
             compatible, text = fn.is_compatible(slot_value, slot)
             if not compatible:
-                string = f"Incompatibility between the value {slot_value} and the type {value_type}.\n{text}"
+                string = f"Web Form not updated, {text}"
                 next_step_string = self.manage_next_step()
                 string = f'{string}\n{next_step_string}'
                 return None, string
@@ -480,9 +480,8 @@ class State:
                     slot_name=slot_name, choice_value=slot_value)
             return slot_value, string
         except:
-            if not self.get_warning_present():
-                print(f"ERROR: A problem occured while trying to insert in the web page the value {slot_value} for the label {slot_name}")
-            raise Exception
+            string = f'The value {slot_value} is not valid for the field {slot_name}'
+            return None, string
 
     # Select the choice_value of the user for the dropdown with the given name
     def set_choice_dropdown(self, slot_name, choice_value):
@@ -871,14 +870,14 @@ class State:
                 # we prepare the slot for the next value coming
                 self.set_next_slot(slot_name, slot_required)
                 string = self.manage_next_step()
-                return string
+                return True, string
             if numValue >= numSlot:
-                string = self.fill_slots_more_values(
+                correct, string = self.fill_slots_more_values(
                     slot_name_list, slot_value_list)
             else:
-                string = self.fill_slots_more_names(
+                correct, string = self.fill_slots_more_names(
                     slot_name_list, slot_value_list)
-            return string
+            return correct, string
         except:
             if not self.get_warning_present():
                 print("ERROR: Fail to fill the slots")
@@ -895,7 +894,7 @@ class State:
             particular_case = self.managed_particular_case(
                 slot_name_list, slot_value_list)
             if particular_case:
-                return self.manage_next_step()
+                return True, self.manage_next_step()
             # we are not in a checkbox with more than one choice_value made
             ready_to_submit = False
             numSlot = len(slot_name_list)
@@ -909,7 +908,7 @@ class State:
                 slot_value, comment = self.fill_input(slot_name, slot_value)
                 if slot_value is None:
                     # incompatibility observed, the comment contains the next_step_string
-                    return comment
+                    return False, comment
                 self.set_slot(slot_name, slot_value)
                 text = self.update(slot_name)
                 if text != u.VOID:  # slot value is not None so text != u.CANCELED
@@ -929,7 +928,7 @@ class State:
                                 slot_name, slot_value_list[index])
                             if slot_value is None:
                                 # incompatibility observed, the comment contains the next_step_string
-                                return comment
+                                return False, comment
                             # the Web form has been updated correctly and now we update the slots
                             self.set_slot(slot_name, slot_value)
                             text = self.update(slot_name)
@@ -942,9 +941,9 @@ class State:
             if ready_to_submit:
                 next_slot_name = self.get_next_slot(only_name=True)    # return also if the next slot is required or not
                 if next_slot_name is not None:
-                    return string
+                    return True, string
             string = next_step_string
-            return string
+            return True, string
         except:
             if not self.get_warning_present():
                 print('ERROR: Fail to fill the slots when there are more values than fields names')
@@ -968,7 +967,7 @@ class State:
                 slot_value, comment = self.fill_input(slot_name, slot_value)
                 if slot_value is None:
                     # incompatibility observed, the comment contains the next_step_string
-                    return comment
+                    return False, comment
                 self.set_slot(slot_name, slot_value)
                 text = self.update(slot_name)
                 if text != u.VOID:
@@ -996,9 +995,9 @@ class State:
                 next_slot_name = self.get_next_slot(only_name=True)    # return also if the next slot is required or not
                 if next_slot_name is not None:
                     string = f'{intro}\n{string}\n{next_step_string}'
-                    return string
+                    return True, string
             string = f"{intro}\n{next_step_string}"
-            return string
+            return True, string
         except:
             if not self.get_warning_present():
                 print('ERROR: Fail to fill slots when there are more names than values')

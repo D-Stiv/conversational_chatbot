@@ -158,6 +158,7 @@ class RegistrationForm(Form):
             slot_name_list, slot_value_list = self.state.set_spelling_list(
                 slot_name_list, slot_value_list)
             # the spelling list have been set and we can continue
+            correct = True
             if len(slot_value_list) + len(slot_name_list) >= 1:
                 # there is at least one generic info
                 # the use of possible_next_action here is to mitigate training error. with a perfect training they are not necessary
@@ -177,11 +178,20 @@ class RegistrationForm(Form):
                     raise Exception
                 else:
                     # we have a list of fields with their values
-                    string = self.state.fill_generic_slots(slot_name_list=slot_name_list,
+                    correct, string = self.state.fill_generic_slots(slot_name_list=slot_name_list,
                                                      slot_value_list=slot_value_list)
+            next_field_before = self.state.get_next_slot(only_name=True)
             # we verify if the spelling_list is empty or not
             if len(self.state.get_spelling_list()) != 0:
-                string = self.fillSpellingCamp()
+                text = self.fillSpellingCamp()
+                next_field_after = self.state.get_next_slot(only_name=True)
+                if next_field_before == next_field_after:
+                    # the spelling did not modified the Web page, we return the string from the non spelling fields
+                    return string
+                if not correct:
+                    string =f'The Web Form has not been updated, problem of validity.\n{text}'
+                else:
+                    string = f'Web Form updated.\n{text}'
             return string
         except:
             if not self.state.get_warning_present():

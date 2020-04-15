@@ -51,7 +51,7 @@ def is_compatible(slot_value, slot):
         text = slot_value
         value_type = slot[u.value_type]
         # list of types that we are handling
-        types_list = [u.date, u.password, u.email, u.number, u.tel, u.time]
+        types_list = [u.date, u.password, u.email, u.number, u.tel, u.time, u.integer, u.decimal, u.month]
         if value_type in types_list:
             if value_type == u.email:
                 return c.verify_compatibility_email(slot_value)
@@ -236,9 +236,13 @@ def get_input_fields(form_element):
                             step *= 10
                             precision += 1
                     elif slot[u.value_type] in [u.number, u.decimal]:
-                        precision = float('inf')  
+                        precision = float('inf')
+                        min_value = float(min_value)
+                        max_value = float(max_value)  
                     elif slot[u.value_type] == u.integer:
                         precision = 0
+                        min_value = int(min_value)
+                        max_value = int(max_value)
                     slot[u.min_value] = min_value
                     slot[u.max_value] = max_value
                     slot[u.precision] = precision   

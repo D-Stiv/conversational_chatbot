@@ -15,7 +15,7 @@ MAX_DIALOGUES = 2
 CONTROL_FREQUENCE = 20
 
 # frequence to see the change in the slots in term of interactions
-NOTIFICATION_FREQUENCE = 5
+NOTIFICATION_FREQUENCE = 10
 
 # coefficient used to regule the dialogue and the notifications
 COEFF = 3
@@ -141,7 +141,7 @@ dropdown = 'dropdown'
 radio = 'radio'
 checkbox = 'checkbox'
 text_area = 'text_area'
-integer = 'inetger'
+integer = 'integer'
 decimal = 'decimal'
 
 # input type list
