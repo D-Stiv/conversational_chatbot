@@ -51,7 +51,7 @@ def is_compatible(slot_value, slot):
         text = slot_value
         value_type = slot[u.value_type]
         # list of types that we are handling
-        types_list = [u.date, u.password, u.email, u.number, u.tel, u.time, u.integer, u.decimal, u.month]
+        types_list = [u.date, u.password, u.email, u.number, u.tel, u.time, u.integer, u.decimal, u.month_type]
         if value_type in types_list:
             if value_type == u.email:
                 return c.verify_compatibility_email(slot_value)
@@ -61,8 +61,9 @@ def is_compatible(slot_value, slot):
                 return c.verify_compatibility_tel(slot_value)
             if value_type == u.date:
                 return c.verify_compatibility_date(slot_value)
-            if value_type == u.month:
-                return c.verify_compatibility_month(slot_value)
+            if value_type == u.month_type:
+                text = f'Sorry the type {u.month_type} is not supported, consequently the field {slot[u.slot_name]} cannot be completed'
+                return False, text
             if value_type == u.time:
                 return c.verify_compatibility_time(slot_value)
             if value_type in [u.number, u.integer, u.decimal]:
@@ -199,7 +200,11 @@ def get_input_fields(form_element):
                     # the bot-type would be the same as the input type, so we avoid putting it
                     value_type = elem.get_attribute('type')
                 if elem.get_attribute(u.required) is not None:
-                    required = True
+                    if value_type == u.month_type:
+                        # this type (month) is not supported so we force it to be optional
+                        required = False
+                    else:
+                        required = True
                 else:
                     required = False
                 if elem.get_attribute(u.field_spelling) is not None:
@@ -235,7 +240,7 @@ def get_input_fields(form_element):
                         while step < 1:
                             step *= 10
                             precision += 1
-                    elif slot[u.value_type] in [u.number, u.decimal]:
+                    if slot[u.value_type] in [u.number, u.decimal]:
                         precision = float('inf')
                         min_value = float(min_value)
                         max_value = float(max_value)  

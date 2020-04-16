@@ -125,7 +125,7 @@ email = 'email'
 file_type = 'file'
 hidden = 'hidden'
 image = 'image'
-month = 'month'
+month_type = 'month'
 number = 'number'
 password = 'password'
 range_type = 'range'
@@ -146,10 +146,13 @@ decimal = 'decimal'
 
 # input type list
 input_type_list = [text_area, color, date, datetime_local, email, file_type, hidden, image,
-                   month, number, integer, decimal, password, range_type, reset, search, submit, tel, text, time, url, week]
+                   month_type, number, integer, decimal, password, range_type, reset, search, submit, tel, text, time, url, week]
 
 choices_type_list = [radio, checkbox, dropdown]
 number_types_list = [number, integer, decimal]
+
+# list of non supported types
+non_supported_types = [month_type]
 
 # length phone number
 min_length_phone_number = 3     # this is without plus (117, 112, ...)

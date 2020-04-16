@@ -561,7 +561,14 @@
 
 // ddmmyyy, dd/mm/yyyy or day month year, the first two are not changed
 // the last one has to be transformed into one of the first two
+// <YYYY-MM-DD>, <DD-MM-YYYY>, <MM-DD-YYYY>, '<DDMMYYYY>, <DD month YYYY>, <month DD YYYY>
 @[input_value#date]
+    1435-10-02
+    03-05-1910
+    15032005
+    1dft-re-34
+    12 match oo70
+    april 12 2010
     01012017
     26042014
     22082013
@@ -569,6 +576,14 @@
     01/01/2017
     26/04/2014
     22/08/2013
+    2010-02-15
+    02-15-2010
+    12 10 1630
+    10 12 1815
+    01 06 2019
+    12-10-1630
+    10-12-1815
+    01-06-2019
     03/01/2020
     12 january 1993
     1 march 1987
@@ -576,8 +591,24 @@
     3 september 2003
     31 december 2014
     9 august 2007
+    january 4 2012
+    march 7 1990
+    o2-15-2010
+    12 mm 1630
+    1O 12 1815
+    01 06 mrod
+    12-10-1630
+    1o-12-1815
+    01-06-2o19
 
+// <HH:MM>, <HHMM>, <HH:MM am>, '<H>, <H am>, <H:MM>, <H:MM am>
 @[input_value#time]
+    09:20
+    o8:03
+    0650
+    03:10 am
+    9 o_clock
+    3:20 am
     6 am
     4am
     3 pm
@@ -589,6 +620,12 @@
     7:34 am
     11.45 pm
     4h28 am
+    7
+    9
+    3 o_clock
+    5.30 o_clock
+    9:25 o_clock
+    10 o_clock
 
 @[input_value#number]
     -1
@@ -1377,3 +1414,11 @@
     445 mount eden road
     21 greens road rd 2 ruawai 0592
     32 Wilson street
+    2015-03
+    june 1527
+    1630 july
+    2018/02
+    05/1930
+    september 2015
+
+// month <YYYY-MM>, <month YYYY>, <YYYY month>

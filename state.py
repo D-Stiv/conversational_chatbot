@@ -363,7 +363,7 @@ class State:
             actual_found = False
             slots = self.form_slots()
             for slot in slots:
-                if slot[u.slot_name] != u.REQUESTED_SLOT:
+                if slot[u.slot_name] != u.REQUESTED_SLOT and slot[u.value_type] not in u.non_supported_types:
                     if actual_found:
                         # we are after the actual field
                         if slot[u.slot_value] is None:
@@ -374,7 +374,7 @@ class State:
                         actual_found = True
             # there is no empty field after the current field, we try to look before
             for slot in slots:
-                if slot[u.slot_name] != u.REQUESTED_SLOT:
+                if slot[u.slot_name] != u.REQUESTED_SLOT and slot[u.value_type] not in u.non_supported_types:
                     if slot[u.slot_value] is None:
                         self.set_next_slot(
                             slot[u.slot_name], slot[u.required])
@@ -827,7 +827,7 @@ class State:
             if slot_name == u.REQUESTED_SLOT:
                 # theoretically should never occur
                 return None
-            # we update the next field only if the the field that have comleted is the one supposed to be completed
+            # we update the next field only if the the field that have been completed was the one supposed to be completed
             field_to_be_completed = self.get_next_slot(only_name=True)
             if slot_name == field_to_be_completed:
                 self.set_next_slot_basic()

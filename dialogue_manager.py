@@ -109,8 +109,8 @@ class DialogueManager:
                 driver = webdriver.Edge()
             else:
                 driver = webdriver.Chrome()
-            driver.minimize_window()
             driver.get(self.url)
+            driver.minimize_window()
             self.driver = driver
         except:
             print('Fail to instantiate the driver')

@@ -54,7 +54,7 @@ mark = 'mark'
 password = 'password'
 email_address = 'email address'
 phone_number = 'phone number'
-number_persons = 'number persons'
+number_persons = 'number of persons'
 birthday = 'birthday'
 arrival_time = 'arrival time'
 card_expiration_date = 'card expiration date'
@@ -2757,7 +2757,7 @@ functional_test_cases = [
     },
     {
         message_id: "012",
-        test_form_number: 1,
+        test_form_number: 2,
         initial_state: {
             u.slots: [
                 {

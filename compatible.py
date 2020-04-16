@@ -46,7 +46,7 @@ def verify_compatibility_email(value):
         return True, text
     except:
         print(
-            f'Fail faile to verify the compatibility of the value {value} for the type email')
+            f'Fail to verify the compatibility of the value {value} for the type email')
         raise Exception
 
 
@@ -61,7 +61,7 @@ def verify_compatibility_number(value, precision=2, min_value=-float('inf'), max
             return False, text
         return True, value
     except:
-        print(f'Fail faile to verify the compatibility of the value {value} for the type number')
+        print(f'Fail to verify the compatibility of the value {value} for the type number')
         raise Exception
 
 
@@ -84,7 +84,7 @@ def verify_compatibility_integer(value, min_value=-float('inf'), max_value=float
         return True, int_value
     except:
         print(
-            f'Fail faile to verify the compatibility of the value {value} for the type integer')
+            f'Fail to verify the compatibility of the value {value} for the type integer')
         raise Exception
 
 
@@ -108,6 +108,8 @@ def verify_compatibility_decimal(value, precision=2, min_value=-float('inf'), ma
         if ',' not in dec_value:
             return True, dec_value
         # the value has a decimal part
+        if precision == float('inf'):
+            return True, dec_value
         dec_part = dec_value[dec_value.index(',')+1 :]
         if len(dec_part) <= 2:
             # the precision is respected
@@ -117,7 +119,7 @@ def verify_compatibility_decimal(value, precision=2, min_value=-float('inf'), ma
         return True, dec_value
     except:
         print(
-            f'Fail faile to verify the compatibility of the value {value} for the type decimal with precision {precision}')
+            f'Fail to verify the compatibility of the value {value} for the type decimal with precision {precision}')
         raise Exception
 
 
@@ -241,7 +243,7 @@ def verify_compatibility_time(value):
         return False, text
     except:
         print(
-            f'Fail faile to verify the compatibility of the value {value} for the type time')
+            f'Fail to verify the compatibility of the value {value} for the type time')
         raise Exception
 
 
@@ -327,7 +329,7 @@ def verify_compatibility_date(value):
         return False, text
     except:
         print(
-            f'Fail faile to verify the compatibility of the value {value} for the type date')
+            f'Fail to verify the compatibility of the value {value} for the type date')
         raise Exception
 
 
@@ -342,8 +344,8 @@ def verify_compatibility_month(value):
         month = fn.convert_to_int(month, u.month)
         year = fn.convert_to_int(year, u.year)
         if month is not None:
-            month_index = int(month)
-            if month_index in range(1, 12+1):
+            month_index = int(month) - 1
+            if month_index in range(0, 11+1):
                 if year is not None:
                     answer, text = get_date(mm_index=month_index, year=year)            
                     return answer, text
@@ -385,7 +387,7 @@ def verify_compatibility_month(value):
         return False, text
     except:
         print(
-            f'Fail faile to verify the compatibility of the value {value} for the type month')
+            f'Fail to verify the compatibility of the value {value} for the type month')
         raise Exception
 
 
@@ -494,7 +496,9 @@ def get_hour_from_integer(value, meridian=u.o_clock):
 
 def get_date(dd=u.VOID, mm=u.VOID, mm_index=u.VOID, year=u.VOID):
     try:
-        if day != u.VOID:
+        day = dd
+        month = mm
+        if dd != u.VOID:
             day = get_dd_from_integer(int(dd))
         if mm != u.VOID and mm_index == u.VOID:
             month = get_mm_from_integer(int(mm))
@@ -536,9 +540,9 @@ def get_time(hh=u.VOID, meridian=u.VOID, mm=u.VOID):
             hour = get_hour_from_integer(int(hh), meridian)
         if mm != u.VOID:
             minutes = get_minute_from_integer(int(mm))
+        else:
+            minutes = '00'
         if None not in [hour, minutes]:
-            if mm == u.VOID:
-                hour = f'{hour}:00'
             text = f'{hour}:{minutes}'
             return True, text
         text = u.VOID
@@ -552,7 +556,7 @@ def get_time(hh=u.VOID, meridian=u.VOID, mm=u.VOID):
                 text = f'{text}, {minute_text}'
         return False, text
     except:
-        print('Fail to retrun the time in the right format')
+        print('Fail to return the time in the right format')
         raise Exception
 
 
@@ -651,7 +655,7 @@ def get_integer(value):
             except:
                 return None
             string_value = f'{value[-3:]}{string_value}'
-            if value[-4,-3] != separator:
+            if value[-4:-3] != separator:
                 return None
             value = value[:-4]
         try:

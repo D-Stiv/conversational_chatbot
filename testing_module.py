@@ -6,6 +6,7 @@ from writers import LogWriter
 from choice_bot import BotsManager
 from selenium import webdriver
 import functions as fn
+import copy
 
 structural_summary = '\tTesting log for *structural* test cases'
 functional_summary = '\tTesting log for *functional* test cases'
@@ -71,6 +72,7 @@ class Testing:
                     bot.state.message_history.append(test_case[t_c.test_case_message])
                     # we perform the testing and we right the corresponding info in the file
                     state_before = self.get_state_summary(bot.state)
+                    state_before = copy.deepcopy(state_before)
                     intent = test_case[t_c.test_case_message][t_c.intent][t_c.name]
                     response = bot.findActionAndRun(intent)
                     state_after = self.get_state_summary(bot.state)
@@ -143,6 +145,7 @@ class Testing:
                             state.set_possible_next_action(machine_parameters[u.possible_next_action])
                         elif key == u.warning_message:
                             state.set_warning_message(machine_parameters[u.warning_message])
+            return
         except:
             print('Fail to initialize the initial state for the test case')
             
