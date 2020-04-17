@@ -99,7 +99,8 @@ def convert_to_int(string, tag=u.normal):
         try:
             value = int(string)
         except:
-            print(f'The string {string} cannot be transformed in integer')
+            if u.DEBUG:
+                print(f'The string {string} cannot be transformed in integer')
             return None
         if tag == u.year:
             if value not in range(u.min_year, u.max_year+1):

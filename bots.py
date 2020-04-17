@@ -159,6 +159,9 @@ class RegistrationForm(Form):
                 slot_name_list, slot_value_list)
             # the spelling list have been set and we can continue
             correct = True
+            if len(slot_value_list) + len(slot_name_list) == 0:
+                string = self.fillSpellingCamp()
+                return string
             if len(slot_value_list) + len(slot_name_list) >= 1:
                 # there is at least one generic info
                 # the use of possible_next_action here is to mitigate training error. with a perfect training they are not necessary
@@ -188,10 +191,8 @@ class RegistrationForm(Form):
                 if next_field_before == next_field_after:
                     # the spelling did not modified the Web page, we return the string from the non spelling fields
                     return string
-                if not correct:
-                    string =f'The Web Form has not been updated, problem of validity.\n{text}'
-                else:
-                    string = f'Web Form updated.\n{text}'
+                # the spelling mofified the Web Form, so we use its string
+                string = text
             return string
         except:
             if not self.state.get_warning_present():
@@ -230,10 +231,18 @@ class RegistrationForm(Form):
             previous step it was triggered by the spelling function) or it is triggered by
             the mofifySpellingCamp function"""
 
+            # we look if one of the fields in spelling fields has been saved to resume it. In case of many fields saved we take the first
+            slot_name_list = self.state.get_spelling_list()
+            saved_fields = self.state.get_saved_spelling_fields()
+            if len(saved_fields) > 0:
+                # there is at least one saved field
+                for field in slot_name_list:
+                    if field in saved_fields:
+                        string = self.state.resume_spelling(field)
+                        return string
             # we add styles to the output
             please_style = styles.get_please()
             end_style = styles.get_end()
-            slot_name_list = self.state.get_spelling_list()
             fields_string = fn.get_string_from_list(slot_name_list)
             if len(slot_name_list) == 1:
                 intro = f"You will have to spell the value of the field {slot_name_list[0]}."

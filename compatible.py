@@ -637,7 +637,8 @@ def get_integer(value):
             try:
                 value = int(value)
             except:
-                print('The value contains a non acceptable character')
+                if u.DEBUG:
+                    print('The value contains a non acceptable character')
                 return None
             return f'{value}'
         if '.' in value and ',' in value:

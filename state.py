@@ -53,7 +53,7 @@ class State:
             u.spelling_interrupted: False,
             u.spelling_list: [],
             u.after_spelling: False,
-            u.waiting_intent: None,
+            u.waiting_message: None,
             u.saved_spelling_fields: [],
             u.saved_spelling_values: []
         }
@@ -107,11 +107,11 @@ class State:
     def get_saved_spelling_values(self):
         return self.spelling_state[u.saved_spelling_values]
 
-    def get_waiting_intent(self):
-        return self.spelling_state[u.waiting_intent]
+    def get_waiting_message(self):
+        return self.spelling_state[u.waiting_message]
     
-    def set_waiting_intent(self, intent):
-        self.spelling_state[u.waiting_intent] = intent
+    def set_waiting_message(self, message):
+        self.spelling_state[u.waiting_message] = message
 
     def get_spelling_interrupted(self):
         return self.spelling_state[u.spelling_interrupted]
@@ -227,7 +227,7 @@ class State:
     def get_close_prompt_enabled(self):
         return self.spelling_state[u.close_prompt_enabled]
 
-    # Modifies the state inserting the latest message which is the intent of the last user input
+    # Modifies the state inserting the latest message which is the message of the last user input
     def add_latest_message(self, message):
         self.message_history.append(message)
 
@@ -438,9 +438,8 @@ class State:
                 print(f"value_name: {value_name}, value_type: {value_type}")
             compatible, text = fn.is_compatible(slot_value, slot)
             if not compatible:
-                string = f"Web Form not updated, {text}"
                 next_step_string = self.manage_next_step()
-                string = f'{string}\n{next_step_string}'
+                string = f'{text}\n{next_step_string}'
                 return None, string
             # the value and the type are compatible so it is pssible that the value has been converted
             # to an appropriate form contained in text
@@ -749,32 +748,22 @@ class State:
                 string = "{}".format(
                     self.get_next_slot_text(slot_name, next_slot_required))
                 if slot_name in self.get_spelling_fields() and u.READY_FOR_SPELLING:
+                    # we add the field to the spelling list
                     self.add_spelling_name(slot_name)
-                    please_style = styles.get_please()
                     # we verify if the field has been previously saved 
                     saved_fields = self.get_saved_spelling_fields()
                     if u.DEBUG:
                         print(f'The saved fields are {saved_fields}')
                     if slot_name in saved_fields:
-                        saved_values = self.get_saved_spelling_values()
-                        # we set the saved value as current input value 
-                        index = saved_fields.index(slot_name)
-                        value = saved_values[index]
-                        self.set_current_spelling_input_value(value)
-                        if u.DEBUG:
-                            print(f'The current value for {slot_name} is {value}')
-                        # we remove the field from saved state
-                        saved_fields.remove(slot_name)
-                        saved_values.remove(value)
-                        next_style = styles.get_next()
-                        string = (f'You started filling the field {slot_name} and the current value is {value} ' +
-                            f'\n{please_style} insert the {next_style} character')
+                        # we set the saved value and we get the next step string
+                        return self.resume_spelling(slot_name)
                     else:
+                        please_style = styles.get_please()
                         string = (f'{string}\nSince it is a field requiring the spelling, we are going to take' +
                                 f' its value one character at a time.\n{please_style} insert the first character')
-                    # possible next action is spelling
-                    self.set_possible_next_action(u.spelling_action)
-                    return string
+                        # possible next action is spelling
+                        self.set_possible_next_action(u.spelling_action)
+                        return string
                 else:
                     # possible next action is fillGenericCamp
                     self.set_possible_next_action(u.fill_field_action)
@@ -787,6 +776,34 @@ class State:
                 return string
         except:
             print("ERROR: Fail to get the string for the next field")
+            raise Exception
+
+    def resume_spelling(self, slot_name):
+        try:
+            # we update the next fields
+            slot = self.get_slot(slot_name)
+            self.set_next_slot(slot_name, slot[u.required])
+            
+            saved_fields = self.get_saved_spelling_fields()
+            saved_values = self.get_saved_spelling_values()
+            # we set the saved value as current input value 
+            index = saved_fields.index(slot_name)
+            value = saved_values[index]
+            self.set_current_spelling_input_value(value)
+            if u.DEBUG:
+                print(f'The current value for {slot_name} is {value}')
+            # we remove the field from saved state
+            saved_fields.remove(slot_name)
+            saved_values.remove(value)
+            next_style = styles.get_next()
+            please_style = styles.get_please()
+            string = (f'You started filling the field {slot_name} and the current value is {value} ' +
+                    f'\n{please_style} insert the {next_style} character')
+            # possible next action is spelling
+            self.set_possible_next_action(u.spelling_action)
+            return string
+        except:
+            print('ERROR: Fail to manage the resume of the spelling')
             raise Exception
 
     def managed_particular_case(self, slot_name_list, slot_value_list):
@@ -877,6 +894,10 @@ class State:
             else:
                 correct, string = self.fill_slots_more_names(
                     slot_name_list, slot_value_list)
+            if correct:
+                string = f'Web Form updated. {string}'
+            else:
+                string = f'The Web Form has not been updated, problem of validity.\n{string}'
             return correct, string
         except:
             if not self.get_warning_present():
@@ -1031,9 +1052,14 @@ class State:
             print(f'{class_name}: {function_name}')
         try:
             if slot_value is None:
-                # we are resetting a field
-                self.set_slot(slot_name=slot_name, slot_value=slot_value)
-                string = self.update(slot_name)
+                # we take the previous value for that field
+                previous_value = self.get_slot(slot_name)[u.slot_value]
+                if previous_value is not None:
+                    # we are resetting a field
+                    self.set_slot(slot_name=slot_name, slot_value=slot_value)
+                    string = self.update(slot_name)
+                else:
+                    string = u.VOID
                 if string in [u.VOID, u.CANCELED]:
                     next_step_string = self.manage_next_step()
                     return next_step_string
