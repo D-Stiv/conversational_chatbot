@@ -4,7 +4,8 @@ Conversational Chatbot. We only have to run this file for it to be done."""
 # statistics for the thesis
 compute_response_time = False
 
-
+# exceptional message
+EXCEPTION_MESSAGE = "Something went wrong during the handling of this message.\n what can i precisely do for you please ?"
 
 DEBUG = False
 
@@ -239,7 +240,7 @@ close_prompt_enabled = 'close_prompt_enabled'
 current_spelling_input_value = 'current_spelling_input_value'
 spelling_interrupted = 'spelling_interrupted'
 spelling_list = 'spelling_list'
-waiting_intent = 'waiting_intent'
+waiting_message = 'waiting_message'
 after_spelling = 'after_spelling'
 saved_spelling_fields = 'saved_spelling_fields'
 # goes with the spelling field at the same index

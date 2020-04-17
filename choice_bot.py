@@ -3,7 +3,6 @@ from state import State
 import utility as u
 import functions as fn
 
-EXCEPTION_MESSAGE = "Something went wrong during the handling of this message.\n what can i precisely do for you please ?"
 
 class_name = 'BotsManager'
 class BotsManager:
@@ -82,76 +81,10 @@ class BotsManager:
             # find the intent
             intent = latest_message["intent"]["name"]
             state.set_warning_present(False)
-            utterance = self.get_utterance(bot, intent)
+            utterance = bot.get_utterance(intent)
             return utterance
         except:
-            if state.get_warning_present():
-                # the message of the user was either out of context or not understood
-                state.set_possible_next_action(None)
-                utterance = state.get_warning_message()
-            else:
-                utterance = EXCEPTION_MESSAGE
-                print("A problem occured while trying to run the action for user input <<{}>> and bot tag <<{}>>".format(
-                        userInput, tag))
-            return utterance
+            print(f'Problem during the selection of the bot with tag <{tag}> and tha analysis of the userInput <{userInput}>')
+            return u.EXCEPTION_MESSAGE
 
-    def get_utterance(self, bot, intent):
-        function_name = 'get_utterance'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
-        try:
-            # we get the state of the bot
-            state = bot.get_state()
-            if state.get_reset_alarm_enabled():
-                # we disable the alarm mainly in case intent not in [affirm, deny]
-                if intent not in [u.affirm_action, u.deny_action, u.reset_all_fields_action]:
-                    state.set_reset_alarm_enabled(False)
-            elif state.get_submit_alarm_enabled():
-                # we disable the alarm mainly in case intent not in [affirm, deny]
-                if intent not in [u.affirm_action, u.deny_action, u.submit_action]:                        
-                    state.set_submit_alarm_enabled(False)
-            if state.get_spelling_interrupted():
-                # In the past the user interrupted a spelling and we wait for the response on whether to save the state or not
-                if intent not in [u.affirm_action, u.deny_action]:
-                    utterance = ('Please i would like to have a clear answer.\nWould you like to save the state of the field ' +
-                        'that you started spelling ?\nIn case of negative response, that input will simply be canceled')
-                    state.set_warning_message(utterance)
-                    raise Exception
-                state.set_spelling_interrupted(False)
-                state.set_close_prompt_enabled(False)
-                if intent == u.affirm_action:
-                    # we insert the first element of the spelling list in the saved spelling
-                    spelling_list = state.get_spelling_list()
-                    field = spelling_list[0]
-                    state.add_spelling_field_to_save(field)
-                    spelling_list.remove(field)
-                    # we insert the current spelling value in the list of saved values 
-                    state.add_spelling_value_to_save(state.get_current_spelling_input_value())
-                # we reset the current value
-                state.reset_current_spelling_input_value()
-                # the user interrupted a spelling and decided eiher to save or not to save. Now we go on with the action 
-                # that interrupted the spelling
-                intent = state.get_waiting_intent()
-                state.set_waiting_intent(None)
-                utterance = bot.findActionAndRun(intent=intent)
-            elif intent not in [u.spelling_action, u.fill_form_action] and state.get_current_spelling_input_value() != '':
-                # we are going to find a solution ad hoc for the spelling 'dot'
-                if state.get_latest_message()["text"] == 'dot':
-                    intent = u.spelling_action
-                    utterance = bot.findActionAndRun(intent=intent)
-                    return utterance
-                # the user started to spell an input and suddently interrupts it
-                state.set_spelling_interrupted()
-                state.set_waiting_intent(intent)
-                utterance = ('Do you want to save the state of the field that you started spelling?\nIn case of negative response, ' +
-                    'that input will simply be canceled')
-                state.set_warning_message(utterance)
-                raise Exception
-            else:
-                # normal path, there is no spelling issue
-                utterance = bot.findActionAndRun(intent=intent)
-            return utterance
-        except:
-            if not state.get_warning_present():
-                print('Fail to get the utterance')
-            raise Exception
+    

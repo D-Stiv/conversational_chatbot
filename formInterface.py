@@ -40,6 +40,80 @@ class Form:
                 userInput))
             raise Exception
 
+    def get_utterance(self, intent):
+        function_name = 'get_utterance'
+        if u.DEBUG:
+            print(f'Form: {function_name}')
+        try:
+            if self.state.get_reset_alarm_enabled():
+                # we disable the alarm mainly in case intent not in [affirm, deny]
+                if intent not in [u.affirm_action, u.deny_action, u.reset_all_fields_action]:
+                    self.state.set_reset_alarm_enabled(False)
+            elif self.state.get_submit_alarm_enabled():
+                # we disable the alarm mainly in case intent not in [affirm, deny]
+                if intent not in [u.affirm_action, u.deny_action, u.submit_action]:                        
+                    self.state.set_submit_alarm_enabled(False)
+            if self.state.get_spelling_interrupted():
+                # In the past the user interrupted a spelling and we wait for the response on whether to save the state or not
+                if intent not in [u.affirm_action, u.deny_action]:
+                    utterance = ('Please i would like to have a clear answer.\nWould you like to save the state of the field ' +
+                        'that you started spelling ?\nIn case of negative response, that input will simply be canceled')
+                    self.state.set_warning_message(utterance)
+                    raise Exception
+                self.state.set_spelling_interrupted(False)
+                self.state.set_close_prompt_enabled(False)
+                if intent == u.affirm_action:
+                    # we insert the first element of the spelling list in the saved spelling
+                    spelling_list = self.state.get_spelling_list()
+                    field = spelling_list[0]
+                    self.state.add_spelling_field_to_save(field)
+                    spelling_list.remove(field)
+                    # we insert the current spelling value in the list of saved values 
+                    self.state.add_spelling_value_to_save(self.state.get_current_spelling_input_value())
+                    # we reset the value of that field
+                    self.state.filling_procedure(field, None)
+                # we reset the current value
+                self.state.reset_current_spelling_input_value()
+                # the user interrupted a spelling and decided eiher to save or not to save. Now we go on with the action 
+                # that interrupted the spelling
+                waiting_message = self.state.get_waiting_message()
+                # we add the message as the latest message
+                self.state.add_latest_message(waiting_message)
+                intent = waiting_message["intent"]["name"]
+                self.state.set_waiting_message(None)
+                utterance = self.findActionAndRun(intent=intent)
+            elif intent not in [u.spelling_action, u.fill_form_action] and self.state.get_current_spelling_input_value() != '':
+                # we are going to find a solution ad hoc for the spelling 'dot'
+                if self.state.get_latest_message()["text"] == 'dot':
+                    intent = u.spelling_action
+                    utterance = self.findActionAndRun(intent=intent)
+                    return utterance
+                # the user started to spell an input and suddently interrupts it
+                self.state.set_spelling_interrupted()
+                # we get the latest message of the user
+                message = self.state.get_latest_message()
+                # we cancel the message from the massage history
+                self.state.message_history.remove(message)
+                # we save the latest message
+                self.state.set_waiting_message(message)
+                utterance = ('Do you want to save the state of the field that you started spelling?\nIn case of negative response, ' +
+                    'that input will simply be canceled')
+                self.state.set_warning_message(utterance)
+                raise Exception
+            else:
+                # normal path, there is no spelling issue
+                utterance = self.findActionAndRun(intent=intent)
+            return utterance
+        except:
+            if self.state.get_warning_present():
+                # the message of the user was either out of context or not understood
+                self.state.set_possible_next_action(None)
+                utterance = self.state.get_warning_message()
+            else:
+                utterance = u.EXCEPTION_MESSAGE
+                print('Fail to get a valid utterance')
+            return utterance
+    
     def findActionAndRun(self, intent):
         try:
             # find the action corresponding to the intent and run it
