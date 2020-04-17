@@ -74,7 +74,7 @@ class Testing:
                     state_before = self.get_state_summary(bot.state)
                     state_before = copy.deepcopy(state_before)
                     intent = test_case[t_c.test_case_message][t_c.intent][t_c.name]
-                    response = bot.findActionAndRun(intent)
+                    response = bot.get_utterance(intent)
                     state_after = self.get_state_summary(bot.state)
                     difference = {
                         u.slots: self.get_difference(state_before[u.slots], state_after[u.slots]),
@@ -106,11 +106,7 @@ class Testing:
                 return
             general_keys = initial_state.keys()
             for general_key in general_keys:
-                if general_key == u.slots:
-                    # we set the slots
-                    for slot in initial_state[u.slots]:
-                        state.filling_procedure(slot[u.slot_name], slot[u.slot_value])
-                elif general_key == t_c.spelling_state:
+                if general_key == t_c.spelling_state:
                     # we start by the spelling state
                     spelling_state = initial_state[t_c.spelling_state]
                     keys = spelling_state.keys()
@@ -125,8 +121,8 @@ class Testing:
                             state.set_spelling_interrupted(spelling_state[u.spelling_interrupted])
                         elif key == u.spelling_list:
                             state.spelling_state[u.spelling_list] = spelling_state[u.spelling_list]
-                        elif key == u.waiting_intent:
-                            state.set_waiting_intent(spelling_state[u.waiting_intent])
+                        elif key == u.waiting_message:
+                            state.set_waiting_message(spelling_state[u.waiting_message])
                         elif key == u.saved_spelling_fields:
                             state.add_spelling_field_to_save(spelling_state[u.saved_spelling_fields])
                             state.add_spelling_value_to_save(spelling_state[u.saved_spelling_values])
@@ -145,9 +141,13 @@ class Testing:
                             state.set_possible_next_action(machine_parameters[u.possible_next_action])
                         elif key == u.warning_message:
                             state.set_warning_message(machine_parameters[u.warning_message])
+                elif general_key == u.slots:
+                    # we set the slots
+                    for slot in initial_state[u.slots]:
+                        state.filling_procedure(slot[u.slot_name], slot[u.slot_value])
             return
         except:
-            print('Fail to initialize the initial state for the test case')
+            print(F'Fail to initialize the initial state for the test case with id {test_case[t_c.message_id]}')
             
 
     def get_state_summary(self, state):
@@ -201,17 +201,24 @@ class Testing:
             for effects_key in effects_keys:
                 if effects_key == u.slots and effects[u.slots] != []:
                     effects_fields = fn.get_pairs(effects[u.slots]).replace('\n', '; ').replace('\t', ' ')
-                    effects_line = f'Modified fields - {effects_fields}'
+                    if effects_fields != u.VOID:
+                        effects_line = f'Modified fields - {effects_fields}'
                 elif effects_key == t_c.spelling_state and effects[t_c.spelling_state] != {}:
                     effects_spelling = self.get_string_from_dic(effects[t_c.spelling_state])
-                    effects_line = f'{effects_line}{escape}\tModified spelling attributes - {effects_spelling}'
+                    if effects_line == '':
+                        effects_line = f'Modified spelling attributes - {effects_spelling}'
+                    else:
+                        effects_line = f'{effects_line}{escape}\tModified spelling attributes - {effects_spelling}'
                 elif effects_key == t_c.machine_parameters and effects[t_c.machine_parameters] != {}:
                     effects_machine = self.get_string_from_dic(effects[t_c.machine_parameters])
-                    effects_line = f'{effects_line}{escape}\tModified machine parameters - {effects_machine}'
+                    if effects_line == u.VOID:
+                        effects_line = f'Modified machine parameters - {effects_machine}'
+                    else:
+                        effects_line = f'{effects_line}{escape}\tModified machine parameters - {effects_machine}'
             if effects_line == '':
-                line = f'<{test_case[t_c.message_id]}> {testing_type} test case - {self.counter}{escape}[Initial situation: {init_line}] {escape}[Test case meaage: {test_case_line}] {escape}[Result expected: {expected_line}] {escape}[Result obtained: (response:{response_line})]'
+                line = f'<{test_case[t_c.message_id]}> {testing_type} test case - {self.counter}{escape}[Initial situation: {init_line}] {escape}[Test case message: {test_case_line}] {escape}[Result expected: {expected_line}] {escape}[Result obtained: (response: {response_line})]'
             else:
-                line = f'<{test_case[t_c.message_id]}> {testing_type} test case - {self.counter}{escape}[Initial situation: {init_line}] {escape}[Test case meaage: {test_case_line}] {escape}[Result expected: {expected_line}] {escape}[Result obtained: (effects: {effects_line}) (response:{response_line})]'
+                line = f'<{test_case[t_c.message_id]}> {testing_type} test case - {self.counter}{escape}[Initial situation: {init_line}] {escape}[Test case message: {test_case_line}] {escape}[Result expected: {expected_line}] {escape}[Result obtained: (effects: {effects_line}) {escape}(response: {response_line})]'
             self.counter += 1
             if testing_type == t_c.functional:
                 self.functional_testing_writer.add_line(line)

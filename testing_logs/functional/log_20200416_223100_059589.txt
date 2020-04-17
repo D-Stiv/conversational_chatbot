@@ -1,0 +1,571 @@
+HEADER
+
+	Date and Hour: 2020-04-16 22:31:00.059589
+
+	Testing log for *functional* test cases
+
+CONVERSATION LOG
+
+<000> functional test case - 0
+	[Initial situation: Fields -  first name ** : None;  last name : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['last name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: the email address is alice@mail.it] 
+	[Result expected: The email address becomes alice@mail.it and next field is first name] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<001> functional test case - 1
+	[Initial situation: Fields -  first name ** : bob;  last name : None;  mark : 25,85;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['last name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: resetAllCamps, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: yes] 
+	[Result expected: all the fields are reset (value=None) and the next field is first name] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<002> functional test case - 2
+	[Initial situation: Fields -  first name ** : robert;  last name : None;  mark : 25,85;  password : p088w0r0;  email address ** : alice@bob.it; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: True, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: no] 
+	[Result expected: submit alarm is disabled, state 05] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<003> functional test case - 3
+	[Initial situation: Fields -  first name ** : lucie;  last name : None;  mark : 25,85;  password : p088w0r0;  email address ** : dear_alice@bob.it; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: submit] 
+	[Result expected: The submit alarm will be enabledand we have to confirm the action] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<004> functional test case - 4
+	[Initial situation: Fields -  first name ** : lucie;  last name : None;  mark : 27,2;  password : p088w0r0;  email address ** : alice@bob.it; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['last name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: spelling, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: reset] 
+	[Result expected: The reset alarm is enabled and we have to confirm the action] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<005> functional test case - 5
+	[Initial situation: Fields -  first name ** : None;  last name : None;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: adama, spelling_interrupted: False, spelling_list: ['last name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: terminate] 
+	[Result expected: The value adama is set for the last name, the next field is mark] 
+	[Result obtained: (effects: Modified fields -  last name : adama; 
+		Modified spelling attributes - close_prompt_enabled: False, current_spelling_input_value: , spelling_list: ['first name']) 
+	(response: Now you are going to spell the value for the field first name.  insert the first character)]
+<006> functional test case - 6
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : 28;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: I want to modify the mark putting the value 30 instead] 
+	[Result expected: The mark becomes 30, the next field is password] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<007> functional test case - 7
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: 22/02/2000] 
+	[Result expected: The birthday becomes 22/02/2000, the next field is arrival time] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<008> functional test case - 8
+	[Initial situation: Fields -  number of persons : 2;  phone number : 00237651322430;  birthday : None;  arrival time : 07:00; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: birthday, next_slot_required: False] 
+	[Test case message: Could you please repeat the arrival time for me?] 
+	[Result expected: Gives the value 07:00 of the arrival time, the next field is birthday] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<009> functional test case - 9
+	[Initial situation: Fields -  number of persons : 2;  phone number : 00237651322430;  birthday : None;  arrival time : 07:00; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: birthday, next_slot_required: False] 
+	[Test case message: which are the fields of this form?] 
+	[Result expected: lists the five fields from phone number to card expiration date, the next field is birthday] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<010> functional test case - 10
+	[Initial situation: Fields -  number of persons : 2;  phone number : 00237651322430;  birthday : None;  arrival time : 07:00; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: birthday, next_slot_required: False] 
+	[Test case message: which are the required fields of this form?] 
+	[Result expected: lists zero field, the next field is birthday] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<011> functional test case - 11
+	[Initial situation: Fields -  number of persons : 2;  phone number : 00237651322430;  birthday : None;  arrival time : 07:00; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: birthday, next_slot_required: False] 
+	[Test case message: which are the optional fields?] 
+	[Result expected: Gives the list of all the fields, they are all optimal. The next field is birthday] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<012> functional test case - 12
+	[Initial situation: Fields -  number of persons : None;  phone number : +223615342345;  birthday : 31-05-1990;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: which are the fields still to be completed?] 
+	[Result expected: Number of persons, arrival time. The next field is number of persons] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<013> functional test case - 13
+	[Initial situation: Fields -  number of persons : None;  phone number : +223615342345;  birthday : 31-05-1990;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: are there required remaining fields?] 
+	[Result expected: No remaining required field. The next field is number of persons] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<014> functional test case - 14
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : 31-05-1990;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: which are the remaining optional fields?] 
+	[Result expected: Phone number, number of persons, arrival time] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<015> functional test case - 15
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case message: audi] 
+	[Result expected: Car has value audi. The next field is gender] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<016> functional test case - 16
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case message: skip] 
+	[Result expected: The next field is electronic devices] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<017> functional test case - 17
+	[Initial situation: Fields -  gender ** : male;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: electronic devices, next_slot_required: False] 
+	[Test case message: is the field family name present in this form?] 
+	[Result expected: The field family name is not present. The next field is electronic devices] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<018> functional test case - 18
+	[Initial situation: Fields -  gender ** : male;  electronic devices : smartphone;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: can i have a point of the situation?] 
+	[Result expected: Gives the paires field-value. The next field is message] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<019> functional test case - 19
+	[Initial situation: Fields -  gender ** : male;  electronic devices : smartphone;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: can you tell me again what is this form about?] 
+	[Result expected: Gives the form description. The next field is message] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<020> functional test case - 20
+	[Initial situation: Fields -  gender ** : male;  electronic devices : smartphone;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: what is message?] 
+	[Result expected: Explains message. The next field is message] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<021> functional test case - 21
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: jack] 
+	[Result expected: First name is jack. The next field is mark] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<022> functional test case - 22
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: i want to odify the first name with jack bauer] 
+	[Result expected: First name is jack bauer. The next field is mark] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<023> functional test case - 23
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: my first name is estelle laure harris] 
+	[Result expected: First name is estelle laure harris. The next slot is mark] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<024> functional test case - 24
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: my mark is 28] 
+	[Result expected: The mark is 28, the next field is password] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<025> functional test case - 25
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: spelling, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: my mark is 28,1] 
+	[Result expected: The mark is 28,1. The next field is password] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<026> functional test case - 26
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: my mark is 28,45] 
+	[Result expected: The mark is 28,45. The next field is password] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<027> functional test case - 27
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: my mark is 28,654] 
+	[Result expected: The mark is 28,654. The next field is password] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<028> functional test case - 28
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: my mark is 280] 
+	[Result expected: The mark is above the maximum, the next field is password] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<029> functional test case - 29
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: mark 24,4567] 
+	[Result expected: The mark is 24,45] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<030> functional test case - 30
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: mark 2.001.002] 
+	[Result expected: the mark is above the maximum] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<031> functional test case - 31
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: mark 3.000,54] 
+	[Result expected: The mark is above the maximum] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<032> functional test case - 32
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: mark 23.211] 
+	[Result expected: The mark is 23,211] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<033> functional test case - 33
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: mark 17,002.98] 
+	[Result expected: The is above the maximum] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<034> functional test case - 34
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: the password is pass] 
+	[Result expected: The value is too short] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<035> functional test case - 35
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: pass_word is the password] 
+	[Result expected: The password is pass_word] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<036> functional test case - 36
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: my password is p!@ss#w$%^r&d*_] 
+	[Result expected: The password is p!@ss#w$%^r&d*_] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<037> functional test case - 37
+	[Initial situation: Fields -  gender ** : male;  electronic devices : smartphone;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: what is the title of this form?] 
+	[Result expected: Gives the form title. The next field is message] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<038> functional test case - 38
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: email address em@il.it] 
+	[Result expected: Email address is em@il.it] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<039> functional test case - 39
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: the email address is em_ail] 
+	[Result expected: There should be the at sign] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<040> functional test case - 40
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: my email address is e@m@il.it] 
+	[Result expected: There should be only one at sign] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<041> functional test case - 41
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: the email address is em@il.mail.it] 
+	[Result expected: Te email address is em@il.mail.it] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<042> functional test case - 42
+	[Initial situation: Fields -  first name ** : None;  last name : adama;  mark : None;  password : None;  email address ** : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: my email address is my_em@il.mail.polimi.it] 
+	[Result expected: The email address is my_em@il.mail.polimi.it] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<043> functional test case - 43
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : 31-05-1990;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the email address is em@il] 
+	[Result expected: There should be the dot_sign] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<044> functional test case - 44
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: phone number 00393545345566] 
+	[Result expected: The value of the phone number becomes 00393545345566] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<045> functional test case - 45
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the phone number is +393454566789] 
+	[Result expected: The value of phone number becomes +393454566789] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<046> functional test case - 46
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: spelling, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the phone number is +39+2376758933] 
+	[Result expected: There should be at most one <+>] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<047> functional test case - 47
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the phone number is 14] 
+	[Result expected: Too short phone number] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<048> functional test case - 48
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: arrival time, next_slot_required: False] 
+	[Test case message: the phone number is +237899755421345456] 
+	[Result expected: Too long phone number] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<049> functional test case - 49
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericCamp, warning_message: , next_slot: arrival time, next_slot_required: False] 
+	[Test case message: the number of persons is -2] 
+	[Result expected: Value lower than the minimum] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<050> functional test case - 50
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the number of persons is 4] 
+	[Result expected: The value of number of persons is 4] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<051> functional test case - 51
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: The number of persons is 4,5] 
+	[Result expected: 4,5 is not an integer number] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<052> functional test case - 52
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the number of persons is 2,000] 
+	[Result expected: Number above the maximum] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<053> functional test case - 53
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the number of persons is 1.000] 
+	[Result expected: The number is above the maximum] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<054> functional test case - 54
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the birthday is 2010-02-15] 
+	[Result expected: The birthday is 15/02/2010] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<055> functional test case - 55
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the birthday is 12-10-1995] 
+	[Result expected: The birthday is 12/10/1995] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<056> functional test case - 56
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the birthday is 08-15-2005] 
+	[Result expected: The birthday is 15/08/2005] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<057> functional test case - 57
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the birthday is 15032002] 
+	[Result expected: The birthday is 15/03/2002] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<058> functional test case - 58
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: birthday, next_slot_required: False] 
+	[Test case message: the birthday is 02 january 1988] 
+	[Result expected: The birthday is 02/01/1988] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<059> functional test case - 59
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: birthday, next_slot_required: False] 
+	[Test case message: the birthday is February 28 2020] 
+	[Result expected: The birthday is 28/02/2020] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<060> functional test case - 60
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: birthday, next_slot_required: False] 
+	[Test case message: the arrival time is 15:10] 
+	[Result expected: The arrival time is 15:10] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<061> functional test case - 61
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: birthday, next_slot_required: False] 
+	[Test case message: the arrival time is 1230] 
+	[Result expected: The arrival time is 12:30] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<062> functional test case - 62
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the arrival time is 08:05 am] 
+	[Result expected: The arrival time is 08:05] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<063> functional test case - 63
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the arrival time is 5 pm] 
+	[Result expected: The arrival time is 17:00] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<064> functional test case - 64
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the arrival time is 4:15] 
+	[Result expected: The arrival time is 04:15] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<065> functional test case - 65
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the arrival time is 2:20 pm] 
+	[Result expected: The arrival time is 14:20] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<066> functional test case - 66
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [[], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the arrival time is 7] 
+	[Result expected: The arrival time is 07:00] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<070> functional test case - 67
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case message: the car is citroen] 
+	[Result expected: The car is citroen] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<071> functional test case - 68
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case message: the choices for car are ford and bmw] 
+	[Result expected: The car becomes ford, bmw is not a choice for gender.] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<072> functional test case - 69
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case message: the gender is male] 
+	[Result expected: gender is male] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<073> functional test case - 70
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the choices for the gender are female and male] 
+	[Result expected: gender becomes female, none is not a choice for electronic devices] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<074> functional test case - 71
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the electronic devices ares smartphone] 
+	[Result expected: electronic devices becomes smartphone] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<075> functional test case - 72
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the electronic devices are sartphone and tablet] 
+	[Result expected: The electronic devices become [smartphone, tablets]] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<076> functional test case - 73
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the electronic devices are computer, smart watch, smart tv] 
+	[Result expected: The electronic devices become [computer, smart watch, smart tv]] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<077> functional test case - 74
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the message is if the mountain] 
+	[Result expected: message becomes "if the mountain"] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<078> functional test case - 75
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the message is if the mountain won't come to muhammad] 
+	[Result expected: message becomes 'if the mountain won't come to muhammad'] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<079> functional test case - 76
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the message is if the mountain won't come to muhammad, muhammad must go] 
+	[Result expected: message becomes 'if the mountain won't come to muhammad, muhammad must go'] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<080> functional test case - 77
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the message is if the mountain won't come to muhammad, muhammad must go to the mountain] 
+	[Result expected: message becomes 'if the mountain won't come to muhammad, muhammad must go to the mountain'] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<081> functional test case - 78
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the message is adversity and loss make a man wise. a journey of thousand miles begins with a single step.] 
+	[Result expected: The message becomes 'adversity and loss make a man wise. a journey of thousand miles begins with a single step.'] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+<082> functional test case - 79
+	[Initial situation: Fields -  gender ** : None;  electronic devices : None;  car : None;  message : None; 
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_intent: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericCamp, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the message is better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait.] 
+	[Result expected: the message becomes 'better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait.'] 
+	[Result obtained: (response: Something went wrong during the handling of this message.  what can i precisely do for you please ?)]
+

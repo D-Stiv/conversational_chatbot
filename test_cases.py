@@ -57,7 +57,6 @@ phone_number = 'phone number'
 number_persons = 'number of persons'
 birthday = 'birthday'
 arrival_time = 'arrival time'
-card_expiration_date = 'card expiration date'
 car = 'car'
 gender = 'gender'
 electronic_devices = 'electronic devices'
@@ -290,7 +289,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -320,10 +319,38 @@ structural_test_cases = [
                 {
                     u.slot_name: first_name,
                     u.slot_value: None
+                },
+                {
+                    u.slot_name: last_name,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: mark,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: password,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: email_address,
+                    u.slot_value: None
                 }
             ],
             spelling_state: {
-                u.current_spelling_input_value: ''
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
             }
         },
         test_case_message: {
@@ -344,6 +371,41 @@ structural_test_cases = [
     {
         message_id: "011",
         test_form_number: 2,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: number_persons,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: phone_number,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: birthday,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: arrival_time,
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
         initial_state: {
             u.slots: [
                 {
@@ -396,10 +458,6 @@ structural_test_cases = [
                 {
                     u.slot_name: arrival_time,
                     u.slot_value: None
-                },
-                {
-                    u.slot_name: card_expiration_date,
-                    u.slot_value: None
                 }
             ]
         },
@@ -429,34 +487,34 @@ structural_test_cases = [
     },
     {
         message_id: "015",
-        test_form_number: 1,
-        initial_state: {},
+        test_form_number: 2,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: birthday,
+                    u.slot_value: None
+                }
+            ]
+        },
         test_case_message: {
             entities: [
                 {
                     entity: input_field,
-                    value: card_expiration_date
+                    value: birthday
                 }
             ],
             intent: {
                 name: repeat_value_field,
                 confidence: 1
             },
-            text: 'what is the value of the card expiration date?'
+            text: 'what is the value of the birthday?'
         },
         result_expected: '… No value ….'
     },
     {
         message_id: "016",
         test_form_number: 2,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: card_expiration_date,
-                    u.slot_value: "april 2021"
-                }
-            ]
-        },
+        initial_state: {},
         test_case_message: {
             entities: [],
             intent: {
@@ -470,14 +528,7 @@ structural_test_cases = [
     {
         message_id: "017",
         test_form_number: 2,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: card_expiration_date,
-                    u.slot_value: "april 2021"
-                }
-            ]
-        },
+        initial_state: {},
         test_case_message: {
             entities: [],
             intent: {
@@ -786,6 +837,29 @@ structural_test_cases = [
         result_expected: 'We are going to submit, are you sure you want to continue with this action?'
     },
     {
+        message_id: "031",
+        test_form_number: 2,
+        initial_state: {},
+        test_case_message: {
+            entities: [
+                {
+                    entity: input_field,
+                    value: birthday
+                },
+                {
+                    entity: input_value,
+                    value: '5 oct 2010'
+                }
+            ],
+            intent: {
+                name: complete_field,
+                confidence: 1
+            },
+            text: 'the card expiration date is 5 oct 2010'
+        },
+        result_expected: 'It is possible that the month you inserted is not well written'
+    },
+    {
         message_id: "032",
         test_form_number: 1,
         initial_state: {
@@ -793,7 +867,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -857,7 +931,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -886,7 +960,7 @@ structural_test_cases = [
     },
     {
         message_id: "035",
-        test_form_number: 1,
+        test_form_number: 3,
         initial_state: {
             u.slots: [
                 {
@@ -902,7 +976,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -955,7 +1029,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -1017,7 +1091,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -1056,7 +1130,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -1099,7 +1173,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -1148,7 +1222,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -1193,7 +1267,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [first_name],
                 u.saved_spelling_values: ["alda"]
             },
@@ -1231,17 +1305,13 @@ structural_test_cases = [
                 {
                     u.slot_name: birthday,
                     u.slot_value: None
-                },
-                {
-                    u.slot_name: card_expiration_date,
-                    u.slot_value: "november 2010"
                 }
             ],
             spelling_state: {
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -1281,7 +1351,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -1320,7 +1390,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -1344,16 +1414,16 @@ structural_test_cases = [
                 },
                 {
                     entity: input_field,
-                    value: card_expiration_date
+                    value: birthday
                 }
             ],
             intent: {
                 name: modify_value_field,
                 confidence: 1
             },
-            text: 'i want to modify the arrival time putting 7 pm, i also want to change th card expiration date'
+            text: 'i want to modify the arrival time putting 7 pm, i also want to change th birthday'
         },
-        result_expected: 'You wanted to {modify} the fields {card expiration date} but you did not insert the values'
+        result_expected: 'You wanted to {modify} the fields {birthday} but you did not insert the values'
     },
     {
         message_id: "046",
@@ -1363,7 +1433,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -1398,7 +1468,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -1443,7 +1513,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -1581,7 +1651,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: True,
                 u.current_spelling_input_value: 'elis',
                 u.spelling_list: [first_name],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -1616,7 +1686,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: True,
                 u.current_spelling_input_value: 'elisa',
                 u.spelling_list: [first_name],
-                u.waiting_intent: give_all_remaining_fields,
+                u.waiting_message: give_all_remaining_fields,
                 u.spelling_interrupted: True,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
@@ -1647,7 +1717,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: True,
                 u.current_spelling_input_value: 'elisa',
                 u.spelling_list: [first_name],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -1989,10 +2059,6 @@ structural_test_cases = [
         initial_state: {
             u.slots: [
                 {
-                    u.slot_name: card_expiration_date,
-                    u.slot_value: None
-                },
-                {
                     u.slot_name: birthday,
                     u.slot_value: None
                 }
@@ -2002,145 +2068,23 @@ structural_test_cases = [
             entities: [
                 {
                     entity: input_field,
-                    value: card_expiration_date
+                    value: birthday
                 },
                 {
                     entity: input_value,
-                    value: 'apr 2010'
+                    value: '12 apr 2010'
                 }
             ],
             intent: {
                 name: complete_field,
                 confidence: 1
             },
-            text: 'the card expiration date is apr 2010'
+            text: 'the birthday date is 12 apr 2010'
         },
         result_expected: 'The date inserted is not valid …'
     },
     {
         message_id: "068",
-        test_form_number: 2,
-        initial_state: {},
-        test_case_message: {
-            entities: [
-                {
-                    entity: input_field,
-                    value: card_expiration_date
-                },
-                {
-                    entity: input_value,
-                    value: '2o10-12'
-                }
-            ],
-            intent: {
-                name: complete_field,
-                confidence: 1
-            },
-            text: 'the card expiration date is 2o10-12'
-        },
-        result_expected: 'The year you inserted is not valid for <YYYY-MM>…'
-    },
-    {
-        message_id: "069",
-        test_form_number: 2,
-        initial_state: {},
-        test_case_message: {
-            entities: [
-                {
-                    entity: input_field,
-                    value: card_expiration_date
-                },
-                {
-                    entity: input_value,
-                    value: '2010-o9'
-                }
-            ],
-            intent: {
-                name: complete_field,
-                confidence: 1
-            },
-            text: 'the card expiration date is 2010-o9'
-        },
-        result_expected: 'The month insert is not valid for <YYYY-MM>…'
-    },
-    {
-        message_id: "070",
-        test_form_number: 2,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: card_expiration_date,
-                    u.slot_value: None
-                }
-            ]
-        },
-        test_case_message: {
-            entities: [
-                {
-                    entity: input_field,
-                    value: card_expiration_date
-                },
-                {
-                    entity: input_value,
-                    value: 'may 201o'
-                }
-            ],
-            intent: {
-                name: complete_field,
-                confidence: 1
-            },
-            text: 'the card expiration date is may 201o'
-        },
-        result_expected: 'The year is not valid for < month YYYY >…'
-    },
-    {
-        message_id: "071",
-        test_form_number: 2,
-        initial_state: {},
-        test_case_message: {
-            entities: [
-                {
-                    entity: input_field,
-                    value: card_expiration_date
-                },
-                {
-                    entity: input_value,
-                    value: '201o march'
-                }
-            ],
-            intent: {
-                name: complete_field,
-                confidence: 1
-            },
-            text: 'the card expiration date is 201o march'
-        },
-        result_expected: 'The year is not valid for < YYYY month > …'
-    },
-    {
-        message_id: "072",
-        test_form_number: 2,
-        initial_state: {},
-        test_case_message: {
-            entities: [
-                {
-                    entity: input_field,
-                    value: card_expiration_date
-                },
-                {
-                    entity: input_value,
-                    value: 'oct 2010'
-                }
-            ],
-            intent: {
-                name: complete_field,
-                confidence: 1
-            },
-            text: 'the card expiration date is oct 2010'
-        },
-        result_expected: 'It is possible that the month you inserted is not well written'
-    },
-    {
-        message_id: "073",
         test_form_number: 2,
         initial_state: {},
         test_case_message: {
@@ -2163,7 +2107,7 @@ structural_test_cases = [
         result_expected: 'The day you inserted is out of range'
     },
     {
-        message_id: "074",
+        message_id: "069",
         test_form_number: 2,
         initial_state: {
             u.slots: [
@@ -2193,7 +2137,7 @@ structural_test_cases = [
         result_expected: 'The month you inserted is out of range'
     },
     {
-        message_id: "075",
+        message_id: "070",
         test_form_number: 2,
         initial_state: {},
         test_case_message: {
@@ -2216,7 +2160,7 @@ structural_test_cases = [
         result_expected: 'The year you inserted is out of range, the minimum is {min_value} and the maximum is {max_value}'
     },
     {
-        message_id: "076",
+        message_id: "071",
         test_form_number: 2,
         initial_state: {},
         test_case_message: {
@@ -2239,7 +2183,7 @@ structural_test_cases = [
         result_expected: 'The hour is out of range'
     },
     {
-        message_id: "077",
+        message_id: "072",
         test_form_number: 2,
         initial_state: {},
         test_case_message: {
@@ -2262,7 +2206,7 @@ structural_test_cases = [
         result_expected: 'The minutes are out of range'
     },
     {
-        message_id: "078",
+        message_id: "073",
         test_form_number: 1,
         initial_state: {},
         test_case_message: {
@@ -2285,7 +2229,7 @@ structural_test_cases = [
         result_expected: 'There should be at least one character <{dot_sign}> after the character <{at_sign}>'
     },
     {
-        message_id: "080",
+        message_id: "074",
         test_form_number: 1,
         initial_state: {
             u.slots: [
@@ -2298,7 +2242,7 @@ structural_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -2330,7 +2274,7 @@ structural_test_cases = [
         result_expected: 'The email should contain the character <{dot_sign}>'
     },
     {
-        message_id: "079",
+        message_id: "075",
         test_form_number: 1,
         initial_state: {
             machine_parameters: {
@@ -2350,11 +2294,23 @@ structural_test_cases = [
         result_expected: '{good} you have been moved to the page with title {title}'
     },
     {
-        message_id: "031",
+        message_id: "076",
         test_form_number: 2,
         initial_state: {
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
             machine_parameters: {
-                u.submit_alarm_enabled: True
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: True,
+                u.possible_next_action: None,
+                u.warning_message: ''
             }
         },
         test_case_message: {
@@ -2463,7 +2419,7 @@ functional_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -2499,7 +2455,7 @@ functional_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -2618,7 +2574,7 @@ functional_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -2775,10 +2731,6 @@ functional_test_cases = [
                 {
                     u.slot_name: arrival_time,
                     u.slot_value: None
-                },
-                {
-                    u.slot_name: card_expiration_date,
-                    u.slot_value: "04/2020"
                 }
             ],
         },
@@ -3096,7 +3048,7 @@ functional_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -3158,7 +3110,7 @@ functional_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -3374,6 +3326,20 @@ functional_test_cases = [
         result_expected: 'The password is p!@ss#w$%^r&d*_'
     },
     {
+        message_id: "037",
+        test_form_number: 3,
+        initial_state: {},
+        test_case_message: {
+            entities: [],
+            intent: {
+                name: repeat_form_title,
+                confidence: 1
+            },
+            text: 'what is the title of this form?'
+        },
+        result_expected: 'Gives the form title. The next field is message'
+    },
+    {
         message_id: "038",
         test_form_number: 1,
         initial_state: {},
@@ -3531,10 +3497,6 @@ functional_test_cases = [
                 {
                     u.slot_name: arrival_time,
                     u.slot_value: None
-                },
-                {
-                    u.slot_name: card_expiration_date,
-                    u.slot_value: None
                 }
             ]
         },
@@ -3611,7 +3573,7 @@ functional_test_cases = [
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -3657,10 +3619,6 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: birthday,
-                    u.slot_value: None
-                },
-                {
-                    u.slot_name: card_expiration_date,
                     u.slot_value: None
                 }
             ]
@@ -3727,17 +3685,13 @@ functional_test_cases = [
                 {
                     u.slot_name: arrival_time,
                     u.slot_value: None
-                },
-                {
-                    u.slot_name: card_expiration_date,
-                    u.slot_value: None
                 }
             ],
             spelling_state: {
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -3857,17 +3811,13 @@ functional_test_cases = [
                 {
                     u.slot_name: arrival_time,
                     u.slot_value: None
-                },
-                {
-                    u.slot_name: card_expiration_date,
-                    u.slot_value: None
                 }
             ],
             spelling_state: {
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -3987,17 +3937,13 @@ functional_test_cases = [
                 {
                     u.slot_name: arrival_time,
                     u.slot_value: None
-                },
-                {
-                    u.slot_name: card_expiration_date,
-                    u.slot_value: None
                 }
             ],
             spelling_state: {
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -4117,17 +4063,13 @@ functional_test_cases = [
                 {
                     u.slot_name: arrival_time,
                     u.slot_value: None
-                },
-                {
-                    u.slot_name: card_expiration_date,
-                    u.slot_value: None
                 }
             ],
             spelling_state: {
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -4247,17 +4189,13 @@ functional_test_cases = [
                 {
                     u.slot_name: arrival_time,
                     u.slot_value: None
-                },
-                {
-                    u.slot_name: card_expiration_date,
-                    u.slot_value: None
                 }
             ],
             spelling_state: {
                 u.close_prompt_enabled: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
-                u.waiting_intent: None,
+                u.waiting_message: None,
                 u.saved_spelling_fields: [],
                 u.saved_spelling_values: []
             },
@@ -4290,72 +4228,101 @@ functional_test_cases = [
     },
     {
         message_id: "067",
-        test_form_number: 2,
-        initial_state: {},
+        test_form_number: 3,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: message,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: gender,
+                    u.slot_value: None
+                }
+            ]
+        },
         test_case_message: {
             entities: [
                 {
                     entity: input_field,
-                    value: card_expiration_date
+                    value: message
                 },
                 {
                     entity: input_value,
-                    value: '2010-02'
+                    value: "if the mountain won't come to muhammad, muhammad must go to the mountain"
                 }
             ],
             intent: {
                 name: complete_field,
                 confidence: 1
             },
-            text: 'the card expiration date is 2010-02'
+            text: "the message is if the mountain won't come to muhammad, muhammad must go to the mountain"
         },
-        result_expected: 'The card expiration date is february 2010'
+        result_expected: "message becomes 'if the mountain won't come to muhammad, muhammad must go to the mountain'"
     },
     {
         message_id: "068",
-        test_form_number: 2,
-        initial_state: {},
+        test_form_number: 3,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: message,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: gender,
+                    u.slot_value: None
+                }
+            ]
+        },
         test_case_message: {
             entities: [
                 {
                     entity: input_field,
-                    value: card_expiration_date
+                    value: message
                 },
                 {
                     entity: input_value,
-                    value: 'January 2015'
+                    value: 'adversity and loss make a man wise. a journey of thousand miles begins with a single step.'
                 }
             ],
             intent: {
                 name: complete_field,
                 confidence: 1
             },
-            text: 'the card expiration date is January 2015'
+            text: 'the message is adversity and loss make a man wise. a journey of thousand miles begins with a single step.'
         },
-        result_expected: 'The card expiration date is january 2015'
+        result_expected: "The message becomes 'adversity and loss make a man wise. a journey of thousand miles begins with a single step.'"
     },
     {
         message_id: "069",
-        test_form_number: 2,
-        initial_state: {},
+        test_form_number: 3,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: gender,
+                    u.slot_value: None
+                }
+            ]
+        },
         test_case_message: {
             entities: [
                 {
                     entity: input_field,
-                    value: card_expiration_date
+                    value: message
                 },
                 {
                     entity: input_value,
-                    value: '2003 march'
+                    value: "better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait."
                 }
             ],
             intent: {
                 name: complete_field,
                 confidence: 1
             },
-            text: 'the card expiration date is 2003 march'
+            text: 'the message is better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait.'
         },
-        result_expected: 'The card expiration date is march 2003'
+        result_expected: "the message becomes 'better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait.'"
     },
     {
         message_id: "070",
@@ -4669,117 +4636,5 @@ functional_test_cases = [
             text: "the message is if the mountain won't come to muhammad, muhammad must go"
         },
         result_expected: "message becomes 'if the mountain won't come to muhammad, muhammad must go'"
-    },
-    {
-        message_id: "080",
-        test_form_number: 3,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: message,
-                    u.slot_value: None
-                },
-                {
-                    u.slot_name: gender,
-                    u.slot_value: None
-                }
-            ]
-        },
-        test_case_message: {
-            entities: [
-                {
-                    entity: input_field,
-                    value: message
-                },
-                {
-                    entity: input_value,
-                    value: "if the mountain won't come to muhammad, muhammad must go to the mountain"
-                }
-            ],
-            intent: {
-                name: complete_field,
-                confidence: 1
-            },
-            text: "the message is if the mountain won't come to muhammad, muhammad must go to the mountain"
-        },
-        result_expected: "message becomes 'if the mountain won't come to muhammad, muhammad must go to the mountain'"
-    },
-    {
-        message_id: "081",
-        test_form_number: 3,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: message,
-                    u.slot_value: None
-                },
-                {
-                    u.slot_name: gender,
-                    u.slot_value: None
-                }
-            ]
-        },
-        test_case_message: {
-            entities: [
-                {
-                    entity: input_field,
-                    value: message
-                },
-                {
-                    entity: input_value,
-                    value: 'adversity and loss make a man wise. a journey of thousand miles begins with a single step.'
-                }
-            ],
-            intent: {
-                name: complete_field,
-                confidence: 1
-            },
-            text: 'the message is adversity and loss make a man wise. a journey of thousand miles begins with a single step.'
-        },
-        result_expected: "The message becomes 'adversity and loss make a man wise. a journey of thousand miles begins with a single step.'"
-    },
-    {
-        message_id: "082",
-        test_form_number: 3,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: gender,
-                    u.slot_value: None
-                }
-            ]
-        },
-        test_case_message: {
-            entities: [
-                {
-                    entity: input_field,
-                    value: message
-                },
-                {
-                    entity: input_value,
-                    value: "better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait."
-                }
-            ],
-            intent: {
-                name: complete_field,
-                confidence: 1
-            },
-            text: 'the message is better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait.'
-        },
-        result_expected: "the message becomes 'better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait.'"
-    },
-    {
-        message_id: "083",
-        test_form_number: 3,
-        initial_state: {},
-        test_case_message: {
-            entities: [],
-            intent: {
-                name: repeat_form_title,
-                confidence: 1
-            },
-            text: 'what is the title of this form?'
-        },
-        result_expected: 'Gives the form title. The next field is message'
     }
 ]

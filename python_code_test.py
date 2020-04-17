@@ -12,21 +12,14 @@ from random import randint
 from datetime import datetime
 from selenium import webdriver
 
-
+"""
 form_element = webdriver.Chrome()
 # webPath = "http://www.polimi.it"
 webPath = u.form_url
 form_element.get(webPath)
 form_element.minimize_window()
 
-elem = form_element.find_element_by_tag_name('form').find_element_by_name('exp_date')
-ans = ''
-while ans != u.stop:
-    ans =  input('insert the month: ')
-    if ans != u.stop:
-        elem.send_keys(ans)
 
-"""
 form_elements = form_element.find_elements_by_tag_name('form')
 for form_element in form_elements:
 
