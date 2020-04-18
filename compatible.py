@@ -250,7 +250,7 @@ def verify_compatibility_time(value):
             return answer, text
 
         # we discar all the rest
-        text = f"The time you inserted is not valid.\n{format_string}"
+        text = f"The time <{value}> you inserted is not valid.\n{format_string}"
         return False, text
     except:
         print(
@@ -336,7 +336,7 @@ def verify_compatibility_date(value):
                     return answer, text
 
         # we exclude all the rest
-        text = f'The date inserted is not valid\n{format_string}'
+        text = f'The date <{value}> inserted is not valid\n{format_string}'
         return False, text
     except:
         print(
@@ -394,7 +394,7 @@ def verify_compatibility_month(value):
             else:
                 text = f'The year is not valid for < YYYY month >. \n{format_string}'
                 return False, text
-        text = f'It is possible that the month you inserted is not well written. \n{format_string}'
+        text = f'It is possible that the month <{value}> you inserted is not well written. \n{format_string}'
         return False, text
     except:
         print(

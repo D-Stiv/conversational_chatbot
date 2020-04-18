@@ -29,11 +29,11 @@ class Form:
     def train_model(self):
         self.train_model()
 
-    def interpreteMessage(self, userInput):
+    def interpretMessage(self, userInput):
         try:
-            message = self.interpreteMessage(userInput)
+            message = self.interpretMessage(userInput)
             if u.DEBUG:
-                print("FORM INTERFACE interpreteMessage")
+                print("FORM INTERFACE interpretMessage")
             return message
         except:
             print("A problem occured while trying to interprete the user input <<{}>>".format(

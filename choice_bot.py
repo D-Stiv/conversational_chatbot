@@ -73,7 +73,7 @@ class BotsManager:
                 bot = self.get_bot(u.tag_registration_form)
             # we get the state of the bot
             state = bot.get_state()
-            latest_message = bot.interpreteMessage(userInput)
+            latest_message = bot.interpretMessage(userInput)
             # update the state
             state.add_latest_message(latest_message)
             # here we could look if there are some slots in the message and set them in the state

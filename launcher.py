@@ -42,8 +42,9 @@ current_form_tag = u.tag_registration_form
 manage_current_form(current_form_tag)
 
 if u.write_report:
-    # we write the report now
+    # we write the report now if we have at least one state
     states_list = manager.states_list
-    report_writer = w.ReportWriter(states_list)
-    report_writer.start()
-    print('End of the session, the logs are in the folder logs and the report is in the folder reports')
+    if len(states_list) > 0:
+        report_writer = w.ReportWriter(states_list)
+        report_writer.start()
+        print('End of the session, the logs are in the folder logs and the report is in the folder reports')

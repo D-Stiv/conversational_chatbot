@@ -28,6 +28,7 @@ class LogWriter(Writer):
         conv_log = self.construct_conv_log()
         text = f'{header}\n\n{summary}\n\n{conv_log}\n\n'
         self.create_file(text)
+        print('The log has been created successfully')
 
     def add_chatbot_line(self, line):
         self.conversation_string = f'{self.conversation_string}\n{line}'
@@ -83,9 +84,19 @@ class ReportWriter(Writer):
             report_log = self.construct_report_log()
             text = f'{header}\n\n{summary}\n\n{report_log}\n\n'
             self.create_file(text)
+            print('The report has been created successfully')
+            self.close_windows()
         except:
             print('Fail to construct the report')
             raise Exception
+
+    def close_windows(self):
+        for state in self.states_list:
+            try:
+                driver = state.form_element.parent
+                driver.close()
+            except:
+                pass
 
     def add_line(self, line, string='', tab=''):
         try:
@@ -134,14 +145,19 @@ class ReportWriter(Writer):
         try:
             self.increase_counter()
             fe = form_element
-            url_tot = fe.parent.current_url
-            # we troncate the url just before the question mark
-            if '?' in url_tot:
-                url = url_tot[:url_tot.index('?')]
-            else:
-                url = url_tot
-#            url_resp =url_tot[1 + url_tot.index('?'):]
-            line = f'[browser_name: {fe.parent.name} - page_title: {fe.parent.title} - URL: {url}]'
+            try:
+                url_tot = fe.parent.current_url
+                # we troncate the url just before the question mark
+                if '?' in url_tot:
+                    url = url_tot[:url_tot.index('?')]
+                else:
+                    url = url_tot
+    #            url_resp =url_tot[1 + url_tot.index('?'):]
+                line = f'[browser_name: {fe.parent.name} - page_title: {fe.parent.title} - URL: {url}]'
+            except:
+                line = 'The window have been closed, so we cannot give you the form elements, sorry'
+            if u.DEBUG:
+                print(line)
             form_element_content = self.add_line(line, tab=tab)
             form_element_content = f'\n{form_element_content}\n'
             return form_element_content

@@ -35,7 +35,7 @@ class DialogueManager:
         self.in_session = False
         self.restart = False
         self.states_list = []
-        self.total_iterations = 3 #randint(1, u.MAX_DIALOGUES)
+        self.total_iterations = u.MAX_DIALOGUES # randint(1, u.MAX_DIALOGUES)
         self.iteration_number = 0
         self.number_fields = 0
 
@@ -84,8 +84,20 @@ class DialogueManager:
                 if u.DEBUG:
                     print('About to start the new dialogue')
                 self.start(bot_tag)
+            self.close_window()
         except:
             print(PREPROCESSING_EXCEPTION)
+            self.close_window()
+    
+    def close_window(self):
+        # we effectively close the windows only if we are not supposed to write the report
+        # since the report requires the windows to be open in order to fetch the form elements
+        if not u.write_report or True:
+            # we close the driver
+            try:
+                self.driver.close()
+            except:
+                pass
 
     def instantiate_driver(self, random=False):
         function_name = 'instantiate_driver'
@@ -119,7 +131,7 @@ class DialogueManager:
         try:
             # call fillForm woith a predefined message and present the form
             initial_string = 'fill the form'
-            message = self.current_bot.interpreteMessage(initial_string)
+            message = self.current_bot.interpretMessage(initial_string)
             introduction = self.current_bot.findActionAndRun(message["intent"]["name"])
             stop_string = f"Start of the conversation, to end your should type <<{u.stop}>>."
             text = f'{stop_string}\n{introduction}'
@@ -201,7 +213,13 @@ class DialogueManager:
             self.states_list.append(self.current_bot.get_state())
             # we increment the nunmer of iteration
             self.iteration_number += 1
+            # we sample the reports
+            if self.iteration_number in [1,2,3,5,10,20,50,100,150]:
+                # write the report
+                w.ReportWriter(self.states_list).start()
             if self.iteration_number >= self.total_iterations:
+                self.restart = False
+                self.in_session = False
                 return
             restart = 1
             if u.interactive_enabled or u.simulation_enabled:
@@ -243,7 +261,7 @@ class DialogueManager:
             self.in_session = False
             self.counter = 0
             self.current_bot = None
-            self.driver = None
+            self.close_window()
             self.chatbot_view = None
             self.user_view = None
             self.log_writer = None

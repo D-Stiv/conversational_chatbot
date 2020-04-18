@@ -65,8 +65,8 @@ class RegistrationForm(Form):
             print('Fail to train the conversational model')
             raise Exception
 
-    def interpreteMessage(self, userInput):
-        function_name = 'interpreteMessage'
+    def interpretMessage(self, userInput):
+        function_name = 'interpretMessage'
         if u.DEBUG:
             print(f'{class_name}: {function_name}')
         try:
@@ -86,7 +86,7 @@ class RegistrationForm(Form):
             interpreter = Interpreter.load(self.model_path)
             latest_message = interpreter.parse(userInput)
             if u.DEBUG:
-                print(f"interpreteMessage - message: \n{latest_message['intent']}")
+                print(f"interpretMessage - message: \n{latest_message['intent']}")
             return latest_message
         except:
             print("A problem occured while a registration form bot tries to interprete the input <<{}>>".format(
