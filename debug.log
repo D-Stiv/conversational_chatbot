@@ -78,3 +78,6 @@
 [0416/131350.674:ERROR:exception_snapshot_win.cc(98)] thread ID 22552 not found in process
 [0416/131350.829:ERROR:process_reader_win.cc(126)] NtOpenThread: {Accesso negato} Un processo ha richiesto di accedere ad un oggetto ma non ha ottenuto i diritti di accesso. (0xc0000022)
 [0416/131350.829:ERROR:exception_snapshot_win.cc(98)] thread ID 22556 not found in process
+[0418/000637.697:ERROR:process_reader_win.cc(123)] NtOpenThread: {Accesso negato} Un processo ha richiesto di accedere ad un oggetto ma non ha ottenuto i diritti di accesso. (0xc0000022)
+[0418/000638.011:ERROR:exception_snapshot_win.cc(98)] thread ID 18032 not found in process
+[0418/000638.011:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Tentativo di accesso a un processo in fase di chiusura. (0xc000010a)

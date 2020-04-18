@@ -9,6 +9,7 @@ import functions as fn
 import asyncio
 import rasa
 import shutil
+import time
 
 
 EXCEPTION_MESSAGE = "Something went wrong during the handling of this message, please try another message !!"
@@ -192,7 +193,10 @@ class RegistrationForm(Form):
                     # the spelling did not modified the Web page, we return the string from the non spelling fields
                     return string
                 # the spelling mofified the Web Form, so we use its string
-                string = text
+                if correct:
+                    string = f'Web Form updated. {text}'
+                else:
+                    string = f'The Web Form has not been updated due to a non acceptable value. {text}'
             return string
         except:
             if not self.state.get_warning_present():
@@ -222,7 +226,7 @@ class RegistrationForm(Form):
                     self.state.update_spelling_list(slot_name)
                     next_field = self.state.get_spelling_list()[0]
                     please_style = styles.get_please()
-                    string = (f"Now you are going to spell the value for the field {next_field}.\n" +
+                    string = (f"Web Form updated. Now you are going to spell the value for the field {next_field}.\n" +
                             f"{please_style} insert the first character")
                 # after the spelling we insert the value for the given field and we reset the string
                 self.state.reset_current_spelling_input_value()
@@ -732,10 +736,21 @@ class RegistrationForm(Form):
             self.state.set_submit_alarm_enabled(False)
             elem = self.state.get_submit_button()
             elem.click()
-            # we signify that the submit is done to have the title page
-            self.state.set_submit_done()
-            self.state.set_possible_next_action(None)
-            string = 'submission done'
+            # we verify if the submission effectively occured
+            try:
+                time.sleep(1)
+                elem.click()
+            except:
+                # submission effective
+                # we signify that the submit is done to have the title page
+                self.state.set_submit_done()
+                self.state.set_possible_next_action(None)
+                string = 'Submission done'
+                return string
+            # submission not effective
+            string = ('The submission is not effective due to a not valid value for a field. We advice you to restart the process from the beginning' +
+                    '\nDo you accept to restart the process from the beginning?')
+            self.state.possible_next_action(u.reset_all_fields_action)
             return string
         except:
             if not self.state.get_warning_present():

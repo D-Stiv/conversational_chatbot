@@ -20,6 +20,10 @@ def verify_compatibility_generic(value):
 def verify_compatibility_email(value):
     try:
         text = value
+        # we should not have the space in the value
+        if ' ' in value:
+            text = "The character SPACE should not be present in this value type"
+            return False, text
         
         at_sign = '@'
         dot_sign = '.'
@@ -50,10 +54,11 @@ def verify_compatibility_email(value):
         raise Exception
 
 
-def verify_compatibility_number(value, precision=2, min_value=-float('inf'), max_value=float('inf')):
+def verify_compatibility_number(value, min_value=-float('inf'), max_value=float('inf')):
     try:
-        dec_value = get_decimal(value)
-        if dec_value is None:
+        value = value.replace(' ', '')
+        int_value = get_integer(value)
+        if int_value is None:
             sorry_style = styles.get_sorry()
             insert_style = styles.get_insert()
             please_style = styles.get_please()
@@ -67,6 +72,7 @@ def verify_compatibility_number(value, precision=2, min_value=-float('inf'), max
 
 def verify_compatibility_integer(value, min_value=-float('inf'), max_value=float('inf')):
     try:
+        value = value.replace(' ', '')
         int_value = get_integer(value)
         sorry_style = styles.get_sorry()
         insert_style = styles.get_insert()
@@ -90,6 +96,7 @@ def verify_compatibility_integer(value, min_value=-float('inf'), max_value=float
 
 def verify_compatibility_decimal(value, precision=2, min_value=-float('inf'), max_value=float('inf')):
     try:
+        value = value.replace(' ', '')
         dec_value = get_decimal(value)
         sorry_style = styles.get_sorry()
         insert_style = styles.get_insert()
@@ -147,6 +154,10 @@ def verify_compatibility_password(value):
 
 def verify_compatibility_tel(value):
     try:
+        # we should not have the space in the value
+        if ' ' in value:
+            text = "The character SPACE should not be present in this value type"
+            return False, text
         text = value
         plus_sign = "+"
         num_occur = value.count(plus_sign)
@@ -187,7 +198,7 @@ def verify_compatibility_time(value):
         mm = value[-2:]
         hh = fn.convert_to_int(hh, u.hour)
         mm = fn.convert_to_int(mm, u.minute)
-        if hh is not None and mm is not None:
+        if hh is not None and mm is not None and len(value) in [4, 5]:
             answer, text = get_time(hh=hh, mm=mm)            
             return answer, text
 
@@ -198,15 +209,8 @@ def verify_compatibility_time(value):
         meridian = meridian.replace(' ', '')    # we remove the space
         hh = fn.convert_to_int(hh, u.hour)
         mm = fn.convert_to_int(mm, u.minute)
-        if hh is not None and mm is not None and meridian in time_refs:
+        if hh is not None and mm is not None and meridian in time_refs and len(value) >= len('HH:MM am'):
             answer, text = get_time(hh=hh, meridian=meridian, mm=mm)            
-            return answer, text
-
-        # we accept <H>
-        hh = value
-        hh = fn.convert_to_int(hh, u.hour)
-        if hh is not None:
-            answer, text = get_time(hh=hh)
             return answer, text
 
         # we accept <H am>
@@ -214,7 +218,7 @@ def verify_compatibility_time(value):
         meridian = value[1:].lower()
         meridian = meridian.replace(' ', '')
         hh = fn.convert_to_int(hh, u.hour)
-        if hh is not None and meridian in time_refs:
+        if hh is not None and meridian in time_refs and len(value) >= len('H am'):
             answer, text = get_time(hh=hh, meridian=meridian)
             return answer, text
 
@@ -223,7 +227,7 @@ def verify_compatibility_time(value):
         mm = value[-2:]
         hh = fn.convert_to_int(hh, u.hour)
         mm = fn.convert_to_int(mm, u.minute)
-        if hh is not None and mm is not None:
+        if hh is not None and mm is not None and len(value) == len('H:MM'):
             answer, text = get_time(hh=hh, mm=mm)            
             return answer, text
 
@@ -234,8 +238,15 @@ def verify_compatibility_time(value):
         meridian = meridian.replace(' ', '')    # we remove the space
         hh = fn.convert_to_int(hh, u.hour)
         mm = fn.convert_to_int(mm, u.minute)
-        if hh is not None and mm is not None and meridian in time_refs:
+        if hh is not None and mm is not None and meridian in time_refs and len(value) >= len('H:MM am'):
             answer, text = get_time(hh=hh, meridian=meridian, mm=mm)            
+            return answer, text
+
+        # we accept <H>
+        hh = value
+        hh = fn.convert_to_int(hh, u.hour)
+        if hh is not None and len(value) == len('H'):
+            answer, text = get_time(hh=hh)
             return answer, text
 
         # we discar all the rest

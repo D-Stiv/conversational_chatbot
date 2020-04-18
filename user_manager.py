@@ -342,7 +342,7 @@ class User:
         try:
             number = randint(0, 10)
             if cts.use_terminal:
-                text = '\n[ALERT: Would you like to start a new session ?\t1- Yes\t0- No\n>>> Response: '
+                text = '\n[ALERT: Would you like to start a new dialogue ?\t1- Yes\t0- No\n>>> Response: '
                 answer = input(text)
             else:
                 answer = f'{number}'
@@ -416,6 +416,51 @@ class User:
         action_state_11, action_state_12, action_state_13]  
 
 
+    def get_not_choice_value(self, value_type, field):
+        try:
+            if value_type == u.date:
+                value = gen.generate_date(self.get_filling_message(cts.months))
+            elif value_type == u.time:
+                value = gen.generate_time()
+            elif value_type == u.text_area:
+                value = self.get_filling_message(cts.messages)
+            elif value_type == u.tel:
+                value = gen.generate_phone_number()
+            elif value_type == u.email:
+                name = self.get_filling_message(cts.names)
+                value = gen.generate_email(name)
+            elif value_type == u.password:
+                name = self.get_filling_message(cts.names)
+                value = gen.generate_password(name)
+            elif value_type in u.number_types_list:
+                min_value = self.dialogue_state[u.min_value]
+                max_value = self.dialogue_state[u.max_value]
+                if value_type in [u.integer, u.number]:
+                    value = gen.generate_integer(min_value, max_value)
+                else:
+                    # decimal
+                    precision = self.dialogue_state[u.precision]
+                    value = gen.generate_decimal(precision, min_value, max_value)
+            elif 'address' in field:
+                # probably a place address
+                value = gen.generate_place_address(self.get_filling_message(cts.address_names))
+            elif 'city' in field:
+                # probably a city
+                value = self.get_filling_message(cts.cities)
+            elif 'country' in field:
+                # probably a country
+                value = self.get_filling_message(cts.countries)
+            elif 'name' in field:
+                # probably a person name
+                value = self.get_filling_message(cts.names)
+            else:
+                # can be anything but we decide to put a person name
+                value = self.get_filling_message(cts.names)
+            return value
+        except:
+            print('Fail to get a not choice value')
+            raise Exception
+            
     def intent_complete_field(self):
         # we have mainly two cases, when the type is choice and when the type is not a choice
         try:
@@ -467,38 +512,7 @@ class User:
                     answer = sentence.format(field, value)
                 return answer
             # we are not in a choice, we should look if it is date, time, address not email, name, country, city
-            if value_type == u.date:
-                value = gen.generate_date(self.get_filling_message(cts.months))
-            elif value_type == u.month:
-                value = gen.generate_date(self.get_filling_message(cts.months), only_month=True)
-            elif value_type == u.time:
-                value = gen.generate_time()
-            elif value_type == u.text_area:
-                value = self.get_filling_message(cts.messages)
-            elif value_type == u.email:
-                name = self.get_filling_message(cts.names)
-                value = gen.generate_email(name)
-            elif value_type == u.password:
-                name = self.get_filling_message(cts.names)
-                value = gen.generate_password(name)
-            elif 'address' in field and value_type != u.email:
-                # probably a place address
-                value = gen.generate_place_address(self.get_filling_message(cts.address_names))
-            elif 'city' in field:
-                # probably a city
-                value = self.get_filling_message(cts.cities)
-            elif 'country' in field:
-                # probably a country
-                value = self.get_filling_message(cts.countries)
-            elif 'name' in field:
-                # probably a person name
-                value = self.get_filling_message(cts.names)
-            elif 'phone' in field or 'mobile' in field:
-                # probably a phone number
-                value = gen.generate_phone_number()
-            else:
-                # can be anything but we decide to put a person name
-                value = self.get_filling_message(cts.names)
+            value = self.get_not_choice_value(value_type, field)
             # we select a sentence with one slot name or two slots (one name one value)
             # so in total three cases: 0 - value, 1 - value_name, 2 - name_value
             number = randint(0, 2)
@@ -521,7 +535,7 @@ class User:
         except:
             print('Fail in finding a message to ask to complete a field')
             raise Exception
-            
+
     def intent_spelling(self):
         # we have two cases, when the spelling did not start already and when the spelling already started
         try:
@@ -529,36 +543,7 @@ class User:
             field = self.dialogue_state[u.slot_name].lower()
             if self.spelling_string == '':
                 # we are not in a choice, we should look if it is date, time, address not email, name, country, city
-                if value_type == u.date:
-                    value = gen.generate_date(self.get_filling_message(cts.months))
-                elif value_type == u.time:
-                    value = gen.generate_time()
-                elif value_type == u.text_area:
-                    value = self.get_filling_message(cts.messages)
-                elif value_type == u.email:
-                    name = self.get_filling_message(cts.names)
-                    value = gen.generate_email(name)
-                elif value_type == u.password:
-                    name = self.get_filling_message(cts.names)
-                    value = gen.generate_password(name)
-                elif 'address' in field:
-                    # probably a place address
-                    value = gen.generate_place_address(self.get_filling_message(cts.address_names))
-                elif 'city' in field:
-                    # probably a city
-                    value = self.get_filling_message(cts.cities)
-                elif 'country' in field:
-                    # probably a country
-                    value = self.get_filling_message(cts.countries)
-                elif 'name' in field:
-                    # probably a person name
-                    value = self.get_filling_message(cts.names)
-                elif 'phone' in field or 'mobile' in field:
-                    # probably a phone number
-                    value = gen.generate_phone_number()
-                else:
-                    # can be anything but we decide to put a person name
-                    value = self.get_filling_message(cts.names)
+                value = self.get_not_choice_value(value_type, field)
                 self.spelling_string = value
                 self.spelling_string_index = -1
                 print(f'[User - Input to be inserted by spelling: {value}]')

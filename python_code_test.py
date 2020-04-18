@@ -12,14 +12,26 @@ from random import randint
 from datetime import datetime
 from selenium import webdriver
 
-"""
-form_element = webdriver.Chrome()
+
+form_element = webdriver.Edge()
 # webPath = "http://www.polimi.it"
 webPath = u.form_url
 form_element.get(webPath)
 form_element.minimize_window()
 
+form_element = form_element.find_element_by_tag_name('form')
+fe = form_element
+url_tot = fe.parent.current_url
+# we troncate the url just before the question mark
+if '?' in url_tot:
+    url = url_tot[:url_tot.index('?')]
+else:
+    url = url_tot
+line = f'[browser_name: {fe.parent.name} - page_title: {fe.parent.title} - URL: {url}]'
+print(line)
+print('yes')
 
+"""
 form_elements = form_element.find_elements_by_tag_name('form')
 for form_element in form_elements:
 

@@ -76,7 +76,10 @@ class ReportWriter(Writer):
             if number == 0:
                 summary = 'SUMMARY\n\n\tThe is no completed session'
             else:
-                summary = f'SUMMARY\n\n\tThere are {number} completed sessions'
+                if number == 1:
+                    summary = f'SUMMARY\n\n\tThere is {number} completed dialogue'
+                else:
+                    summary = f'SUMMARY\n\n\tThere are {number} completed dialogues'
             report_log = self.construct_report_log()
             text = f'{header}\n\n{summary}\n\n{report_log}\n\n'
             self.create_file(text)
@@ -283,11 +286,11 @@ class ReportWriter(Writer):
             clarity_num = (total_slots) - total_spelling + m_k_factor
             line_text = 'Response Clarity Factor:'
             clarity_factor_content = self.add_line(line_text, tab=tab)
-            line_text = f"Number of required turns: {clarity_num} turns"
+            line_text = f"Number of required turns: v = {clarity_num} turns"
             clarity_factor_content = f'{clarity_factor_content}\n{self.add_line(line_text, tab=tabb)}'
-            line_text = f"Number of user's turns: {clarity_denom} turns"
+            line_text = f"Number of user's turns: w = {clarity_denom} turns"
             clarity_factor_content = f'{clarity_factor_content}\n{self.add_line(line_text, tab=tabb)}'
-            line_text = f"Clarity factor: {round(Decimal(clarity_num)/Decimal(clarity_denom), 4)}"
+            line_text = f"Clarity factor: f = {round(Decimal(clarity_num)/Decimal(clarity_denom), 4)}"
             clarity_factor_content = f'{clarity_factor_content}\n{self.add_line(line_text, tab=tabb)}'
             return clarity_factor_content
         except:

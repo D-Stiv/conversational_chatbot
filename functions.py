@@ -66,15 +66,15 @@ def is_compatible(slot_value, slot):
                 return False, text
             if value_type == u.time:
                 return c.verify_compatibility_time(slot_value)
-            if value_type in [u.number, u.integer, u.decimal]:
+            if value_type in u.number_types_list:
                 min_value = slot[u.min_value]
                 max_value = slot[u.max_value]
-                precision = slot[u.precision]
                 if value_type == u.number:
-                    return c.verify_compatibility_number(slot_value, precision, min_value, max_value)
+                    return c.verify_compatibility_number(slot_value, min_value, max_value)
                 if value_type == u.integer:
                     return c.verify_compatibility_integer(slot_value, min_value, max_value)
                 if value_type == u.decimal:
+                    precision = slot[u.precision]
                     return c.verify_compatibility_decimal(slot_value, precision, min_value, max_value)
         else:
             return c.verify_compatibility_generic(slot_value)
@@ -234,6 +234,14 @@ def get_input_fields(form_element):
                     max_value = elem.get_attribute('max')
                     if max_value is None:
                         max_value = float('inf')
+                    if slot[u.value_type] == u.decimal:
+                        precision = float('inf')
+                        min_value = float(min_value)
+                        max_value = float(max_value)  
+                    elif slot[u.value_type] in [u.integer, u.number]:
+                        precision = 0
+                        min_value = int(min_value)
+                        max_value = int(max_value)
                     step = elem.get_attribute('step')
                     if step is not None and step != u.VOID:
                         step = float(step)
@@ -241,14 +249,6 @@ def get_input_fields(form_element):
                         while step < 1:
                             step *= 10
                             precision += 1
-                    if slot[u.value_type] in [u.number, u.decimal]:
-                        precision = float('inf')
-                        min_value = float(min_value)
-                        max_value = float(max_value)  
-                    elif slot[u.value_type] == u.integer:
-                        precision = 0
-                        min_value = int(min_value)
-                        max_value = int(max_value)
                     slot[u.min_value] = min_value
                     slot[u.max_value] = max_value
                     slot[u.precision] = precision   
@@ -295,9 +295,9 @@ def get_choice_list(choice_name, choice_type, web_elem):
 
 def get_required_string(required):
     if required:
-        req = "This field is required"
+        req = "This field is required."
     else:
-        req = "This field is optional"
+        req = "This field is optional."
     return req
 
 

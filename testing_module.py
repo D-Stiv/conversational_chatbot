@@ -13,8 +13,8 @@ functional_summary = '\tTesting log for *functional* test cases'
 
 class Testing:
     bots_list = []
-    functional_testing_writer = LogWriter(destination_folder='testing_logs/functional')
-    structural_testing_writer = LogWriter(destination_folder='testing_logs/structural')
+    functional_testing_writer = LogWriter(destination_folder='testing_logs/functional', file_type='functional')
+    structural_testing_writer = LogWriter(destination_folder='testing_logs/structural', file_type='structural')
     counter = 0
 
     def start(self):

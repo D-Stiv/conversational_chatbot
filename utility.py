@@ -10,10 +10,10 @@ EXCEPTION_MESSAGE = "Something went wrong during the handling of this message.\n
 DEBUG = False
 
 # maximum number of dialogues
-MAX_DIALOGUES = 2
+MAX_DIALOGUES = 3
 
 # frequency control: interval for being able to manually stop the simulation in term of number of message exchanged
-CONTROL_FREQUENCE = 20
+CONTROL_FREQUENCE = 100
 
 # frequence to see the change in the slots in term of interactions
 NOTIFICATION_FREQUENCE = 10
@@ -53,10 +53,10 @@ train_model = False
 
 # decides whether or not write the log and the report
 write_log = False
-write_report = False
+write_report = True
 
 # whether or not we use the simulator
-simulation_enabled = False
+simulation_enabled = True
 
 # URL of the form to fill
 form_url = "http://localhost/ecobusiness/new-project-form/"

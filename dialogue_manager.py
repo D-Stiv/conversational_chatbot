@@ -35,7 +35,7 @@ class DialogueManager:
         self.in_session = False
         self.restart = False
         self.states_list = []
-        self.total_iterations = randint(1, u.MAX_DIALOGUES)
+        self.total_iterations = 3 #randint(1, u.MAX_DIALOGUES)
         self.iteration_number = 0
         self.number_fields = 0
 
@@ -65,7 +65,7 @@ class DialogueManager:
         if u.DEBUG:
             print(f'{class_name}: {function_name}')
         try:
-            # we start a session
+            # we start a dialogue
             self.in_session = True
             self.current_bot = self.bot_manager.get_bot(bot_tag)
             self.number_fields = len(self.current_bot.get_state().form_slots()) - 1
@@ -78,11 +78,7 @@ class DialogueManager:
             self.conversation_prologue()
             self.start_dialogue()
             if self.restart:
-                if self.iteration_number > self.total_iterations:
-                    return
-                # we increment the nunmer of iteration
-                self.iteration_number += 1
-                # we reset the botList for the new session
+                # we reset the botList for the new dialogue
                 self.bot_manager.botList = []
                 self.create_form_bots()
                 if u.DEBUG:
@@ -193,7 +189,7 @@ class DialogueManager:
             print(f'{class_name}: {function_name}')
         try:
             """Here we conclude the submission of the form and then we start or not a new
-            session. If we start a new session, we restart from the beginning.
+            dialogue. If we start a new dialogue, we restart from the beginning.
             Each time, the state is saved to write the final report"""
             newPageTitle = self.driver.title
             good_style = styles.get_good()
@@ -203,26 +199,34 @@ class DialogueManager:
             self.write_log()
             # we add the tate to the list
             self.states_list.append(self.current_bot.get_state())
+            # we increment the nunmer of iteration
+            self.iteration_number += 1
+            if self.iteration_number >= self.total_iterations:
+                return
             restart = 1
             if u.interactive_enabled or u.simulation_enabled:
                 restart = None
                 while restart is None:
-                    text = '\n[ALERT: Would you like to start a new session ?\t1- Yes\t0- No\n>>> Response: '
+                    text = '\n[ALERT: Would you like to start a new dialogue ?\t1- Yes\t0- No\n>>> Response: '
                     if u.simulation_enabled:
                         dialogue_state = self.get_dialogue_state()
                         answer = self.user.get_answer(dialogue_state)
                     else:
                         answer = input(text)
-                    restart = int(fn.convert_to_int(answer))
-                    if restart is None:
+                    try:
+                        restart = int(fn.convert_to_int(answer))
+                        if restart is None:
+                            sorry_style = styles.get_sorry()
+                            print(f'{sorry_style} your input is not valid')
+                    except:
                         sorry_style = styles.get_sorry()
                         print(f'{sorry_style} your input is not valid')
             if restart:
                 good_style = styles.get_good()
-                print(f'{good_style} we are going to start a new session')
+                print(f'{good_style} we are going to start a new dialogue')
                 self.restart = True
-                # in any case here in_session should be False to stop the session
-                # then we can restart a new session or completely finish
+                # in any case here in_session should be False to stop the dialogue
+                # then we can restart a new dialogue or completely finish
                 self.update_parameters()
             else:
                 self.restart = False
@@ -275,6 +279,12 @@ class DialogueManager:
                 u.value_type: value_type,
                 u.slot_name: next_slot_name
             }
+
+            if next_slot_name is not None and value_type in u.number_types_list:
+                dialogue_state[u.min_value] = slot[u.min_value]
+                dialogue_state[u.max_value] = slot[u.max_value]
+                dialogue_state[u.precision] = slot[u.precision]
+                
             return dialogue_state
         except:
             print('Fail to get the state of the dialogue')

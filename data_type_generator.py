@@ -60,7 +60,10 @@ def generate_time():
         else:
             separator_type = ''
             minute_part = ''
-        time = f'{hour_part}{separator_type}{minute_part} {meridian}'
+        if meridian == '':
+            time = f'{hour_part}{separator_type}{minute_part}'
+        else:
+            time = f'{hour_part}{separator_type}{minute_part} {meridian}'
         return time
     except:
         print(f'Fail to generate a time')
@@ -91,13 +94,9 @@ def give_minute():
     try:
         min_mm = 0
         max_mm = 59
-        double_digit = randint(0,1)
-        if double_digit:
-            minute = randint(min_mm, max_mm)
-            if minute < 10:
-                minute = f'0{minute}'
-        else:
-            minute = randint(min_mm, 9)
+        minute = randint(min_mm, max_mm)
+        if minute < 10:
+            minute = f'0{minute}'
         minute_part = f'{minute}'
         return minute_part
     except:
@@ -202,6 +201,66 @@ def generate_password(name):
     except:
         print('Fail to generate a password')
         raise Exception
+
+
+def generate_decimal(precision, min_value, max_value):
+    try:
+        # we select 6 cases: 0 to 5 precisions and 6 - 9 to take the exact precision
+        rand = randint(0, 10)
+        integer_part = generate_integer(min_value, max_value)
+        if rand == 0 or precision == 0:
+            return integer_part
+        # there is a decimal part
+        if ',' in integer_part:
+            delimiter = '.'
+        elif '.' in integer_part:
+            delimiter = '.'
+        else:
+            delimiter = get_random_value([',', '.'])
+        # we construct the decimal part
+        if rand in range(1, 6):
+            decimal_number = rand
+        else:
+            # rand in range(6, 10)
+            if precision == float('inf'):
+                decimal_number = 15
+            else:
+                decimal_number = precision
+        decimal_part = ''
+        while 0 < decimal_number:
+            digit = get_random_value(u.number_0_9)
+            if randint(0,1):
+                decimal_part = f'{digit}{decimal_part}'
+            else:
+                decimal_part = f'{decimal_part}{digit}'
+            decimal_number -= 1
+        number = f'{integer_part}{delimiter}{decimal_part}'
+        return number
+    except:
+        print('Fail to generate a decimal')
+        raise Exception
+
+
+def generate_integer(min_value, max_value):
+    try:
+        number = randint(min_value, max_value)
+        if number < 1000:
+            number = f'{number}'
+            return number
+        else:
+            # we have three separators ['', ',', '.'] we choose
+            new = f'{number}'
+            number = ''
+            separator = get_random_value(['', ',', '.'])
+            while len(new) > 3:
+                number = f'{new[-3:]}{separator}{number}'
+                new = new[:-3]
+            number = f'{new}{separator}{number}'
+            return number
+    except:
+        print('Fail to generate an integer')
+        raise Exception
+
 
 def get_random_value(my_list, number=1):
     # get a random value in a list of objects
