@@ -254,7 +254,8 @@ class ReportWriter(Writer):
         try:
             sum_length = 0
             for slot in slots:
-                sum_length += 1 + len(slot[u.slot_value])
+                if slot[u.slot_value] is not None:
+                    sum_length += 1 + len(slot[u.slot_value])
             return sum_length
         except:
             print('Fail to compute cummulative values')

@@ -1,0 +1,78 @@
+HEADER
+
+	Date and Hour: 2020-04-18 22:13:47.716858
+
+SUMMARY
+
+The dialogue counts a total of 35 interactions from which 51.43% (18 turns)  made by the chatbot and 48.57% (17 turns) made by the user.
+
+CONVERSATION LOG
+
+0. Chatbot - Start of the conversation, to end your should type <<stop>>.
+The title of this form is registration form sample. presents various fields types in order to test the different kinds of input we can have and different actions. this form contains the following fields first name, password, email address, birthday, arrival time, from which 2 are required and 3 are optional.
+here we go:
+ insert the value for the field first name. This field is required.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+ insert the first character
+1. User - Your input: can you explain what is first name?
+2. Chatbot - response: first name: your first name
+ complete the value for the field first name. This field is required.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+please insert the first character
+3. User - Your input: T
+4. Chatbot - response: please give the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+5. User - Your input: e
+6. Chatbot - response: please fill the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+7. User - Your input: space
+8. Chatbot - response:  insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+9. User - Your input: A
+10. Chatbot - response: please insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+[Situation of fields]
+{'first name': None, 'password': None, 'email address': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'first name'}
+11. User - Your input: r
+12. Chatbot - response:  complete the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+13. User - Your input: i
+14. Chatbot - response: please fill the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+15. User - Your input: k
+16. Chatbot - response: please complete the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to terminate the spelling
+17. User - Your input: i
+18. Chatbot - response: please fill the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to halt the spelling
+19. User - Your input: finish
+20. Chatbot - response:  fill the value for the field password. This field is required.
+[Situation of fields]
+{'first name': 'Te Ariki', 'password': None, 'email address': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'password'}
+21. User - Your input: fill password with _Annaix
+22. Chatbot - response: Web Form updated. All the required fields have been completed, from now on you can submit
+please complete the value for the field email address. This field is optional.
+23. User - Your input: here it is harry@polimi.fr
+24. Chatbot - response: well, 
+please fill the value for the field email address. This field is optional.
+25. User - Your input: the field email address is lesedira6@yahoo.cm
+26. Chatbot - response: Web Form updated. please give the value for the field birthday. This field is optional.
+27. User - Your input: value 26/08/1957 for birthday
+28. Chatbot - response:  insert the value for the field birthday. This field is optional.
+29. User - Your input: June 15 1928 is the value of birthday
+30. Chatbot - response: Web Form updated.  insert the value for the field arrival time. This field is optional.
+[Situation of fields]
+{'first name': 'Te Ariki', 'password': '_Annaix', 'email address': 'lesedira6@yahoo.cm', 'birthday': '15-06-1928', 'arrival time': None, 'requested_slot': 'arrival time'}
+31. User - Your input: arrival time 06.55 pm
+32. Chatbot - response: Web Form updated. All the fields have been completed. Here is the summary: 
+	first name ** : Te Ariki
+	password ** : _Annaix
+	email address : lesedira6@yahoo.cm
+	birthday : 15-06-1928
+	arrival time : 18:55
+ 
+Is everything okay for the submission?.
+The stars indicate the required fields
+33. User - Your input: can i submit the form now?
+34. Chatbot - fine you have been moved to the page with title HYPERCLINIC – Have a new vision of the world
+35. END OF THE CONVERSATION !!!
+
+Starting time: 2020-04-18 22:13:11.108778
+Ending time: 2020-04-18 22:13:47.708881
+Cummulative response time: 36 seconds
+Number of user requests: 17 requests
+Average response time: 2.12 sec/req
+Cummulative thinking time: 0 seconds
+

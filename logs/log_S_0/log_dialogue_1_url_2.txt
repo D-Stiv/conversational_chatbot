@@ -1,0 +1,78 @@
+HEADER
+
+	Date and Hour: 2020-04-18 21:17:14.811421
+
+SUMMARY
+
+The dialogue counts a total of 37 interactions from which 51.35% (19 turns)  made by the chatbot and 48.65% (18 turns) made by the user.
+
+CONVERSATION LOG
+
+0. Chatbot - Start of the conversation, to end your should type <<stop>>.
+The title of this form is test form sample number 2. presents various fields types in order to test the different kind of input we can have and different actions. this form contains the following fields number of persons, phone number, birthday, arrival time, from which 0 are required and 4 are optional.
+here we go:
+ give the value for the field number of persons. This field is optional.
+1. User - Your input: here it is 1
+2. Chatbot - response: okay, 
+ fill the value for the field number of persons. This field is optional.
+3. User - Your input: for the field number of persons the value i want to insert is 4
+4. Chatbot - response: Web Form updated.  insert the value for the field phone number. This field is optional.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+ insert the first character
+5. User - Your input: plus
+6. Chatbot - response:  complete the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+7. User - Your input: 5
+8. Chatbot - response: please give the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to terminate the spelling
+9. User - Your input: 3
+10. Chatbot - response:  give the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to conclude the spelling
+[Situation of fields]
+{'number of persons': '4', 'phone number': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'phone number'}
+11. User - Your input: 8
+12. Chatbot - response:  insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+13. User - Your input: 6
+14. Chatbot - response: please put the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to conclude the spelling
+15. User - Your input: 0
+16. Chatbot - response: please complete the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+17. User - Your input: 5
+18. Chatbot - response: please fill the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+19. User - Your input: 2
+20. Chatbot - response:  complete the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+[Situation of fields]
+{'number of persons': '4', 'phone number': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'phone number'}
+21. User - Your input: 5
+22. Chatbot - response: please complete the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+23. User - Your input: 3
+24. Chatbot - response:  complete the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+25. User - Your input: 4
+26. Chatbot - response: please put the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+27. User - Your input: end
+28. Chatbot - response: please fill the value for the field birthday. This field is optional.
+29. User - Your input: 01231913 is my birthday
+30. Chatbot - response: The Web Form has not been updated, problem of validity.
+The date <01231913> inserted is not valid
+The acceptable formats are the following: <YYYY-MM-DD>, <DD-MM-YYYY>, <MM-DD-YYYY>, <DDMMYYYY>, <DD month YYYY>, <month DD YYYY>
+please complete the value for the field birthday. This field is optional.
+[Situation of fields]
+{'number of persons': '4', 'phone number': '+5386052534', 'birthday': None, 'arrival time': None, 'requested_slot': 'birthday'}
+31. User - Your input: birthday has value 03/28/1984
+32. Chatbot - response: Web Form updated.  put the value for the field arrival time. This field is optional.
+33. User - Your input: 01:06 am is the value of arrival time
+34. Chatbot - response: Web Form updated. All the fields have been completed. Here is the summary: 
+	number of persons : 4
+	phone number : +5386052534
+	birthday : 28-03-1984
+	arrival time : 01:06
+ 
+Is everything fine for the submission?.
+The stars indicate the required fields
+35. User - Your input: submit
+36. Chatbot - good you have been moved to the page with title HYPERCLINIC – Have a new vision of the world
+37. END OF THE CONVERSATION !!!
+
+Starting time: 2020-04-18 21:16:36.112929
+Ending time: 2020-04-18 21:17:14.807431
+Cummulative response time: 38 seconds
+Number of user requests: 18 requests
+Average response time: 2.11 sec/req
+Cummulative thinking time: 0 seconds
+

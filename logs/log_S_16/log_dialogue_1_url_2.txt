@@ -1,0 +1,49 @@
+HEADER
+
+	Date and Hour: 2020-04-18 23:28:16.266221
+
+SUMMARY
+
+The dialogue counts a total of 21 interactions from which 52.38% (11 turns)  made by the chatbot and 47.62% (10 turns) made by the user.
+
+CONVERSATION LOG
+
+0. Chatbot - Start of the conversation, to end your should type <<stop>>.
+The title of this form is test form sample number 2. presents various fields types in order to test the different kind of input we can have and different actions. this form contains the following fields number of persons, phone number, birthday, arrival time, from which 0 are required and 4 are optional.
+here we go:
+ give the value for the field number of persons. This field is optional.
+1. User - Your input: i would like to fill the remaing fields and complete the procedure
+2. Chatbot - response:  give the value for the field number of persons. This field is optional.
+3. User - Your input: yes, please
+4. Chatbot - response: number of persons: the number of persons coming with you
+ put the value for the field number of persons. This field is optional.
+5. User - Your input: fill the form
+6. Chatbot - response:  insert the value for the field number of persons. This field is optional.
+7. User - Your input: here is the value 2
+8. Chatbot - response: The Web Form has not been updated, problem of validity.
+sorry the value here is not an integer,  insert a valid value.
+ give the value for the field number of persons. This field is optional.
+9. User - Your input: fill the form
+10. Chatbot - response:  give the value for the field number of persons. This field is optional.
+[Situation of fields]
+{'number of persons': None, 'phone number': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'number of persons'}
+11. User - Your input: i prefer not
+12. Chatbot - response: please fill the value for the field number of persons. This field is optional.
+13. User - Your input: can i have the list of the obligatory fields?
+14. Chatbot - response: sure the required fields are the following .
+ insert the value for the field number of persons. This field is optional.
+15. User - Your input: yes, continue
+16. Chatbot - response:  put the value for the field number of persons. This field is optional.
+17. User - Your input: may i submit now?
+18. Chatbot - response: we are about to submit, are you sure you want to continue with this action?
+19. User - Your input: submit
+20. Chatbot - fine you have been moved to the page with title HYPERCLINIC – Have a new vision of the world
+21. END OF THE CONVERSATION !!!
+
+Starting time: 2020-04-18 23:27:49.996485
+Ending time: 2020-04-18 23:28:16.261235
+Cummulative response time: 26 seconds
+Number of user requests: 10 requests
+Average response time: 2.60 sec/req
+Cummulative thinking time: 0 seconds
+

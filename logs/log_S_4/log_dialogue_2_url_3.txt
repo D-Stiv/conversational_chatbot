@@ -1,0 +1,51 @@
+HEADER
+
+	Date and Hour: 2020-04-18 22:44:58.503507
+
+SUMMARY
+
+The dialogue counts a total of 19 interactions from which 52.63% (10 turns)  made by the chatbot and 47.37% (9 turns) made by the user.
+
+CONVERSATION LOG
+
+0. Chatbot - Start of the conversation, to end your should type <<stop>>.
+The title of this form is test form sample number 3. presents various fields types in order to test the different kind of input we can have and different actions. this form contains the following fields gender, electronic devices, car, message, from which 1 are required and 3 are optional.
+here we go:
+Choose your gender in the following list male, female, other. This field is required.
+1. User - Your input: i want to submit
+2. Chatbot - response: we are about to submit, are you sure you want to continue with this action?
+3. User - Your input: filling process
+4. Chatbot - response: Choose your gender in the following list male, female, other. This field is required.
+5. User - Your input: submit the form
+6. Chatbot - response: we are about to submit, are you sure you want to continue with this action?
+7. User - Your input: go on with the filling
+8. Chatbot - response: Choose your gender in the following list male, female, other. This field is required.
+9. User - Your input: female is the gender
+10. Chatbot - response: Web Form updated. All the required fields have been completed, from now on you can submit
+Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional.
+[Situation of fields]
+{'gender': 'female', 'electronic devices': None, 'car': None, 'message': None, 'requested_slot': 'electronic devices'}
+11. User - Your input: electronic devices has value smart tv
+12. Chatbot - response: Web Form updated. Select the car in the following list Volvo, Saab, Fiat, Audi, Citroen, Ford, BMW, Chevrolet, Honda, Kia, Toyota, Lexus, Hyundai. This field is optional.
+13. User - Your input: i want to fill Audi
+14. Chatbot - response: please give the value for the field message. This field is optional.
+15. User - Your input: the value for the field is learn to walk before you run
+16. Chatbot - response: All the fields have been completed. Here is the summary: 
+	gender ** : female
+	electronic devices : ['electronic devices has', 'smart', 'tv']
+	car : audi
+	message : learn to walk before you run
+ 
+Is everything okay for the submission?.
+The stars indicate the required fields
+17. User - Your input: i want to submit
+18. Chatbot - correct you have been moved to the page with title HYPERCLINIC – Have a new vision of the world
+19. END OF THE CONVERSATION !!!
+
+Starting time: 2020-04-18 22:44:22.025116
+Ending time: 2020-04-18 22:44:58.498523
+Cummulative response time: 36 seconds
+Number of user requests: 9 requests
+Average response time: 4.00 sec/req
+Cummulative thinking time: 0 seconds
+

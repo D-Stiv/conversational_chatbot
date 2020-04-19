@@ -1,0 +1,202 @@
+HEADER
+
+	Date and Hour: 2020-04-18 21:27:00.501844
+
+SUMMARY
+
+The dialogue counts a total of 123 interactions from which 50.41% (62 turns)  made by the chatbot and 49.59% (61 turns) made by the user.
+
+CONVERSATION LOG
+
+0. Chatbot - Start of the conversation, to end your should type <<stop>>.
+The title of this form is registration form sample. presents various fields types in order to test the different kind of input we can have and different actions. this form contains the following fields first name, last name, mark, password, email address, phone number, number of persons, passengers, birthday, arrival time, living address, gender, electronic devices, car, message, from which 4 are required and 11 are optional.
+here we go:
+please complete the value for the field first name. This field is optional.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+ insert the first character
+1. User - Your input: T
+2. Chatbot - response:  put the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+3. User - Your input: i
+4. Chatbot - response:  insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+5. User - Your input: n
+6. Chatbot - response: please fill the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+7. User - Your input: g
+8. Chatbot - response:  give the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to halt the spelling
+9. User - Your input: t
+10. Chatbot - response:  give the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+[Situation of fields]
+{'first name': None, 'last name': None, 'mark': None, 'password': None, 'email address': None, 'phone number': None, 'number of persons': None, 'passengers': None, 'birthday': None, 'arrival time': None, 'living address': None, 'gender': None, 'electronic devices': None, 'car': None, 'message': None, 'requested_slot': 'first name'}
+11. User - Your input: i
+12. Chatbot - response:  put the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+13. User - Your input: n
+14. Chatbot - response: please put the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to halt the spelling
+15. User - Your input: g
+16. Chatbot - response: please put the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+17. User - Your input: close
+18. Chatbot - response: Web Form updated. Now you are going to spell the value for the field last name.
+please insert the first character
+19. User - Your input: P
+20. Chatbot - response: please give the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+[Situation of fields]
+{'first name': 'Tingting', 'last name': None, 'mark': None, 'password': None, 'email address': None, 'phone number': None, 'number of persons': None, 'passengers': None, 'birthday': None, 'arrival time': None, 'living address': None, 'gender': None, 'electronic devices': None, 'car': None, 'message': None, 'requested_slot': 'last name'}
+21. User - Your input: a
+22. Chatbot - response: please give the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+23. User - Your input: t
+24. Chatbot - response: please put the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+25. User - Your input: r
+26. Chatbot - response:  fill the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to conclude the spelling
+27. User - Your input: i
+28. Chatbot - response:  complete the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to conclude the spelling
+29. User - Your input: c
+30. Chatbot - response: please insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+[Situation of fields]
+{'first name': 'Tingting', 'last name': None, 'mark': None, 'password': None, 'email address': None, 'phone number': None, 'number of persons': None, 'passengers': None, 'birthday': None, 'arrival time': None, 'living address': None, 'gender': None, 'electronic devices': None, 'car': None, 'message': None, 'requested_slot': 'last name'}
+31. User - Your input: i
+32. Chatbot - response: please give the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+33. User - Your input: a
+34. Chatbot - response:  complete the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to halt the spelling
+35. User - Your input: conclude
+36. Chatbot - response: please give the value for the field mark. This field is optional.
+37. User - Your input: for the field mark the value i want to insert is 26.44
+38. Chatbot - response: Web Form updated. please insert the value for the field password. This field is optional.
+39. User - Your input: the value i want to insert is Junior
+40. Chatbot - response: please fill the value for the field email address. This field is required.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+ insert the first character
+[Situation of fields]
+{'first name': 'Tingting', 'last name': 'Patricia', 'mark': '26,44', 'password': 'Junior', 'email address': None, 'phone number': None, 'number of persons': None, 'passengers': None, 'birthday': None, 'arrival time': None, 'living address': None, 'gender': None, 'electronic devices': None, 'car': None, 'message': None, 'requested_slot': 'email address'}
+41. User - Your input: 2
+42. Chatbot - response:  put the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to halt the spelling
+43. User - Your input: a
+44. Chatbot - response:  insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+45. User - Your input: n
+46. Chatbot - response: please insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+47. User - Your input: d
+48. Chatbot - response:  fill the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+49. User - Your input: r
+50. Chatbot - response: please give the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+[Situation of fields]
+{'first name': 'Tingting', 'last name': 'Patricia', 'mark': '26,44', 'password': 'Junior', 'email address': None, 'phone number': None, 'number of persons': None, 'passengers': None, 'birthday': None, 'arrival time': None, 'living address': None, 'gender': None, 'electronic devices': None, 'car': None, 'message': None, 'requested_slot': 'email address'}
+51. User - Your input: e
+52. Chatbot - response:  fill the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+53. User - Your input: a
+54. Chatbot - response:  complete the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to terminate the spelling
+55. User - Your input: at
+56. Chatbot - response: please put the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+57. User - Your input: g
+58. Chatbot - response: please fill the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+59. User - Your input: m
+60. Chatbot - response:  put the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to conclude the spelling
+[Situation of fields]
+{'first name': 'Tingting', 'last name': 'Patricia', 'mark': '26,44', 'password': 'Junior', 'email address': None, 'phone number': None, 'number of persons': None, 'passengers': None, 'birthday': None, 'arrival time': None, 'living address': None, 'gender': None, 'electronic devices': None, 'car': None, 'message': None, 'requested_slot': 'email address'}
+61. User - Your input: a
+62. Chatbot - response:  put the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to conclude the spelling
+63. User - Your input: i
+64. Chatbot - response:  give the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to halt the spelling
+65. User - Your input: l
+66. Chatbot - response:  put the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+67. User - Your input: dot
+68. Chatbot - response: please insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to halt the spelling
+69. User - Your input: c
+70. Chatbot - response:  put the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+[Situation of fields]
+{'first name': 'Tingting', 'last name': 'Patricia', 'mark': '26,44', 'password': 'Junior', 'email address': None, 'phone number': None, 'number of persons': None, 'passengers': None, 'birthday': None, 'arrival time': None, 'living address': None, 'gender': None, 'electronic devices': None, 'car': None, 'message': None, 'requested_slot': 'email address'}
+71. User - Your input: m
+72. Chatbot - response: please put the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+73. User - Your input: terminate
+74. Chatbot - response:  give the value for the field phone number. This field is optional.
+75. User - Your input: for the field phone number the value i want to insert is +38284277832
+76. Chatbot - response: Web Form updated.  fill the value for the field number of persons. This field is required.
+77. User - Your input: the value 4 is for number of persons
+78. Chatbot - response: The Web Form has not been updated, problem of validity.
+sorry the value for is not a number, please put a valid value.
+ fill the value for the field passengers. This field is optional.
+79. User - Your input: the value i want to insert is 4
+80. Chatbot - response: please fill the value for the field birthday. This field is optional.
+[Situation of fields]
+{'first name': 'Tingting', 'last name': 'Patricia', 'mark': '26,44', 'password': 'Junior', 'email address': '2andrea@gmail.cm', 'phone number': '+38284277832', 'number of persons': '4', 'passengers': '4', 'birthday': None, 'arrival time': None, 'living address': None, 'gender': None, 'electronic devices': None, 'car': None, 'message': None, 'requested_slot': 'birthday'}
+81. User - Your input: 23041936 is my birthday
+82. Chatbot - response: Web Form updated.  give the value for the field arrival time. This field is required.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+please insert the first character
+83. User - Your input: 2
+84. Chatbot - response:  complete the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to terminate the spelling
+85. User - Your input: 3
+86. Chatbot - response: please insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to halt the spelling
+87. User - Your input: close
+88. Chatbot - response: The time <23> you inserted is not valid.
+The acceptable formats are the following: <HH:MM>, <HHMM>, <HH:MM am>, <H>, <H am>, <H:MM>, <H:MM am>
+ complete the value for the field arrival time. This field is required.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+please insert the first character
+89. User - Your input: 6
+90. Chatbot - response:  i did not understand your request, could you reformulate please?
+[Situation of fields]
+{'first name': 'Tingting', 'last name': 'Patricia', 'mark': '26,44', 'password': 'Junior', 'email address': '2andrea@gmail.cm', 'phone number': '+38284277832', 'number of persons': '4', 'passengers': '4', 'birthday': '23-04-1936', 'arrival time': None, 'living address': None, 'gender': None, 'electronic devices': None, 'car': None, 'message': None, 'requested_slot': 'arrival time'}
+91. User - Your input: the value for the field is 9 am
+92. Chatbot - response:  complete the value for the field living address. This field is required.
+93. User - Your input: i want to insert the value pzle Gerty Cori 44 for the field living address
+94. Chatbot - response: Web Form updated. All the required fields have been completed, from now on you can submit
+Choose your gender in the following list male, female, other. This field is optional.
+95. User - Your input: the field gender has value female
+96. Chatbot - response: Web Form updated. Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional.
+97. User - Your input: may i complete the value of blutooth earphones?
+98. Chatbot - response: sorry the choice may is not valid for the field electronic devices choose one in the following list: ['none', 'computer', 'smartphone', 'tablet', 'smart watch', 'smart tv', 'blutooth earphones', 'camera', 'smart glasses']
+99. User - Your input: electronic devices smart tv, complete the value smart glasses
+100. Chatbot - response: Web Form updated. Select the car in the following list Volvo, Saab, Fiat, Audi, Citroen, Ford, BMW, Chevrolet, Honda, Kia, Toyota, Lexus, Hyundai. This field is optional.
+[Situation of fields]
+{'first name': 'Tingting', 'last name': 'Patricia', 'mark': '26,44', 'password': 'Junior', 'email address': '2andrea@gmail.cm', 'phone number': '+38284277832', 'number of persons': '4', 'passengers': '4', 'birthday': '23-04-1936', 'arrival time': '09:00', 'living address': 'pzle Gerty Cori 44', 'gender': 'female', 'electronic devices': ['smart', 'glasses'], 'car': None, 'message': None, 'requested_slot': 'car'}
+101. User - Your input: value Honda for car
+102. Chatbot - response:  the choice honda for car is not valid for the field car choose one in the following list: ['volvo', 'saab', 'fiat', 'audi', 'citroen', 'ford', 'bmw', 'chevrolet', 'honda', 'kia', 'toyota', 'lexus', 'hyundai']
+103. User - Your input: complete volvo
+104. Chatbot - response: Select the car in the following list volvo, saab, fiat, audi, citroen, ford, bmw, chevrolet, honda, kia, toyota, lexus, hyundai. This field is optional.
+105. User - Your input: chevrolet for car
+106. Chatbot - response: sorry the choice chevrolet for car is not valid for the field car choose one in the following list: ['volvo', 'saab', 'fiat', 'audi', 'citroen', 'ford', 'bmw', 'chevrolet', 'honda', 'kia', 'toyota', 'lexus', 'hyundai']
+107. User - Your input: is it possible to add the bmw?
+108. Chatbot - response: Which field exactly do you want to change, and which value do you want to put for that field?
+109. User - Your input: car has value chevrolet
+110. Chatbot - response: The Web Form has not been updated, problem of validity.
+sorry the choice car has is not valid for the field carplease choose one in the following list: ['volvo', 'saab', 'fiat', 'audi', 'citroen', 'ford', 'bmw', 'chevrolet', 'honda', 'kia', 'toyota', 'lexus', 'hyundai']
+[Situation of fields]
+{'first name': 'Tingting', 'last name': 'Patricia', 'mark': '26,44', 'password': 'Junior', 'email address': '2andrea@gmail.cm', 'phone number': '+38284277832', 'number of persons': '4', 'passengers': '4', 'birthday': '23-04-1936', 'arrival time': '09:00', 'living address': 'pzle Gerty Cori 44', 'gender': 'female', 'electronic devices': ['smart', 'glasses'], 'car': None, 'message': None, 'requested_slot': 'car'}
+111. User - Your input: i want to insert the value citroen for the field car
+112. Chatbot - response: Select the car in the following list volvo, saab, fiat, audi, citroen, ford, bmw, chevrolet, honda, kia, toyota, lexus, hyundai. This field is optional.
+113. User - Your input: i want to insert the value chevrolet for the field car
+114. Chatbot - response: Select the car in the following list volvo, saab, fiat, audi, citroen, ford, bmw, chevrolet, honda, kia, toyota, lexus, hyundai. This field is optional.
+115. User - Your input: i want to complete the value of toyota
+116. Chatbot - response:  complete the value for the field message. This field is optional.
+117. User - Your input: my message is it's no use crying over spilt milk
+118. Chatbot - response: please give the value for the field message. This field is optional.
+119. User - Your input: this is the value fall seven times stand up eight
+120. Chatbot - response: All the fields have been completed. Here is the summary: 
+	first name : Tingting
+	last name : Patricia
+	mark : 26,44
+	password : Junior
+	email address ** : 2andrea@gmail.cm
+	phone number : +38284277832
+	number of persons ** : 4
+	passengers : 4
+	birthday : 23-04-1936
+	arrival time ** : 09:00
+	living address ** : pzle Gerty Cori 44
+	gender : female
+	electronic devices : ['smart', 'glasses']
+	car : toyota
+	message : fall seven times stand up eight
+ 
+Is everything well for the submission?.
+The stars indicate the required fields
+[Situation of fields]
+{'first name': 'Tingting', 'last name': 'Patricia', 'mark': '26,44', 'password': 'Junior', 'email address': '2andrea@gmail.cm', 'phone number': '+38284277832', 'number of persons': '4', 'passengers': '4', 'birthday': '23-04-1936', 'arrival time': '09:00', 'living address': 'pzle Gerty Cori 44', 'gender': 'female', 'electronic devices': ['smart', 'glasses'], 'car': 'toyota', 'message': 'fall seven times stand up eight', 'requested_slot': None}
+121. User - Your input: submit the form
+122. Chatbot - fine you have been moved to the page with title HYPERCLINIC – Have a new vision of the world
+123. END OF THE CONVERSATION !!!
+
+Starting time: 2020-04-18 21:24:55.525135
+Ending time: 2020-04-18 21:27:00.495861
+Cummulative response time: 124 seconds
+Number of user requests: 61 requests
+Average response time: 2.03 sec/req
+Cummulative thinking time: 0 seconds
+

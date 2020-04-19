@@ -83,8 +83,8 @@ class Form:
                 self.state.set_waiting_message(None)
                 utterance = self.findActionAndRun(intent=intent)
             elif intent not in [u.spelling_action, u.fill_form_action] and self.state.get_current_spelling_input_value() != '':
-                # we are going to find a solution ad hoc for the spelling 'dot'
-                if self.state.get_latest_message()["text"] == 'dot':
+                # we are going to find a solution ad hoc for the spelling special characters
+                if self.state.get_latest_message()["text"] in u.special_characters:
                     intent = u.spelling_action
                     utterance = self.findActionAndRun(intent=intent)
                     return utterance

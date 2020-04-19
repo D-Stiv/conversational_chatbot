@@ -38,7 +38,7 @@ class State:
             u.reset_alarm_enabled: False,
             u.submit_alarm_enabled: False,
             u.warning_present: False,
-            u.all_required_filled: False,
+            u.all_required_filled: not (self.num_total_fields - self.num_optional_fields),
             u.possible_next_action: None,
             u.warning_message: '',
             u.next_slot: first_slot[u.slot_name],   # in principle it should never be u.REQUESTED_SLOT

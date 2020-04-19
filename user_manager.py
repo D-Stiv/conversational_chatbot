@@ -345,7 +345,8 @@ class User:
                 text = '\n[ALERT: Would you like to start a new dialogue ?\t1- Yes\t0- No\n>>> Response: '
                 answer = input(text)
             else:
-                answer = f'{number}'
+                #answer = f'{number}'
+                answer = '1'
             return answer
         except:
             print('Fail to get an answer for the state "08"')

@@ -722,8 +722,9 @@ class RegistrationForm(Form):
             if not self.state.get_all_required_filled():
                 remaining_required = self.state.get_fields_list(
                     remaining=True, only_required=True)
-                string = ("not all the required fields are completed.\n you still have" +
+                string = ("Not all the required fields are completed.\n you still have" +
                           f" to complete the following required fields {remaining_required}")
+                return string
             if u.DEBUG:
                 print("inside submitForm")
             if not self.state.get_submit_alarm_enabled():

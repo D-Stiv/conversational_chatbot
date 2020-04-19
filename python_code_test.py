@@ -13,29 +13,14 @@ from datetime import datetime
 from selenium import webdriver
 import copy
 
-
+"""
 form_element = webdriver.Edge()
 # webPath = "http://www.polimi.it"
 webPath = u.form_url
 form_element.get(webPath)
 form_element.minimize_window()
 
-form_element = form_element.find_element_by_tag_name('form')
-try:
-    fe = copy.copy(form_element)
-except:
-    print('crash')
-url_tot = fe.parent.current_url
-# we troncate the url just before the question mark
-if '?' in url_tot:
-    url = url_tot[:url_tot.index('?')]
-else:
-    url = url_tot
-line = f'[browser_name: {fe.parent.name} - page_title: {fe.parent.title} - URL: {url}]'
-print(line)
-print('yes')
 
-"""
 form_elements = form_element.find_elements_by_tag_name('form')
 for form_element in form_elements:
 
@@ -90,3 +75,5 @@ try:
 except:
     print('Fail')
 """
+
+print(not 4-4)

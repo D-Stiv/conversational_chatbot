@@ -1,0 +1,62 @@
+HEADER
+
+	Date and Hour: 2020-04-18 23:32:10.867814
+
+SUMMARY
+
+The dialogue counts a total of 25 interactions from which 52.00% (13 turns)  made by the chatbot and 48.00% (12 turns) made by the user.
+
+CONVERSATION LOG
+
+0. Chatbot - Start of the conversation, to end your should type <<stop>>.
+The title of this form is registration form sample. presents various fields types in order to test the different kinds of input we can have and different actions. this form contains the following fields first name, password, email address, birthday, arrival time, from which 2 are required and 3 are optional.
+here we go:
+please fill the value for the field first name. This field is required.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+ insert the first character
+1. User - Your input: T
+2. Chatbot - response: please fill the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+3. User - Your input: h
+4. Chatbot - response: please give the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+5. User - Your input: o
+6. Chatbot - response: please put the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+7. User - Your input: m
+8. Chatbot - response: please give the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+9. User - Your input: a
+10. Chatbot - response: please fill the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+[Situation of fields]
+{'first name': None, 'password': None, 'email address': None, 'birthday': None, 'arrival time': None, 'requested_slot': 'first name'}
+11. User - Your input: s
+12. Chatbot - response: please put the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+13. User - Your input: finished
+14. Chatbot - response: please insert the value for the field password. This field is required.
+15. User - Your input: my password is Prince
+16. Chatbot - response: Web Form updated. All the required fields have been completed, from now on you can submit
+ complete the value for the field email address. This field is optional.
+17. User - Your input: i want to insert the value rhmoeatat@polimi.uk
+18. Chatbot - response:  give the value for the field birthday. This field is optional.
+19. User - Your input: birthday has value 28-11-1994
+20. Chatbot - response: Web Form updated.  complete the value for the field arrival time. This field is optional.
+[Situation of fields]
+{'first name': 'Thomas', 'password': 'Prince', 'email address': 'rhmoeatat@polimi.uk', 'birthday': '28-11-1994', 'arrival time': None, 'requested_slot': 'arrival time'}
+21. User - Your input: arrival time 3
+22. Chatbot - response: Web Form updated. All the fields have been completed. Here is the summary: 
+	first name ** : Thomas
+	password ** : Prince
+	email address : rhmoeatat@polimi.uk
+	birthday : 28-11-1994
+	arrival time : 03:00
+ 
+Is everything well for the submission?.
+The stars indicate the required fields
+23. User - Your input: please can i submit the form?
+24. Chatbot - okay you have been moved to the page with title HYPERCLINIC – Have a new vision of the world
+25. END OF THE CONVERSATION !!!
+
+Starting time: 2020-04-18 23:31:44.186183
+Ending time: 2020-04-18 23:32:10.863823
+Cummulative response time: 26 seconds
+Number of user requests: 12 requests
+Average response time: 2.17 sec/req
+Cummulative thinking time: 0 seconds
+

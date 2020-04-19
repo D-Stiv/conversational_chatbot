@@ -117,6 +117,8 @@ class DialogueManager:
                 driver = webdriver.Edge()
             else:
                 driver = webdriver.Chrome()
+            i = self.iteration_number % len(u.urls)
+            self.url = u.urls[i]
             driver.get(self.url)
             driver.minimize_window()
             self.driver = driver
@@ -213,8 +215,8 @@ class DialogueManager:
             self.states_list.append(self.current_bot.get_state())
             # we increment the nunmer of iteration
             self.iteration_number += 1
-            # we sample the reports
-            if self.iteration_number in [1,2,3,5,10,20,50,100,150]:
+            # we sample the reports not to loose everything in case of problem
+            if self.iteration_number in [2,5,8]:
                 # write the report
                 w.ReportWriter(self.states_list).start()
             if self.iteration_number >= self.total_iterations:

@@ -1,0 +1,52 @@
+HEADER
+
+	Date and Hour: 2020-04-18 22:38:30.154158
+
+SUMMARY
+
+The dialogue counts a total of 17 interactions from which 52.94% (9 turns)  made by the chatbot and 47.06% (8 turns) made by the user.
+
+CONVERSATION LOG
+
+0. Chatbot - Start of the conversation, to end your should type <<stop>>.
+The title of this form is test form sample number 3. presents various fields types in order to test the different kind of input we can have and different actions. this form contains the following fields gender, electronic devices, car, message, from which 1 are required and 3 are optional.
+here we go:
+Choose your gender in the following list male, female, other. This field is required.
+1. User - Your input: may i complete the value of female?
+2. Chatbot - response: The Web Form has not been updated, problem of validity.
+ the choice may is not valid for the field gender choose one in the following list: ['male', 'female', 'other']
+3. User - Your input: for the gender i want to insert male
+4. Chatbot - response: Web Form updated. All the required fields have been completed, from now on you can submit
+Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional.
+5. User - Your input: give me all the remaining fields which are required
+6. Chatbot - response: sure the remaining required fields are the following . 
+Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional.
+7. User - Your input: give me all the remaining fields which are not required
+8. Chatbot - response: sure the remaining optional fields are the following electronic devices, car, message.
+Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional.
+9. User - Your input: insert the computer
+10. Chatbot - response: Select the car in the following list Volvo, Saab, Fiat, Audi, Citroen, Ford, BMW, Chevrolet, Honda, Kia, Toyota, Lexus, Hyundai. This field is optional.
+[Situation of fields]
+{'gender': 'male', 'electronic devices': 'computer', 'car': None, 'message': None, 'requested_slot': 'car'}
+11. User - Your input: Citroen is the vslue for the field car
+12. Chatbot - response: Web Form updated. please fill the value for the field message. This field is optional.
+13. User - Your input: here is the value clothes do not make the man
+14. Chatbot - response: Web Form updated. All the fields have been completed. Here is the summary: 
+	gender ** : male
+	electronic devices : computer
+	car : citroen
+	message : here
+ 
+Is everything okay for the submission?.
+The stars indicate the required fields
+15. User - Your input: submit the form
+16. Chatbot - good you have been moved to the page with title HYPERCLINIC – Have a new vision of the world
+17. END OF THE CONVERSATION !!!
+
+Starting time: 2020-04-18 22:38:10.995404
+Ending time: 2020-04-18 22:38:30.148174
+Cummulative response time: 19 seconds
+Number of user requests: 8 requests
+Average response time: 2.38 sec/req
+Cummulative thinking time: 0 seconds
+

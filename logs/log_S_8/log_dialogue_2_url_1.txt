@@ -1,0 +1,92 @@
+HEADER
+
+	Date and Hour: 2020-04-18 23:15:49.663565
+
+SUMMARY
+
+The dialogue counts a total of 45 interactions from which 51.11% (23 turns)  made by the chatbot and 48.89% (22 turns) made by the user.
+
+CONVERSATION LOG
+
+0. Chatbot - Start of the conversation, to end your should type <<stop>>.
+The title of this form is  there is no title provided for this form. sorry there is no explanation provided for this form. this form contains the following fields first name, last name, mark, password, email address, from which 2 are required and 3 are optional.
+here we go:
+ complete the value for the field first name. This field is required.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+ insert the first character
+1. User - Your input: X
+2. Chatbot - response: please insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+3. User - Your input: would it be possible to have the remaining fields list?
+4. Chatbot - response: Do you want to save the state of the field that you started spelling?
+In case of negative response, that input will simply be canceled
+5. User - Your input: no, it was an error
+6. Chatbot - response: Please i would like to have a clear answer.
+Would you like to save the state of the field that you started spelling ?
+In case of negative response, that input will simply be canceled
+7. User - Your input: no
+8. Chatbot - response:  the remaining fields present in this form are the following first name, last name, mark, password, email address.
+ fill the value for the field first name. This field is required.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+please insert the first character
+9. User - Your input: A
+10. Chatbot - response:  put the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+[Situation of fields]
+{'first name': None, 'last name': None, 'mark': None, 'password': None, 'email address': None, 'requested_slot': 'first name'}
+11. User - Your input: l
+12. Chatbot - response:  complete the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+13. User - Your input: e
+14. Chatbot - response:  fill the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to terminate the spelling
+15. User - Your input: s
+16. Chatbot - response:  insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+17. User - Your input: s
+18. Chatbot - response:  put the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to conclude the spelling
+19. User - Your input: a
+20. Chatbot - response:  fill the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+[Situation of fields]
+{'first name': None, 'last name': None, 'mark': None, 'password': None, 'email address': None, 'requested_slot': 'first name'}
+21. User - Your input: n
+22. Chatbot - response: please insert the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to conclude the spelling
+23. User - Your input: d
+24. Chatbot - response: please insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to terminate the spelling
+25. User - Your input: r
+26. Chatbot - response:  complete the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to finish the spelling
+27. User - Your input: o
+28. Chatbot - response:  insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to halt the spelling
+29. User - Your input: finished
+30. Chatbot - response: Web Form updated. Now you are going to spell the value for the field last name.
+please insert the first character
+[Situation of fields]
+{'first name': 'Alessandro', 'last name': None, 'mark': None, 'password': None, 'email address': None, 'requested_slot': 'last name'}
+31. User - Your input: Y
+32. Chatbot - response: please insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to halt the spelling
+33. User - Your input: i
+34. Chatbot - response: please give the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+35. User - Your input: finish
+36. Chatbot - response:  give the value for the field mark. This field is optional.
+37. User - Your input: 27,41 is my mark
+38. Chatbot - response: Web Form updated. please put the value for the field password. This field is optional.
+39. User - Your input: the field password is Melokuhle
+40. Chatbot - response: Web Form updated. please give the value for the field email address. This field is required.
+[Situation of fields]
+{'first name': 'Alessandro', 'last name': 'Yi', 'mark': '27,41', 'password': 'Melokuhle', 'email address': None, 'requested_slot': 'email address'}
+41. User - Your input: email address is tbvaeauin@polimi.fr
+42. Chatbot - response: Web Form updated. All the fields have been completed. Here is the summary: 
+	first name ** : Alessandro
+	last name : Yi
+	mark : 27,41
+	password : Melokuhle
+	email address ** : tbvaeauin@polimi.fr
+ 
+Is everything fine for the submission?.
+The stars indicate the required fields
+43. User - Your input: may i submit now?
+44. Chatbot - good you have been moved to the page with title HYPERCLINIC – Have a new vision of the world
+45. END OF THE CONVERSATION !!!
+
+Starting time: 2020-04-18 23:15:09.262663
+Ending time: 2020-04-18 23:15:49.657581
+Cummulative response time: 40 seconds
+Number of user requests: 22 requests
+Average response time: 1.82 sec/req
+Cummulative thinking time: 0 seconds
+

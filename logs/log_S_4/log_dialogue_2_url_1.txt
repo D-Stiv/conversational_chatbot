@@ -1,0 +1,96 @@
+HEADER
+
+	Date and Hour: 2020-04-18 22:42:52.508699
+
+SUMMARY
+
+The dialogue counts a total of 47 interactions from which 51.06% (24 turns)  made by the chatbot and 48.94% (23 turns) made by the user.
+
+CONVERSATION LOG
+
+0. Chatbot - Start of the conversation, to end your should type <<stop>>.
+The title of this form is  there is no title provided for this form. sorry there is no explanation provided for this form. this form contains the following fields first name, last name, mark, password, email address, from which 2 are required and 3 are optional.
+here we go:
+ fill the value for the field first name. This field is required.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+ insert the first character
+1. User - Your input: i want to submit
+2. Chatbot - response: we are about to submit, are you sure you want to continue with this action?
+3. User - Your input: i want to do what is necessary to complete the procedure
+4. Chatbot - response:  put the value for the field first name. This field is required.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+ insert the first character
+5. User - Your input: please give me some explanations about this form
+6. Chatbot - response:  here it is: sorry there is no explanation provided for this form.
+please give the value for the field first name. This field is required.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+ insert the first character
+7. User - Your input: sure
+8. Chatbot - response: Your input sure is not valid, try to insert only the character again please
+9. User - Your input: continue to submit the form
+10. Chatbot - response: we are about to submit, are you sure you want to continue with this action?
+[Situation of fields]
+{'first name': None, 'last name': None, 'mark': None, 'password': None, 'email address': None, 'requested_slot': 'first name'}
+11. User - Your input: turn where i was in the procedure
+12. Chatbot - response: okay, 
+please fill the value for the field first name. This field is required.
+Since it is a field requiring the spelling, we are going to take its value one character at a time.
+ insert the first character
+13. User - Your input: R
+14. Chatbot - response: please put the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to halt the spelling
+15. User - Your input: a
+16. Chatbot - response: please give the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to terminate the spelling
+17. User - Your input: w
+18. Chatbot - response:  put the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+19. User - Your input: i
+20. Chatbot - response:  complete the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+[Situation of fields]
+{'first name': None, 'last name': None, 'mark': None, 'password': None, 'email address': None, 'requested_slot': 'first name'}
+21. User - Your input: r
+22. Chatbot - response:  insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+23. User - Your input: i
+24. Chatbot - response: please give the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to halt the spelling
+25. User - Your input: terminate
+26. Chatbot - response: Web Form updated. Now you are going to spell the value for the field last name.
+please insert the first character
+27. User - Your input: T
+28. Chatbot - response: please insert the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+29. User - Your input: e
+30. Chatbot - response: please fill the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+[Situation of fields]
+{'first name': 'Rawiri', 'last name': None, 'mark': None, 'password': None, 'email address': None, 'requested_slot': 'last name'}
+31. User - Your input: i
+32. Chatbot - response: please fill the next character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to close the spelling
+33. User - Your input: k
+34. Chatbot - response: please complete the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+35. User - Your input: i
+36. Chatbot - response:  put the following character, remember that you can use the expression SPACE for the blank and the expression TERMINATE to end the spelling
+37. User - Your input: halt
+38. Chatbot - response:  complete the value for the field mark. This field is optional.
+39. User - Your input: the mark is 28
+40. Chatbot - response: Web Form updated. please fill the value for the field password. This field is optional.
+[Situation of fields]
+{'first name': 'Rawiri', 'last name': 'Teiki', 'mark': '28', 'password': None, 'email address': None, 'requested_slot': 'password'}
+41. User - Your input: the value for the field is Chloemg
+42. Chatbot - response: please fill the value for the field email address. This field is required.
+43. User - Your input: fill email address with q9avani@gmail.cm
+44. Chatbot - response: Web Form updated. All the fields have been completed. Here is the summary: 
+	first name ** : Rawiri
+	last name : Teiki
+	mark : 28
+	password : Chloemg
+	email address ** : q9avani@gmail.cm
+ 
+Is everything good for the submission?.
+The stars indicate the required fields
+45. User - Your input: i would like to submit the form
+46. Chatbot - okay you have been moved to the page with title HYPERCLINIC – Have a new vision of the world
+47. END OF THE CONVERSATION !!!
+
+Starting time: 2020-04-18 22:42:12.114748
+Ending time: 2020-04-18 22:42:52.504710
+Cummulative response time: 40 seconds
+Number of user requests: 23 requests
+Average response time: 1.74 sec/req
+Cummulative thinking time: 0 seconds
+
