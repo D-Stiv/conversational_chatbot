@@ -169,6 +169,11 @@ class RegistrationForm(Form):
                 if len(slot_value_list) == 1 and len(slot_name_list) == 0 and (self.state.get_possible_next_action() == u.fill_field_action or intent == u.fill_field_action):
                     # we are inserting a value for the current field
                     slot_name = self.state.get_next_slot(only_name=True)   # return also if the next slot is required or not
+                    # We make verify if the current field is spelling
+                    spelling_fields = self.state.get_spelling_fields()
+                    if slot_name in spelling_fields:
+                        string = self.fillSpellingCamp()
+                        return string
                     slot_value = slot_value_list[0]
                     # the slot value can change, being put in the right format
                     # we go to the filling procedure insuring that the field is not spelling
@@ -271,9 +276,6 @@ class RegistrationForm(Form):
             if len(self.state.get_spelling_list()) == 0:
                 string = self.fillGenericCamp()
                 return string
-            if self.state.get_current_spelling_input_value() == '':
-                # we enable the close prompt because we receive the first character
-                self.state.set_close_prompt_enabled()
             alphabet = u.alphabet
             special_characters = u.special_characters
             spec_char_symbol = u.spec_char_symbol
@@ -312,6 +314,10 @@ class RegistrationForm(Form):
             if text.lower() in special_characters:
                 index = special_characters.index(text)
                 text = spec_char_symbol[index]
+            # we are sure that the character inserted by the user is valid
+            if self.state.get_current_spelling_input_value() == '':
+                # we enable the close prompt because we receive the first character
+                self.state.set_close_prompt_enabled()
             # we proceed by completting the current spelling input value
             self.state.complete_spelling_value(text)
             # we set the message to be returned to the user
@@ -456,6 +462,7 @@ class RegistrationForm(Form):
                     else:
                         value = slot_value
                     string = f'{string}\n\t{text.format(slot_name, value)}'
+            
             next_step_string = self.state.manage_next_step()
             string = f'{string}\n{next_step_string}'
             return string
@@ -739,8 +746,12 @@ class RegistrationForm(Form):
             elem.click()
             # we verify if the submission effectively occured
             try:
-                time.sleep(1)
+                # The point here is to avoid the Web Form to be submitted in the internal structure 
+                # without being effectively submitted. It could be a matter of seconds so we put a sleep.
                 elem.click()
+                time.sleep(5)
+                elem.click()
+                string = 'verification'
             except:
                 # submission effective
                 # we signify that the submit is done to have the title page

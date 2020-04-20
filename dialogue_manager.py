@@ -46,7 +46,7 @@ class DialogueManager:
 
     def create_form_bots(self):
         # the first think we do is to initialize the views
-        self.initialize_views()
+        #self.initialize_views()
         function_name = 'create_form_bots'
         if u.DEBUG:
             print(f'{class_name}: {function_name}')
@@ -190,10 +190,9 @@ class DialogueManager:
                     text = 'You did not insert any value'
                     self.chatbot_view.show_text(self.counter, text)
                     self.counter += 1
-            if a == u.stop:
-                self.write_log()
         except:
             print('Problem during the dialogue')
+            self.conclude_log()
             self.write_log()
             raise Exception
 
@@ -205,20 +204,23 @@ class DialogueManager:
             """Here we conclude the submission of the form and then we start or not a new
             dialogue. If we start a new dialogue, we restart from the beginning.
             Each time, the state is saved to write the final report"""
+            # we increment the nunmer of iteration
+            self.iteration_number += 1
+            
             newPageTitle = self.driver.title
             good_style = styles.get_good()
             text = f"{good_style} you have been moved to the page with title {newPageTitle}"
             self.chatbot_view.show_text(self.counter, text)
             self.counter += 1
-            self.write_log()
-            # we add the tate to the list
+            # we conclude this log
+            self.conclude_log()
+            # we add the state to the list
             self.states_list.append(self.current_bot.get_state())
-            # we increment the nunmer of iteration
-            self.iteration_number += 1
             # we sample the reports not to loose everything in case of problem
             if self.iteration_number in [2,5,8]:
                 # write the report
                 w.ReportWriter(self.states_list).start()
+                self.write_log()
             if self.iteration_number >= self.total_iterations:
                 self.restart = False
                 self.in_session = False
@@ -264,9 +266,6 @@ class DialogueManager:
             self.counter = 0
             self.current_bot = None
             self.close_window()
-            self.chatbot_view = None
-            self.user_view = None
-            self.log_writer = None
         except:
             print('Fail to update the parameters')
             raise Exception
@@ -347,7 +346,15 @@ class DialogueManager:
 
     def write_log(self):
         if u.write_log:
-            self.chatbot_view.show_end_of_conversation(self.counter)
             self.log_writer.start()
             if u.DEBUG:
                 print('Log written')
+        
+    def conclude_log(self):
+        try:
+            self.chatbot_view.show_end_of_conversation(self.counter)
+            self.chatbot_view.show_new_dialogue(self.iteration_number)
+            self.counter = 0
+        except:
+            print('Fail to conclude the log')
+            raise Exception

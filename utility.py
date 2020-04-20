@@ -19,7 +19,7 @@ CONTROL_FREQUENCE = 1000
 NOTIFICATION_FREQUENCE = 10
 
 # coefficient used to regule the dialogue and the notifications
-COEFF = 15
+COEFF = 1000
 
 # minimum and maximum year acceptable for the date
 min_year = 1500

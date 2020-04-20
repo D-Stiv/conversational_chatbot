@@ -18,17 +18,33 @@ class LogWriter(Writer):
         self.conversation_string = ''
         self.number_turns_chatbot = 0
         self.number_turns_user = 0
+        self.session_string = ''
 
     def start(self, display_summary=None):
-        header = self.construct_header()
-        if display_summary is not None:
-            summary = display_summary
-        else:
-            summary = self.construct_summary()
-        conv_log = self.construct_conv_log()
-        text = f'{header}\n\n{summary}\n\n{conv_log}\n\n'
-        self.create_file(text)
-        print('The log has been created successfully')
+        try:
+            if self.session_string == '':
+                text = self.write_dialogue(display_summary)
+            else:
+                text = self.session_string
+            self.create_file(text)
+            print('The log has been created successfully')
+        except:
+            print('Problem while creating the session log')
+            raise Exception
+
+    def write_dialogue(self, display_summary=None):
+        try:
+            header = self.construct_header()
+            if display_summary is not None:
+                summary = display_summary
+            else:
+                summary = self.construct_summary()
+            conv_log = self.construct_conv_log()
+            text = f'{header}\n\n{summary}\n\n{conv_log}\n\n'
+            return text
+        except:
+            print('Fail to write the dialogue')
+            raise Exception
 
     def add_chatbot_line(self, line):
         self.conversation_string = f'{self.conversation_string}\n{line}'
@@ -250,11 +266,14 @@ class ReportWriter(Writer):
             print('Fail to get the spelling slots')
             raise Exception
 
-    def get_cummulative_values(self, slots):
+    def get_cummulative_values(self, slots, required=False):
         try:
             sum_length = 0
             for slot in slots:
-                if slot[u.slot_value] is not None:
+                if slot[u.slot_value] is not None and required:
+                    if slot[u.required]:
+                        sum_length += 1 + len(slot[u.slot_value])
+                elif slot[u.slot_value] is not None:
                     sum_length += 1 + len(slot[u.slot_value])
             return sum_length
         except:
@@ -272,6 +291,14 @@ class ReportWriter(Writer):
             total_spelling = len(spelling_slots)
             cummulative_spelling_values = self.get_cummulative_values(spelling_slots)
             m_k_factor = max(self.spelling_length, cummulative_spelling_values)
+            user_turns = total_fields - total_spelling + m_k_factor
+
+            total_required_fields = len(self.get_required_slots(slots))
+            total_required_spelling = len(self.get_required_slots(spelling_slots, spelling=True))
+            cummulative_required_spelling_values = self.get_cummulative_values(spelling_slots, required=True)
+            m_k_required_factor = cummulative_required_spelling_values
+            required_user_turns = total_required_fields - total_required_spelling + m_k_required_factor
+
             line_text = 'Convergence Rate:'
             convergence_rate_content = self.add_line(line_text, tab=tab)
             line_text = f'total number of turns: t = {total_turns}'
@@ -282,7 +309,19 @@ class ReportWriter(Writer):
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
             line_text = f'total number of spelling turns: m_k factor = {m_k_factor}'
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
-            line_text = f'convergence rate: c = {round(Decimal(2*(total_fields - total_spelling + m_k_factor))/Decimal(total_turns), 2)}'
+            line_text = f'convergence rate: c = {round(Decimal(2*user_turns + 1)/Decimal(total_turns), 2)}'
+            convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
+            
+            line_text = 'Normalized Convergence Rate:'
+            convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tab)}'
+            line_text = f'total number of required fields: n_2 = {total_required_fields}'
+            convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
+            line_text = f'total number of spelling fields: m_2 = {total_required_spelling}'
+            convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
+            line_text = f'total number of required spelling turns: m_k_2 factor = {m_k_required_factor}'
+            convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
+            line_text = f'normalized convergence rate: c_2 = {round(Decimal(2*required_user_turns + 1)/Decimal(total_turns), 2)}'
+            
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
             return convergence_rate_content
         except:
@@ -312,4 +351,20 @@ class ReportWriter(Writer):
             return clarity_factor_content
         except:
             print('Fail to get the clarity factor content')
+            raise Exception
+
+    def get_required_slots(self, slots, spelling=False):
+        try:
+            required_slots = []
+            for slot in slots:
+                if slot[u.slot_name] == u.REQUESTED_SLOT:
+                    pass
+                elif slot[u.required] and spelling:
+                    if slot[u.spelling]:
+                        required_slots.append(slot)
+                elif slot[u.required]:
+                    required_slots.append(slot)
+            return required_slots
+        except:
+            print('Fail to get the required slots')
             raise Exception

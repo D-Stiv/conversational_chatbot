@@ -114,6 +114,9 @@ class User:
     def select_intent_and_execute(self, prohibited_intents=cts.fill_form):
         # randomly selects an intent in the active list to be executed
         try:
+            if len(self.text_fields) == 0:
+                intents_using_text_fields = [cts.explain_field, cts.modify_value_field, cts.repeat_value_field]
+                prohibited_intents = prohibited_intents + intents_using_text_fields
             number = randint(self.min_random_number, self.max_random_number)
             for intent_name in self.active_list:
                 intent_data = self.get_intent_data(intent_name)

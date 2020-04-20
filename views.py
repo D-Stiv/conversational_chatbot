@@ -41,6 +41,24 @@ class ViewChatPannel(View):
         self.writer.add_line(text)
         print(text)
 
+    def show_new_dialogue(self, counter):
+        try:
+            text = f'\n--- DIALOGUE {counter} ---\n'
+            log = self.writer.write_dialogue()
+            text = f'{text}\n{log}'
+            if self.writer.session_string == '':
+                self.writer.session_string = text
+            else:
+                self.writer.session_string = f'{self.writer.session_string}\n\n{text}'
+            # we reset the parameters of the writer for the next dialogue
+            self.writer.summary_string = ''
+            self.writer.conversation_string = ''
+            self.writer.number_turns_chatbot = 0
+            self.writer.number_turns_user = 0
+        except:
+            print('Fail to insert the new dialogue in the session string')
+            raise Exception
+
     def update_response_time(self):
         try:
             global cummulative_response_time

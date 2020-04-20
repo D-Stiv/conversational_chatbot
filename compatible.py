@@ -481,7 +481,7 @@ def get_hour_from_integer(value, meridian=u.o_clock):
         if meridian == u.o_clock:
             if value in range(0, 10):
                 val = f'0{value}'
-            elif value in range(10, 24+1):
+            elif value in range(10, 23+1):
                 val = f'{value}'
             else:
                 return None
