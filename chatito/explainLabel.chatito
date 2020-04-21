@@ -5,9 +5,14 @@ import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
 %[explainLabel]('training': '8000', 'testing': '2000')
-    *[1] ~[what] ~[does] ~[it] ~[mean] ~[please?]
-    *[1] ~[what] ~[is] ~[it] ~[please?]
-    *[1] ~[what] ~[is] @[input_field] ~[please?]
-    *[1] ~[please?] ~[can] ~[you] ~[tell] ~[me?] ~[what] ~[is] @[input_field]
+    *[2] ~[what] ~[does] ~[it] ~[mean] ~[please?]
+    *[2] ~[what] ~[is] ~[it] ~[please?]
+    *[2] ~[what] ~[is] @[input_field] ~[please?]
+    *[3] ~[please?] ~[can] ~[you] ~[tell] ~[me?] ~[what] ~[is] @[input_field]
     *[1] ~[what] ~[does] @[input_field] ~[mean]
-    *[1] ~[explain] ~[please?]
+    *[2] ~[explain] ~[please?]
+    *[2] ~[can] ~[you] ~[explain] ~[what] ~[is] @[input_field] ~[please?]
+    *[3] ~[please?] ~[explain?] ~[what] ~[is] @[input_field]
+    *[2] ~[is] ~[it] ~[possible] ~[to] ~[explain] @[input_field] ~[please?]
+    *[6] ~[please?] ~[can] ~[you] ~[give] ~[me?] ~[an?] ~[explanation] ~[about] ~[the?] ~[field?] @[input_field]
+    *[1] ~[i_do_not] ~[understand] ~[what] ~[is] @[input_field]
