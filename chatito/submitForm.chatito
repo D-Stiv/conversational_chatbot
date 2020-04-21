@@ -5,9 +5,9 @@ import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
 %[submitForm]('training': '8000', 'testing': '2000')
-    *[3] ~[yes?] ~[i?] ~[want] ~[to?] ~[submit] ~[the] ~[form?]
+    *[5] ~[yes?] ~[i?] ~[want] ~[to?] ~[submit] ~[the] ~[form?]
     *[3] ~[yes?] ~[continue] ~[with] ~[the?] ~[submission]
-    *[5] ~[yes?] ~[submit] ~[the?] ~[form]
-    *[5] ~[yes?] ~[log in]
-    *[5] ~[yes?] ~[submit] ~[it?]
-    *[5] ~[yes] ~[for] ~[the] ~[submission]
+    *[3] ~[yes?] ~[submit] ~[the?] ~[form]
+    *[2] ~[yes?] ~[log in]
+    *[3] ~[yes?] ~[submit] ~[it?]
+    *[1] ~[yes] ~[for] ~[the] ~[submission]
