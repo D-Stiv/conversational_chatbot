@@ -5,11 +5,11 @@ import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
 %[verifyValueFilledCamps]('training': '8000', 'testing': '2000')
-    *[5] ~[what] ~[are] ~[the?] ~[filled] ~[camps] ~[up_to_now?]
-    *[5] ~[what] ~[is] ~[the?] ~[value] ~[of] ~[the?] ~[filled] ~[camps] ~[up_to_now?]
-    *[5] ~[i] ~[want] ~[to] ~[verify] ~[the] ~[value] ~[of] ~[the?] ~[filled] ~[camps] ~[up_to_now?]
-    *[5] ~[please?] ~[repeat?] ~[filled] ~[camps] ~[up_to_now?]
-    *[5] ~[i] ~[want] ~[to] ~[verify] ~[the] ~[filled] ~[camps] ~[up_to_now?]
-    *[5] ~[please?] ~[repeat] ~[the?] ~[filled] ~[camps] ~[up_to_now?]
-    *[5] ~[please?] ~[repeat] ~[me] ~[the] ~[filled] ~[camps] ~[up_to_now?]
+    *[3] ~[what] ~[are] ~[the?] ~[filled] ~[camps] ~[up_to_now?]
+    *[4] ~[what] ~[is] ~[the?] ~[value] ~[of] ~[the?] ~[filled] ~[camps] ~[up_to_now?]
+    *[3] ~[i] ~[want] ~[to] ~[verify] ~[the] ~[value] ~[of] ~[the?] ~[filled] ~[camps] ~[up_to_now?]
+    *[4] ~[please?] ~[repeat?] ~[filled] ~[camps] ~[up_to_now?]
+    *[2] ~[i] ~[want] ~[to] ~[verify] ~[the] ~[filled] ~[camps] ~[up_to_now?]
+    *[4] ~[please?] ~[repeat] ~[the?] ~[filled] ~[camps] ~[up_to_now?]
+    *[3] ~[please?] ~[repeat] ~[me] ~[the] ~[filled] ~[camps] ~[up_to_now?]
     *[1] @[input_value#message?] ~[repeat] @[input_value#message?] ~[filled] ~[camps] @[input_value#message?]
