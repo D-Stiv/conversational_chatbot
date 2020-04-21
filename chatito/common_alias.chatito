@@ -1,7 +1,77 @@
 // Common entities to be imported and reused
 
+~[place_indication]
+    road
+    street
+    boulevard
+    avenue
+    via
+    viale
+    piazza
+    pzle
+    rue
+
+~[did]
+    did
+
+~[form_name]
+    form's name
+    name of the form
+    form's title
+    name of the title
+
+~[form_explanation]
+    form's explanatioms
+    explanations of the form
+    form's details
+    details of the form
+
+~[into]
+    into
+
+~[turn]
+    turn
+
+~[let_us]
+    let us
+    let's
+
+~[remain]
+    remain
+    remains
+
+~[process]
+    process
+    procedure
+
+~[from]
+    from
+
+~[where]
+    where
+
+~[understand]
+    understand
+    get
+
+~[an]
+    an
+
+~[a]
+    a
+
+~[more]
+    more
+
+~[possible]
+    possible
+
 ~[of]
     of
+
+~[explanation]
+    explanation
+    description
 
 ~[explain]
     explain
@@ -156,6 +226,7 @@
     repeat
     tell
     give
+    remind
 
 ~[again]
     again
@@ -235,13 +306,13 @@
     the
     my
 
-~[label]
+~[field]
     label
     camp
     field
 
-~[from where i was]
-    reom where i was
+~[was]
+    was
 
 ~[i]
     I
@@ -285,11 +356,15 @@
     fill
     complete
     insert
+    add
+    put
 
 ~[filling]
     filling
     completing
     inserting
+    putting
+    adding
 
 ~[start]
     start
@@ -389,10 +464,6 @@
     insert
     fill
     replace
-
-~[putting]
-    putting
-    inseting
 
 ~[up_to_now]
     up to now
