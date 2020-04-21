@@ -283,28 +283,3 @@ slots = 'slots'
 # restricted actions, not self defining actions, need state to decide what to do
 restricted_actions = [affirm_action, deny_action]
 
-#########################################################################
-
-# model training
-"""
-import asyncio
-import rasa
-import shutil
-from os import path
-
-root_folder = f'./{registration_form_folder}'
-domain_file_path=f'{root_folder}/{training_folder}/{domain_file}'
-model_folder=f'{root_folder}/{models_folder}'
-nlu_data_file_path=f'{root_folder}/{training_folder}/{nlu_data_file}'
-nlu_config_file_path=f'{root_folder}/{training_folder}/{nlu_config_file}'
-
-# if a previous training folder exists, we remove it
-previous_model = f'{model_folder}/{tag_registration_form}'
-if path.exists(previous_model):
-    shutil.rmtree(f'{previous_model}', ignore_errors=True)
-# nlu training
-loop = asyncio.get_event_loop()
-loop.run_until_complete(rasa.nlu.train(
-    nlu_config=nlu_config_file_path, data=nlu_data_file_path, path=model_folder, fixed_model_name=tag_registration_form))[1]
-"""
-
