@@ -5,8 +5,8 @@ import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
 %[repeatRequiredLabels]('training': '8000', 'testing': '2000')
-    *[5] ~[what] ~[are] ~[the?] ~[required] ~[camps]
-    *[5] ~[please?] ~[repeat?] ~[required] ~[camps]
-    *[5] ~[please?] ~[repeat] ~[the?] ~[required] ~[camps]
-    *[5] ~[please?] ~[repeat] ~[me] ~[the] ~[required] ~[camps]
+    *[2] ~[what] ~[are] ~[the?] ~[required] ~[camps]
+    *[3] ~[please?] ~[repeat?] ~[required] ~[camps]
+    *[3] ~[please?] ~[repeat] ~[the?] ~[required] ~[camps]
+    *[2] ~[please?] ~[repeat] ~[me] ~[the] ~[required] ~[camps]
     *[1] @[input_value#message?] ~[repeat] @[input_value#message?] ~[required] ~[camps] @[input_value#message?]
