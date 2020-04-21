@@ -415,9 +415,31 @@ class User:
             print('Fail to get an answer for the state "13"')
             raise Exception
 
+    def action_state_14(self):
+        try:
+            if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
+                intent_name = cts.complete_field
+                return self.construct_answer(intent_name)
+            prohibited_intents = [u.spelling_action]
+            return self.select_intent_and_execute(prohibited_intents)
+        except:
+            print('Fail to get an answer for the state "14"')
+            raise Exception
+
+    def action_state_15(self):
+        try:
+            if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
+                intent_name = cts.deny
+                return self.construct_answer(intent_name)
+            prohibited_intents = [u.spelling_action]
+            return self.select_intent_and_execute(prohibited_intents)
+        except:
+            print('Fail to get an answer for the state "15"')
+            raise Exception
+
     actions_state_list = [action_state_00, action_state_01, action_state_02, action_state_03, action_state_04,
         action_state_05, action_state_06, action_state_07, action_state_08, action_state_09, action_state_10,
-        action_state_11, action_state_12, action_state_13]  
+        action_state_11, action_state_12, action_state_13, action_state_14, action_state_15]  
 
 
     def get_not_choice_value(self, value_type, field):
