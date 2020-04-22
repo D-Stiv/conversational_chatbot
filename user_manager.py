@@ -73,6 +73,8 @@ class User:
             self.min_random_number = R + 1
             cumulative_total = R
             length = len(self.active_list)
+            if self.counter > 0:
+                shuffle(self.active_list)
             for index in range(length):
                 intent_name = self.active_list[index]
                 intent_data = self.get_intent_data(intent_name)

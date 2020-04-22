@@ -134,8 +134,11 @@ def get_pairs(slots, only_filled=False):
                     slot_name = slot_name + ' **'
                 slot_value = slot[u.slot_value]
                 if slot_value is not None or not only_filled:
-                    # we do not enter when we find only filled and the value is None
-                    string = f"{string}\t{text.format(slot_name, slot_value)}\n"
+                    # we do not enter when we are searching for only completed fields (only_filled = True) and the value is None
+                    if string == '':
+                        string = f"{string}\t{text.format(slot_name, slot_value)}"
+                    else:
+                        string = f"{string}\n\t{text.format(slot_name, slot_value)}"
         return string
     except:
         print("Fail to get the pairs")

@@ -8,7 +8,6 @@ import functions as fn
 import styles
 
 logger = logging.getLogger(__name__)
-class_name = 'State'
 
 class State:
 
@@ -123,9 +122,6 @@ class State:
         return self.spelling_state[u.spelling_list]
 
     def set_spelling_list(self, slot_name_list, slot_value_list):
-        function_name = 'set_spelling_list'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             """the idea here is to separate the spelling and non spelling fields.
             for the spelling fields, the value is not important, since we will retake it.
@@ -158,9 +154,6 @@ class State:
             raise Exception
 
     def get_spelling_fields(self):
-        function_name = 'get_spelling_fields'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             spelling_fields = []
             slots = self.form_slots()
@@ -178,9 +171,6 @@ class State:
             self.spelling_state[u.spelling_list].append(slot_name)
 
     def get_required_fields(self):
-        function_name = 'get_required_fields'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             required_fields = []
             slots = self.form_slots()
@@ -194,9 +184,6 @@ class State:
             raise Exception
 
     def set_next_slot(self, slot_name, required):
-        function_name = 'set_next_slot'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             self.machine_parameters[u.next_slot] = slot_name
             self.machine_parameters[u.next_slot_required] = required
@@ -241,9 +228,6 @@ class State:
 
     # extracts and restitutes the slots present in the form with their values
     def form_slots(self):
-        function_name = 'form_slots'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             slots = self.constructs["form"]["slots"]
             return slots
@@ -253,9 +237,6 @@ class State:
 
     # Gets the value of a given slot
     def get_slot(self, slot_name):
-        function_name = 'get_slot'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             slots = self.form_slots()
             for slot in slots:
@@ -276,9 +257,6 @@ class State:
 
     # inserts the value in a given slot
     def set_slot(self, slot_name, slot_value):
-        function_name = 'set_slot'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             exists = False
             slots = self.form_slots()
@@ -308,9 +286,6 @@ class State:
 
     # return all the slots with their name and their value
     def get_slots_value(self):
-        function_name = 'get_slots_value'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             slots_value = {}
             slots = self.form_slots()
@@ -325,9 +300,6 @@ class State:
 
     # Restitutes the value (slot) of the required slot
     def get_requested_slot(self):
-        function_name = 'get_requested_slot'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             slots = self.form_slots()
             for slot in slots:
@@ -340,9 +312,6 @@ class State:
 
     # Restitutes the next slot's name
     def get_next_slot(self, only_name=False):
-        function_name = 'get_next_slot'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             if only_name:
                 return self.machine_parameters[u.next_slot]
@@ -354,9 +323,6 @@ class State:
 
     # sets the next field (slot) according to the order of the web form
     def set_next_slot_basic(self):
-        function_name = 'set_next_slot_basic'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             slot_name = self.get_next_slot(only_name=True)
             # we try to take in sequence the first empty field after the current field
@@ -392,9 +358,6 @@ class State:
 
     # Transforms the choices list into text and restitutes
     def get_next_slot_text(self, slot_name, slot_required):
-        function_name = 'get_next_slot_text'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             types_with_options = u.choices_type_list
             slot = self.get_slot(slot_name)
@@ -421,9 +384,6 @@ class State:
 
     # Inserts the value inside the web page (form) with the label corrisponding to the slot
     def fill_input(self, slot_name, slot_value):
-        function_name = 'fill_input'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         # returns the slot value eventually modified to be in the right format, and a string to 
         # eventuelly mention some incopatibilities
         try:
@@ -466,6 +426,7 @@ class State:
                 please_style = styles.get_please()
                 string = (f"{sorry_style} the choice {slot_value} is not valid for the field {slot_name}" +
                         f"{please_style} choose one in the following list: {choice_list}")
+                self.set_possible_next_action(u.fill_field_action)
                 return None, string
             # we are sure that the choice of the user is in the list of choices
             if value_type == u.dropdown:
@@ -484,9 +445,6 @@ class State:
 
     # Select the choice_value of the user for the dropdown with the given name
     def set_choice_dropdown(self, slot_name, choice_value):
-        function_name = 'set_choice_dropdown'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             slot = self.get_slot(slot_name)
             choice_name = slot[u.value_name].lower()
@@ -502,9 +460,6 @@ class State:
 
     # Select the choice_value of the user for the radio with the given name
     def set_choice_radio(self, slot_name, choice_value):
-        function_name = 'set_choice_radio'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             slot = self.get_slot(slot_name)
             choice_name = slot[u.value_name].lower()
@@ -526,9 +481,6 @@ class State:
 
     # Select the choice_value of the user for the checkbox with the given name
     def set_choice_checkbox(self, slot_name, choice_value):
-        function_name = 'set_choice_checkbox'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             slot = self.get_slot(slot_name)
             choice_name = slot[u.value_name].lower()
@@ -554,9 +506,6 @@ class State:
 
     # Select the choices of the user for the checkbox with the given name
     def set_choices_checkbox(self, slot_name, choice_values):
-        function_name = 'set_choices_checkbox'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             slot = self.get_slot(slot_name)
             choice_name = slot[u.value_name].lower()
@@ -590,23 +539,18 @@ class State:
             raise Exception
 
     # Finds the submit button inside the form and restitutes it
-    def get_submit_button(self):
-        function_name = 'get_submit_button'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
+    def get_submit_button(self, verification=False):
         try:
             elem = self.form_element.find_element_by_xpath(
                 f".//input[@{u.bot_button} = 'submit']")
             return elem
         except:
-            print("ERROR: A problem occured while trying to get the submit button")
+            if not verification:
+                print("ERROR: A problem occured while trying to get the submit button")
             raise Exception
 
     # Finds the reset button inside the form and restitutes it
     def get_reset_button(self):
-        function_name = 'get_reset_button'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             elem = self.form_element.find_element_by_xpath(
                 f".//input[@{u.bot_button} = 'reset']")
@@ -644,9 +588,6 @@ class State:
     # returns a string containing the list of fields, we can precise if we want only the
     # remaining ones, only the required ones
     def get_fields_list(self, only_required=False, remaining=False):
-        function_name = 'get_fields_list'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             list_fields = []
             slots = self.form_slots()
@@ -668,9 +609,6 @@ class State:
             raise Exception
 
     def get_form_title(self):
-        function_name = 'get_form_title'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             requested_slot = self.get_slot(u.REQUESTED_SLOT)
             title = requested_slot[u.title]
@@ -685,9 +623,6 @@ class State:
             raise Exception
 
     def get_form_description(self):
-        function_name = 'get_form_description'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             requested_slot = self.get_slot(u.REQUESTED_SLOT)
             desc = requested_slot[u.description]
@@ -702,9 +637,6 @@ class State:
             raise Exception
 
     def get_field_description(self, field):
-        function_name = 'get_field_description'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             slot = self.get_slot(field)
             desc = slot[u.description]
@@ -720,9 +652,6 @@ class State:
             raise Exception
 
     def submit_string(self):
-        function_name = 'submit_string'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             first = "All the fields have been completed."
             values = fn.get_pairs(slots=self.form_slots())
@@ -735,9 +664,6 @@ class State:
             raise Exception
 
     def manage_next_step(self):
-        function_name = 'manage_next_step'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             slot_name, next_slot_required = self.get_next_slot()
             if slot_name is not None:
@@ -807,9 +733,6 @@ class State:
             raise Exception
 
     def managed_particular_case(self, slot_name_list, slot_value_list):
-        function_name = 'managed_particular_case'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # The particular case refers to a checkbox with more than one choice_value made
             # we update the Web Form and we set the slots
@@ -833,9 +756,6 @@ class State:
             raise Exception
 
     def update(self, slot_name):
-        function_name = 'update'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             """the slot have been filled and now we have to update the state by modifying the
             necessary variables which are: 'num_required_remaining', 'all_required_filled'
@@ -871,9 +791,6 @@ class State:
             raise Exception
 
     def fill_generic_slots(self, slot_name_list, slot_value_list):
-        function_name = 'fill_generic_slots'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             numSlot = len(slot_name_list)
             numValue = len(slot_value_list)
@@ -905,9 +822,6 @@ class State:
             raise Exception
 
     def fill_slots_more_values(self, slot_name_list, slot_value_list):
-        function_name = 'fill_slots_more_values'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # we find the slot that refers to that entity, if there are many slots, we take the first empty
             # one, and if all are full we take the first one
@@ -971,9 +885,6 @@ class State:
             raise Exception
 
     def fill_slots_more_names(self, slot_name_list, slot_value_list):
-        function_name = 'fill_slots_more_names'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             empty_slots_names = []
             # there are strictly less values than fields, so it is possible to have empty fields at
@@ -1025,9 +936,6 @@ class State:
             raise Exception
 
     def all_fields_present(self, slot_name_list):
-        function_name = 'all_fields_present'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # returns True if all the fields are present and False otherwise. In ca of false retruns also the next_step string
             string =''
@@ -1047,9 +955,6 @@ class State:
             raise Exception
 
     def filling_procedure(self, slot_name, slot_value):
-        function_name = 'filling_procedure'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             if slot_value is None:
                 # we take the previous value for that field

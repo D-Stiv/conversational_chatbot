@@ -46,12 +46,12 @@ class Form:
             print(f'Form: {function_name}')
         try:
             if self.state.get_reset_alarm_enabled():
-                # we disable the alarm mainly in case intent not in [affirm, deny]
-                if intent not in [u.affirm_action, u.deny_action, u.reset_all_fields_action]:
+                # we disable the alarm mainly in case intent not in [affirm, reset_all_fields]
+                if intent not in [u.affirm_action, u.reset_all_fields_action]:
                     self.state.set_reset_alarm_enabled(False)
             elif self.state.get_submit_alarm_enabled():
-                # we disable the alarm mainly in case intent not in [affirm, deny]
-                if intent not in [u.affirm_action, u.deny_action, u.submit_action]:                        
+                # we disable the alarm mainly in case intent not in [affirm, submit_form]
+                if intent not in [u.affirm_action, u.submit_action]:                        
                     self.state.set_submit_alarm_enabled(False)
             if self.state.get_spelling_interrupted():
                 # In the past the user interrupted a spelling and we wait for the response on whether to save the state or not

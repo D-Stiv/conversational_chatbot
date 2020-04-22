@@ -34,6 +34,7 @@ class DialogueManager:
         self.current_bot = None
         self.in_session = False
         self.restart = False
+        self.connected = True
         self.states_list = []
         self.total_iterations = u.MAX_DIALOGUES # randint(1, u.MAX_DIALOGUES)
         self.iteration_number = 0
@@ -86,8 +87,9 @@ class DialogueManager:
                 self.start(bot_tag)
             self.close_window()
         except:
-            print(PREPROCESSING_EXCEPTION)
-            self.close_window()
+            if self.connected:
+                print(PREPROCESSING_EXCEPTION)
+                self.close_window()
     
     def close_window(self):
         # we effectively close the windows only if we are not supposed to write the report
@@ -178,6 +180,12 @@ class DialogueManager:
                     if not my_state.get_submit_done():
                         self.chatbot_view.show_text(self.counter, text)
                         self.counter += 1
+                        # we verify that we are still connected, if we are not connected the exception will be raised
+                        try:
+                            my_state.form_element.parent.title
+                        except:
+                            self.connected = False
+                            raise Exception
                     else:
                         self.after_submit()
                     if self.in_session:
@@ -191,9 +199,12 @@ class DialogueManager:
                     self.chatbot_view.show_text(self.counter, text)
                     self.counter += 1
         except:
-            print('Problem during the dialogue')
-            self.conclude_log()
-            self.write_log()
+            if self.connected:
+                print('Problem during the dialogue')
+                self.conclude_log()
+                self.write_log()
+            else:
+                print('ERROR: Connection lost')
             raise Exception
 
     def after_submit(self):
@@ -217,7 +228,7 @@ class DialogueManager:
             # we add the state to the list
             self.states_list.append(self.current_bot.get_state())
             # we sample the reports not to loose everything in case of problem
-            if self.iteration_number in [2,5,8]:
+            if self.iteration_number in [5, 10, 15]:
                 # write the report
                 w.ReportWriter(self.states_list).start()
                 self.write_log()

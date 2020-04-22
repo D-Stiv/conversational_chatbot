@@ -29,7 +29,6 @@ class LoginForm(Form):
                          nlu_data_file_path, nlu_config_file_path)
         self.restricted_actions = u.restricted_actions
 
-class_name = 'RegistrationForm'
 class RegistrationForm(Form):
     root_folder = f'./{u.registration_form_folder}'
 
@@ -49,9 +48,6 @@ class RegistrationForm(Form):
         self.model_path_found = False
 
     def train_model(self):
-        function_name = 'train_model'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # if a previous training folder exists, we remove it
             previous_model = f'{self.model_folder}/{u.tag_registration_form}'
@@ -66,9 +62,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def interpretMessage(self, userInput):
-        function_name = 'interpretMessage'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             def get_model_path():
                 m_path = f'{self.model_folder}/{u.tag_registration_form}'
@@ -94,9 +87,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def fillForm(self):
-        function_name = 'fillForm'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # if the filling did not start, we give the form info to the user, otherwise we continue
             # with the next input_field.state variables to observe are num_camps, num_remaining, ...
@@ -133,9 +123,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def fillGenericCamp(self):
-        function_name = 'fillGenericCamp'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             entities = self.state.get_latest_message()["entities"]
             intent = self.state.get_latest_message()["intent"]["name"]
@@ -210,9 +197,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def fillSpellingCamp(self):
-        function_name = 'fillSpellingCamp'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # we have to verify if we just finished the spelling of a field
             if self.state.get_after_spelling():
@@ -261,6 +245,7 @@ class RegistrationForm(Form):
             # we set the message to be returned to the user
             string = (f'{intro}\n{please_style} insert the first character, you will be able to use SPACE for spacing' +
                       f'and TERMINATE to {end_style} the spelling')
+            self.state.set_possible_next_action(u.spelling_action)
             return string
         except:
             if not self.state.get_warning_present():
@@ -269,9 +254,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def spelling(self):
-        function_name = 'spelling'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             if len(self.state.get_spelling_list()) == 0:
                 string = self.fillGenericCamp()
@@ -330,9 +312,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def verifyPresenceOfLabel(self):
-        function_name = 'verifyPresenceOfLabel'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             entities = self.state.get_latest_message()["entities"]
             count = len(entities)
@@ -362,9 +341,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def explainLabel(self):
-        function_name = 'explainLabel'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             entities = self.state.get_latest_message()["entities"]
             count = len(entities)
@@ -399,9 +375,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def affirm(self):
-        function_name = 'affirm'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # we have to verify the state to know what is the affirm for. the variable to check
             # is possible_next_action.
@@ -423,9 +396,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def deny(self):
-        function_name = 'deny'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
            # we have to verify the state to know what is the deny for. the variable to check
             # is possible_next_action
@@ -443,9 +413,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def repeatValueCamp(self):
-        function_name = 'repeatValueCamp'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             entities = self.state.get_latest_message()["entities"]
             fields = fn.extract_fields_names_and_values(
@@ -473,9 +440,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def skipCamp(self):
-        function_name = 'skipCamp'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # we set the actual slot to campare it later with the next slot
             actual_slot_name = self.state.get_next_slot(only_name=True)    # return also if the next slot is required or not
@@ -502,9 +466,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def repeatRequiredLabels(self):
-        function_name = 'repeatRequiredLabels'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             sure_style = styles.get_sure()
             required_fields = self.state.get_fields_list(only_required=True)
@@ -519,9 +480,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def repeatOptionalLabels(self):
-        function_name = 'repeatOptionalLabels'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             sure_style = styles.get_sure()
             optional_list = []
@@ -542,9 +500,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def repeatAllLabels(self):
-        function_name = 'repeatAllLabels'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             sure_style = styles.get_sure()
             all_fields = self.state.get_fields_list()
@@ -559,9 +514,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def giveRemainingRequiredLabels(self):
-        function_name = 'giveRemainingRequiredLabels'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             sure_style = styles.get_sure()
             remaining_required_fields = self.state.get_fields_list(only_required=True, remaining=True)
@@ -576,9 +528,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def giveRemainingOptionalLabels(self):
-        function_name = 'giveRemainingOptionalLabels'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             sure_style = styles.get_sure()
             remaining_optional_list = []
@@ -602,9 +551,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def giveAllRemainingLabels(self):
-        function_name = 'giveAllRemainingLabels'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             sure_style = styles.get_sure()
             all_remaining_fields = self.state.get_fields_list(remaining=True)
@@ -619,9 +565,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def verifyValueFilledCamps(self):
-        function_name = 'verifyValueFilledCamps'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             slots = self.state.form_slots()
             filled_string = fn.get_pairs(slots, only_filled=True)
@@ -640,9 +583,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def repeatFormTitle(self):
-        function_name = 'repeatFormTitle'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             form_title = self.state.get_form_title()
             if form_title is None:
@@ -659,9 +599,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def repeatFormExplanation(self):
-        function_name = 'repeatFormExplanation'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             form_desc = self.state.get_form_description()
             if form_desc is None:
@@ -681,9 +618,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def resetAllCamps(self):
-        function_name = 'resetAllCamps'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             if not self.state.get_reset_alarm_enabled():
                 string = "we are about to reset all the fields and restart the process.\n are you sure you want to continue with this action?"
@@ -721,9 +655,6 @@ class RegistrationForm(Form):
             raise Exception
 
     def submitForm(self):
-        function_name = 'submitForm'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # we first verify that all the required fields are filled
             if not self.state.get_all_required_filled():
@@ -748,10 +679,12 @@ class RegistrationForm(Form):
             try:
                 # The point here is to avoid the Web Form to be submitted in the internal structure 
                 # without being effectively submitted. It could be a matter of seconds so we put a sleep.
-                elem.click()
+                elem = self.state.get_submit_button(verification=True)
                 time.sleep(5)
                 elem.click()
                 string = 'verification'
+                if u.DEBUG:
+                    print(string)
             except:
                 # submission effective
                 # we signify that the submit is done to have the title page
