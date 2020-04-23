@@ -7,7 +7,6 @@ class Form:
         self,
         state,
         bot_tag,
-        domain_file_path,
         model_folder,
         nlu_data_file_path,
         nlu_config_file_path
@@ -15,7 +14,6 @@ class Form:
         # initialize the form
         self.state = state
         self.bot_tag = bot_tag
-        self.domain_file_path = domain_file_path
         self.model_folder = model_folder
         self.nlu_data_file_path = nlu_data_file_path
         self.nlu_config_file_path = nlu_config_file_path

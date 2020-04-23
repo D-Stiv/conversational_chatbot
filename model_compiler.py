@@ -7,7 +7,6 @@ from os import path
 import utility as u
 
 root_folder = f'./{u.registration_form_folder}'
-domain_file_path=f'{root_folder}/{u.training_folder}/{u.domain_file}'
 model_folder=f'{root_folder}/{u.models_folder}'
 nlu_data_file_path=f'{root_folder}/{u.training_folder}/{u.nlu_data_file}'
 nlu_config_file_path=f'{root_folder}/{u.training_folder}/{u.nlu_config_file}'

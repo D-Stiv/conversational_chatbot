@@ -20,14 +20,17 @@ class LoginForm(Form):
 
     def __init__(
         self,
-        domain_file_path=f'{root_folder}/{u.training_folder}/{u.domain_file}',
+        state,
+        bot_tag,
         model_folder=f'{root_folder}/{u.models_folder}',
         nlu_data_file_path=f'{root_folder}/{u.training_folder}/{u.nlu_data_file}',
         nlu_config_file_path=f'{root_folder}/{u.training_folder}/{u.nlu_config_file}'
     ):
-        super().__init__(domain_file_path, model_folder,
+        super().__init__(state, bot_tag, model_folder,
                          nlu_data_file_path, nlu_config_file_path)
         self.restricted_actions = u.restricted_actions
+        self.model_path = None
+        self.model_path_found = False
 
 class RegistrationForm(Form):
     root_folder = f'./{u.registration_form_folder}'
@@ -36,12 +39,11 @@ class RegistrationForm(Form):
         self,
         state,
         bot_tag,
-        domain_file_path=f'{root_folder}/{u.training_folder}/{u.domain_file}',
         model_folder=f'{root_folder}/{u.models_folder}',
         nlu_data_file_path=f'{root_folder}/{u.training_folder}/{u.nlu_data_file}',
         nlu_config_file_path=f'{root_folder}/{u.training_folder}/{u.nlu_config_file}'
     ):
-        super().__init__(state, bot_tag, domain_file_path, model_folder,
+        super().__init__(state, bot_tag, model_folder,
                          nlu_data_file_path, nlu_config_file_path)
         self.restricted_actions = u.restricted_actions
         self.model_path = None
