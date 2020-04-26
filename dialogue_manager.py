@@ -1,11 +1,8 @@
-import rasa.train
 import choice_bot
-import state
 from selenium import webdriver
 import utility as u
 import functions as fn
 import writers as w
-import asyncio
 from views import ViewChatPannel
 import styles
 from user_manager import User
@@ -13,7 +10,7 @@ from random import randint
 
 PREPROCESSING_EXCEPTION = "A problem occured during the preprocessing phase, take a look into the code and restart later"
 
-class_name ='DialogueManager'
+
 class DialogueManager:
 
     def __init__(
@@ -21,7 +18,7 @@ class DialogueManager:
         url,
         browser
     ):
-        # initialize the the preprocessor
+        # initialize the the dialogue manager
         self.url = url
         self.browser = browser
         self.user = None
@@ -36,7 +33,7 @@ class DialogueManager:
         self.restart = False
         self.connected = True
         self.states_list = []
-        self.total_iterations = u.MAX_DIALOGUES # randint(1, u.MAX_DIALOGUES)
+        self.total_iterations = u.MAX_DIALOGUES  # randint(1, u.MAX_DIALOGUES)
         self.iteration_number = 0
         self.number_fields = 0
 
@@ -46,11 +43,6 @@ class DialogueManager:
         self.chatbot_view = ViewChatPannel(self.log_writer, u.chatbot_marker)
 
     def create_form_bots(self):
-        # the first think we do is to initialize the views
-        #self.initialize_views()
-        function_name = 'create_form_bots'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             if u.simulation_enabled:
                 self.instantiate_driver(True)
@@ -62,14 +54,12 @@ class DialogueManager:
             raise Exception
 
     def start(self, bot_tag):
-        function_name = 'start'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # we start a dialogue
             self.in_session = True
             self.current_bot = self.bot_manager.get_bot(bot_tag)
-            self.number_fields = len(self.current_bot.get_state().form_slots()) - 1
+            self.number_fields = len(
+                self.current_bot.get_state().form_slots()) - 1
             if u.simulation_enabled:
                 text_fields = self.get_text_fields()
                 choices_lists = self.get_choices_lists()
@@ -90,7 +80,7 @@ class DialogueManager:
             if self.connected:
                 print(PREPROCESSING_EXCEPTION)
                 self.close_window()
-    
+
     def close_window(self):
         # we effectively close the windows only if we are not supposed to write the report
         # since the report requires the windows to be open in order to fetch the form elements
@@ -102,9 +92,6 @@ class DialogueManager:
                 pass
 
     def instantiate_driver(self, random=False):
-        function_name = 'instantiate_driver'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             if random:
                 browsers = u.browsers
@@ -119,8 +106,9 @@ class DialogueManager:
                 driver = webdriver.Edge()
             else:
                 driver = webdriver.Chrome()
-            i = self.iteration_number % len(u.urls)
-            self.url = u.urls[i]
+            if u.simulation_enabled:
+                i = self.iteration_number % len(u.urls)
+                self.url = u.urls[i]
             driver.get(self.url)
             driver.minimize_window()
             self.driver = driver
@@ -129,14 +117,12 @@ class DialogueManager:
             raise Exception
 
     def conversation_prologue(self):
-        function_name = 'conversation_prologue'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # call fillForm woith a predefined message and present the form
             initial_string = 'fill the form'
             message = self.current_bot.interpretMessage(initial_string)
-            introduction = self.current_bot.findActionAndRun(message["intent"]["name"])
+            introduction = self.current_bot.find_action_and_run(
+                message["intent"]["name"])
             stop_string = f"Start of the conversation, to end your should type <<{u.stop}>>."
             text = f'{stop_string}\n{introduction}'
             self.chatbot_view.show_text(self.counter, text)
@@ -146,9 +132,6 @@ class DialogueManager:
             raise Exception
 
     def start_dialogue(self):
-        function_name = 'start_dialogue'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             my_state = self.current_bot.get_state()
             # beginning of the interaction
@@ -158,9 +141,11 @@ class DialogueManager:
                     dialogue_state = self.get_dialogue_state()
                     a = self.user.get_answer(dialogue_state)
                     """we insert a control to be be able to manually stop the simulation"""
-                    control = self.counter % min(u.COEFF*self.number_fields, u.CONTROL_FREQUENCE)
+                    control = self.counter % min(
+                        u.COEFF*self.number_fields, u.CONTROL_FREQUENCE)
                     if self.counter > 1 and control in [0, 1]:
-                        answer = input('[Control Message: Do you want to proceed with the simulation?\t0 - No, 1 - Yes]\n[Your response: ')
+                        answer = input(
+                            '[Control Message: Do you want to proceed with the simulation?\t0 - No, 1 - Yes]\n[Your response: ')
                         if answer != '1':
                             a = u.stop
                     """end of the control, the simulation can proceed normally"""
@@ -190,8 +175,9 @@ class DialogueManager:
                         self.after_submit()
                     if self.in_session:
                         # we frequently show the situation of the fields
-                        notification = self.counter % min(u.COEFF*self.number_fields, u.NOTIFICATION_FREQUENCE)
-                        if notification in [0,1]:
+                        notification = self.counter % min(
+                            u.COEFF*self.number_fields, u.NOTIFICATION_FREQUENCE)
+                        if notification in [0, 1]:
                             text = self.current_bot.get_state().get_slots_value()
                             self.chatbot_view.show_notifications(text)
                 else:
@@ -208,16 +194,13 @@ class DialogueManager:
             raise Exception
 
     def after_submit(self):
-        function_name = 'after_submit'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             """Here we conclude the submission of the form and then we start or not a new
             dialogue. If we start a new dialogue, we restart from the beginning.
             Each time, the state is saved to write the final report"""
             # we increment the nunmer of iteration
             self.iteration_number += 1
-            
+
             newPageTitle = self.driver.title
             good_style = styles.get_good()
             text = f"{good_style} you have been moved to the page with title {newPageTitle}"
@@ -236,24 +219,22 @@ class DialogueManager:
                 self.restart = False
                 self.in_session = False
                 return
-            restart = 1
-            if u.interactive_enabled or u.simulation_enabled:
-                restart = None
-                while restart is None:
-                    text = '\n[ALERT: Would you like to start a new dialogue ?\t1- Yes\t0- No\n>>> Response: '
-                    if u.simulation_enabled:
-                        dialogue_state = self.get_dialogue_state()
-                        answer = self.user.get_answer(dialogue_state)
-                    else:
-                        answer = input(text)
-                    try:
-                        restart = int(fn.convert_to_int(answer))
-                        if restart is None:
-                            sorry_style = styles.get_sorry()
-                            print(f'{sorry_style} your input is not valid')
-                    except:
+            restart = None
+            while restart is None:
+                text = '\n[ALERT: Would you like to start a new dialogue ?\t1- Yes\t0- No\n>>> Response: '
+                if u.simulation_enabled:
+                    dialogue_state = self.get_dialogue_state()
+                    answer = self.user.get_answer(dialogue_state)
+                else:
+                    answer = input(text)
+                try:
+                    restart = int(fn.convert_to_int(answer))
+                    if restart is None:
                         sorry_style = styles.get_sorry()
                         print(f'{sorry_style} your input is not valid')
+                except:
+                    sorry_style = styles.get_sorry()
+                    print(f'{sorry_style} your input is not valid')
             if restart:
                 good_style = styles.get_good()
                 print(f'{good_style} we are going to start a new dialogue')
@@ -269,9 +250,6 @@ class DialogueManager:
             raise Exception
 
     def update_parameters(self):
-        function_name = 'update_parameters'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             self.in_session = False
             self.counter = 0
@@ -282,9 +260,6 @@ class DialogueManager:
             raise Exception
 
     def get_dialogue_state(self):
-        function_name = 'get_dialogue_state'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             state = self.current_bot.get_state()
             next_slot_name = state.get_next_slot(only_name=True)
@@ -314,16 +289,13 @@ class DialogueManager:
                 dialogue_state[u.min_value] = slot[u.min_value]
                 dialogue_state[u.max_value] = slot[u.max_value]
                 dialogue_state[u.precision] = slot[u.precision]
-                
+
             return dialogue_state
         except:
             print('Fail to get the state of the dialogue')
             raise Exception
 
     def get_choices_lists(self):
-        function_name = 'get_choices_lists'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # give the choices lists and the list of fields
             state = self.current_bot.get_state()
@@ -336,11 +308,8 @@ class DialogueManager:
         except:
             print('Fail to get the choices lists')
             raise Exception
-    
+
     def get_text_fields(self):
-        function_name = 'get_text_fields'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # retrieves the fields of type text
             state = self.current_bot.get_state()
@@ -360,7 +329,7 @@ class DialogueManager:
             self.log_writer.start()
             if u.DEBUG:
                 print('Log written')
-        
+
     def conclude_log(self):
         try:
             self.chatbot_view.show_end_of_conversation(self.counter)

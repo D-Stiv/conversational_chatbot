@@ -4,7 +4,6 @@ import utility as u
 import functions as fn
 
 
-class_name = 'BotsManager'
 class BotsManager:
     botList = []  # we assume that we don't have two forms of the same type on the same webpage
 
@@ -14,9 +13,6 @@ class BotsManager:
             self.parse_web_form(form_element)
 
     def parse_web_form(self, form_element):
-        function_name = 'parse_web_form'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             bot_tag = form_element.get_attribute(u.bot_tag)
             slots = fn.get_input_fields(form_element)
@@ -42,9 +38,6 @@ class BotsManager:
             raise Exception
 
     def get_bot(self, bot_tag):
-        function_name = 'get_bot'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             for bot in self.botList:
                 if bot.get_bot_tag() == bot_tag:
@@ -54,9 +47,6 @@ class BotsManager:
             raise Exception
 
     def run_action(self, userInput, tag):
-        function_name = 'run_action'
-        if u.DEBUG:
-            print(f'{class_name}: {function_name}')
         try:
             # for the moment we assume that the user input goes to registration form which
             # is the only type we have up to now
@@ -73,7 +63,7 @@ class BotsManager:
                 bot = self.get_bot(u.tag_registration_form)
             # we get the state of the bot
             state = bot.get_state()
-            latest_message = bot.interpretMessage(userInput)
+            latest_message = bot.interpret_message(userInput)
             # update the state
             state.add_latest_message(latest_message)
             # here we could look if there are some slots in the message and set them in the state

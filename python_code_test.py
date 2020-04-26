@@ -13,15 +13,15 @@ from datetime import datetime
 from selenium import webdriver
 import copy
 
+
+driver = webdriver.Edge()
+webPath = "http://www.polimi.it"
+#webPath = u.form_url
+driver.get(webPath)
+driver.minimize_window()
+
 """
-form_element = webdriver.Edge()
-# webPath = "http://www.polimi.it"
-webPath = u.form_url
-form_element.get(webPath)
-form_element.minimize_window()
-
-
-form_elements = form_element.find_elements_by_tag_name('form')
+form_elements = driver.find_elements_by_tag_name('form')
 for form_element in form_elements:
 
     inputs = form_element.find_elements_by_xpath(".//input")

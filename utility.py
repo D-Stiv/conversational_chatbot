@@ -21,26 +21,6 @@ NOTIFICATION_FREQUENCE = 10
 # coefficient used to regule the dialogue and the notifications
 COEFF = 500
 
-# minimum and maximum year acceptable for the date
-min_year = 1500
-max_year = 3000
-
-# minimum and maximum month acceptable
-min_month = 0
-max_month = 12
-
-# minimum and maximum day acceptable
-min_day = 1
-max_day = 31
-
-# minimum and maximum hour acceptable
-min_hour = 0
-max_hour = 24
-
-# minimum and maximum minute acceptable
-min_minute = 0
-max_minute = 60
-
 REQUESTED_SLOT = "requested_slot"
 CANCELED = "canceled"
 VOID = ''
@@ -56,13 +36,16 @@ write_log = True
 write_report = True
 
 # whether or not we use the simulator
-simulation_enabled = True
+simulation_enabled = False
+
+# defines whether or not we get the URL from the user
+ask_url = False
 
 # URL of the form to fill
 url_new = "http://localhost/ecobusiness/new-project-form/"
 url_test = "http://localhost/ecobusiness/test-project-form/"
 
-form_url = url_new
+form_url = url_test
 
 # URLs for the test Web Forms
 url_1 = 'http://localhost/ecobusiness/test-form-1/'
@@ -88,13 +71,32 @@ registration_form_folder = 'registration_form'
 login_form_folder = 'login_form'
 
 # files name
-domain_file = 'domain_file.yml'
 nlu_data_file = 'nlu_data.json'
 nlu_config_file = 'nlu_config.yml'
 
 
 # string to stop the session
 stop = 'stop'
+
+# minimum and maximum year acceptable for the date
+min_year = 1500
+max_year = 3000
+
+# minimum and maximum month acceptable
+min_month = 0
+max_month = 12
+
+# minimum and maximum day acceptable
+min_day = 1
+max_day = 31
+
+# minimum and maximum hour acceptable
+min_hour = 0
+max_hour = 24
+
+# minimum and maximum minute acceptable
+min_minute = 0
+max_minute = 60
 
 # spelling
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',

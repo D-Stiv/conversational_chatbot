@@ -29,14 +29,18 @@ if u.interactive_enabled:
 else:
     browser = u.browsers[0]
 
-url = u.form_url
+# Interaction Level with direct access by the user
+if u.ask_url:
+    url = input('Please insert the URL of the Web Form that you would like to fill.\nURL: ')
+else:
+    url = u.form_url
 
 # The Access level calls the Interaction level for the initialization of the bots
 # for all the Forms present in thee Web page
 manager = initial_parsing(url=url, browser=browser)
 
 # In the Access level, we move the focus in a specific Form and the access Level
-# extracts the value of the attribute bot-tag of that Form
+# extracts the value of the attribute bot-tag of that Web Form
 current_form_tag = u.tag_registration_form
 
 # The Access Level calls the Interaction Level to manage the current Form

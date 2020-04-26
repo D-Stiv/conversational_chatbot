@@ -14,9 +14,9 @@ class State:
     def __init__(
         self,
         form_element,
-        constructs={},  # Text, Form, List, ...
+        constructs={}  # Text, Form, List, ...
     ) -> None:
-        """Initialize the tracker."""
+        """Initialize the state"""
 
         try:
             self.message_history = []
@@ -183,8 +183,11 @@ class State:
             print('ERROR: Fail to get the spelling fields')
             raise Exception
 
-    def set_next_slot(self, slot_name, required):
+    def set_next_slot(self, slot_name, required=None):
         try:
+            if required is None and slot_name is not None:
+                slot = self.state.get_slot(slot_name)
+                required = slot[u.required]
             self.machine_parameters[u.next_slot] = slot_name
             self.machine_parameters[u.next_slot_required] = required
             # we modify also the next_slot in the slots
@@ -602,8 +605,7 @@ class State:
                         if not remaining or slot[u.slot_value] is None:
                             # we add remaining not required fields
                             list_fields.append(slot[u.slot_name])
-            string = fn.get_string_from_list(list_fields)
-            return string
+            return list_fields
         except:
             print(f'ERROR: Fail to get the list of the fields')
             raise Exception
@@ -707,8 +709,7 @@ class State:
     def resume_spelling(self, slot_name):
         try:
             # we update the next fields
-            slot = self.get_slot(slot_name)
-            self.set_next_slot(slot_name, slot[u.required])
+            self.set_next_slot(slot_name)
             
             saved_fields = self.get_saved_spelling_fields()
             saved_values = self.get_saved_spelling_values()
@@ -795,14 +796,9 @@ class State:
             numSlot = len(slot_name_list)
             numValue = len(slot_value_list)
             if numSlot == 1 and numValue == 0:
-                required_fields = self.get_required_fields()
                 slot_name = slot_name_list[0]
-                if slot_name in required_fields:
-                    slot_required = True
-                else:
-                    slot_required = False
                 # we prepare the slot for the next value coming
-                self.set_next_slot(slot_name, slot_required)
+                self.set_next_slot(slot_name)
                 string = self.manage_next_step()
                 return True, string
             if numValue >= numSlot:
@@ -943,8 +939,10 @@ class State:
                 present = fn.verify_presence(slot_name, self.form_slots(), only_presence=True)
                 if not present:
                     sorry_style = styles.get_sorry()
+                    list_fields = self.get_fields_list()
+                    string_fields = fn.get_string_from_list(list_fields)
                     text = (f"{sorry_style} the field {slot_name} is not present in this form.\nThe fields of this form are" +
-                            f" the following: {self.get_fields_list()}")
+                            f" the following: {string_fields}")
                     next_step_string = self.manage_next_step()
                     string = f'{text}\n{next_step_string}'
                     return False, string
@@ -967,20 +965,20 @@ class State:
                     string = u.VOID
                 if string in [u.VOID, u.CANCELED]:
                     next_step_string = self.manage_next_step()
-                    return next_step_string
-                return string
+                    return True, next_step_string
+                return True, string
             # we update the Web Form
             slot_value, comment = self.fill_input(slot_name, slot_value)
             if slot_value is None:
                 # incompatibility observed, the comment contains the next_step_string
-                return comment
+                return False, comment
             # Everything went fine so we update the internal structure
             self.set_slot(slot_name=slot_name, slot_value=slot_value)
             string = self.update(slot_name)
             if string in [u.VOID, u.CANCELED]:
                 next_step_string = self.manage_next_step()
-                return next_step_string
-            return string
+                return True, next_step_string
+            return True, string
         except:
             if not self.get_warning_present():
                 print('ERROR: Fail to complete the filling procedure')

@@ -4,15 +4,12 @@ import json
 import os
 from os import path
 import utility as u
-from formInterface import Form
+from form_interface import Form
 import functions as fn
 import asyncio
 import rasa
 import shutil
 import time
-
-
-EXCEPTION_MESSAGE = "Something went wrong during the handling of this message, please try another message !!"
 
 
 class LoginForm(Form):
@@ -63,7 +60,7 @@ class RegistrationForm(Form):
             print('Fail to train the conversational model')
             raise Exception
 
-    def interpretMessage(self, userInput):
+    def interpret_message(self, user_input):
         try:
             def get_model_path():
                 m_path = f'{self.model_folder}/{u.tag_registration_form}'
@@ -79,13 +76,13 @@ class RegistrationForm(Form):
                 self.model_path = get_model_path()
                 self.model_path_found = True
             interpreter = Interpreter.load(self.model_path)
-            latest_message = interpreter.parse(userInput)
+            latest_message = interpreter.parse(user_input)
             if u.DEBUG:
-                print(f"interpretMessage - message: \n{latest_message['intent']}")
+                print(f"interpret_message - message: \n{latest_message['intent']}")
             return latest_message
         except:
             print("A problem occured while a registration form bot tries to interprete the input <<{}>>".format(
-                userInput))
+                user_input))
             raise Exception
 
     def fillForm(self):
@@ -115,7 +112,9 @@ class RegistrationForm(Form):
                 desc_intro = f"{form_desc}."
             # we format the string to retrieve
             first_string = self.state.manage_next_step()
-            string = (f"{form_intro} {desc_intro} this form contains the following fields {self.state.get_fields_list()}, from which {self.state.num_required_fields} are required" +
+            list_fields = self.state.get_fields_list()
+            string_fields = fn.get_string_from_list(list_fields)
+            string = (f"{form_intro} {desc_intro} this form contains the following fields: {string_fields}, from which {self.state.num_required_fields} are required" +
                       f" and {self.state.num_optional_fields} are optional.\nhere we go:\n{first_string}")
             return string
         except:
@@ -166,12 +165,12 @@ class RegistrationForm(Form):
                     slot_value = slot_value_list[0]
                     # the slot value can change, being put in the right format
                     # we go to the filling procedure insuring that the field is not spelling
-                    string = self.state.filling_procedure(slot_name, slot_value)
+                    correct, string = self.state.filling_procedure(slot_name, slot_value)
                 elif self.state.get_possible_next_action() != u.fill_field_action and intent != u.fill_field_action:
-                    # probably bad destination due to training
+                    # probably bad destination due to misinterpretation
                     sorry_style = styles.get_sorry()
                     please_style = styles.get_please()
-                    text = f'{sorry_style} i did not understand your request, could you reformulate {please_style}?'
+                    text = f'{sorry_style} i do not understand your request, could you reformulate {please_style}?'
                     self.state.set_warning_message(text)
                     raise Exception
                 else:
@@ -204,11 +203,13 @@ class RegistrationForm(Form):
             if self.state.get_after_spelling():
                 # after spelling is desabled since we are going to insert the vale for a field
                 self.state.set_after_spelling(False)
-                slot_name = self.state.get_spelling_list()[0]
+                slot_name = self.state.get_next_slot(only_name=True)
                 slot_value = self.state.get_current_spelling_input_value()
-                # we go to the filling procedure
-                string = self.state.filling_procedure(slot_name, slot_value)
-                self.state.reset_current_spelling_input_value()
+                # we go to the filling procedure. The spelling list can be modified in this phase
+                correct, string = self.state.filling_procedure(slot_name, slot_value)
+                if not correct:
+                    self.state.reset_current_spelling_input_value()
+                    return string
                 # verify if all the fields in spelling list have been completed
                 if len(self.state.get_spelling_list()) - 1 == 0:
                     self.state.reset_spelling_list()
@@ -235,6 +236,9 @@ class RegistrationForm(Form):
                     if field in saved_fields:
                         string = self.state.resume_spelling(field)
                         return string
+            # we set the first spelling field of the list as the next field
+            slot_name = slot_name_list[0]
+            self.state.set_next_slot(slot_name)
             # we add styles to the output
             please_style = styles.get_please()
             end_style = styles.get_end()
@@ -257,14 +261,10 @@ class RegistrationForm(Form):
 
     def spelling(self):
         try:
-            if len(self.state.get_spelling_list()) == 0:
+            if len(self.state.get_spelling_list()) == 0 or self.state.get_possible_next_action() != u.spelling_action:
                 string = self.fillGenericCamp()
                 return string
-            alphabet = u.alphabet
-            special_characters = u.special_characters
-            spec_char_symbol = u.spec_char_symbol
-            terminator = u.terminator
-            all_types = alphabet + special_characters + terminator
+            all_types = u.alphabet + u.special_characters + u.terminator + u.spec_char_symbol
             text = self.state.get_latest_message()["text"]
             # verify if text is a number
             is_number = False
@@ -278,7 +278,7 @@ class RegistrationForm(Form):
                 self.state.set_warning_message(string)
                 raise Exception
             # verify if the input is for termination of the spelling
-            for term in terminator:
+            for term in u.terminator:
                 if term in text.lower():
                     # we make sure the current spelling string is not void
                     value = self.state.get_current_spelling_input_value().replace(' ', '')
@@ -295,9 +295,9 @@ class RegistrationForm(Form):
                     string = self.fillSpellingCamp()
                     return string
             # we manage the case of special character which needs a translation
-            if text.lower() in special_characters:
-                index = special_characters.index(text)
-                text = spec_char_symbol[index]
+            if text.lower() in u.special_characters:
+                index = u.special_characters.index(text)
+                text = u.spec_char_symbol[index]
             # we are sure that the character inserted by the user is valid
             if self.state.get_current_spelling_input_value() == '':
                 # we enable the close prompt because we receive the first character
@@ -471,7 +471,13 @@ class RegistrationForm(Form):
         try:
             sure_style = styles.get_sure()
             required_fields = self.state.get_fields_list(only_required=True)
-            ans = f"{sure_style} the required fields are the following {required_fields}."
+            if len(required_fields) == 0:
+                ans = 'There is no required field in this form'
+            elif len(required_fields) == 1:
+                ans = f'There is one required field in this form which is {required_fields[0]}'
+            else:
+                string_fields = fn.get_string_from_list(required_fields)
+                ans = f"{sure_style} the required fields are the following: {string_fields}."
             string = self.state.manage_next_step()
             string = f"{ans}\n{string}"
             return string
@@ -503,9 +509,9 @@ class RegistrationForm(Form):
 
     def repeatAllLabels(self):
         try:
-            sure_style = styles.get_sure()
             all_fields = self.state.get_fields_list()
-            ans = f"{sure_style} the fields present in this form are the following {all_fields}."
+            string_fields = fn.get_string_from_list(all_fields)
+            ans = f"The fields present in this form are the following: {string_fields}."
             next_step_string = self.state.manage_next_step()
             string = f"{ans}\n{next_step_string}"
             return string
@@ -519,7 +525,13 @@ class RegistrationForm(Form):
         try:
             sure_style = styles.get_sure()
             remaining_required_fields = self.state.get_fields_list(only_required=True, remaining=True)
-            ans = f"{sure_style} the remaining required fields are the following {remaining_required_fields}."
+            if len(remaining_required_fields) == 0:
+                ans = 'There is no required field remaining'
+            elif len(remaining_required_fields) == 1:
+                ans = f'The only required field thet remains is {remaining_required_fields[0]}'
+            else:
+                string_fields = fn.get_string_from_list(remaining_required_fields)
+                ans = f"{sure_style} the remaining required fields are the following: {string_fields}."
             next_step_string = self.state.manage_next_step()
             string = f"{ans} \n{next_step_string}"
             return string
@@ -556,7 +568,13 @@ class RegistrationForm(Form):
         try:
             sure_style = styles.get_sure()
             all_remaining_fields = self.state.get_fields_list(remaining=True)
-            ans = f"{sure_style} the remaining fields present in this form are the following {all_remaining_fields}."
+            if len(all_remaining_fields) == 0:
+                ans = 'There is no field remaining'
+            elif len(all_remaining_fields) == 1:
+                ans = f'There is one field remaining and it is {all_remaining_fields[0]}'
+            else:
+                string_fields = fn.get_string_from_list(all_remaining_fields)
+                ans = f"{sure_style} the remaining fields present in this form are the following: {string_fields}."
             string = self.state.manage_next_step()
             string = f'{ans}\n{string}'
             return string
@@ -658,13 +676,18 @@ class RegistrationForm(Form):
 
     def submitForm(self):
         try:
-            # we first verify that all the required fields are filled
+            # we first verify if all the required fields are filled
             if not self.state.get_all_required_filled():
+                # at least one required field is still empty
                 remaining_required = self.state.get_fields_list(
                     remaining=True, only_required=True)
-                string = ("Not all the required fields are completed.\n you still have" +
-                          f" to complete the following required fields {remaining_required}")
-                return string
+                initial_string = 'Not all the required fields are completed.'
+                if len(remaining_required) == 1:
+                    string = f'{initial_string}\nYou should complete the field {remaining_required[0]}.'
+                elif len(remaining_required) > 1:
+                    string_fields = fn.get_string_from_list(remaining_required)
+                    string = f"{initial_string}\nYou still have to complete the following required fields {string_fields}"
+                    return string
             if u.DEBUG:
                 print("inside submitForm")
             if not self.state.get_submit_alarm_enabled():
