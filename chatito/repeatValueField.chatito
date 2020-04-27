@@ -4,7 +4,7 @@ import ./common_alias.chatito
 import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
-%[repeatValueCamp]('training': '8000', 'testing': '2000')
+%[repeatValueField]('training': '8000', 'testing': '2000')
     *[9] ~[can] ~[you] ~[repeat] ~[the?] @[input_field] @[input_field?] @[input_field?] ~[and?] ~[the?] @[input_field?] ~[again?] ~[please?]
     *[7] ~[what] ~[are] ~[the?] ~[values] ~[of] @[input_field] @[input_field?] @[input_field?] ~[and?] ~[the?] @[input_field?]
     *[8] ~[please?] ~[repeat] ~[me?] ~[the?] @[input_field] @[input_field] @[input_field?] ~[and?] ~[the?] @[input_field?]

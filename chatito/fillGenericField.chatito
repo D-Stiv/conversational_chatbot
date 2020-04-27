@@ -4,7 +4,7 @@ import ./common_alias.chatito
 import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
-%[fillGenericCamp]('training': '8000', 'testing': '2000')
+%[fillGenericField]('training': '8000', 'testing': '2000')
     *[2] @[input_value#generic] ~[is] ~[the?] @[input_field#generic]
     *[5] ~[the?] @[input_field#generic] ~[are] ~[the?] @[input_value#generic] ~[and?] ~[the?] @[input_value#generic]
     *[6] ~[the?] @[input_field#generic] ~[are] ~[the?] @[input_value#generic] ~[the?] @[input_value#generic] ~[and?] ~[the?] @[input_value#generic]

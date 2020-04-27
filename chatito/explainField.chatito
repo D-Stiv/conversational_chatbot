@@ -4,7 +4,7 @@ import ./common_alias.chatito
 import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
-%[explainLabel]('training': '8000', 'testing': '2000')
+%[explainField]('training': '8000', 'testing': '2000')
     *[2] ~[what] ~[does] ~[it] ~[mean] ~[please?]
     *[2] ~[what] ~[is] ~[it] ~[please?]
     *[2] ~[what] ~[is] @[input_field] ~[please?]

@@ -4,7 +4,7 @@ import ./common_alias.chatito
 import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
-%[verifyValueFilledCamps]('training': '8000', 'testing': '2000')
+%[verifyValueFilledFields]('training': '8000', 'testing': '2000')
     *[3] ~[what] ~[are] ~[the?] ~[filled] ~[camps] ~[up_to_now?]
     *[4] ~[what] ~[is] ~[the?] ~[value] ~[of] ~[the?] ~[filled] ~[camps] ~[up_to_now?]
     *[3] ~[i] ~[want] ~[to] ~[verify] ~[the] ~[value] ~[of] ~[the?] ~[filled] ~[camps] ~[up_to_now?]

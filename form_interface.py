@@ -162,133 +162,133 @@ class Form:
                 print("A problem occured while trying to submit a form")
             raise Exception
 
-    def fillGenericCamp(self):
+    def fillGenericField(self):
         try:
-            message = self.fillGenericCamp()
+            message = self.fillGenericField()
             if u.DEBUG:
-                print("FORM INTERFACE fillGenericCamp")
+                print("FORM INTERFACE fillGenericField")
             return message
         except:
             if not self.state.get_warning_present():
                 print("A problem occured while trying to fill a camp")
             raise Exception
 
-    def repeatValueCamp(self):
+    def repeatValueField(self):
         try:
-            message = self.repeatValueCamp()
+            message = self.repeatValueField()
             if u.DEBUG:
-                print("FORM INTERFACE repeatValueCamp")
+                print("FORM INTERFACE repeatValueField")
             return message
         except:
             if not self.state.get_warning_present():
                 print("A problem occured while trying to repeat a camp")
             raise Exception
 
-    def modifyValueGenericCamp(self):
+    def modifyValueGenericField(self):
         try:
-            # almost identical to fillGenericCamp
-            message = self.fillGenericCamp()
+            # almost identical to fillGenericField
+            message = self.fillGenericField()
             if u.DEBUG:
-                print("FORM INTERFACE modifyValueGenericCamp")
+                print("FORM INTERFACE modifyValueGenericField")
             return message
         except:
             if not self.state.get_warning_present():
                 print("A problem occured while trying to modify a generic camp")
             raise Exception
         
-    def resetAllCamps(self):
+    def resetAllFields(self):
         try:
-            message = self.resetAllCamps()
+            message = self.resetAllFields()
             if u.DEBUG:
-                print("FORM INTERFACE resetAllCamps")
+                print("FORM INTERFACE resetAllFields")
             return message
         except:
             if not self.state.get_warning_present():
                 print("A problem occured while trying to reset all the camps")
             raise Exception
 
-    def skipCamp(self):
+    def skipField(self):
         try:
-            message = self.skipCamp()
+            message = self.skipField()
             if u.DEBUG:
-                print("FORM INTERFACE skipCamp")
+                print("FORM INTERFACE skipField")
             return message
         except:
             if not self.state.get_warning_present():
                 print("A problem occured while trying to skip the camp")
             raise Exception
 
-    def repeatRequiredLabels(self):
+    def repeatRequiredFields(self):
         try:
-            message = self.repeatRequiredLabels()
+            message = self.repeatRequiredFields()
             if u.DEBUG:
-                print("FORM INTERFACE repeatRequiredLabels")
+                print("FORM INTERFACE repeatRequiredFields")
             return message
         except:
             if not self.state.get_warning_present():
                 print("A problem occured while trying to repeat the Required labels")
             raise Exception
 
-    def repeatOptionalLabels(self):
+    def repeatOptionalFields(self):
         try:
-            message = self.repeatOptionalLabels()
+            message = self.repeatOptionalFields()
             if u.DEBUG:
-                print("FORM INTERFACE repeatOptionalLabels")
+                print("FORM INTERFACE repeatOptionalFields")
             return message
         except:
             if not self.state.get_warning_present():
                 print("A problem occured while trying to repeat the optional labels")
             raise Exception
     
-    def repeatAllLabels(self):
+    def repeatAllFields(self):
         try:
-            message = self.repeatAllLabels()
+            message = self.repeatAllFields()
             if u.DEBUG:
-                print("FORM INTERFACE repeatAllLabels")
+                print("FORM INTERFACE repeatAllFields")
             return message
         except:
             if not self.state.get_warning_present():
                 print("A problem occured while trying to repeat all the labels")
             raise Exception
 
-    def giveRemainingRequiredLabels (self):
+    def giveRemainingRequiredFields (self):
         try:
-            message = self.giveRemainingRequiredLabels ()
+            message = self.giveRemainingRequiredFields ()
             if u.DEBUG:
-                print("FORM INTERFACE giveRemainingRequiredLabels ")
+                print("FORM INTERFACE giveRemainingRequiredFields ")
             return message
         except:
             if not self.state.get_warning_present():
                 print("A problem occured while trying to give the remaining Required labels")
             raise Exception
 
-    def giveRemainingOptionalLabels (self):
+    def giveRemainingOptionalFields (self):
         try:
-            message = self.giveRemainingOptionalLabels ()
+            message = self.giveRemainingOptionalFields ()
             if u.DEBUG:
-                print("FORM INTERFACE giveRemainingOptionalLabels ")
+                print("FORM INTERFACE giveRemainingOptionalFields ")
             return message
         except:
             if not self.state.get_warning_present():
                 print("A problem occured while trying to give the remaining optional labels")
             raise Exception
 
-    def giveAllRemainingLabels(self):
+    def giveAllRemainingFields(self):
         try:
-            message = self.giveAllRemainingLabels()
+            message = self.giveAllRemainingFields()
             if u.DEBUG:
-                print("FORM INTERFACE giveAllRemainingLabels")
+                print("FORM INTERFACE giveAllRemainingFields")
             return message
         except:
             if not self.state.get_warning_present():
                 print("A problem occured while trying to give all the remaining labels")
             raise Exception
 
-    def verifyValueFilledCamps(self):
+    def verifyValueFilledFields(self):
         try:
-            message = self.verifyValueFilledCamps()
+            message = self.verifyValueFilledFields()
             if u.DEBUG:
-                print("FORM INTERFACE verifyValueFilledCamps")
+                print("FORM INTERFACE verifyValueFilledFields")
             return message
         except:
             if not self.state.get_warning_present():
@@ -317,22 +317,22 @@ class Form:
                 print("A problem occured while trying to repeat the form explanation")
             raise Exception
 
-    def verifyPresenceOfLabel(self):
+    def verifyPresenceOfField(self):
         try:
-            message = self.verifyPresenceOfLabel()
+            message = self.verifyPresenceOfField()
             if u.DEBUG:
-                print("FORM INTERFACE verifyPresenceOfLabel")
+                print("FORM INTERFACE verifyPresenceOfField")
             return message
         except:
             if not self.state.get_warning_present():
                 print("A problem occured while trying to verify the presence of a label in the label list")
             raise Exception
 
-    def explainLabel(self):
+    def explainField(self):
         try:
-            message = self.explainLabel()
+            message = self.explainField()
             if u.DEBUG:
-                print("FORM INTERFACE explainLabel")
+                print("FORM INTERFACE explainField")
             return message
         except:
             if not self.state.get_warning_present():
@@ -363,9 +363,9 @@ class Form:
 
     def spelling(self):
         try:
-            # if the spelling is not yet operational, we treat the spelling as fillGenericCamp
+            # if the spelling is not yet operational, we treat the spelling as fillGenericField
             if not u.READY_FOR_SPELLING:
-                message = self.fillGenericCamp()
+                message = self.fillGenericField()
             else:
                 message = self.spelling()
             if u.DEBUG:
@@ -377,8 +377,8 @@ class Form:
             raise Exception
 
 
-    actions = [submitForm, fillGenericCamp, modifyValueGenericCamp, repeatValueCamp, skipCamp, 
-        repeatRequiredLabels, repeatOptionalLabels, repeatAllLabels, giveRemainingRequiredLabels, 
-        verifyValueFilledCamps, giveRemainingOptionalLabels, giveAllRemainingLabels, repeatFormTitle, 
-        repeatFormExplanation, verifyPresenceOfLabel, explainLabel, affirm, deny, spelling, fillForm, 
-        resetAllCamps]
+    actions = [submitForm, fillGenericField, modifyValueGenericField, repeatValueField, skipField, 
+        repeatRequiredFields, repeatOptionalFields, repeatAllFields, giveRemainingRequiredFields, 
+        verifyValueFilledFields, giveRemainingOptionalFields, giveAllRemainingFields, repeatFormTitle, 
+        repeatFormExplanation, verifyPresenceOfField, explainField, affirm, deny, spelling, fillForm, 
+        resetAllFields]

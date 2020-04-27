@@ -43,6 +43,12 @@ def verify_compatibility_email(value):
         elif at_sign == value[len(value)-1]:
             text = f'The email should not end with the character < {at_sign} >'
             return False, text
+        if dot_sign == value[0]:
+            text = f'The email should not start with the character < {dot_sign} >'
+            return False, text
+        elif dot_sign == value[len(value)-1]:
+            text = f'The email should not end with the character < {dot_sign} >'
+            return False, text
         pos_at = value.index(at_sign)
         if dot_sign not in value[pos_at :]:
             text = f'There should be at least one character <{dot_sign}> after the character <{at_sign}>'
@@ -154,11 +160,12 @@ def verify_compatibility_password(value):
 
 def verify_compatibility_tel(value):
     try:
-        # we should not have the space in the value
-        if ' ' in value:
-            text = "The character SPACE should not be present in this value type"
-            return False, text
         text = value
+        # we should not have the space in the final value
+        if ' ' in value:
+            text = text.replace(' ', '')
+        if '-' in value:
+            text = text.replace('-', '')
         plus_sign = "+"
         num_occur = value.count(plus_sign)
         if num_occur == 1:
@@ -574,7 +581,7 @@ def get_time(hh=u.VOID, meridian=u.VOID, mm=u.VOID):
 def get_decimal(value):
     try:
         # returns a string in format ID* or ID*,D* with I in [1,9] and D in [0,9]
-        # accepts ID* or ID*,D* or ID?(.DDD)* or ID?(.DDD)*,D* or ID?(,DDD)* or ID?(,DDD)*.D*
+        # accepts ID* or ID*,D* or ID?D?(.DDD)* or ID?D?(.DDD)*,D* or ID?D?(,DDD)* or ID?D?(,DDD)*.D*
         num_comma = value.count(',')
         num_dot = value.count('.')
         # an integer value is decimal
@@ -642,7 +649,7 @@ def get_decimal(value):
 def get_integer(value):
     try:
         # returns a string in format ID* with I in [1,9] and D in [0,9]
-        # accepts ID* or ID?(.DDD)* or ID?(,DDD)* 
+        # accepts ID* or ID?D?(.DDD)* or ID?D?(,DDD)* 
         if '.' not in value and ',' not in value:
             value = value.replace(' ', '')
             try:

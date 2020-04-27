@@ -4,7 +4,7 @@ import ./common_alias.chatito
 import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
-%[resetAllCamps]('training': '8000', 'testing': '2000')
+%[resetAllFields]('training': '8000', 'testing': '2000')
     *[2] ~[yes?] ~[i] ~[want] ~[to] ~[reset] ~[the] ~[form]
     *[2] ~[yes?] ~[reset] ~[the] ~[form]
     *[2] ~[yes?] ~[reset] ~[all] ~[the] ~[camps]

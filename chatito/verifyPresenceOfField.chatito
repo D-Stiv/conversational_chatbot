@@ -4,7 +4,7 @@ import ./common_alias.chatito
 import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
-%[verifyPresenceOfLabel]('training': '8000', 'testing': '2000')
+%[verifyPresenceOfField]('training': '8000', 'testing': '2000')
     *[3] ~[is] ~[the?] ~[camp] @[input_value#message] ~[present] ~[too?]
     *[2] ~[is] ~[there] ~[the] @[input_value#message] ~[too?]
     *[3] ~[is] ~[the?] ~[camp] @[input_value#message] ~[among] ~[the] ~[list] ~[too?]

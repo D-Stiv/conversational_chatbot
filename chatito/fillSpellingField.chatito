@@ -4,7 +4,7 @@ import ./common_alias.chatito
 import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
-%[fillSpellingCamp]('training': '8000', 'testing': '2000')
+%[fillSpellingField]('training': '8000', 'testing': '2000')
     *[1] @[spelling_input_value#name] ~[is] ~[the?] @[spelling_input_field#name]
     *[1] ~[the?] @[spelling_input_field#name] ~[is] @[spelling_input_value#name]
     *[1] ~[the?] @[spelling_input_field#name] ~[is] @[spelling_input_value#name] ~[and] @[spelling_input_value#name] ~[is] ~[the] @[spelling_input_field#name]

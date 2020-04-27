@@ -4,7 +4,7 @@ import ./common_alias.chatito
 import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
-%[repeatOptionalLabels]('training': '8000', 'testing': '2000')
+%[repeatOptionalFields]('training': '8000', 'testing': '2000')
     *[2] ~[what] ~[are] ~[the?] ~[optional] ~[camps]
     *[3] ~[please?] ~[repeat?] ~[optional] ~[camps]
     *[3] ~[please?] ~[repeat] ~[the?] ~[optional] ~[camps]

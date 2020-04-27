@@ -4,7 +4,7 @@ import ./common_alias.chatito
 import ./common_slots_name.chatito
 import ./common_slots_value.chatito
 
-%[modifyValueGenericCamp]('training': '8000', 'testing': '2000')
+%[modifyValueGenericField]('training': '8000', 'testing': '2000')
     *[3] ~[can] ~[i] ~[modify] ~[the?] @[input_field] ~[please?]
     *[3] ~[i] ~[want] ~[to] ~[modify] ~[the?] @[input_field] ~[please?]
     *[4] ~[i?] ~[want] ~[to?] ~[modify] ~[the?] @[input_field]

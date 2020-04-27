@@ -123,7 +123,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to start filling the form")
             raise Exception
 
-    def fillGenericCamp(self):
+    def fillGenericField(self):
         try:
             entities = self.state.get_latest_message()["entities"]
             intent = self.state.get_latest_message()["intent"]["name"]
@@ -143,13 +143,13 @@ class RegistrationForm(Form):
                 return string
             """we extract now the spelling field and we insert them in the spelling list
             after that we fill the generic fields before passing the floor to 
-            fillSpellingCamp to complete the fields in spelling list."""
+            fillSpellingField to complete the fields in spelling list."""
             slot_name_list, slot_value_list = self.state.set_spelling_list(
                 slot_name_list, slot_value_list)
             # the spelling list have been set and we can continue
             correct = True
             if len(slot_value_list) + len(slot_name_list) == 0:
-                string = self.fillSpellingCamp()
+                string = self.fillSpellingField()
                 return string
             if len(slot_value_list) + len(slot_name_list) >= 1:
                 # there is at least one generic info
@@ -160,7 +160,7 @@ class RegistrationForm(Form):
                     # We make verify if the current field is spelling
                     spelling_fields = self.state.get_spelling_fields()
                     if slot_name in spelling_fields:
-                        string = self.fillSpellingCamp()
+                        string = self.fillSpellingField()
                         return string
                     slot_value = slot_value_list[0]
                     # the slot value can change, being put in the right format
@@ -180,7 +180,7 @@ class RegistrationForm(Form):
             next_field_before = self.state.get_next_slot(only_name=True)
             # we verify if the spelling_list is empty or not
             if len(self.state.get_spelling_list()) != 0:
-                text = self.fillSpellingCamp()
+                text = self.fillSpellingField()
                 next_field_after = self.state.get_next_slot(only_name=True)
                 if next_field_before == next_field_after:
                     # the spelling did not modified the Web page, we return the string from the non spelling fields
@@ -197,7 +197,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to fill a camp")
             raise Exception
 
-    def fillSpellingCamp(self):
+    def fillSpellingField(self):
         try:
             # we have to verify if we just finished the spelling of a field
             if self.state.get_after_spelling():
@@ -223,9 +223,9 @@ class RegistrationForm(Form):
                 # after the spelling we insert the value for the given field and we reset the string
                 self.state.reset_current_spelling_input_value()
                 return string
-            """we are not after spelling so the fillGenericCamp directly called this function(at the
+            """we are not after spelling so the fillGenericField directly called this function(at the
             previous step it was triggered by the spelling function) or it is triggered by
-            the mofifySpellingCamp function"""
+            the mofifySpellingField function"""
 
             # we look if one of the fields in spelling fields has been saved to resume it. In case of many fields saved we take the first
             slot_name_list = self.state.get_spelling_list()
@@ -262,7 +262,7 @@ class RegistrationForm(Form):
     def spelling(self):
         try:
             if len(self.state.get_spelling_list()) == 0 or self.state.get_possible_next_action() != u.spelling_action:
-                string = self.fillGenericCamp()
+                string = self.fillGenericField()
                 return string
             all_types = u.alphabet + u.special_characters + u.terminator + u.spec_char_symbol
             text = self.state.get_latest_message()["text"]
@@ -292,7 +292,7 @@ class RegistrationForm(Form):
                     self.state.set_close_prompt_enabled(False)
                     # we proceed with the filling of the last field just spelt
                     # and we get the message for the next field to fill
-                    string = self.fillSpellingCamp()
+                    string = self.fillSpellingField()
                     return string
             # we manage the case of special character which needs a translation
             if text.lower() in u.special_characters:
@@ -313,7 +313,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to get a spelling")
             raise Exception
 
-    def verifyPresenceOfLabel(self):
+    def verifyPresenceOfField(self):
         try:
             entities = self.state.get_latest_message()["entities"]
             count = len(entities)
@@ -342,7 +342,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to verify the presence of a label")
             raise Exception
 
-    def explainLabel(self):
+    def explainField(self):
         try:
             entities = self.state.get_latest_message()["entities"]
             count = len(entities)
@@ -414,7 +414,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to get a denial")
             raise Exception
 
-    def repeatValueCamp(self):
+    def repeatValueField(self):
         try:
             entities = self.state.get_latest_message()["entities"]
             fields = fn.extract_fields_names_and_values(
@@ -441,7 +441,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to repeat the value of a field")
             raise Exception
 
-    def skipCamp(self):
+    def skipField(self):
         try:
             # we set the actual slot to campare it later with the next slot
             actual_slot_name = self.state.get_next_slot(only_name=True)    # return also if the next slot is required or not
@@ -467,7 +467,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to skip a camp")
             raise Exception
 
-    def repeatRequiredLabels(self):
+    def repeatRequiredFields(self):
         try:
             sure_style = styles.get_sure()
             required_fields = self.state.get_fields_list(only_required=True)
@@ -487,7 +487,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to repeat Required labels")
             raise Exception
 
-    def repeatOptionalLabels(self):
+    def repeatOptionalFields(self):
         try:
             sure_style = styles.get_sure()
             optional_list = []
@@ -507,7 +507,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to repeat optional labels")
             raise Exception
 
-    def repeatAllLabels(self):
+    def repeatAllFields(self):
         try:
             all_fields = self.state.get_fields_list()
             string_fields = fn.get_string_from_list(all_fields)
@@ -521,14 +521,14 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to repeat all the labels")
             raise Exception
 
-    def giveRemainingRequiredLabels(self):
+    def giveRemainingRequiredFields(self):
         try:
             sure_style = styles.get_sure()
             remaining_required_fields = self.state.get_fields_list(only_required=True, remaining=True)
             if len(remaining_required_fields) == 0:
                 ans = 'There is no required field remaining'
             elif len(remaining_required_fields) == 1:
-                ans = f'The only required field thet remains is {remaining_required_fields[0]}'
+                ans = f'The only required field that remains is {remaining_required_fields[0]}'
             else:
                 string_fields = fn.get_string_from_list(remaining_required_fields)
                 ans = f"{sure_style} the remaining required fields are the following: {string_fields}."
@@ -541,7 +541,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to give the remaining Required labels")
             raise Exception
 
-    def giveRemainingOptionalLabels(self):
+    def giveRemainingOptionalFields(self):
         try:
             sure_style = styles.get_sure()
             remaining_optional_list = []
@@ -564,7 +564,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to give the remaining optional labels")
             raise Exception
 
-    def giveAllRemainingLabels(self):
+    def giveAllRemainingFields(self):
         try:
             sure_style = styles.get_sure()
             all_remaining_fields = self.state.get_fields_list(remaining=True)
@@ -584,7 +584,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to give all the remaining labels")
             raise Exception
 
-    def verifyValueFilledCamps(self):
+    def verifyValueFilledFields(self):
         try:
             slots = self.state.form_slots()
             filled_string = fn.get_pairs(slots, only_filled=True)
@@ -637,7 +637,7 @@ class RegistrationForm(Form):
                     "A problem occured while a registration form bot tries to repeat the form's explanation")
             raise Exception
 
-    def resetAllCamps(self):
+    def resetAllFields(self):
         try:
             if not self.state.get_reset_alarm_enabled():
                 string = "we are about to reset all the fields and restart the process.\n are you sure you want to continue with this action?"
@@ -676,11 +676,10 @@ class RegistrationForm(Form):
 
     def submitForm(self):
         try:
+            remaining_required = self.state.get_fields_list(remaining=True, only_required=True)
             # we first verify if all the required fields are filled
-            if not self.state.get_all_required_filled():
+            if len(remaining_required) > 0:
                 # at least one required field is still empty
-                remaining_required = self.state.get_fields_list(
-                    remaining=True, only_required=True)
                 initial_string = 'Not all the required fields are completed.'
                 if len(remaining_required) == 1:
                     string = f'{initial_string}\nYou should complete the field {remaining_required[0]}.'
