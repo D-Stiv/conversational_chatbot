@@ -2,7 +2,7 @@
 Conversational Chatbot. We only have to run this file for it to be done."""
 
 # statistics for the thesis
-compute_response_time = False
+compute_response_time = True
 
 # exceptional message
 EXCEPTION_MESSAGE = "Something went wrong during the handling of this message.\n what can i precisely do for you please ?"
@@ -10,7 +10,7 @@ EXCEPTION_MESSAGE = "Something went wrong during the handling of this message.\n
 DEBUG = False
 
 # maximum number of dialogues
-MAX_DIALOGUES = 20
+MAX_DIALOGUES = 40
 
 # frequency control: interval for being able to manually stop the simulation in term of number of message exchanged
 CONTROL_FREQUENCE = 500
@@ -25,7 +25,7 @@ REQUESTED_SLOT = "requested_slot"
 CANCELED = "canceled"
 VOID = ''
 READY_FOR_SPELLING = True  # True when we are ready to manage the spelling correctly
-# when READY_FOR_SPELLING is False, fillSpellingCamp calls fillGenericCamp
+# when READY_FOR_SPELLING is False, fillSpellingField calls fillGenericField
 tag_registration_form = "registration_form_tag"
 
 # decides whether we have to train the model or not
@@ -36,7 +36,7 @@ write_log = True
 write_report = True
 
 # whether or not we use the simulator
-simulation_enabled = False
+simulation_enabled = True
 
 # defines whether or not we get the URL from the user
 ask_url = False
@@ -270,8 +270,8 @@ state_name = 'state_name'
 affirm_action = 'affirm'
 deny_action = 'deny'
 fill_form_action = 'fillForm'
-fill_field_action = 'fillGenericCamp'
-reset_all_fields_action = 'resetAllCamps'
+fill_field_action = 'fillGenericField'
+reset_all_fields_action = 'resetAllFields'
 spelling_action = 'spelling'
 submit_action = 'submitForm'
 

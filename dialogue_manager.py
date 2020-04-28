@@ -120,7 +120,7 @@ class DialogueManager:
         try:
             # call fillForm woith a predefined message and present the form
             initial_string = 'fill the form'
-            message = self.current_bot.interpretMessage(initial_string)
+            message = self.current_bot.interpret_message(initial_string)
             introduction = self.current_bot.find_action_and_run(
                 message["intent"]["name"])
             stop_string = f"Start of the conversation, to end your should type <<{u.stop}>>."
@@ -159,7 +159,7 @@ class DialogueManager:
                     self.user_view.show_text(self.counter, text)
                     self.counter += 1
                     response = self.bot_manager.run_action(
-                        userInput=a, tag=u.tag_registration_form)
+                        user_input=a, tag=u.tag_registration_form)
                     text = f"response: {response}"
                     # we verify whether or not the submission have benn done
                     if not my_state.get_submit_done():
@@ -211,7 +211,7 @@ class DialogueManager:
             # we add the state to the list
             self.states_list.append(self.current_bot.get_state())
             # we sample the reports not to loose everything in case of problem
-            if self.iteration_number in [5, 10, 15]:
+            if self.iteration_number in [10, 20, 30]:
                 # write the report
                 w.ReportWriter(self.states_list).start()
                 self.write_log()

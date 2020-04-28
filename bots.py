@@ -199,6 +199,11 @@ class RegistrationForm(Form):
 
     def fillSpellingField(self):
         try:
+            if len(self.state.get_spelling_list()) == 0:
+                # misinterpretation
+                text = 'I did not get you well, could you precise your action please?'
+                self.state.set_warning_message(text)
+                raise Exception
             # we have to verify if we just finished the spelling of a field
             if self.state.get_after_spelling():
                 # after spelling is desabled since we are going to insert the vale for a field
@@ -687,7 +692,7 @@ class RegistrationForm(Form):
                     string_fields = fn.get_string_from_list(remaining_required)
                     string = f"{initial_string}\nYou still have to complete the following required fields {string_fields}"
                     return string
-            if u.DEBUG:
+            if u.DEBUG or not self.state.get_all_required_filled(): 
                 print("inside submitForm")
             if not self.state.get_submit_alarm_enabled():
                 string = "we are about to submit, are you sure you want to continue with this action?"

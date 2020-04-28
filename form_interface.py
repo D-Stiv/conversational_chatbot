@@ -27,15 +27,15 @@ class Form:
     def train_model(self):
         self.train_model()
 
-    def interpretMessage(self, userInput):
+    def interpret_message(self, user_input):
         try:
-            message = self.interpretMessage(userInput)
+            message = self.interpretMessage(user_input)
             if u.DEBUG:
                 print("FORM INTERFACE interpretMessage")
             return message
         except:
-            print("A problem occured while trying to interprete the user input <<{}>>".format(
-                userInput))
+            print("A problem occured while trying to interpret the user input <<{}>>".format(
+                user_input))
             raise Exception
 
     def get_utterance(self, intent):

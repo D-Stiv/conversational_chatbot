@@ -238,8 +238,8 @@ class ReportWriter(Writer):
     def get_statistics(self, state, tab):
         try:
             convergence_rate_content = self.get_convergence_rate(state, tab)
-            clarity_factor_content = self.get_clarity_factor(state, tab)
-            statistics_content = f'{convergence_rate_content}\n{clarity_factor_content}'
+            flexibility_coefficient_content = self.get_flexibility_coefficient(state, tab)
+            statistics_content = f'{convergence_rate_content}\n{flexibility_coefficient_content}'
             self.spelling_length = 0
             return statistics_content
         except:
@@ -328,7 +328,7 @@ class ReportWriter(Writer):
             print('Fail to get the convergence rate content')
             raise Exception
     
-    def get_clarity_factor(self, state, tab):
+    def get_flexibility_coefficient(self, state, tab):
         try:
             self.increase_counter()
             tabb = f'{tab}\t'
@@ -340,15 +340,15 @@ class ReportWriter(Writer):
             cummulative_spelling_values = self.get_cummulative_values(spelling_slots)
             m_k_factor = max(self.spelling_length, cummulative_spelling_values)
             clarity_num = (total_slots) - total_spelling + m_k_factor
-            line_text = 'Response Clarity Factor:'
-            clarity_factor_content = self.add_line(line_text, tab=tab)
+            line_text = 'Natural Language Flexibility Coefficient:'
+            flexibility_coefficient_content = self.add_line(line_text, tab=tab)
             line_text = f"Number of required turns: v = {clarity_num} turns"
-            clarity_factor_content = f'{clarity_factor_content}\n{self.add_line(line_text, tab=tabb)}'
+            flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
             line_text = f"Number of user's turns: w = {clarity_denom} turns"
-            clarity_factor_content = f'{clarity_factor_content}\n{self.add_line(line_text, tab=tabb)}'
-            line_text = f"Clarity factor: f = {round(Decimal(clarity_num)/Decimal(clarity_denom), 4)}"
-            clarity_factor_content = f'{clarity_factor_content}\n{self.add_line(line_text, tab=tabb)}'
-            return clarity_factor_content
+            flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
+            line_text = f"Natural language flexibility coefficient: f = {round(Decimal(clarity_num)/Decimal(clarity_denom), 4)}"
+            flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
+            return flexibility_coefficient_content
         except:
             print('Fail to get the clarity factor content')
             raise Exception

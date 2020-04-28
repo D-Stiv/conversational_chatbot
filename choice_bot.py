@@ -46,7 +46,7 @@ class BotsManager:
             print('Fail to get the bot')
             raise Exception
 
-    def run_action(self, userInput, tag):
+    def run_action(self, user_input, tag):
         try:
             # for the moment we assume that the user input goes to registration form which
             # is the only type we have up to now
@@ -63,7 +63,7 @@ class BotsManager:
                 bot = self.get_bot(u.tag_registration_form)
             # we get the state of the bot
             state = bot.get_state()
-            latest_message = bot.interpret_message(userInput)
+            latest_message = bot.interpret_message(user_input)
             # update the state
             state.add_latest_message(latest_message)
             # here we could look if there are some slots in the message and set them in the state
@@ -74,7 +74,7 @@ class BotsManager:
             utterance = bot.get_utterance(intent)
             return utterance
         except:
-            print(f'Problem during the selection of the bot with tag <{tag}> and tha analysis of the userInput <{userInput}>')
+            print(f'Problem during the selection of the bot with tag <{tag}> and tha analysis of the user_input <{user_input}>')
             return u.EXCEPTION_MESSAGE
 
     

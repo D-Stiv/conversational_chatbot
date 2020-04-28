@@ -186,7 +186,7 @@ class State:
     def set_next_slot(self, slot_name, required=None):
         try:
             if required is None and slot_name is not None:
-                slot = self.state.get_slot(slot_name)
+                slot = self.get_slot(slot_name)
                 required = slot[u.required]
             self.machine_parameters[u.next_slot] = slot_name
             self.machine_parameters[u.next_slot_required] = required
