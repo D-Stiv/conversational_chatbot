@@ -110,7 +110,7 @@ phone_prefixes = [1, 7, 20, 27, 30, 31, 32, 33, 34, 36, 39, 40, 41, 43, 44, 45, 
 
 # some trigger to avoid be blocked in a given state due to the randomness of some choices
 inf = 100
-Counter_trigger = 8
+Counter_trigger = 2
 max_execution_number = 1
 cardinality_interval_number = 5
 min_R = 0

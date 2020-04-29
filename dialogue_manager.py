@@ -211,7 +211,7 @@ class DialogueManager:
             # we add the state to the list
             self.states_list.append(self.current_bot.get_state())
             # we sample the reports not to loose everything in case of problem
-            if self.iteration_number in [10, 20, 30]:
+            if self.iteration_number in [30]:
                 # write the report
                 w.ReportWriter(self.states_list).start()
                 self.write_log()

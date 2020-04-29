@@ -13,14 +13,14 @@ from datetime import datetime
 from selenium import webdriver
 import copy
 
-
+"""
 driver = webdriver.Edge()
 webPath = "http://www.polimi.it"
 #webPath = u.form_url
 driver.get(webPath)
 driver.minimize_window()
 
-"""
+
 form_elements = driver.find_elements_by_tag_name('form')
 for form_element in form_elements:
 
@@ -76,4 +76,10 @@ except:
     print('Fail')
 """
 
-print(not 4-4)
+string = 'i am really tired today'
+key = 'tired'
+delta = 4
+begin = string.index(key)
+end = begin + len(key)
+value = string[end:end+delta]
+print(key.index('z'))

@@ -332,7 +332,7 @@ class User:
     def action_state_07(self):
         try:
             if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
-                intent_name = cts.submit_form
+                intent_name = cts.affirm
                 return self.construct_answer(intent_name)
             prohibited_intents = [u.spelling_action, cts.complete_field]
             return self.select_intent_and_execute(prohibited_intents)

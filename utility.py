@@ -10,7 +10,7 @@ EXCEPTION_MESSAGE = "Something went wrong during the handling of this message.\n
 DEBUG = False
 
 # maximum number of dialogues
-MAX_DIALOGUES = 40
+MAX_DIALOGUES = 20
 
 # frequency control: interval for being able to manually stop the simulation in term of number of message exchanged
 CONTROL_FREQUENCE = 500

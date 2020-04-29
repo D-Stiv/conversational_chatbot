@@ -691,7 +691,7 @@ class RegistrationForm(Form):
                 elif len(remaining_required) > 1:
                     string_fields = fn.get_string_from_list(remaining_required)
                     string = f"{initial_string}\nYou still have to complete the following required fields {string_fields}"
-                    return string
+                return string
             if u.DEBUG or not self.state.get_all_required_filled(): 
                 print("inside submitForm")
             if not self.state.get_submit_alarm_enabled():
@@ -709,7 +709,7 @@ class RegistrationForm(Form):
                 # The point here is to avoid the Web Form to be submitted in the internal structure 
                 # without being effectively submitted. It could be a matter of seconds so we put a sleep.
                 elem = self.state.get_submit_button(verification=True)
-                time.sleep(5)
+                time.sleep(10)
                 elem.click()
                 string = 'verification'
                 if u.DEBUG:
@@ -724,7 +724,7 @@ class RegistrationForm(Form):
             # submission not effective
             string = ('The submission is not effective due to a not valid value for a field. We advice you to restart the process from the beginning' +
                     '\nDo you accept to restart the process from the beginning?')
-            self.state.possible_next_action(u.reset_all_fields_action)
+            self.state.set_possible_next_action(u.reset_all_fields_action)
             return string
         except:
             if not self.state.get_warning_present():
