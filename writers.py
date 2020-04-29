@@ -311,6 +311,8 @@ class ReportWriter(Writer):
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
             line_text = f'convergence rate: c = {round(Decimal(2*user_turns + 1)/Decimal(total_turns), 2)}'
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
+            line_text = f'adjustded convergence rate: c_adj = {round(Decimal(2*(user_turns-m_k_factor) + 1)/Decimal(total_turns - 2*m_k_factor), 2)}'
+            convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
             
             line_text = 'Normalized Convergence Rate:'
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tab)}'
@@ -342,11 +344,13 @@ class ReportWriter(Writer):
             clarity_num = (total_slots) - total_spelling + m_k_factor
             line_text = 'Natural Language Flexibility Coefficient:'
             flexibility_coefficient_content = self.add_line(line_text, tab=tab)
-            line_text = f"Number of required turns: v = {clarity_num} turns"
+            line_text = f"number of required turns: v = {clarity_num} turns"
             flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
-            line_text = f"Number of user's turns: w = {clarity_denom} turns"
+            line_text = f"number of user's turns: w = {clarity_denom} turns"
             flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
-            line_text = f"Natural language flexibility coefficient: f = {round(Decimal(clarity_num)/Decimal(clarity_denom), 4)}"
+            line_text = f"natural language flexibility coefficient: f = {round(Decimal(clarity_num)/Decimal(clarity_denom), 4)}"
+            flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
+            line_text = f"adjusted flexibility coefficient: f_ad = {round(Decimal(clarity_num - m_k_factor)/Decimal(clarity_denom - m_k_factor), 4)}"
             flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
             return flexibility_coefficient_content
         except:

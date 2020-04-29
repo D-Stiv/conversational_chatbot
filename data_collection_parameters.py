@@ -1,12 +1,12 @@
 # data collection parameters and functions
 
 root_folder = './data_collection'
-excel_file = 'evaluation_results.xlsx'
+excel_file = 'recap.xlsx'
 sheet = 'data_collection'
 columns = ['AD', 'AI', 'AN', 'AS', 'AX', 'BC']
 number_parameters = 4   # r_t, e_t, c, f
 number_forms = 5    # url_1, url_2, url_3, url_new, url_test
-interval_same_parameter = 8 # from param at dialogue i to param at dialogue i+1
+interval_tables = 3 # from param at dialogue i to param at dialogue i+1
 first_row_number = 5    # first row containing value in the first table for a given S
 
 # file name structure: prefix_s_value
@@ -101,12 +101,11 @@ def format_value(value):
     for char in value:
         if char in ['\n','\t']:
             break
-        if char == '.':
-            char = ','
-        elif char not in u.number_0_9 and char != ',':
+        elif char not in u.number_0_9 + [',', '.']:
             char = ''
         new_value = f'{new_value}{char}'
-    return new_value
+    float_value = float(new_value)
+    return float_value
 
 def get_column(base_col, delta=0):
     try:
