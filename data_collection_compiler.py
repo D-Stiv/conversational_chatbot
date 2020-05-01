@@ -1,110 +1,109 @@
 # data collection compiler
 
-import data_collection_parameters as d_c_p
+import data_collection_parameters as dcp
 import utility as u
 import xlsxwriter as xw
 
-log_data, report_data = d_c_p.initialize_structures()
-index = 0
-for suffix in d_c_p.s_values:
+
+def start_compilation(root_folder, excel_file, prefix=''):
+    # we open excel file
     try:
-        current_dict = d_c_p.get_dict(data=log_data, value=suffix)
-        log_correct = True
-        # extraction of log elements
-        log_path = f'{d_c_p.root_folder}/{d_c_p.log_prefix}_{suffix}.txt'
-        f = open(log_path, 'r')
-        string = f.read()
-        counter = 0
-        while True or counter < u.MAX_DIALOGUES:
-            r_t_value = d_c_p.extract_value(string, d_c_p.r_t_key)
-            cummul_r_t_value = d_c_p.extract_value(string, d_c_p.cummul_r_t_key)
-            cummul_z_t_value = d_c_p.extract_value(string, d_c_p.cummul_z_t_key)
-            e_t_value = int(cummul_r_t_value) + int(cummul_z_t_value)
-            # add the value to the dict
-            current_dict[d_c_p.r_t_list].append(r_t_value)
-            current_dict[d_c_p.e_t_list].append(e_t_value)
-            # we go to the next dialogue
-            epsilon = 5
-            string_adjusted = string[string.index(d_c_p.indicator)+epsilon:]
-            if d_c_p.indicator not in string_adjusted:
-                break
-            string = string[string_adjusted.index(d_c_p.indicator):]
-            counter += 1
-        index += 1
+        file_path = f'{root_folder}/{prefix}{excel_file}'
+        wb = xw.Workbook(file_path) 
+        ws = wb.add_worksheet() 
     except:
-        print('Fail to extract log parameters')
-        log_correct = False
+        print('Fail to open the excel file')
 
-index = 0    
-for suffix in d_c_p.s_values:
-    try:
-        report_correct = True
-        # extract report elements
-        report_path = f'{d_c_p.root_folder}/{d_c_p.report_prefix}_{suffix}.txt'
-        f = open(report_path, 'r')
-        string = f.read()
-        counter = 0
-        while True or counter < u.MAX_DIALOGUES:
-            c_value = d_c_p.extract_value(string, d_c_p.c_key)
-            f_value = d_c_p.extract_value(string, d_c_p.f_key)
-            # add the value to the dict
-            report_data[index][d_c_p.c_list].append(c_value)
-            report_data[index][d_c_p.f_list].append(f_value)
-            # we go to the next dialogue
-            arbitrary = 10
-            string_adjusted = string[string.index(d_c_p.indicator)+arbitrary:]
-            if d_c_p.indicator not in string_adjusted:
-                break            
-            string = string[string_adjusted.index(d_c_p.indicator):]
-            counter += 1
-        index += 1
-    except:
-        print('Fail to extract report parameters')
-        report_correct = False
-    
+    log_data, report_data = dcp.initialize_structures()
+    # we set the first row and column
+    col = 0
+    row = dcp.first_row_number
+    index = 0
+    for ind in range(len(dcp.s_values)):
+        try:
+            suffix = dcp.s_values[ind]
+            # we start a new column
+            col = ind*dcp.number_parameters + ind
 
-data = [log_data, report_data]
-d_c_p.create_json_file('recap.json', data)
-
-  
-try:
-    file_path = f'{d_c_p.root_folder}/{d_c_p.excel_file}'
-    wb = xw.Workbook(file_path) 
-    ws = wb.add_worksheet() 
-except:
-    print('Fail to open the excel file')
-
-if log_correct and report_correct:
-    # we insert the log values
-    try:
-        for col_index in range(len(d_c_p.columns)):
-            col = col_index*d_c_p.number_parameters + col_index
-            delta = -1
-            for row_index in range(len(log_data[0][d_c_p.e_t_list])):
+            current_dict = dcp.get_dict(data=log_data, value=suffix)
+            log_correct = True
+            report_correct = True
+            # extraction of log elements
+            log_path = f'{root_folder}/{prefix}{dcp.log_prefix}_{suffix}.txt'
+            f_log = open(log_path, 'r')
+            string_log = f_log.read()
+            # extract report elements
+            report_path = f'{root_folder}/{prefix}{dcp.report_prefix}_{suffix}.txt'
+            f_report = open(report_path, 'r')
+            string_report = f_report.read()
+            counter = 0
+            delta = -1  # excel
+            while True or counter < u.MAX_DIALOGUES:
+                # we are in a new row
+                r_t_value = dcp.extract_value(string_log, dcp.r_t_key)
+                cummul_r_t_value = dcp.extract_value(string_log, dcp.cummul_r_t_key)
+                cummul_z_t_value = dcp.extract_value(string_log, dcp.cummul_z_t_key)
+                e_t_value = int(cummul_r_t_value) + int(cummul_z_t_value)
+                if prefix == '':
+                    c_key = dcp.c_key
+                    f_key = dcp.f_key
+                else:
+                    c_key = dcp.c_adj_key
+                    f_key = dcp.f_adj_key
+                    f_key = dcp.total_turns
+                c_value = dcp.extract_value(string_report, c_key)
+                f_value = dcp.extract_value(string_report, f_key) - dcp.extract_value(string_report, dcp.m_k_factor)
+                # we add the values in the excel file
                 old_delta = delta
-                delta = int(row_index/d_c_p.number_forms)
-                row = d_c_p.first_row_number + row_index + d_c_p.interval_tables*delta  # between 2 successive tables there are 'interval_tables' free cells
-                try:
-                    r_t_value = log_data[col_index][d_c_p.r_t_list][row_index]
-                    e_t_value = log_data[col_index][d_c_p.e_t_list][row_index]
-                    c_value = report_data[col_index][d_c_p.c_list][row_index]
-                    f_value = report_data[col_index][d_c_p.f_list][row_index]
-                except:
-                    break
+                delta = int(counter/dcp.number_forms)
+                row = dcp.first_row_number + counter + dcp.interval_tables*delta  # between 2 successive tables there are 'interval_tables' free cells
                 if old_delta != delta:
                     # we insert the dialogue number
                     value = f'DIALOGUE {delta+1}'
                     ws.write(row-1, col, value)
-                    value = f'S = {d_c_p.s_values[col_index]}'
+                    value = f'S = {suffix}'
                     ws.write(row-1, col+2, value)
                 # we insert the values in the excel file
                 ws.write(row, col, r_t_value)
                 ws.write(row, col+1, e_t_value)
                 ws.write(row, col+2, c_value)
                 ws.write(row, col+3, f_value)
-    except:
-        print(f'Problem to update all the col_index = {col_index}')
-        raise Exception
- 
-wb.close()
-print('values inserted successfully')
+                
+                # add the values to the dict
+                current_dict[dcp.r_t_list].append(r_t_value)
+                current_dict[dcp.e_t_list].append(e_t_value)
+                report_data[index][dcp.c_list].append(c_value)
+                report_data[index][dcp.f_list].append(f_value)
+                # we go to the next dialogue
+                epsilon = 5
+                string_adjusted_log = string_log[string_log.index(dcp.indicator)+epsilon:]
+                string_adjusted_report = string_report[string_report.index(dcp.indicator)+epsilon:]
+                if dcp.indicator not in string_adjusted_log or dcp.indicator not in string_adjusted_report:
+                    break
+                string_log = string_adjusted_log[string_adjusted_log.index(dcp.indicator):]
+                string_report = string_adjusted_report[string_adjusted_report.index(dcp.indicator):]
+                counter += 1
+            index += 1
+        except:
+            print('Fail to extract parameters')
+            log_correct = False
+            report_correct = False
+    data = []
+    if log_correct:
+        data.append(log_data)
+    if report_correct:
+        data.append(report_data)
+    if len(data) > 0:
+        file_path = f'{root_folder}/{prefix}{dcp.json_file}'
+        print(file_path)
+        dcp.create_json_file(file_path, data)
+
+    wb.close()
+    print('values inserted successfully')
+
+# we load data for normal parameters
+#start_compilation(dcp.normal_root_folder, dcp.excel_file)
+
+# we load data for adjusted parameters
+prefix = f'{dcp.adjusted}_'
+start_compilation(dcp.adjusted_root_folder, dcp.excel_file, prefix)

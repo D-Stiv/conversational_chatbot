@@ -7,17 +7,23 @@ import utility as u
 class Writer:
     def __init__(
         self,
+        counter_trigger,
         destination_folder,
         file_type
     ):
         # initialize the writer
+        self.counter_trigger = counter_trigger
         self.destination_folder = destination_folder
         self.file_type = file_type
     
     def construct_header(self):
         try:
+            if self.counter_trigger is None:
+                trigger_string = 'The value of S have not been specified.'
+            else:
+                trigger_string = f'S = {self.counter_trigger}.'
             header_content = f'\tDate and Hour: {datetime.now()}'
-            header = f'HEADER\n\n{header_content}'
+            header = f'HEADER\t{trigger_string}\n\n{header_content}'
             return header
         except:
             print('Fail to construct the header')

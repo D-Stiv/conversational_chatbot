@@ -364,7 +364,7 @@ class Form:
     def spelling(self):
         try:
             # if the spelling is not yet operational, we treat the spelling as fillGenericField
-            if not u.READY_FOR_SPELLING:
+            if not u.USE_SPELLING:
                 message = self.fillGenericField()
             else:
                 message = self.spelling()

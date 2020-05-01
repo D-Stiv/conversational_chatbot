@@ -211,7 +211,7 @@ def get_input_fields(form_element):
                         required = True
                 else:
                     required = False
-                if elem.get_attribute(u.field_spelling) is not None:
+                if elem.get_attribute(u.field_spelling) is not None and u.USE_SPELLING:
                     spelling = True
                 else:
                     spelling = False

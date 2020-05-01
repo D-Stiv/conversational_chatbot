@@ -8,6 +8,7 @@ import styles
 from user_manager import User
 from random import randint
 
+
 PREPROCESSING_EXCEPTION = "A problem occured during the preprocessing phase, take a look into the code and restart later"
 
 
@@ -37,8 +38,11 @@ class DialogueManager:
         self.iteration_number = 0
         self.number_fields = 0
 
-    def initialize_views(self):
-        self.log_writer = w.LogWriter()
+    def initialize_views(self, counter_trigger=None):
+        if counter_trigger is not None:
+            self.log_writer = w.LogWriter(counter_trigger)
+        else:
+            self.log_writer = w.LogWriter()
         self.user_view = ViewChatPannel(self.log_writer, u.user_marker)
         self.chatbot_view = ViewChatPannel(self.log_writer, u.chatbot_marker)
 
@@ -211,7 +215,7 @@ class DialogueManager:
             # we add the state to the list
             self.states_list.append(self.current_bot.get_state())
             # we sample the reports not to loose everything in case of problem
-            if self.iteration_number in [30]:
+            if self.iteration_number in [50]:
                 # write the report
                 w.ReportWriter(self.states_list).start()
                 self.write_log()

@@ -4,6 +4,7 @@ import dialogue_manager
 import utility as u
 import writers as w
 import functions as fn
+import simulation_constants as cts
 
 
 def manage_current_form(bot_tag):
@@ -11,7 +12,7 @@ def manage_current_form(bot_tag):
 
 def initial_parsing(url, browser):
     manager = dialogue_manager.DialogueManager(url=url, browser=browser)
-    manager.initialize_views()
+    manager.initialize_views(cts.counter_trigger)
     manager.create_form_bots()
     return manager
 
@@ -55,7 +56,7 @@ try:
         # we write the report now if we have at least one state
         states_list = manager.states_list
         if len(states_list) > 0:
-            report_writer = w.ReportWriter(states_list)
+            report_writer = w.ReportWriter(states_list, cts.counter_trigger)
             report_writer.start()
             final_string = f'{final_string} The report is in the folder <reoprts>.'
     print(final_string)

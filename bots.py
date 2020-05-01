@@ -134,6 +134,7 @@ class RegistrationForm(Form):
                 insert_style = styles.get_insert()
                 string = (f"Which field exactly do you want to {modify_style}, and which value" +
                           f" do you want to {insert_style} for that field?")
+                self.state.set_possible_next_action(u.fill_field_action)
                 return string
             slot_name_list, slot_value_list = fn.extract_fields_names_and_values(
                 entities)
@@ -325,8 +326,9 @@ class RegistrationForm(Form):
             if count == 0:
                 # in principle should never occur given the training
                 please_style = styles.get_please()
-                string = f"{please_style} indicate which field you are interested to"
-                return string
+                text = f"{please_style} indicate which field you are interested to"
+                selt.state.set_warning_message(text)
+                raise Exception
             slot_name_list = fn.extract_fields_names_and_values(
                 entities, only_names=True)
             # we first verify if each slot_name corresponds to a field in the dorm
@@ -392,8 +394,9 @@ class RegistrationForm(Form):
                 return string
             elif action_name is None:
                 sorry_style = styles.get_sorry()
-                string = f'{sorry_style} what exactly do you want to do ?'
-                return string            
+                text = f'{sorry_style} what exactly do you want to do ?'
+                self.state.set_warning_message(text)
+                raise Exception            
             string = self.state.manage_next_step()
             return string
         except:
@@ -710,7 +713,7 @@ class RegistrationForm(Form):
                 # without being effectively submitted. It could be a matter of seconds so we put a sleep.
                 elem = self.state.get_submit_button(verification=True)
                 time.sleep(10)
-                elem.click()
+                self.state.get_submit_button(verification=True).click()
                 string = 'verification'
                 if u.DEBUG:
                     print(string)
@@ -724,6 +727,7 @@ class RegistrationForm(Form):
             # submission not effective
             string = ('The submission is not effective due to a not valid value for a field. We advice you to restart the process from the beginning' +
                     '\nDo you accept to restart the process from the beginning?')
+            self.state.set_reset_alarm_enabled()
             self.state.set_possible_next_action(u.reset_all_fields_action)
             return string
         except:

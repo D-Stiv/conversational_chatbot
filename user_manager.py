@@ -23,7 +23,7 @@ class User:
         self.spelling_string_index = 0
         self.remaining_spelling_interruptions = cts.MAX_SPELLING_INTERRUPTIONS
         self.choices_lists = choices_lists  # dictionary where the keys are the value_name
-        self.counter = cts.Counter_trigger
+        self.counter = cts.counter_trigger
         self.active_list = cts.initial_active_list
         self.dialogue_state = {}
         self.data = self.initialize_data()
@@ -98,7 +98,8 @@ class User:
     def update_active_list(self, intent_name):
         #  after the section of the intent to execute we decrease its remaining number of executions
         try:
-            self.counter -= 1
+            if intent_name in cts.interaction_keys[1:-3]:   # interaction_keys is also the list of the intents, we extract the non_essential once
+                self.counter -= 1
             intent_data = self.get_intent_data(intent_name)
             intent_data[cts.max_execution] -= 1
             if intent_data[cts.max_execution] == 0:
@@ -439,9 +440,20 @@ class User:
             print('Fail to get an answer for the state "15"')
             raise Exception
 
+    def action_state_16(self):
+        try:
+            if self.counter <= 0 or len(self.active_list) <= len(cts.essential_intents):
+                intent_name = cts.submit_form
+                return self.construct_answer(intent_name)
+            prohibited_intents = [u.spelling_action]
+            return self.select_intent_and_execute(prohibited_intents)
+        except:
+            print('Fail to get an answer for the state "15"')
+            raise Exception
+
     actions_state_list = [action_state_00, action_state_01, action_state_02, action_state_03, action_state_04,
         action_state_05, action_state_06, action_state_07, action_state_08, action_state_09, action_state_10,
-        action_state_11, action_state_12, action_state_13, action_state_14, action_state_15]  
+        action_state_11, action_state_12, action_state_13, action_state_14, action_state_15, action_state_16]  
 
 
     def get_not_choice_value(self, value_type, field):

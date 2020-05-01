@@ -10,10 +10,11 @@ from decimal import Decimal
 class LogWriter(Writer):
     def __init__(
         self,
+        counter_trigger=None,
         destination_folder = u.logs_folder,
         file_type = 'log'
     ):
-        super().__init__(destination_folder, file_type)
+        super().__init__(counter_trigger, destination_folder, file_type)
         self.summary_string = ''
         self.conversation_string = ''
         self.number_turns_chatbot = 0
@@ -76,10 +77,11 @@ class ReportWriter(Writer):
     def __init__(
         self,
         states_list,
+        counter_trigger = None,
         destination_folder = u.reports_folder,
         file_type = 'report'
     ):
-        super().__init__(destination_folder, file_type)
+        super().__init__(counter_trigger, destination_folder, file_type)
         self.counter = 0
         self.states_list = states_list
         self.text = '{}.\t' # form elements, constructs, messages
@@ -311,7 +313,10 @@ class ReportWriter(Writer):
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
             line_text = f'convergence rate: c = {round(Decimal(2*user_turns + 1)/Decimal(total_turns), 2)}'
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
-            line_text = f'adjustded convergence rate: c_adj = {round(Decimal(2*(user_turns-m_k_factor) + 1)/Decimal(total_turns - 2*m_k_factor), 2)}'
+            k = 2   # minimum number of user turns in spelling
+            conv_adj_num = 2*(user_turns - m_k_factor + total_spelling*k) + 1
+            conv_adj_denom = total_turns - 2*(m_k_factor - total_spelling*k)
+            line_text = f'adjustded convergence rate: c_adj = {round(Decimal(conv_adj_num)/Decimal(conv_adj_denom), 2)}'
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
             
             line_text = 'Normalized Convergence Rate:'
@@ -334,27 +339,30 @@ class ReportWriter(Writer):
         try:
             self.increase_counter()
             tabb = f'{tab}\t'
-            clarity_denom = len(state.message_history)
             slots = state.constructs["form"]["slots"]
             total_slots = len(slots) # we do not remove one because we count the submit request          
             spelling_slots = self.get_spelling_slots(slots)
             total_spelling = len(spelling_slots)
             cummulative_spelling_values = self.get_cummulative_values(spelling_slots)
             m_k_factor = max(self.spelling_length, cummulative_spelling_values)
-            clarity_num = (total_slots) - total_spelling + m_k_factor
+            #flexibility_num = total_slots - total_spelling + m_k_factor
+            k = 2   # minimum number of user turns in case of spelling
+            flexibility_num = total_slots + total_spelling*(k - 1)
+            #flexibility_denom = len(state.message_history)
+            flexibility_denom = len(state.message_history) - m_k_factor + total_spelling*(k - 1)
             line_text = 'Natural Language Flexibility Coefficient:'
             flexibility_coefficient_content = self.add_line(line_text, tab=tab)
-            line_text = f"number of required turns: v = {clarity_num} turns"
+            line_text = f"number of required turns: v = {flexibility_num} turns"
             flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
-            line_text = f"number of user's turns: w = {clarity_denom} turns"
+            line_text = f"number of user's turns: w = {flexibility_denom} turns"
             flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
-            line_text = f"natural language flexibility coefficient: f = {round(Decimal(clarity_num)/Decimal(clarity_denom), 4)}"
+            line_text = f"natural language flexibility coefficient: f = {round(Decimal(flexibility_num)/Decimal(flexibility_denom), 4)}"
             flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
-            line_text = f"adjusted flexibility coefficient: f_ad = {round(Decimal(clarity_num - m_k_factor)/Decimal(clarity_denom - m_k_factor), 4)}"
+            line_text = f"adjusted flexibility coefficient: f_ad = {round(Decimal(flexibility_num)/Decimal(flexibility_denom), 4)}"
             flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
             return flexibility_coefficient_content
         except:
-            print('Fail to get the clarity factor content')
+            print('Fail to get the flexibility factor content')
             raise Exception
 
     def get_required_slots(self, slots, spelling=False):

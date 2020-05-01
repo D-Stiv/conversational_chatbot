@@ -10,7 +10,7 @@ EXCEPTION_MESSAGE = "Something went wrong during the handling of this message.\n
 DEBUG = False
 
 # maximum number of dialogues
-MAX_DIALOGUES = 40
+MAX_DIALOGUES = 5
 
 # frequency control: interval for being able to manually stop the simulation in term of number of message exchanged
 CONTROL_FREQUENCE = 500
@@ -24,8 +24,8 @@ COEFF = 500
 REQUESTED_SLOT = "requested_slot"
 CANCELED = "canceled"
 VOID = ''
-READY_FOR_SPELLING = True  # True when we are ready to manage the spelling correctly
-# when READY_FOR_SPELLING is False, fillSpellingField calls fillGenericField
+USE_SPELLING = True  # True when we are ready to manage the spelling correctly
+# when USE_SPELLING is False, fillSpellingField calls fillGenericField
 tag_registration_form = "registration_form_tag"
 
 # decides whether we have to train the model or not
