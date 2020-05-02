@@ -675,7 +675,7 @@ class State:
                     print(self.get_slots_value())
                 string = "{}".format(
                     self.get_next_slot_text(slot_name, next_slot_required))
-                if slot_name in self.get_spelling_fields() and u.READY_FOR_SPELLING:
+                if slot_name in self.get_spelling_fields() and u.USE_SPELLING:
                     # we add the field to the spelling list
                     self.add_spelling_name(slot_name)
                     # we verify if the field has been previously saved 

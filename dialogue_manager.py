@@ -37,6 +37,7 @@ class DialogueManager:
         self.total_iterations = u.MAX_DIALOGUES  # randint(1, u.MAX_DIALOGUES)
         self.iteration_number = 0
         self.number_fields = 0
+        self.s_value = None # s_value for the simulation
 
     def initialize_views(self, counter_trigger=None):
         if counter_trigger is not None:
@@ -57,8 +58,10 @@ class DialogueManager:
             print('Fail to create the form bots')
             raise Exception
 
-    def start(self, bot_tag):
+    def start(self, bot_tag, s=None):
         try:
+            if s is not None:
+                self.s_value = s
             # we start a dialogue
             self.in_session = True
             self.current_bot = self.bot_manager.get_bot(bot_tag)
@@ -67,7 +70,7 @@ class DialogueManager:
             if u.simulation_enabled:
                 text_fields = self.get_text_fields()
                 choices_lists = self.get_choices_lists()
-                self.user = User(text_fields, choices_lists)
+                self.user = User(text_fields, choices_lists, self.s_value)
             if u.train_model:
                 self.current_bot.train_model()
             self.conversation_prologue()

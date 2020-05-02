@@ -11,7 +11,8 @@ class User:
     def __init__(
         self,
         text_fields,
-        choices_lists
+        choices_lists,
+        counter_trigger = 0
     ):
         # we initialize the user
         self.intents_data = cts.intents_list
@@ -23,7 +24,7 @@ class User:
         self.spelling_string_index = 0
         self.remaining_spelling_interruptions = cts.MAX_SPELLING_INTERRUPTIONS
         self.choices_lists = choices_lists  # dictionary where the keys are the value_name
-        self.counter = cts.counter_trigger
+        self.counter = counter_trigger
         self.active_list = cts.initial_active_list
         self.dialogue_state = {}
         self.data = self.initialize_data()
@@ -163,7 +164,7 @@ class User:
             return answer
         except:
             print('Fail to get the user answer')
-            # we return a contant string only to avoid interrupting the dialogue
+            # we return a constant string only to avoid interrupting the dialogue
             string = 'fill the form'
             return string
         
@@ -180,7 +181,8 @@ class User:
             answer = intent_function(self)
             return answer
         except:
-            print(f'Fail to construct an answer for the intent {intent_name}')
+            if self.dialogue_state[u.slot_name] is not None:
+                print(f'Fail to construct an answer for the intent {intent_name}')
             raise Exception
 
     def get_interaction_message(self, file_name, key=''):
@@ -267,7 +269,8 @@ class User:
             prohibited_intents = [u.spelling_action]
             return self.select_intent_and_execute(prohibited_intents)
         except:
-            print('Fail to get an answer for the state "01"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "01"')
             raise Exception
         
     def action_state_02(self):
@@ -278,7 +281,8 @@ class User:
             prohibited_intents = [cts.complete_field]
             return self.select_intent_and_execute(prohibited_intents)
         except:
-            print('Fail to get an answer for the state "02"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "02"')
             raise Exception
         
     def action_state_03(self):
@@ -294,7 +298,8 @@ class User:
                 intent_name = cts.deny
             return self.construct_answer(intent_name)
         except:
-            print('Fail to get an answer for the state "03"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "03"')
             raise Exception
         
     def action_state_04(self):
@@ -305,7 +310,8 @@ class User:
             prohibited_intents = [u.spelling_action]
             return self.select_intent_and_execute(prohibited_intents)
         except:
-            print('Fail to get an answer for the state "04"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "04"')
             raise Exception
         
     def action_state_05(self):
@@ -316,7 +322,8 @@ class User:
             prohibited_intents = [u.spelling_action]
             return self.select_intent_and_execute(prohibited_intents)
         except:
-            print('Fail to get an answer for the state "05"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "05"')
             raise Exception
         
     def action_state_06(self):
@@ -327,7 +334,8 @@ class User:
             prohibited_intents = [u.spelling_action]
             return self.select_intent_and_execute(prohibited_intents)
         except:
-            print('Fail to get an answer for the state "06"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "06"')
             raise Exception
         
     def action_state_07(self):
@@ -338,7 +346,8 @@ class User:
             prohibited_intents = [u.spelling_action, cts.complete_field]
             return self.select_intent_and_execute(prohibited_intents)
         except:
-            print('Fail to get an answer for the state "07"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "07"')
             raise Exception
         
     def action_state_08(self):
@@ -366,7 +375,8 @@ class User:
             prohibited_intents = [u.spelling_action]
             return self.select_intent_and_execute(prohibited_intents)
         except:
-            print('Fail to get an answer for the state "09"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "09"')
             raise Exception
           
     def action_state_10(self):
@@ -377,7 +387,8 @@ class User:
             prohibited_intents = [cts.complete_field]
             return self.select_intent_and_execute(prohibited_intents)
         except:
-            print('Fail to get an answer for the state "10"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "10"')
             raise Exception
          
     def action_state_11(self):
@@ -388,7 +399,8 @@ class User:
             prohibited_intents = [cts.complete_field]
             return self.select_intent_and_execute(prohibited_intents)
         except:
-            print('Fail to get an answer for the state "11"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "11"')
             raise Exception
          
     def action_state_12(self):
@@ -399,7 +411,8 @@ class User:
             prohibited_intents = [cts.complete_field]
             return self.select_intent_and_execute(prohibited_intents)
         except:
-            print('Fail to get an answer for the state "12"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "12"')
             raise Exception
          
     def action_state_13(self):
@@ -415,7 +428,8 @@ class User:
                 intent_name = cts.deny
             return self.construct_answer(intent_name)
         except:
-            print('Fail to get an answer for the state "13"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "13"')
             raise Exception
 
     def action_state_14(self):
@@ -426,7 +440,8 @@ class User:
             prohibited_intents = [u.spelling_action]
             return self.select_intent_and_execute(prohibited_intents)
         except:
-            print('Fail to get an answer for the state "14"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "14"')
             raise Exception
 
     def action_state_15(self):
@@ -437,7 +452,8 @@ class User:
             prohibited_intents = [u.spelling_action]
             return self.select_intent_and_execute(prohibited_intents)
         except:
-            print('Fail to get an answer for the state "15"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "15"')
             raise Exception
 
     def action_state_16(self):
@@ -448,7 +464,8 @@ class User:
             prohibited_intents = [u.spelling_action]
             return self.select_intent_and_execute(prohibited_intents)
         except:
-            print('Fail to get an answer for the state "15"')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail to get an answer for the state "15"')
             raise Exception
 
     actions_state_list = [action_state_00, action_state_01, action_state_02, action_state_03, action_state_04,
@@ -573,7 +590,8 @@ class User:
                 answer = sentence.format(field, value)
             return answer
         except:
-            print('Fail in finding a message to ask to complete a field')
+            if self.dialogue_state[u.slot_name] is not None:
+                print('Fail in finding a message to ask to complete a field')
             raise Exception
 
     def intent_spelling(self):
