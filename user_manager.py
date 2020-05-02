@@ -5,6 +5,7 @@ import json
 import data_type_generator as gen
 import state_machine_data as sm
 import interaction_files_keys as ifk
+import copy
 
 
 class User:
@@ -15,7 +16,7 @@ class User:
         counter_trigger = 0
     ):
         # we initialize the user
-        self.intents_data = cts.intents_list
+        self.intents_data = copy.deepcopy(cts.intents_list)
         self.min_random_number = 0
         self.max_random_number = cts.inf
 
@@ -25,7 +26,7 @@ class User:
         self.remaining_spelling_interruptions = cts.MAX_SPELLING_INTERRUPTIONS
         self.choices_lists = choices_lists  # dictionary where the keys are the value_name
         self.counter = counter_trigger
-        self.active_list = cts.initial_active_list
+        self.active_list = copy.deepcopy(cts.initial_active_list)
         self.dialogue_state = {}
         self.data = self.initialize_data()
         self.proper_response_from_bot = True
@@ -104,7 +105,7 @@ class User:
                 self.counter -= 1
             intent_data = self.get_intent_data(intent_name)
             intent_data[cts.max_execution] -= 1
-            if intent_data[cts.max_execution] == 0:
+            if intent_data[cts.max_execution] <= 0:
                 # we update the interval
                 intent_data[cts.min_number] = 0
                 intent_data[cts.max_number] = 0
@@ -179,7 +180,8 @@ class User:
         # receives the name of an intent and perform the standard operation for generating a 
         # message coherent with that intent
         try:
-            self.update_active_list(intent_name)
+            if intent_name != u.spelling:
+                self.update_active_list(intent_name)
             intent_function = self.get_intent_function(intent_name)
             answer = intent_function(self)
             return answer
