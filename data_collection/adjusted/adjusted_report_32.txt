@@ -180,7 +180,7 @@ REPORT LOG
 162.			number of required turns: v = 17 turns
 163.			number of user's turns: w = 34 turns
 164.			natural language flexibility coefficient: f = 0.5000
-165.			adjusted flexibility coefficient: f_ad = 0.1905
+165.			adjusted flexibility coefficient: f_adj = 0.1905
 
 166.	--- DIALOGUE 2 ---
 
@@ -292,7 +292,7 @@ REPORT LOG
 267.			number of required turns: v = 17 turns
 268.			number of user's turns: w = 19 turns
 269.			natural language flexibility coefficient: f = 0.8947
-270.			adjusted flexibility coefficient: f_ad = 0.6667
+270.			adjusted flexibility coefficient: f_adj = 0.6667
 
 271.	--- DIALOGUE 3 ---
 
@@ -360,7 +360,7 @@ REPORT LOG
 328.			number of required turns: v = 6 turns
 329.			number of user's turns: w = 8 turns
 330.			natural language flexibility coefficient: f = 0.7500
-331.			adjusted flexibility coefficient: f_ad = 0.7143
+331.			adjusted flexibility coefficient: f_adj = 0.7143
 
 332.	--- DIALOGUE 4 ---
 
@@ -607,7 +607,7 @@ REPORT LOG
 568.			number of required turns: v = 49 turns
 569.			number of user's turns: w = 50 turns
 570.			natural language flexibility coefficient: f = 0.9800
-571.			adjusted flexibility coefficient: f_ad = 0.9231
+571.			adjusted flexibility coefficient: f_adj = 0.9231
 
 572.	--- DIALOGUE 5 ---
 
@@ -700,7 +700,7 @@ REPORT LOG
 654.			number of required turns: v = 14 turns
 655.			number of user's turns: w = 14 turns
 656.			natural language flexibility coefficient: f = 1.0000
-657.			adjusted flexibility coefficient: f_ad = 1.0000
+657.			adjusted flexibility coefficient: f_adj = 1.0000
 
 658.	--- DIALOGUE 6 ---
 
@@ -805,7 +805,7 @@ REPORT LOG
 752.			number of required turns: v = 16 turns
 753.			number of user's turns: w = 17 turns
 754.			natural language flexibility coefficient: f = 0.9412
-755.			adjusted flexibility coefficient: f_ad = 0.8000
+755.			adjusted flexibility coefficient: f_adj = 0.8000
 
 756.	--- DIALOGUE 7 ---
 
@@ -905,7 +905,7 @@ REPORT LOG
 845.			number of required turns: v = 16 turns
 846.			number of user's turns: w = 16 turns
 847.			natural language flexibility coefficient: f = 1.0000
-848.			adjusted flexibility coefficient: f_ad = 1.0000
+848.			adjusted flexibility coefficient: f_adj = 1.0000
 
 849.	--- DIALOGUE 8 ---
 
@@ -961,7 +961,7 @@ REPORT LOG
 894.			number of required turns: v = 5 turns
 895.			number of user's turns: w = 5 turns
 896.			natural language flexibility coefficient: f = 1.0000
-897.			adjusted flexibility coefficient: f_ad = 1.0000
+897.			adjusted flexibility coefficient: f_adj = 1.0000
 
 898.	--- DIALOGUE 9 ---
 
@@ -1236,7 +1236,7 @@ REPORT LOG
 1162.			number of required turns: v = 55 turns
 1163.			number of user's turns: w = 57 turns
 1164.			natural language flexibility coefficient: f = 0.9649
-1165.			adjusted flexibility coefficient: f_ad = 0.8571
+1165.			adjusted flexibility coefficient: f_adj = 0.8571
 
 1166.	--- DIALOGUE 10 ---
 
@@ -1309,7 +1309,7 @@ REPORT LOG
 1228.			number of required turns: v = 9 turns
 1229.			number of user's turns: w = 9 turns
 1230.			natural language flexibility coefficient: f = 1.0000
-1231.			adjusted flexibility coefficient: f_ad = 1.0000
+1231.			adjusted flexibility coefficient: f_adj = 1.0000
 
 1232.	--- DIALOGUE 11 ---
 
@@ -1426,7 +1426,7 @@ REPORT LOG
 1338.			number of required turns: v = 19 turns
 1339.			number of user's turns: w = 20 turns
 1340.			natural language flexibility coefficient: f = 0.9500
-1341.			adjusted flexibility coefficient: f_ad = 0.8000
+1341.			adjusted flexibility coefficient: f_adj = 0.8000
 
 1342.	--- DIALOGUE 12 ---
 
@@ -1530,7 +1530,7 @@ REPORT LOG
 1435.			number of required turns: v = 17 turns
 1436.			number of user's turns: w = 17 turns
 1437.			natural language flexibility coefficient: f = 1.0000
-1438.			adjusted flexibility coefficient: f_ad = 1.0000
+1438.			adjusted flexibility coefficient: f_adj = 1.0000
 
 1439.	--- DIALOGUE 13 ---
 
@@ -1590,7 +1590,7 @@ REPORT LOG
 1488.			number of required turns: v = 6 turns
 1489.			number of user's turns: w = 6 turns
 1490.			natural language flexibility coefficient: f = 1.0000
-1491.			adjusted flexibility coefficient: f_ad = 1.0000
+1491.			adjusted flexibility coefficient: f_adj = 1.0000
 
 1492.	--- DIALOGUE 14 ---
 
@@ -1853,7 +1853,7 @@ REPORT LOG
 1744.			number of required turns: v = 55 turns
 1745.			number of user's turns: w = 54 turns
 1746.			natural language flexibility coefficient: f = 1.0185
-1747.			adjusted flexibility coefficient: f_ad = 1.0909
+1747.			adjusted flexibility coefficient: f_adj = 1.0909
 
 1748.	--- DIALOGUE 15 ---
 
@@ -1934,7 +1934,7 @@ REPORT LOG
 1818.			number of required turns: v = 11 turns
 1819.			number of user's turns: w = 11 turns
 1820.			natural language flexibility coefficient: f = 1.0000
-1821.			adjusted flexibility coefficient: f_ad = 1.0000
+1821.			adjusted flexibility coefficient: f_adj = 1.0000
 
 1822.	--- DIALOGUE 16 ---
 
@@ -2047,7 +2047,7 @@ REPORT LOG
 1924.			number of required turns: v = 19 turns
 1925.			number of user's turns: w = 19 turns
 1926.			natural language flexibility coefficient: f = 1.0000
-1927.			adjusted flexibility coefficient: f_ad = 1.0000
+1927.			adjusted flexibility coefficient: f_adj = 1.0000
 
 1928.	--- DIALOGUE 17 ---
 
@@ -2159,7 +2159,7 @@ REPORT LOG
 2029.			number of required turns: v = 17 turns
 2030.			number of user's turns: w = 19 turns
 2031.			natural language flexibility coefficient: f = 0.8947
-2032.			adjusted flexibility coefficient: f_ad = 0.6667
+2032.			adjusted flexibility coefficient: f_adj = 0.6667
 
 2033.	--- DIALOGUE 18 ---
 
@@ -2235,7 +2235,7 @@ REPORT LOG
 2098.			number of required turns: v = 6 turns
 2099.			number of user's turns: w = 10 turns
 2100.			natural language flexibility coefficient: f = 0.6000
-2101.			adjusted flexibility coefficient: f_ad = 0.5556
+2101.			adjusted flexibility coefficient: f_adj = 0.5556
 
 2102.	--- DIALOGUE 19 ---
 
@@ -2518,7 +2518,7 @@ REPORT LOG
 2374.			number of required turns: v = 58 turns
 2375.			number of user's turns: w = 59 turns
 2376.			natural language flexibility coefficient: f = 0.9831
-2377.			adjusted flexibility coefficient: f_ad = 0.9231
+2377.			adjusted flexibility coefficient: f_adj = 0.9231
 
 2378.	--- DIALOGUE 20 ---
 
@@ -2599,7 +2599,7 @@ REPORT LOG
 2448.			number of required turns: v = 11 turns
 2449.			number of user's turns: w = 11 turns
 2450.			natural language flexibility coefficient: f = 1.0000
-2451.			adjusted flexibility coefficient: f_ad = 1.0000
+2451.			adjusted flexibility coefficient: f_adj = 1.0000
 
 2452.	--- DIALOGUE 21 ---
 
@@ -2724,7 +2724,7 @@ REPORT LOG
 2566.			number of required turns: v = 20 turns
 2567.			number of user's turns: w = 22 turns
 2568.			natural language flexibility coefficient: f = 0.9091
-2569.			adjusted flexibility coefficient: f_ad = 0.6667
+2569.			adjusted flexibility coefficient: f_adj = 0.6667
 
 2570.	--- DIALOGUE 22 ---
 
@@ -2836,7 +2836,7 @@ REPORT LOG
 2671.			number of required turns: v = 18 turns
 2672.			number of user's turns: w = 19 turns
 2673.			natural language flexibility coefficient: f = 0.9474
-2674.			adjusted flexibility coefficient: f_ad = 0.8000
+2674.			adjusted flexibility coefficient: f_adj = 0.8000
 
 2675.	--- DIALOGUE 23 ---
 
@@ -2892,7 +2892,7 @@ REPORT LOG
 2720.			number of required turns: v = 5 turns
 2721.			number of user's turns: w = 5 turns
 2722.			natural language flexibility coefficient: f = 1.0000
-2723.			adjusted flexibility coefficient: f_ad = 1.0000
+2723.			adjusted flexibility coefficient: f_adj = 1.0000
 
 2724.	--- DIALOGUE 24 ---
 
@@ -3243,7 +3243,7 @@ REPORT LOG
 3064.			number of required turns: v = 72 turns
 3065.			number of user's turns: w = 76 turns
 3066.			natural language flexibility coefficient: f = 0.9474
-3067.			adjusted flexibility coefficient: f_ad = 0.7500
+3067.			adjusted flexibility coefficient: f_adj = 0.7500
 
 3068.	--- DIALOGUE 25 ---
 
@@ -3328,7 +3328,7 @@ REPORT LOG
 3142.			number of required turns: v = 11 turns
 3143.			number of user's turns: w = 12 turns
 3144.			natural language flexibility coefficient: f = 0.9167
-3145.			adjusted flexibility coefficient: f_ad = 0.8333
+3145.			adjusted flexibility coefficient: f_adj = 0.8333
 
 3146.	--- DIALOGUE 26 ---
 
@@ -3413,7 +3413,7 @@ REPORT LOG
 3220.			number of required turns: v = 12 turns
 3221.			number of user's turns: w = 12 turns
 3222.			natural language flexibility coefficient: f = 1.0000
-3223.			adjusted flexibility coefficient: f_ad = 1.0000
+3223.			adjusted flexibility coefficient: f_adj = 1.0000
 
 3224.	--- DIALOGUE 27 ---
 
@@ -3521,7 +3521,7 @@ REPORT LOG
 3321.			number of required turns: v = 18 turns
 3322.			number of user's turns: w = 18 turns
 3323.			natural language flexibility coefficient: f = 1.0000
-3324.			adjusted flexibility coefficient: f_ad = 1.0000
+3324.			adjusted flexibility coefficient: f_adj = 1.0000
 
 3325.	--- DIALOGUE 28 ---
 
@@ -3577,7 +3577,7 @@ REPORT LOG
 3370.			number of required turns: v = 5 turns
 3371.			number of user's turns: w = 5 turns
 3372.			natural language flexibility coefficient: f = 1.0000
-3373.			adjusted flexibility coefficient: f_ad = 1.0000
+3373.			adjusted flexibility coefficient: f_adj = 1.0000
 
 3374.	--- DIALOGUE 29 ---
 
@@ -3856,7 +3856,7 @@ REPORT LOG
 3642.			number of required turns: v = 57 turns
 3643.			number of user's turns: w = 58 turns
 3644.			natural language flexibility coefficient: f = 0.9828
-3645.			adjusted flexibility coefficient: f_ad = 0.9231
+3645.			adjusted flexibility coefficient: f_adj = 0.9231
 
 3646.	--- DIALOGUE 30 ---
 
@@ -3937,7 +3937,7 @@ REPORT LOG
 3716.			number of required turns: v = 11 turns
 3717.			number of user's turns: w = 11 turns
 3718.			natural language flexibility coefficient: f = 1.0000
-3719.			adjusted flexibility coefficient: f_ad = 1.0000
+3719.			adjusted flexibility coefficient: f_adj = 1.0000
 
 3720.	--- DIALOGUE 31 ---
 
@@ -4050,7 +4050,7 @@ REPORT LOG
 3822.			number of required turns: v = 20 turns
 3823.			number of user's turns: w = 19 turns
 3824.			natural language flexibility coefficient: f = 1.0526
-3825.			adjusted flexibility coefficient: f_ad = 1.3333
+3825.			adjusted flexibility coefficient: f_adj = 1.3333
 
 3826.	--- DIALOGUE 32 ---
 
@@ -4158,7 +4158,7 @@ REPORT LOG
 3923.			number of required turns: v = 17 turns
 3924.			number of user's turns: w = 18 turns
 3925.			natural language flexibility coefficient: f = 0.9444
-3926.			adjusted flexibility coefficient: f_ad = 0.8000
+3926.			adjusted flexibility coefficient: f_adj = 0.8000
 
 3927.	--- DIALOGUE 33 ---
 
@@ -4222,7 +4222,7 @@ REPORT LOG
 3980.			number of required turns: v = 5 turns
 3981.			number of user's turns: w = 7 turns
 3982.			natural language flexibility coefficient: f = 0.7143
-3983.			adjusted flexibility coefficient: f_ad = 0.7143
+3983.			adjusted flexibility coefficient: f_adj = 0.7143
 
 3984.	--- DIALOGUE 34 ---
 
@@ -4497,7 +4497,7 @@ REPORT LOG
 4248.			number of required turns: v = 57 turns
 4249.			number of user's turns: w = 57 turns
 4250.			natural language flexibility coefficient: f = 1.0000
-4251.			adjusted flexibility coefficient: f_ad = 1.0000
+4251.			adjusted flexibility coefficient: f_adj = 1.0000
 
 4252.	--- DIALOGUE 35 ---
 
@@ -4578,7 +4578,7 @@ REPORT LOG
 4322.			number of required turns: v = 11 turns
 4323.			number of user's turns: w = 11 turns
 4324.			natural language flexibility coefficient: f = 1.0000
-4325.			adjusted flexibility coefficient: f_ad = 1.0000
+4325.			adjusted flexibility coefficient: f_adj = 1.0000
 
 4326.	--- DIALOGUE 36 ---
 
@@ -4695,7 +4695,7 @@ REPORT LOG
 4432.			number of required turns: v = 19 turns
 4433.			number of user's turns: w = 20 turns
 4434.			natural language flexibility coefficient: f = 0.9500
-4435.			adjusted flexibility coefficient: f_ad = 0.8000
+4435.			adjusted flexibility coefficient: f_adj = 0.8000
 
 4436.	--- DIALOGUE 37 ---
 
@@ -4803,7 +4803,7 @@ REPORT LOG
 4533.			number of required turns: v = 18 turns
 4534.			number of user's turns: w = 18 turns
 4535.			natural language flexibility coefficient: f = 1.0000
-4536.			adjusted flexibility coefficient: f_ad = 1.0000
+4536.			adjusted flexibility coefficient: f_adj = 1.0000
 
 4537.	--- DIALOGUE 38 ---
 
@@ -4859,7 +4859,7 @@ REPORT LOG
 4582.			number of required turns: v = 5 turns
 4583.			number of user's turns: w = 5 turns
 4584.			natural language flexibility coefficient: f = 1.0000
-4585.			adjusted flexibility coefficient: f_ad = 1.0000
+4585.			adjusted flexibility coefficient: f_adj = 1.0000
 
 4586.	--- DIALOGUE 39 ---
 
@@ -5110,7 +5110,7 @@ REPORT LOG
 4826.			number of required turns: v = 51 turns
 4827.			number of user's turns: w = 51 turns
 4828.			natural language flexibility coefficient: f = 1.0000
-4829.			adjusted flexibility coefficient: f_ad = 1.0000
+4829.			adjusted flexibility coefficient: f_adj = 1.0000
 
 4830.	--- DIALOGUE 40 ---
 
@@ -5199,7 +5199,7 @@ REPORT LOG
 4908.			number of required turns: v = 13 turns
 4909.			number of user's turns: w = 13 turns
 4910.			natural language flexibility coefficient: f = 1.0000
-4911.			adjusted flexibility coefficient: f_ad = 1.0000
+4911.			adjusted flexibility coefficient: f_adj = 1.0000
 
 
 
@@ -5385,7 +5385,7 @@ REPORT LOG
 162.			number of required turns: v = 8 turns
 163.			number of user's turns: w = 22 turns
 164.			natural language flexibility coefficient: f = 0.3636
-165.			adjusted flexibility coefficient: f_ad = 0.3636
+165.			adjusted flexibility coefficient: f_adj = 0.3636
 
 166.	--- DIALOGUE 2 ---
 
@@ -5489,7 +5489,7 @@ REPORT LOG
 259.			number of required turns: v = 6 turns
 260.			number of user's turns: w = 5 turns
 261.			natural language flexibility coefficient: f = 1.2000
-262.			adjusted flexibility coefficient: f_ad = 1.2000
+262.			adjusted flexibility coefficient: f_adj = 1.2000
 
 263.	--- DIALOGUE 3 ---
 
@@ -5545,7 +5545,7 @@ REPORT LOG
 308.			number of required turns: v = 5 turns
 309.			number of user's turns: w = 5 turns
 310.			natural language flexibility coefficient: f = 1.0000
-311.			adjusted flexibility coefficient: f_ad = 1.0000
+311.			adjusted flexibility coefficient: f_adj = 1.0000
 
 312.	--- DIALOGUE 4 ---
 
@@ -5804,7 +5804,7 @@ REPORT LOG
 560.			number of required turns: v = 20 turns
 561.			number of user's turns: w = 18 turns
 562.			natural language flexibility coefficient: f = 1.1111
-563.			adjusted flexibility coefficient: f_ad = 1.1111
+563.			adjusted flexibility coefficient: f_adj = 1.1111
 
 564.	--- DIALOGUE 5 ---
 
@@ -5897,7 +5897,7 @@ REPORT LOG
 646.			number of required turns: v = 7 turns
 647.			number of user's turns: w = 6 turns
 648.			natural language flexibility coefficient: f = 1.1667
-649.			adjusted flexibility coefficient: f_ad = 1.1667
+649.			adjusted flexibility coefficient: f_adj = 1.1667
 
 650.	--- DIALOGUE 6 ---
 
@@ -6014,7 +6014,7 @@ REPORT LOG
 756.			number of required turns: v = 8 turns
 757.			number of user's turns: w = 7 turns
 758.			natural language flexibility coefficient: f = 1.1429
-759.			adjusted flexibility coefficient: f_ad = 1.1429
+759.			adjusted flexibility coefficient: f_adj = 1.1429
 
 760.	--- DIALOGUE 7 ---
 
@@ -6118,7 +6118,7 @@ REPORT LOG
 853.			number of required turns: v = 6 turns
 854.			number of user's turns: w = 5 turns
 855.			natural language flexibility coefficient: f = 1.2000
-856.			adjusted flexibility coefficient: f_ad = 1.2000
+856.			adjusted flexibility coefficient: f_adj = 1.2000
 
 857.	--- DIALOGUE 8 ---
 
@@ -6174,7 +6174,7 @@ REPORT LOG
 902.			number of required turns: v = 5 turns
 903.			number of user's turns: w = 5 turns
 904.			natural language flexibility coefficient: f = 1.0000
-905.			adjusted flexibility coefficient: f_ad = 1.0000
+905.			adjusted flexibility coefficient: f_adj = 1.0000
 
 906.	--- DIALOGUE 9 ---
 
@@ -6469,7 +6469,7 @@ REPORT LOG
 1190.			number of required turns: v = 20 turns
 1191.			number of user's turns: w = 17 turns
 1192.			natural language flexibility coefficient: f = 1.1765
-1193.			adjusted flexibility coefficient: f_ad = 1.1765
+1193.			adjusted flexibility coefficient: f_adj = 1.1765
 
 1194.	--- DIALOGUE 10 ---
 
@@ -6558,7 +6558,7 @@ REPORT LOG
 1272.			number of required turns: v = 7 turns
 1273.			number of user's turns: w = 7 turns
 1274.			natural language flexibility coefficient: f = 1.0000
-1275.			adjusted flexibility coefficient: f_ad = 1.0000
+1275.			adjusted flexibility coefficient: f_adj = 1.0000
 
 
 HEADER	S = 32.
@@ -6659,7 +6659,7 @@ REPORT LOG
 78.			number of required turns: v = 8 turns
 79.			number of user's turns: w = 6 turns
 80.			natural language flexibility coefficient: f = 1.3333
-81.			adjusted flexibility coefficient: f_ad = 1.3333
+81.			adjusted flexibility coefficient: f_adj = 1.3333
 
 82.	--- DIALOGUE 2 ---
 
@@ -6763,7 +6763,7 @@ REPORT LOG
 175.			number of required turns: v = 6 turns
 176.			number of user's turns: w = 5 turns
 177.			natural language flexibility coefficient: f = 1.2000
-178.			adjusted flexibility coefficient: f_ad = 1.2000
+178.			adjusted flexibility coefficient: f_adj = 1.2000
 
 179.	--- DIALOGUE 3 ---
 
@@ -6819,7 +6819,7 @@ REPORT LOG
 224.			number of required turns: v = 5 turns
 225.			number of user's turns: w = 5 turns
 226.			natural language flexibility coefficient: f = 1.0000
-227.			adjusted flexibility coefficient: f_ad = 1.0000
+227.			adjusted flexibility coefficient: f_adj = 1.0000
 
 228.	--- DIALOGUE 4 ---
 
@@ -7102,7 +7102,7 @@ REPORT LOG
 500.			number of required turns: v = 20 turns
 501.			number of user's turns: w = 18 turns
 502.			natural language flexibility coefficient: f = 1.1111
-503.			adjusted flexibility coefficient: f_ad = 1.1111
+503.			adjusted flexibility coefficient: f_adj = 1.1111
 
 504.	--- DIALOGUE 5 ---
 
@@ -7183,7 +7183,7 @@ REPORT LOG
 574.			number of required turns: v = 7 turns
 575.			number of user's turns: w = 7 turns
 576.			natural language flexibility coefficient: f = 1.0000
-577.			adjusted flexibility coefficient: f_ad = 1.0000
+577.			adjusted flexibility coefficient: f_adj = 1.0000
 
 578.	--- DIALOGUE 6 ---
 
@@ -7288,7 +7288,7 @@ REPORT LOG
 672.			number of required turns: v = 8 turns
 673.			number of user's turns: w = 6 turns
 674.			natural language flexibility coefficient: f = 1.3333
-675.			adjusted flexibility coefficient: f_ad = 1.3333
+675.			adjusted flexibility coefficient: f_adj = 1.3333
 
 676.	--- DIALOGUE 7 ---
 
@@ -7404,7 +7404,7 @@ REPORT LOG
 781.			number of required turns: v = 6 turns
 782.			number of user's turns: w = 7 turns
 783.			natural language flexibility coefficient: f = 0.8571
-784.			adjusted flexibility coefficient: f_ad = 0.8571
+784.			adjusted flexibility coefficient: f_adj = 0.8571
 
 785.	--- DIALOGUE 8 ---
 
@@ -7460,7 +7460,7 @@ REPORT LOG
 830.			number of required turns: v = 5 turns
 831.			number of user's turns: w = 5 turns
 832.			natural language flexibility coefficient: f = 1.0000
-833.			adjusted flexibility coefficient: f_ad = 1.0000
+833.			adjusted flexibility coefficient: f_adj = 1.0000
 
 834.	--- DIALOGUE 9 ---
 
@@ -7703,7 +7703,7 @@ REPORT LOG
 1066.			number of required turns: v = 20 turns
 1067.			number of user's turns: w = 15 turns
 1068.			natural language flexibility coefficient: f = 1.3333
-1069.			adjusted flexibility coefficient: f_ad = 1.3333
+1069.			adjusted flexibility coefficient: f_adj = 1.3333
 
 1070.	--- DIALOGUE 10 ---
 
@@ -7792,6 +7792,6 @@ REPORT LOG
 1148.			number of required turns: v = 7 turns
 1149.			number of user's turns: w = 7 turns
 1150.			natural language flexibility coefficient: f = 1.0000
-1151.			adjusted flexibility coefficient: f_ad = 1.0000
+1151.			adjusted flexibility coefficient: f_adj = 1.0000
 
 

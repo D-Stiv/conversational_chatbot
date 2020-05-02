@@ -38,6 +38,7 @@ class DialogueManager:
         self.iteration_number = 0
         self.number_fields = 0
         self.s_value = None # s_value for the simulation
+        self.number_not_handled = 0 # number of user inputs not properly handled by the bot.
 
     def initialize_views(self, counter_trigger=None):
         if counter_trigger is not None:
@@ -146,7 +147,9 @@ class DialogueManager:
             while True and self.in_session:
                 if u.simulation_enabled:
                     dialogue_state = self.get_dialogue_state()
-                    a = self.user.get_answer(dialogue_state)
+                    a, proper_response_from_bot = self.user.get_answer(dialogue_state)
+                    if not proper_response_from_bot:
+                        self.number_not_handled += 1
                     """we insert a control to be be able to manually stop the simulation"""
                     control = self.counter % min(
                         u.COEFF*self.number_fields, u.CONTROL_FREQUENCE)
@@ -216,7 +219,10 @@ class DialogueManager:
             # we conclude this log
             self.conclude_log()
             # we add the state to the list
-            self.states_list.append(self.current_bot.get_state())
+            state = self.current_bot.get_state()
+            # we insert the number of not properly handled messages inside the state
+            state[u.number_not_handled] = self.number_not_handled
+            self.states_list.append(state)
             # we sample the reports not to loose everything in case of problem
             if self.iteration_number in [50]:
                 # write the report
@@ -262,6 +268,7 @@ class DialogueManager:
             self.counter = 0
             self.current_bot = None
             self.close_window()
+            self.number_not_handled = 0
         except:
             print('Fail to update the parameters')
             raise Exception

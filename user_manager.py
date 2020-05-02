@@ -28,6 +28,7 @@ class User:
         self.active_list = cts.initial_active_list
         self.dialogue_state = {}
         self.data = self.initialize_data()
+        self.proper_response_from_bot = True
 
 
     def initialize_data(self):
@@ -155,13 +156,15 @@ class User:
                 self.remaining_spelling_interruptions -= 1
             # we set the dialogue state which will be used by the action_states and the actions
             self.dialogue_state = dialogue_state
+            # we initialize proper response as true
+            self.proper_response_from_bot = True
             state_name = self.get_state_name()
             if state_name is None:
                 # we will activate the initial state
                 state_name = sm.state_00[u.state_name]
             action = self.get_action_state(state_name)
             answer = action(self)
-            return answer
+            return answer, self.proper_response_from_bot
         except:
             print('Fail to get the user answer')
             # we return a constant string only to avoid interrupting the dialogue
@@ -222,6 +225,9 @@ class User:
                         break
                 if found:
                     state_name = state[u.state_name]
+                    # we define the goodness of the bot response w.r.t the state in which we are
+                    if state_name in ['state_00', 'state_04', 'state_14', 'state_16']:
+                        self.proper_response_from_bot = False
                     return state_name
             # there is no state corresponding to the dialogue state
             return None

@@ -345,11 +345,11 @@ class ReportWriter(Writer):
             total_spelling = len(spelling_slots)
             cummulative_spelling_values = self.get_cummulative_values(spelling_slots)
             m_k_factor = max(self.spelling_length, cummulative_spelling_values)
-            #flexibility_num = total_slots - total_spelling + m_k_factor
+            flexibility_num = total_slots - total_spelling + m_k_factor - state[u.number_not_handled]
+            flexibility_denom = len(state.message_history)
             k = 2   # minimum number of user turns in case of spelling
-            flexibility_num = total_slots + total_spelling*(k - 1)
-            #flexibility_denom = len(state.message_history)
-            flexibility_denom = len(state.message_history) - m_k_factor + total_spelling*(k - 1)
+            flexibility_num_adj = len(state.message_history) - m_k_factor + total_spelling*(k - 1) - state[u.number_not_handled]
+            flexibility_denom_adj = len(state.message_history) - m_k_factor + total_spelling*(k - 1)
             line_text = 'Natural Language Flexibility Coefficient:'
             flexibility_coefficient_content = self.add_line(line_text, tab=tab)
             line_text = f"number of required turns: v = {flexibility_num} turns"
@@ -358,7 +358,7 @@ class ReportWriter(Writer):
             flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
             line_text = f"natural language flexibility coefficient: f = {round(Decimal(flexibility_num)/Decimal(flexibility_denom), 4)}"
             flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
-            line_text = f"adjusted flexibility coefficient: f_ad = {round(Decimal(flexibility_num)/Decimal(flexibility_denom), 4)}"
+            line_text = f"adjusted flexibility coefficient: f_adj = {round(Decimal(flexibility_num_adj)/Decimal(flexibility_denom_adj), 4)}"
             flexibility_coefficient_content = f'{flexibility_coefficient_content}\n{self.add_line(line_text, tab=tabb)}'
             return flexibility_coefficient_content
         except:

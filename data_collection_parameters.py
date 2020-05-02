@@ -25,7 +25,7 @@ cummul_z_t_key = 'tive thinking time:'   # cummulative thinking time
 c_key = 'c =' # convergence rate
 c_adj_key = 'c_adj =' # adjusted convergence rate
 f_key = 'f =' # natural language flexibility
-f_adj_key = 'f_ad =' # adjusted natural language flexibility
+f_adj_key = 'f_adj =' # adjusted natural language flexibility
 total_turns = ': t ='
 m_k_factor = ': m_k factor ='
 
