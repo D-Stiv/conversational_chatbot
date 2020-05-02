@@ -19,7 +19,7 @@ def initial_parsing(url, browser, s=None):
     manager.create_form_bots()
     return manager
 
-s_values = [32, 32]
+s_values = [0, 2, 4, 8, 16, 32]
 for s in s_values:
     # At the beginning of the parsing of the whole Web paage
     # Access Level

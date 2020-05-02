@@ -221,7 +221,7 @@ class DialogueManager:
             # we add the state to the list
             state = self.current_bot.get_state()
             # we insert the number of not properly handled messages inside the state
-            state[u.number_not_handled] = self.number_not_handled
+            state.constructs[u.form_construct][u.number_not_handled] = self.number_not_handled
             self.states_list.append(state)
             # we sample the reports not to loose everything in case of problem
             if self.iteration_number in [50]:
@@ -237,7 +237,7 @@ class DialogueManager:
                 text = '\n[ALERT: Would you like to start a new dialogue ?\t1- Yes\t0- No\n>>> Response: '
                 if u.simulation_enabled:
                     dialogue_state = self.get_dialogue_state()
-                    answer = self.user.get_answer(dialogue_state)
+                    answer, _ = self.user.get_answer(dialogue_state)
                 else:
                     answer = input(text)
                 try:

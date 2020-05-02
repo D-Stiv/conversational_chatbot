@@ -169,7 +169,7 @@ class User:
             print('Fail to get the user answer')
             # we return a constant string only to avoid interrupting the dialogue
             string = 'fill the form'
-            return string
+            return string, self.proper_response_from_bot
         
     def reset_spelling_data(self):
         self.spelling_string = ''

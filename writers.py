@@ -339,16 +339,17 @@ class ReportWriter(Writer):
         try:
             self.increase_counter()
             tabb = f'{tab}\t'
+            number_not_handled = state.constructs[u.form_construct][u.number_not_handled]
             slots = state.constructs["form"]["slots"]
             total_slots = len(slots) # we do not remove one because we count the submit request          
             spelling_slots = self.get_spelling_slots(slots)
             total_spelling = len(spelling_slots)
             cummulative_spelling_values = self.get_cummulative_values(spelling_slots)
             m_k_factor = max(self.spelling_length, cummulative_spelling_values)
-            flexibility_num = total_slots - total_spelling + m_k_factor - state[u.number_not_handled]
+            flexibility_num = total_slots - total_spelling + m_k_factor - number_not_handled
             flexibility_denom = len(state.message_history)
             k = 2   # minimum number of user turns in case of spelling
-            flexibility_num_adj = len(state.message_history) - m_k_factor + total_spelling*(k - 1) - state[u.number_not_handled]
+            flexibility_num_adj = len(state.message_history) - m_k_factor + total_spelling*(k - 1) - number_not_handled
             flexibility_denom_adj = len(state.message_history) - m_k_factor + total_spelling*(k - 1)
             line_text = 'Natural Language Flexibility Coefficient:'
             flexibility_coefficient_content = self.add_line(line_text, tab=tab)
