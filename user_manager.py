@@ -180,7 +180,7 @@ class User:
         # receives the name of an intent and perform the standard operation for generating a 
         # message coherent with that intent
         try:
-            if intent_name != u.spelling:
+            if intent_name not in [u.spelling_action, u.fill_form_action]:
                 self.update_active_list(intent_name)
             intent_function = self.get_intent_function(intent_name)
             answer = intent_function(self)
