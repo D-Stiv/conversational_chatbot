@@ -82,8 +82,11 @@ class Form:
                 utterance = self.find_action_and_run(intent=intent)
             elif intent not in [u.spelling_action, u.fill_form_action] and self.state.get_current_spelling_input_value() != '':
                 # we are going to find a solution ad hoc for the spelling special characters
-                if self.state.get_latest_message()["text"] in u.special_characters:
+                latest_message = self.state.get_latest_message()
+                if latest_message["text"] in u.special_characters:
+                    # misinterpretation
                     intent = u.spelling_action
+                    latest_message["intent"]["name"] = u.spelling_action
                     utterance = self.find_action_and_run(intent=intent)
                     return utterance
                 # the user started to spell an input and suddently interrupts it
@@ -99,9 +102,11 @@ class Form:
                 self.state.set_warning_message(utterance)
                 raise Exception
             else:
-                if intent != u.spelling_action and len(self.state.get_latest_message()["text"]) == 1:
+                latest_message = self.state.get_latest_message()
+                if intent != u.spelling_action and len(latest_message["text"]) == 1:
                     # There is probably a misinterpretation
                     intent = u.spelling_action
+                    latest_message["intent"]["name"] = u.spelling_action
                 # normal path, there is no spelling issue
                 utterance = self.find_action_and_run(intent=intent)
             return utterance

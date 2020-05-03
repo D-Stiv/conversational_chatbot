@@ -694,11 +694,12 @@ class RegistrationForm(Form):
             if len(remaining_required) > 0:
                 # at least one required field is still empty
                 initial_string = 'Not all the required fields are completed.'
+                next_step_string = self.state.manage_next_step()
                 if len(remaining_required) == 1:
-                    string = f'{initial_string}\nYou should complete the field {remaining_required[0]}.'
+                    string = f'{initial_string}\nYou should complete the field {remaining_required[0]}.\n{next_step_string}'
                 elif len(remaining_required) > 1:
                     string_fields = fn.get_string_from_list(remaining_required)
-                    string = f"{initial_string}\nYou still have to complete the following required fields {string_fields}"
+                    string = f"{initial_string}\nYou still have to complete the following required fields {string_fields}.\n{next_step_string}"
                 return string
             if u.DEBUG or not self.state.get_all_required_filled(): 
                 print("inside submitForm")

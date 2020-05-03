@@ -51,8 +51,9 @@ def start_compilation(root_folder, excel_file, prefix=''):
                     c_key = dcp.c_adj_key
                     f_key = dcp.f_adj_key
                     f_key = dcp.total_turns
+                    f_value = dcp.extract_value(string_report, f_key) - dcp.extract_value(string_report, dcp.m_k_factor)
                 c_value = dcp.extract_value(string_report, c_key)
-                f_value = dcp.extract_value(string_report, f_key) - dcp.extract_value(string_report, dcp.m_k_factor)
+                f_value = dcp.extract_value(string_report, f_key)
                 # we add the values in the excel file
                 old_delta = delta
                 delta = int(counter/dcp.number_forms)
@@ -102,8 +103,8 @@ def start_compilation(root_folder, excel_file, prefix=''):
     print('values inserted successfully')
 
 # we load data for normal parameters
-#start_compilation(dcp.normal_root_folder, dcp.excel_file)
+start_compilation(dcp.normal_root_folder, dcp.excel_file)
 
 # we load data for adjusted parameters
 prefix = f'{dcp.adjusted}_'
-start_compilation(dcp.adjusted_root_folder, dcp.excel_file, prefix)
+#start_compilation(dcp.adjusted_root_folder, dcp.excel_file, prefix)
