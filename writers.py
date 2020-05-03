@@ -251,8 +251,19 @@ class ReportWriter(Writer):
     def manage_spelling(self, message):
         try:
             intent = message["intent"]["name"]
+            text = message["text"]
             if intent == u.spelling:
-                self.spelling_length += 1
+                if len(text) == 1:
+                    self.spelling_length += 1
+                elif text in u.special_characters + u.terminator:
+                    self.spelling_length += 1
+                else:
+                    # the spelling value is a number
+                    try:
+                        float(text)
+                        self.spelling_length += 1
+                    except:
+                        pass
         except:
             print('Fail to update the spelling length')
             raise Exception
@@ -311,12 +322,12 @@ class ReportWriter(Writer):
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
             line_text = f'total number of spelling turns: m_k factor = {m_k_factor}'
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
-            line_text = f'convergence rate: c = {round(Decimal(2*user_turns + 1)/Decimal(total_turns), 2)}'
+            line_text = f'convergence rate: c = {round(Decimal(2*user_turns + 1)/Decimal(total_turns), 4)}'
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
             k = 2   # minimum number of user turns in spelling
             conv_adj_num = 2*(user_turns - m_k_factor + total_spelling*k) + 1
             conv_adj_denom = total_turns - 2*(m_k_factor - total_spelling*k)
-            line_text = f'adjustded convergence rate: c_adj = {round(Decimal(conv_adj_num)/Decimal(conv_adj_denom), 2)}'
+            line_text = f'adjustded convergence rate: c_adj = {round(Decimal(conv_adj_num)/Decimal(conv_adj_denom), 4)}'
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
             
             line_text = 'Normalized Convergence Rate:'
@@ -327,7 +338,7 @@ class ReportWriter(Writer):
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
             line_text = f'total number of required spelling turns: m_k_2 factor = {m_k_required_factor}'
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
-            line_text = f'normalized convergence rate: c_2 = {round(Decimal(2*required_user_turns + 1)/Decimal(total_turns), 2)}'
+            line_text = f'normalized convergence rate: c_2 = {round(Decimal(2*required_user_turns + 1)/Decimal(total_turns), 4)}'
             
             convergence_rate_content = f'{convergence_rate_content}\n{self.add_line(line_text, tab=tabb)}'
             return convergence_rate_content
