@@ -443,7 +443,8 @@ class State:
                     slot_name=slot_name, choice_value=slot_value)
             return slot_value, string
         except:
-            string = f'The value {slot_value} is not valid for the field {slot_name}'
+            next_step_string = self.manage_next_step()
+            string = f'The value {slot_value} is not valid for the field {slot_name}.\n{next_step_string}'
             return None, string
 
     # Select the choice_value of the user for the dropdown with the given name
