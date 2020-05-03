@@ -95,6 +95,7 @@ class RegistrationForm(Form):
                 if self.state.get_close_prompt_enabled():
                     # we set the message to be returned to the user
                     string = fn.next_char_string()
+                    self.state.set_possible_next_action(u.spelling_action)
                 else:
                     string = self.state.manage_next_step()
                 return string
@@ -268,6 +269,9 @@ class RegistrationForm(Form):
     def spelling(self):
         try:
             if len(self.state.get_spelling_list()) == 0 or self.state.get_possible_next_action() != u.spelling_action:
+                # misinterpretation
+                latest_message = self.state.get_latest_message()
+                latest_message['intent']['name'] = u.fill_field_action
                 string = self.fillGenericField()
                 return string
             all_types = u.alphabet + u.special_characters + u.terminator + u.spec_char_symbol
@@ -281,8 +285,8 @@ class RegistrationForm(Form):
             # verify if the text is valid
             if text.lower() not in all_types and not is_number:
                 string = f'Your input {text} is not valid, try to insert only the character again please'
-                self.state.set_warning_message(string)
-                raise Exception
+                self.state.set_possible_next_action(u.spelling_action)
+                return string
             # verify if the input is for termination of the spelling
             for term in u.terminator:
                 if term in text.lower():
@@ -312,6 +316,7 @@ class RegistrationForm(Form):
             self.state.complete_spelling_value(text)
             # we set the message to be returned to the user
             string = fn.next_char_string()
+            self.state.set_possible_next_action(u.spelling_action)
             return string
         except:
             if not self.state.get_warning_present():

@@ -728,6 +728,8 @@ class State:
                     f'\n{please_style} insert the {next_style} character')
             # possible next action is spelling
             self.set_possible_next_action(u.spelling_action)
+            # we enable the close prompt
+            self.set_close_prompt_enabled()
             return string
         except:
             print('ERROR: Fail to manage the resume of the spelling')
