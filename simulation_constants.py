@@ -112,10 +112,10 @@ phone_prefixes = [1, 7, 20, 27, 30, 31, 32, 33, 34, 36, 39, 40, 41, 43, 44, 45, 
 inf = 100
 counter_trigger = 8
 max_execution_number = 1
-cardinality_interval_number = 60
+cardinality_interval_number = 5
 min_R = 0
 max_R = 100
-complete_field_cardinality = 5
+complete_field_cardinality = 20
 spelling_cardinality = 10
 submit_cardinality = 5
 affirm_cardinality = 5
@@ -182,7 +182,7 @@ intent_explain_field = {
 
 intent_fill_form = {
     intent_name: fill_form,
-    max_execution: max_execution_number,
+    max_execution: inf,
     cardinality_interval: cardinality_interval_number,
     min_number: 0,
     max_number: 0
