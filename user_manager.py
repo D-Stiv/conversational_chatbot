@@ -30,6 +30,7 @@ class User:
         self.dialogue_state = {}
         self.data = self.initialize_data()
         self.proper_response_from_bot = True
+        self.states_sequence = []
 
 
     def initialize_data(self):
@@ -163,6 +164,8 @@ class User:
             if state_name is None:
                 # we will activate the initial state
                 state_name = sm.state_00[u.state_name]
+            # we add the state to the sequence
+            self.states_sequence.append(state_name)
             action = self.get_action_state(state_name)
             answer = action(self)
             return answer, self.proper_response_from_bot
@@ -203,7 +206,7 @@ class User:
             element = gen.get_random_value(elements)
             return element
         except:
-            print(f'Fail to construct an interaction message')
+            print(f'Fail to get an interaction message')
             raise Exception
 
     def get_filling_message(self, file_name):
@@ -213,7 +216,7 @@ class User:
             element = gen.get_random_value(elements)
             return element
         except:
-            print(f'Fail to construct a filling message')
+            print(f'Fail to get a filling message')
             raise Exception
 
     def get_state_name(self):
@@ -613,7 +616,7 @@ class User:
                 self.spelling_string = value
                 self.spelling_string_index = -1
                 print(f'[User - Input to be inserted by spelling: {value}]')
-            # we update first the spelling data anthen we analyze the char
+            # we update first the spelling data and then we analyze the char
             self.spelling_string_index += 1
             if self.spelling_string_index >= len(self.spelling_string):
                 self.reset_spelling_data()
@@ -640,8 +643,9 @@ class User:
         return answer
 
     def intent_deny(self):
-        # if we started the spelling we have to update the spelling data
-        self.reset_spelling_data()
+        if self.dialogue_state[u.spelling_interrupted]:
+            # if we started the spelling we have to update the spelling data
+            self.reset_spelling_data()
         # we select an expression to deny and we return
         answer = self.get_interaction_message(cts.deny)
         return answer
@@ -689,20 +693,20 @@ class User:
                 upper = 2
             number = randint(0, upper)
             if number == 0:
-                answer = self.get_interaction_message(cts.repeat_value_field, ifk.zero)
+                answer = self.get_interaction_message(cts.modify_value_field, ifk.zero)
             elif number == 1:
                 field = gen.get_random_value(self.text_fields)
-                sentence = self.get_interaction_message(cts.repeat_value_field, ifk.one_name)
+                sentence = self.get_interaction_message(cts.modify_value_field, ifk.one_name)
                 answer = sentence.format(field)
             elif number == 2:
                 field = gen.get_random_value(self.text_fields)
                 value = self.get_filling_message(cts.possible_fields)
-                sentence = self.get_interaction_message(cts.repeat_value_field, ifk.name_value)
+                sentence = self.get_interaction_message(cts.modify_value_field, ifk.name_value)
                 answer = sentence.format(field, value)
             else:
                 # 3, two_names
                 fields = gen.get_random_value(self.text_fields, number=2)
-                sentence = self.get_interaction_message(cts.repeat_value_field, ifk.two_names)
+                sentence = self.get_interaction_message(cts.modify_value_field, ifk.two_names)
                 answer = sentence.format(fields[0], fields[1])
             return answer
         except:

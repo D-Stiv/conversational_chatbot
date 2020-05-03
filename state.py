@@ -954,7 +954,7 @@ class State:
                 print('ERROR: Fail to verify presence of all fields')
             raise Exception
 
-    def filling_procedure(self, slot_name, slot_value):
+    def filling_procedure(self, slot_name, slot_value, interrupt=False):
         try:
             if slot_value is None:
                 # we take the previous value for that field
@@ -965,7 +965,7 @@ class State:
                     string = self.update(slot_name)
                 else:
                     string = u.VOID
-                if string in [u.VOID, u.CANCELED]:
+                if string in [u.VOID, u.CANCELED] and not interrupt:
                     next_step_string = self.manage_next_step()
                     return True, next_step_string
                 return True, string

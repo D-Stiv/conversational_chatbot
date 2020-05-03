@@ -68,8 +68,8 @@ class Form:
                     spelling_list.remove(field)
                     # we insert the current spelling value in the list of saved values 
                     self.state.add_spelling_value_to_save(self.state.get_current_spelling_input_value())
-                    # we reset the value of that field
-                    self.state.filling_procedure(field, None)
+                    # we reset the value of that field keeping the state unchanged: same next field, ...
+                    self.state.filling_procedure(field, None, interrupt=True)
                 # we reset the current value
                 self.state.reset_current_spelling_input_value()
                 # the user interrupted a spelling and decided eiher to save or not to save. Now we go on with the action 
