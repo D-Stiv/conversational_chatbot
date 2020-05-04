@@ -16902,3 +16902,4351 @@ REPORT LOG
 3675.			adjusted flexibility coefficient: f_adj = 0.9655
 
 
+HEADER	S = 16.
+
+	Date and Hour: 2020-05-03 23:01:26.961518
+
+SUMMARY
+
+	There are 20 completed dialogues
+
+REPORT LOG
+
+
+0.	--- DIALOGUE 1 ---
+
+1.	I- Form element
+
+2.		The window have been closed, so we cannot give you the form elements, sorry
+
+3.	II- Slots
+
+4.		[slot_name: first name - slot_value: Ataahua - required: True - spelling: True - description: your first name]
+5.		[slot_name: last name - slot_value: Marama - required: False - spelling: True - description: your family name]
+6.		[slot_name: mark - slot_value: 19,68 - required: False - spelling: False - description: None]
+7.		[slot_name: password - slot_value: 9$rYix - required: False - spelling: False - description: None]
+8.		[slot_name: email address - slot_value: thandolwethu@polimi.it - required: True - spelling: False - description: the email we should use to contact you]
+9.		[Web Form info -- title: None - description: None]
+
+10.	III-Messages
+
+11.		Message_0
+12.			Text: can i submit the form now?
+13.			Intent: [name: submitForm - confidence: 0.8278]
+14.			Entities: [entity: input_value, value: now]
+15.		Message_1
+16.			Text: T
+17.			Intent: [name: spelling - confidence: 0.9962]
+18.			Entities: [entity: spelling, value: T]
+19.		Message_2
+20.			Text: no, i don't
+21.			Intent: [name: deny - confidence: 1.0000]
+22.			Entities: 
+23.		Message_3
+24.			Text: which are the fields that i can skip and be able to complete the process and submit?
+25.			Intent: [name: modifyValueGenericField - confidence: 0.3454]
+26.			Entities: [entity: input_value, value: be able to]
+27.		Message_4
+28.			Text: what are the fields which are obligatory
+29.			Intent: [name: repeatRequiredFields - confidence: 1.0000]
+30.			Entities: 
+31.		Message_5
+32.			Text: no, i do not
+33.			Intent: [name: deny - confidence: 1.0000]
+34.			Entities: 
+35.		Message_6
+36.			Text: in the whole form, give me the fields to be completed
+37.			Intent: [name: verifyValueFilledFields - confidence: 0.9907]
+38.			Entities: [entity: input_value, value: to be completed]
+39.		Message_7
+40.			Text: please repeat the values of the fields last name and first name
+41.			Intent: [name: repeatValueField - confidence: 0.8453]
+42.			Entities: [entity: input_field, value: last name], [entity: input_field, value: first name]
+43.		Message_8
+44.			Text: is it possible to have some explanations about the form?
+45.			Intent: [name: repeatFormExplanation - confidence: 0.5453]
+46.			Entities: 
+47.		Message_9
+48.			Text: can i turn on this later
+49.			Intent: [name: fillGenericField - confidence: 0.5307]
+50.			Entities: [entity: input_value, value: later]
+51.		Message_10
+52.			Text: i want to submit
+53.			Intent: [name: submitForm - confidence: 0.9997]
+54.			Entities: 
+55.		Message_11
+56.			Text: please can i submit the form?
+57.			Intent: [name: submitForm - confidence: 0.5977]
+58.			Entities: 
+59.		Message_12
+60.			Text: go on with the form
+61.			Intent: [name: fillForm - confidence: 0.9483]
+62.			Entities: 
+63.		Message_13
+64.			Text: please can i submit the form?
+65.			Intent: [name: submitForm - confidence: 0.5977]
+66.			Entities: 
+67.		Message_14
+68.			Text: sure, continue
+69.			Intent: [name: affirm - confidence: 0.4728]
+70.			Entities: 
+71.		Message_15
+72.			Text: i want to modify the value of a field
+73.			Intent: [name: modifyValueGenericField - confidence: 1.0000]
+74.			Entities: 
+75.		Message_16
+76.			Text: the value is Sophie
+77.			Intent: [name: fillGenericField - confidence: 0.9994]
+78.			Entities: [entity: input_value, value: Sophie]
+79.		Message_17
+80.			Text: i want to continue
+81.			Intent: [name: fillForm - confidence: 0.9892]
+82.			Entities: 
+83.		Message_18
+84.			Text: what are the remaining fields?
+85.			Intent: [name: giveAllRemainingFields - confidence: 0.9995]
+86.			Entities: 
+87.		Message_19
+88.			Text: G
+89.			Intent: [name: spelling - confidence: 0.9860]
+90.			Entities: [entity: spelling, value: G]
+91.		Message_20
+92.			Text: no, i do not
+93.			Intent: [name: deny - confidence: 1.0000]
+94.			Entities: 
+95.		Message_21
+96.			Text: give me the obligatory fields remaining
+97.			Intent: [name: giveRemainingRequiredFields - confidence: 0.9957]
+98.			Entities: 
+99.		Message_22
+100.			Text: go on with the form
+101.			Intent: [name: fillForm - confidence: 0.9483]
+102.			Entities: 
+103.		Message_23
+104.			Text: no, i don't
+105.			Intent: [name: deny - confidence: 1.0000]
+106.			Entities: 
+107.		Message_24
+108.			Text: yes
+109.			Intent: [name: affirm - confidence: 0.9761]
+110.			Entities: 
+111.		Message_25
+112.			Text: A
+113.			Intent: [name: spelling - confidence: 0.9931]
+114.			Entities: [entity: spelling, value: A]
+115.		Message_26
+116.			Text: t
+117.			Intent: [name: spelling - confidence: 0.9962]
+118.			Entities: [entity: spelling, value: t]
+119.		Message_27
+120.			Text: a
+121.			Intent: [name: spelling - confidence: 0.9931]
+122.			Entities: [entity: spelling, value: a]
+123.		Message_28
+124.			Text: a
+125.			Intent: [name: spelling - confidence: 0.9931]
+126.			Entities: [entity: spelling, value: a]
+127.		Message_29
+128.			Text: h
+129.			Intent: [name: spelling - confidence: 0.9966]
+130.			Entities: [entity: spelling, value: h]
+131.		Message_30
+132.			Text: u
+133.			Intent: [name: spelling - confidence: 0.9967]
+134.			Entities: [entity: spelling, value: u]
+135.		Message_31
+136.			Text: a
+137.			Intent: [name: spelling - confidence: 0.9931]
+138.			Entities: [entity: spelling, value: a]
+139.		Message_32
+140.			Text: close
+141.			Intent: [name: spelling - confidence: 0.9611]
+142.			Entities: [entity: spelling, value: close]
+143.		Message_33
+144.			Text: please i want the list of all the fields which are not mandatory that remain
+145.			Intent: [name: giveRemainingOptionalFields - confidence: 0.8463]
+146.			Entities: 
+147.		Message_34
+148.			Text: i prefer not
+149.			Intent: [name: deny - confidence: 0.5827]
+150.			Entities: 
+151.		Message_35
+152.			Text: is it possible to have the point of the situation?
+153.			Intent: [name: fillGenericField - confidence: 0.6207]
+154.			Entities: 
+155.		Message_36
+156.			Text: Titaina for last name
+157.			Intent: [name: fillGenericField - confidence: 1.0000]
+158.			Entities: [entity: input_value, value: Titaina], [entity: input_field, value: last name]
+159.		Message_37
+160.			Text: no, i don't
+161.			Intent: [name: deny - confidence: 1.0000]
+162.			Entities: 
+163.		Message_38
+164.			Text: may i repeat the process, i would like to change all the values?
+165.			Intent: [name: modifyValueGenericField - confidence: 0.9932]
+166.			Entities: 
+167.		Message_39
+168.			Text: no, i do not
+169.			Intent: [name: deny - confidence: 1.0000]
+170.			Entities: 
+171.		Message_40
+172.			Text: yes, continue
+173.			Intent: [name: affirm - confidence: 0.9970]
+174.			Entities: 
+175.		Message_41
+176.			Text: M
+177.			Intent: [name: spelling - confidence: 0.9919]
+178.			Entities: [entity: spelling, value: M]
+179.		Message_42
+180.			Text: a
+181.			Intent: [name: spelling - confidence: 0.9931]
+182.			Entities: [entity: spelling, value: a]
+183.		Message_43
+184.			Text: r
+185.			Intent: [name: spelling - confidence: 0.9963]
+186.			Entities: [entity: spelling, value: r]
+187.		Message_44
+188.			Text: a
+189.			Intent: [name: spelling - confidence: 0.9931]
+190.			Entities: [entity: spelling, value: a]
+191.		Message_45
+192.			Text: m
+193.			Intent: [name: spelling - confidence: 0.9919]
+194.			Entities: [entity: spelling, value: m]
+195.		Message_46
+196.			Text: a
+197.			Intent: [name: spelling - confidence: 0.9931]
+198.			Entities: [entity: spelling, value: a]
+199.		Message_47
+200.			Text: finish
+201.			Intent: [name: spelling - confidence: 0.9991]
+202.			Entities: [entity: spelling, value: finish]
+203.		Message_48
+204.			Text: can you explain what is last name?
+205.			Intent: [name: explainField - confidence: 1.0000]
+206.			Entities: [entity: input_field, value: last name]
+207.		Message_49
+208.			Text: value 19,68 for mark
+209.			Intent: [name: fillGenericField - confidence: 1.0000]
+210.			Entities: [entity: input_value, value: 19,68], [entity: input_field, value: mark]
+211.		Message_50
+212.			Text: 9$rYix is the password
+213.			Intent: [name: fillGenericField - confidence: 0.9994]
+214.			Entities: [entity: input_value, value: 9$rYix], [entity: input_field, value: password]
+215.		Message_51
+216.			Text: the value is thandolwethu@polimi.it
+217.			Intent: [name: fillGenericField - confidence: 0.9996]
+218.			Entities: [entity: input_value, value: thandolwethu@polimi.it]
+219.		Message_52
+220.			Text: sure
+221.			Intent: [name: fillGenericField - confidence: 0.9668]
+222.			Entities: [entity: input_value, value: sure]
+223.		Message_53
+224.			Text: turn where i was in the procedure
+225.			Intent: [name: fillForm - confidence: 0.9922]
+226.			Entities: 
+227.		Message_54
+228.			Text: yes, continue
+229.			Intent: [name: affirm - confidence: 0.9970]
+230.			Entities: 
+
+231.	IV-Statistics
+232.		Convergence Rate:
+233.			total number of turns: t = 111
+234.			total number of fields: n = 5
+235.			total number of spelling fields: m = 2
+236.			total number of spelling turns: m_k factor = 17
+237.			convergence rate: c = 0.3694
+238.			adjustded convergence rate: c_adj = 0.1765
+239.		Normalized Convergence Rate:
+240.			total number of required fields: n_2 = 2
+241.			total number of spelling fields: m_2 = 1
+242.			total number of required spelling turns: m_k_2 factor = 8
+243.			normalized convergence rate: c_2 = 0.1712
+245.		Natural Language Flexibility Coefficient:
+246.			number of required turns: v = 18 turns
+247.			number of user's turns: w = 55 turns
+248.			natural language flexibility coefficient: f = 0.3273
+249.			adjusted flexibility coefficient: f_adj = 0.9250
+
+250.	--- DIALOGUE 2 ---
+
+251.	I- Form element
+
+252.		The window have been closed, so we cannot give you the form elements, sorry
+
+253.	II- Slots
+
+254.		[slot_name: number of persons - slot_value: 5 - required: False - spelling: False - description: the number of persons coming with you]
+255.		[slot_name: phone number - slot_value: +50900525809 - required: False - spelling: True - description: None]
+256.		[slot_name: birthday - slot_value: 09-04-1955 - required: False - spelling: False - description: None]
+257.		[slot_name: arrival time - slot_value: 19:00 - required: False - spelling: False - description: the time you exprct to arrive at the conference]
+258.		[Web Form info -- title: test form sample number 2 - description: presents various fields types in order to test the different kind of input we can have and different actions]
+
+259.	III-Messages
+
+260.		Message_0
+261.			Text: no, i do not
+262.			Intent: [name: deny - confidence: 1.0000]
+263.			Entities: 
+264.		Message_1
+265.			Text: for the field number of persons the value i want to insert is 5
+266.			Intent: [name: fillGenericField - confidence: 1.0000]
+267.			Entities: [entity: input_field, value: number of persons], [entity: input_value, value: 5]
+268.		Message_2
+269.			Text: i lost myself, did you cite the field Expiration date in the list
+270.			Intent: [name: repeatValueField - confidence: 0.8114]
+271.			Entities: [entity: input_value, value: i lost myself, did you cite], [entity: input_field, value: Expiration date]
+272.		Message_3
+273.			Text: may i submit now?
+274.			Intent: [name: fillGenericField - confidence: 0.8436]
+275.			Entities: 
+276.		Message_4
+277.			Text: no, i did it by mistake
+278.			Intent: [name: fillGenericField - confidence: 0.9201]
+279.			Entities: [entity: input_value, value: it by mistake]
+280.		Message_5
+281.			Text: no, i did it by mistake
+282.			Intent: [name: fillGenericField - confidence: 0.9201]
+283.			Entities: [entity: input_value, value: it by mistake]
+284.		Message_6
+285.			Text: i want the list of fields that i can avoid to fill and be able to register
+286.			Intent: [name: modifyValueGenericField - confidence: 0.3649]
+287.			Entities: 
+288.		Message_7
+289.			Text: sure
+290.			Intent: [name: fillGenericField - confidence: 0.9668]
+291.			Entities: [entity: input_value, value: sure]
+292.		Message_8
+293.			Text: give me the next field
+294.			Intent: [name: repeatValueField - confidence: 0.5277]
+295.			Entities: 
+296.		Message_9
+297.			Text: continue the process
+298.			Intent: [name: fillForm - confidence: 0.9319]
+299.			Entities: 
+300.		Message_10
+301.			Text: can i have the list of the obligatory remaining fields
+302.			Intent: [name: giveRemainingRequiredFields - confidence: 0.9558]
+303.			Entities: 
+304.		Message_11
+305.			Text: reset everything
+306.			Intent: [name: resetAllFields - confidence: 1.0000]
+307.			Entities: 
+308.		Message_12
+309.			Text: the value, here it is +38620995610
+310.			Intent: [name: fillGenericField - confidence: 0.9995]
+311.			Entities: [entity: input_value, value: +38620995610]
+312.		Message_13
+313.			Text: summary
+314.			Intent: [name: fillGenericField - confidence: 0.5257]
+315.			Entities: [entity: input_value, value: summary]
+316.		Message_14
+317.			Text: i would like to know what i still have to complete in tem of optional or not required field
+318.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9995]
+319.			Entities: 
+320.		Message_15
+321.			Text: now i want the list of all the required fields
+322.			Intent: [name: repeatAllFields - confidence: 0.7964]
+323.			Entities: 
+324.		Message_16
+325.			Text: please give me the fields still to be completed
+326.			Intent: [name: giveAllRemainingFields - confidence: 0.8380]
+327.			Entities: 
+328.		Message_17
+329.			Text: i would like to complete this process
+330.			Intent: [name: fillForm - confidence: 0.9988]
+331.			Entities: 
+332.		Message_18
+333.			Text: plus
+334.			Intent: [name: spelling - confidence: 0.9879]
+335.			Entities: [entity: spelling, value: plus]
+336.		Message_19
+337.			Text: 5
+338.			Intent: [name: spelling - confidence: 0.9997]
+339.			Entities: [entity: input_value, value: 5]
+340.		Message_20
+341.			Text: yes, go on
+342.			Intent: [name: affirm - confidence: 0.9994]
+343.			Entities: 
+344.		Message_21
+345.			Text: i did not get well the fields, could you repeat it please?
+346.			Intent: [name: repeatAllFields - confidence: 0.8003]
+347.			Entities: 
+348.		Message_22
+349.			Text: yes, i do
+350.			Intent: [name: affirm - confidence: 0.9573]
+351.			Entities: 
+352.		Message_23
+353.			Text: sure, continue
+354.			Intent: [name: affirm - confidence: 0.4728]
+355.			Entities: 
+356.		Message_24
+357.			Text: yes, i do
+358.			Intent: [name: affirm - confidence: 0.9573]
+359.			Entities: 
+360.		Message_25
+361.			Text: more explanation about the form please
+362.			Intent: [name: repeatFormExplanation - confidence: 0.5069]
+363.			Entities: 
+364.		Message_26
+365.			Text: 0
+366.			Intent: [name: spelling - confidence: 0.9997]
+367.			Entities: [entity: input_value, value: 0]
+368.		Message_27
+369.			Text: 9
+370.			Intent: [name: spelling - confidence: 0.9997]
+371.			Entities: [entity: input_value, value: 9]
+372.		Message_28
+373.			Text: 0
+374.			Intent: [name: spelling - confidence: 0.9997]
+375.			Entities: [entity: input_value, value: 0]
+376.		Message_29
+377.			Text: 0
+378.			Intent: [name: spelling - confidence: 0.9997]
+379.			Entities: [entity: input_value, value: 0]
+380.		Message_30
+381.			Text: 5
+382.			Intent: [name: spelling - confidence: 0.9997]
+383.			Entities: [entity: input_value, value: 5]
+384.		Message_31
+385.			Text: 2
+386.			Intent: [name: spelling - confidence: 0.9997]
+387.			Entities: [entity: input_value, value: 2]
+388.		Message_32
+389.			Text: 5
+390.			Intent: [name: spelling - confidence: 0.9997]
+391.			Entities: [entity: input_value, value: 5]
+392.		Message_33
+393.			Text: 8
+394.			Intent: [name: spelling - confidence: 0.9997]
+395.			Entities: [entity: input_value, value: 8]
+396.		Message_34
+397.			Text: 0
+398.			Intent: [name: spelling - confidence: 0.9997]
+399.			Entities: [entity: input_value, value: 0]
+400.		Message_35
+401.			Text: 9
+402.			Intent: [name: spelling - confidence: 0.9997]
+403.			Entities: [entity: input_value, value: 9]
+404.		Message_36
+405.			Text: finish
+406.			Intent: [name: spelling - confidence: 0.9991]
+407.			Entities: [entity: spelling, value: finish]
+408.		Message_37
+409.			Text: yes, i do
+410.			Intent: [name: affirm - confidence: 0.9573]
+411.			Entities: 
+412.		Message_38
+413.			Text: i would like to insert the value may 23 1941
+414.			Intent: [name: fillGenericField - confidence: 0.9999]
+415.			Entities: [entity: input_value, value: 23 1941]
+416.		Message_39
+417.			Text: here it is 09041955
+418.			Intent: [name: fillGenericField - confidence: 0.6673]
+419.			Entities: [entity: input_value, value: 09041955]
+420.		Message_40
+421.			Text: the value for the field is 11 am
+422.			Intent: [name: fillGenericField - confidence: 1.0000]
+423.			Entities: [entity: input_value, value: 11 am]
+424.		Message_41
+425.			Text: sure, go ahead
+426.			Intent: [name: affirm - confidence: 0.5556]
+427.			Entities: 
+428.		Message_42
+429.			Text: yes, i do
+430.			Intent: [name: affirm - confidence: 0.9573]
+431.			Entities: 
+432.		Message_43
+433.			Text: no, i did it by mistake
+434.			Intent: [name: fillGenericField - confidence: 0.9201]
+435.			Entities: [entity: input_value, value: it by mistake]
+436.		Message_44
+437.			Text: yes, go on
+438.			Intent: [name: affirm - confidence: 0.9994]
+439.			Entities: 
+440.		Message_45
+441.			Text: the value 7 pm is for arrival time
+442.			Intent: [name: fillGenericField - confidence: 1.0000]
+443.			Entities: [entity: input_value, value: 7 pm], [entity: input_field, value: arrival time]
+444.		Message_46
+445.			Text: continue what i started
+446.			Intent: [name: fillForm - confidence: 0.9982]
+447.			Entities: 
+448.		Message_47
+449.			Text: yes, continue
+450.			Intent: [name: affirm - confidence: 0.9970]
+451.			Entities: 
+
+452.	IV-Statistics
+453.		Convergence Rate:
+454.			total number of turns: t = 97
+455.			total number of fields: n = 4
+456.			total number of spelling fields: m = 1
+457.			total number of spelling turns: m_k factor = 13
+458.			convergence rate: c = 0.3402
+459.			adjustded convergence rate: c_adj = 0.1467
+460.		Normalized Convergence Rate:
+461.			total number of required fields: n_2 = 0
+462.			total number of spelling fields: m_2 = 0
+463.			total number of required spelling turns: m_k_2 factor = 0
+464.			normalized convergence rate: c_2 = 0.0103
+466.		Natural Language Flexibility Coefficient:
+467.			number of required turns: v = 10 turns
+468.			number of user's turns: w = 48 turns
+469.			natural language flexibility coefficient: f = 0.2083
+470.			adjusted flexibility coefficient: f_adj = 0.8056
+
+471.	--- DIALOGUE 3 ---
+
+472.	I- Form element
+
+473.		The window have been closed, so we cannot give you the form elements, sorry
+
+474.	II- Slots
+
+475.		[slot_name: gender - slot_value: male - required: True - spelling: False - description: None - choice_list: ['male', 'female', 'other']]
+476.		[slot_name: electronic devices - slot_value: ['smart', 'smartphone'] - required: False - spelling: False - description: the electronic devices that you own - choice_list: ['none', 'computer', 'smartphone', 'tablet', 'smart watch', 'smart tv', 'blutooth earphones', 'camera', 'smart glasses']]
+477.		[slot_name: car - slot_value: lexus - required: False - spelling: False - description: the car brand your prefer - choice_list: ['volvo', 'saab', 'fiat', 'audi', 'citroen', 'ford', 'bmw', 'chevrolet', 'honda', 'kia', 'toyota', 'lexus', 'hyundai']]
+478.		[slot_name: message - slot_value: easy come, easy go - required: False - spelling: False - description: your suggestions or precisions]
+479.		[Web Form info -- title: test form sample number 3 - description: presents various fields types in order to test the different kind of input we can have and different actions]
+
+480.	III-Messages
+
+481.		Message_0
+482.			Text: no, i did it by mistake
+483.			Intent: [name: fillGenericField - confidence: 0.9201]
+484.			Entities: [entity: input_value, value: it by mistake]
+485.		Message_1
+486.			Text: insert the value of male
+487.			Intent: [name: modifyValueGenericField - confidence: 0.9099]
+488.			Entities: [entity: input_value, value: male]
+489.		Message_2
+490.			Text: is it possible to have some explanations about the form?
+491.			Intent: [name: repeatFormExplanation - confidence: 0.5453]
+492.			Entities: 
+493.		Message_3
+494.			Text: smart tv, smartphone
+495.			Intent: [name: fillGenericField - confidence: 0.9994]
+496.			Entities: [entity: input_value, value: smart], [entity: input_value, value: smartphone]
+497.		Message_4
+498.			Text: add the value for Ford
+499.			Intent: [name: fillGenericField - confidence: 1.0000]
+500.			Entities: [entity: input_field, value: Ford]
+501.		Message_5
+502.			Text: would it be possible to have the remaining fields list?
+503.			Intent: [name: giveAllRemainingFields - confidence: 0.4237]
+504.			Entities: 
+505.		Message_6
+506.			Text: i prefer to pass
+507.			Intent: [name: fillGenericField - confidence: 0.2599]
+508.			Entities: 
+509.		Message_7
+510.			Text: it would be kind of you if you provide me the madatory fields remaining for completing the form
+511.			Intent: [name: fillForm - confidence: 0.8211]
+512.			Entities: [entity: input_value, value: it would be kind of you if you provide]
+513.		Message_8
+514.			Text: continue filling
+515.			Intent: [name: fillForm - confidence: 0.9973]
+516.			Entities: 
+517.		Message_9
+518.			Text: Lexus for car
+519.			Intent: [name: fillGenericField - confidence: 0.9999]
+520.			Entities: [entity: input_value, value: Lexus], [entity: input_field, value: car]
+521.		Message_10
+522.			Text: yes, go ahead
+523.			Intent: [name: affirm - confidence: 0.9984]
+524.			Entities: 
+525.		Message_11
+526.			Text: i would like to insert the value easy come, easy go
+527.			Intent: [name: fillGenericField - confidence: 0.6430]
+528.			Entities: [entity: input_value, value: easy come, easy go]
+529.		Message_12
+530.			Text: reset everything
+531.			Intent: [name: resetAllFields - confidence: 1.0000]
+532.			Entities: 
+533.		Message_13
+534.			Text: i didn't get well the required fields
+535.			Intent: [name: repeatRequiredFields - confidence: 0.9582]
+536.			Entities: 
+537.		Message_14
+538.			Text: value of completed fields
+539.			Intent: [name: verifyValueFilledFields - confidence: 0.9998]
+540.			Entities: 
+541.		Message_15
+542.			Text: no, i do not
+543.			Intent: [name: deny - confidence: 1.0000]
+544.			Entities: 
+545.		Message_16
+546.			Text: yes, please
+547.			Intent: [name: affirm - confidence: 0.3281]
+548.			Entities: 
+549.		Message_17
+550.			Text: i prefer not
+551.			Intent: [name: deny - confidence: 0.5827]
+552.			Entities: 
+553.		Message_18
+554.			Text: is the field City also present?
+555.			Intent: [name: verifyPresenceOfField - confidence: 1.0000]
+556.			Entities: [entity: input_field, value: City]
+557.		Message_19
+558.			Text: i would like to complete my registration
+559.			Intent: [name: fillForm - confidence: 0.9990]
+560.			Entities: 
+561.		Message_20
+562.			Text: no, i did it by mistake
+563.			Intent: [name: fillGenericField - confidence: 0.9201]
+564.			Entities: [entity: input_value, value: it by mistake]
+565.		Message_21
+566.			Text: continue filling
+567.			Intent: [name: fillForm - confidence: 0.9973]
+568.			Entities: 
+569.		Message_22
+570.			Text: could you kindly provide me with the fields?
+571.			Intent: [name: modifyValueGenericField - confidence: 0.2536]
+572.			Entities: 
+573.		Message_23
+574.			Text: fill the form
+575.			Intent: [name: fillForm - confidence: 0.9940]
+576.			Entities: 
+577.		Message_24
+578.			Text: no, it was an error
+579.			Intent: [name: fillGenericField - confidence: 0.9029]
+580.			Entities: [entity: input_value, value: error]
+581.		Message_25
+582.			Text: filling process
+583.			Intent: [name: fillForm - confidence: 0.9961]
+584.			Entities: 
+585.		Message_26
+586.			Text: let's complete what remains
+587.			Intent: [name: fillForm - confidence: 0.9994]
+588.			Entities: 
+589.		Message_27
+590.			Text: may i submit now?
+591.			Intent: [name: fillGenericField - confidence: 0.8436]
+592.			Entities: 
+593.		Message_28
+594.			Text: fill the form
+595.			Intent: [name: fillForm - confidence: 0.9940]
+596.			Entities: 
+597.		Message_29
+598.			Text: may i have the list of optional fields once more
+599.			Intent: [name: repeatOptionalFields - confidence: 0.7426]
+600.			Entities: 
+601.		Message_30
+602.			Text: continue to submit the form
+603.			Intent: [name: fillForm - confidence: 0.9913]
+604.			Entities: 
+605.		Message_31
+606.			Text: yes, please
+607.			Intent: [name: affirm - confidence: 0.3281]
+608.			Entities: 
+
+609.	IV-Statistics
+610.		Convergence Rate:
+611.			total number of turns: t = 65
+612.			total number of fields: n = 4
+613.			total number of spelling fields: m = 0
+614.			total number of spelling turns: m_k factor = 0
+615.			convergence rate: c = 0.1385
+616.			adjustded convergence rate: c_adj = 0.1385
+617.		Normalized Convergence Rate:
+618.			total number of required fields: n_2 = 1
+619.			total number of spelling fields: m_2 = 0
+620.			total number of required spelling turns: m_k_2 factor = 0
+621.			normalized convergence rate: c_2 = 0.0462
+623.		Natural Language Flexibility Coefficient:
+624.			number of required turns: v = 5 turns
+625.			number of user's turns: w = 32 turns
+626.			natural language flexibility coefficient: f = 0.1562
+627.			adjusted flexibility coefficient: f_adj = 1.0000
+
+628.	--- DIALOGUE 4 ---
+
+629.	I- Form element
+
+630.		The window have been closed, so we cannot give you the form elements, sorry
+
+631.	II- Slots
+
+632.		[slot_name: first name - slot_value: Jie - required: False - spelling: True - description: your first name]
+633.		[slot_name: last name - slot_value: Amaia - required: False - spelling: True - description: your family name]
+634.		[slot_name: mark - slot_value: 27,2 - required: False - spelling: False - description: None]
+635.		[slot_name: password - slot_value: Mia25e - required: False - spelling: False - description: None]
+636.		[slot_name: email address - slot_value: richard@polimi.fr - required: True - spelling: True - description: the email we should use to contact you]
+637.		[slot_name: phone number - slot_value: 0035852858711 - required: False - spelling: False - description: None]
+638.		[slot_name: number of persons - slot_value: 0 - required: True - spelling: False - description: None]
+639.		[slot_name: passengers - slot_value: 0 - required: False - spelling: False - description: None]
+640.		[slot_name: birthday - slot_value: 10-05-1982 - required: False - spelling: False - description: None]
+641.		[slot_name: arrival time - slot_value: 05:10 - required: True - spelling: True - description: the time you exprct to arrive at the conference]
+642.		[slot_name: living address - slot_value: 50 avenue John M. Kosterlitz - required: True - spelling: False - description: None]
+643.		[slot_name: gender - slot_value: male - required: False - spelling: False - description: None - choice_list: ['male', 'female', 'other']]
+644.		[slot_name: electronic devices - slot_value: none - required: False - spelling: False - description: the electronic devices that you own - choice_list: ['none', 'computer', 'smartphone', 'tablet', 'smart watch', 'smart tv', 'blutooth earphones', 'camera', 'smart glasses']]
+645.		[slot_name: car - slot_value: hyundai - required: False - spelling: False - description: the car brand your prefer - choice_list: ['volvo', 'saab', 'fiat', 'audi', 'citroen', 'ford', 'bmw', 'chevrolet', 'honda', 'kia', 'toyota', 'lexus', 'hyundai']]
+646.		[slot_name: message - slot_value: never - required: False - spelling: False - description: None]
+647.		[Web Form info -- title: registration form sample - description: presents various fields types in order to test the different kind of input we can have and different actions]
+
+648.	III-Messages
+
+649.		Message_0
+650.			Text: P
+651.			Intent: [name: spelling - confidence: 0.9908]
+652.			Entities: [entity: spelling, value: P]
+653.		Message_1
+654.			Text: i prefer not
+655.			Intent: [name: deny - confidence: 0.5827]
+656.			Entities: 
+657.		Message_2
+658.			Text: no, i don't
+659.			Intent: [name: deny - confidence: 1.0000]
+660.			Entities: 
+661.		Message_3
+662.			Text: submit the form
+663.			Intent: [name: submitForm - confidence: 0.9998]
+664.			Entities: 
+665.		Message_4
+666.			Text: it would be kind of you if you provide me the fields remaining completing the form
+667.			Intent: [name: fillForm - confidence: 0.9541]
+668.			Entities: [entity: input_value, value: it would be kind of you if you provide]
+669.		Message_5
+670.			Text: no, it was an error
+671.			Intent: [name: fillGenericField - confidence: 0.9029]
+672.			Entities: [entity: input_value, value: error]
+673.		Message_6
+674.			Text: are there many fields to complete?
+675.			Intent: [name: verifyPresenceOfField - confidence: 0.3336]
+676.			Entities: 
+677.		Message_7
+678.			Text: i want to continue
+679.			Intent: [name: fillForm - confidence: 0.9892]
+680.			Entities: 
+681.		Message_8
+682.			Text: i want to submit
+683.			Intent: [name: submitForm - confidence: 0.9997]
+684.			Entities: 
+685.		Message_9
+686.			Text: could you please give me the list of fields for the ones mandatrory for the completion of the procedure?
+687.			Intent: [name: repeatRequiredFields - confidence: 0.8486]
+688.			Entities: [entity: input_value, value: mandatrory]
+689.		Message_10
+690.			Text: remaining fields, but only the optional ones
+691.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9992]
+692.			Entities: [entity: input_value, value: but only], [entity: input_value, value: ones]
+693.		Message_11
+694.			Text: give me the next field
+695.			Intent: [name: repeatValueField - confidence: 0.5277]
+696.			Entities: 
+697.		Message_12
+698.			Text: F
+699.			Intent: [name: spelling - confidence: 0.9907]
+700.			Entities: [entity: spelling, value: F]
+701.		Message_13
+702.			Text: no
+703.			Intent: [name: deny - confidence: 0.9971]
+704.			Entities: 
+705.		Message_14
+706.			Text: no, i did it by mistake
+707.			Intent: [name: fillGenericField - confidence: 0.9201]
+708.			Entities: [entity: input_value, value: it by mistake]
+709.		Message_15
+710.			Text: i would like to submit the form
+711.			Intent: [name: submitForm - confidence: 0.9999]
+712.			Entities: 
+713.		Message_16
+714.			Text: could you give me an explanation about the field first name?
+715.			Intent: [name: explainField - confidence: 0.9991]
+716.			Entities: [entity: input_field, value: first name]
+717.		Message_17
+718.			Text: may i submit now?
+719.			Intent: [name: fillGenericField - confidence: 0.8436]
+720.			Entities: 
+721.		Message_18
+722.			Text: yes, i do
+723.			Intent: [name: affirm - confidence: 0.9573]
+724.			Entities: 
+725.		Message_19
+726.			Text: sure
+727.			Intent: [name: spelling - confidence: 0.9668]
+728.			Entities: [entity: input_value, value: sure]
+729.		Message_20
+730.			Text: is it possible to reset and restart?
+731.			Intent: [name: resetAllFields - confidence: 1.0000]
+732.			Entities: 
+733.		Message_21
+734.			Text: i would like to know what i have to complete in term of obligatory or required field
+735.			Intent: [name: giveRemainingRequiredFields - confidence: 0.7067]
+736.			Entities: 
+737.		Message_22
+738.			Text: please can i submit the form?
+739.			Intent: [name: submitForm - confidence: 0.5977]
+740.			Entities: 
+741.		Message_23
+742.			Text: what is the value of the field last name, also the value of living address?
+743.			Intent: [name: repeatValueField - confidence: 1.0000]
+744.			Entities: [entity: input_field, value: last name], [entity: input_field, value: living address]
+745.		Message_24
+746.			Text: I think i listened the field Title, is it right?
+747.			Intent: [name: fillGenericField - confidence: 0.8390]
+748.			Entities: [entity: input_field, value: Title], [entity: input_value, value: right]
+749.		Message_25
+750.			Text: filling process
+751.			Intent: [name: fillForm - confidence: 0.9961]
+752.			Entities: 
+753.		Message_26
+754.			Text: is it possible to have some explanations about the form?
+755.			Intent: [name: repeatFormExplanation - confidence: 0.5453]
+756.			Entities: 
+757.		Message_27
+758.			Text: no
+759.			Intent: [name: deny - confidence: 0.9971]
+760.			Entities: 
+761.		Message_28
+762.			Text: give me a recap of what i did up to now
+763.			Intent: [name: repeatValueField - confidence: 0.8966]
+764.			Entities: 
+765.		Message_29
+766.			Text: is it possible to change a value?
+767.			Intent: [name: modifyValueGenericField - confidence: 0.9998]
+768.			Entities: 
+769.		Message_30
+770.			Text: yes, thanks
+771.			Intent: [name: affirm - confidence: 0.9102]
+772.			Entities: 
+773.		Message_31
+774.			Text: let's go on
+775.			Intent: [name: fillForm - confidence: 0.9874]
+776.			Entities: 
+777.		Message_32
+778.			Text: J
+779.			Intent: [name: spelling - confidence: 0.9965]
+780.			Entities: [entity: spelling, value: J]
+781.		Message_33
+782.			Text: i
+783.			Intent: [name: spelling - confidence: 0.9769]
+784.			Entities: [entity: spelling, value: i]
+785.		Message_34
+786.			Text: e
+787.			Intent: [name: spelling - confidence: 0.9927]
+788.			Entities: [entity: spelling, value: e]
+789.		Message_35
+790.			Text: halt
+791.			Intent: [name: spelling - confidence: 0.9972]
+792.			Entities: [entity: spelling, value: halt]
+793.		Message_36
+794.			Text: A
+795.			Intent: [name: spelling - confidence: 0.9931]
+796.			Entities: [entity: spelling, value: A]
+797.		Message_37
+798.			Text: m
+799.			Intent: [name: spelling - confidence: 0.9919]
+800.			Entities: [entity: spelling, value: m]
+801.		Message_38
+802.			Text: a
+803.			Intent: [name: spelling - confidence: 0.9931]
+804.			Entities: [entity: spelling, value: a]
+805.		Message_39
+806.			Text: i
+807.			Intent: [name: spelling - confidence: 0.9769]
+808.			Entities: [entity: spelling, value: i]
+809.		Message_40
+810.			Text: a
+811.			Intent: [name: spelling - confidence: 0.9931]
+812.			Entities: [entity: spelling, value: a]
+813.		Message_41
+814.			Text: finished
+815.			Intent: [name: spelling - confidence: 0.9903]
+816.			Entities: [entity: spelling, value: finished]
+817.		Message_42
+818.			Text: mark 27,2
+819.			Intent: [name: fillGenericField - confidence: 0.9892]
+820.			Entities: [entity: input_field, value: mark], [entity: input_value, value: 27,2]
+821.		Message_43
+822.			Text: here is the value for the field: Mia25e
+823.			Intent: [name: fillGenericField - confidence: 1.0000]
+824.			Entities: [entity: input_value, value: Mia25e]
+825.		Message_44
+826.			Text: r
+827.			Intent: [name: spelling - confidence: 0.9963]
+828.			Entities: [entity: spelling, value: r]
+829.		Message_45
+830.			Text: i
+831.			Intent: [name: spelling - confidence: 0.9769]
+832.			Entities: [entity: spelling, value: i]
+833.		Message_46
+834.			Text: c
+835.			Intent: [name: spelling - confidence: 0.9979]
+836.			Entities: [entity: spelling, value: c]
+837.		Message_47
+838.			Text: h
+839.			Intent: [name: spelling - confidence: 0.9966]
+840.			Entities: [entity: spelling, value: h]
+841.		Message_48
+842.			Text: a
+843.			Intent: [name: spelling - confidence: 0.9931]
+844.			Entities: [entity: spelling, value: a]
+845.		Message_49
+846.			Text: r
+847.			Intent: [name: spelling - confidence: 0.9963]
+848.			Entities: [entity: spelling, value: r]
+849.		Message_50
+850.			Text: d
+851.			Intent: [name: spelling - confidence: 0.9950]
+852.			Entities: [entity: input_value, value: d]
+853.		Message_51
+854.			Text: at
+855.			Intent: [name: spelling - confidence: 0.9925]
+856.			Entities: [entity: spelling, value: at]
+857.		Message_52
+858.			Text: p
+859.			Intent: [name: spelling - confidence: 0.9908]
+860.			Entities: [entity: spelling, value: p]
+861.		Message_53
+862.			Text: o
+863.			Intent: [name: spelling - confidence: 0.9238]
+864.			Entities: [entity: input_value, value: o]
+865.		Message_54
+866.			Text: l
+867.			Intent: [name: spelling - confidence: 0.9985]
+868.			Entities: [entity: spelling, value: l]
+869.		Message_55
+870.			Text: i
+871.			Intent: [name: spelling - confidence: 0.9769]
+872.			Entities: [entity: spelling, value: i]
+873.		Message_56
+874.			Text: m
+875.			Intent: [name: spelling - confidence: 0.9919]
+876.			Entities: [entity: spelling, value: m]
+877.		Message_57
+878.			Text: i
+879.			Intent: [name: spelling - confidence: 0.9769]
+880.			Entities: [entity: spelling, value: i]
+881.		Message_58
+882.			Text: dot
+883.			Intent: [name: spelling - confidence: 0.9868]
+884.			Entities: [entity: spelling, value: dot]
+885.		Message_59
+886.			Text: f
+887.			Intent: [name: spelling - confidence: 0.9907]
+888.			Entities: [entity: spelling, value: f]
+889.		Message_60
+890.			Text: r
+891.			Intent: [name: spelling - confidence: 0.9963]
+892.			Entities: [entity: spelling, value: r]
+893.		Message_61
+894.			Text: finished
+895.			Intent: [name: spelling - confidence: 0.9903]
+896.			Entities: [entity: spelling, value: finished]
+897.		Message_62
+898.			Text: 0035852858711 is the value for the field phone number
+899.			Intent: [name: fillGenericField - confidence: 1.0000]
+900.			Entities: [entity: input_value, value: 0035852858711], [entity: input_field, value: phone number]
+901.		Message_63
+902.			Text: 0 should be inserted for the field number of persons
+903.			Intent: [name: fillGenericField - confidence: 0.9999]
+904.			Entities: [entity: input_value, value: 0], [entity: input_field, value: number of persons]
+905.		Message_64
+906.			Text: here it is 0
+907.			Intent: [name: fillGenericField - confidence: 0.6673]
+908.			Entities: [entity: input_value, value: 0]
+909.		Message_65
+910.			Text: 08171992 is the birthday
+911.			Intent: [name: fillGenericField - confidence: 0.9995]
+912.			Entities: [entity: input_value, value: 08171992], [entity: input_field, value: birthday]
+913.		Message_66
+914.			Text: 11161983 is the birthday
+915.			Intent: [name: fillGenericField - confidence: 0.9995]
+916.			Entities: [entity: input_value, value: 11161983], [entity: input_field, value: birthday]
+917.		Message_67
+918.			Text: for the field birthday the value i want to insert is 10 May 1982
+919.			Intent: [name: fillGenericField - confidence: 1.0000]
+920.			Entities: [entity: input_field, value: birthday], [entity: input_value, value: 10 May 1982]
+921.		Message_68
+922.			Text: 0
+923.			Intent: [name: spelling - confidence: 0.9997]
+924.			Entities: [entity: input_value, value: 0]
+925.		Message_69
+926.			Text: 5
+927.			Intent: [name: spelling - confidence: 0.9997]
+928.			Entities: [entity: input_value, value: 5]
+929.		Message_70
+930.			Text: colon
+931.			Intent: [name: spelling - confidence: 0.9993]
+932.			Entities: [entity: spelling, value: colon]
+933.		Message_71
+934.			Text: 1
+935.			Intent: [name: spelling - confidence: 0.9997]
+936.			Entities: [entity: input_value, value: 1]
+937.		Message_72
+938.			Text: 0
+939.			Intent: [name: spelling - confidence: 0.9997]
+940.			Entities: [entity: input_value, value: 0]
+941.		Message_73
+942.			Text: terminate
+943.			Intent: [name: spelling - confidence: 0.9975]
+944.			Entities: [entity: spelling, value: terminate]
+945.		Message_74
+946.			Text: 50 avenue John M. Kosterlitz
+947.			Intent: [name: fillGenericField - confidence: 0.9972]
+948.			Entities: [entity: input_value, value: 50 avenue John M. Kosterlitz]
+949.		Message_75
+950.			Text: gender: male
+951.			Intent: [name: fillGenericField - confidence: 0.9952]
+952.			Entities: [entity: input_field, value: gender], [entity: input_value, value: male]
+953.		Message_76
+954.			Text: the field electronic devices has value none
+955.			Intent: [name: fillGenericField - confidence: 0.9970]
+956.			Entities: [entity: input_field, value: electronic devices], [entity: input_value, value: none]
+957.		Message_77
+958.			Text: is it possible to add the Hyundai?
+959.			Intent: [name: fillGenericField - confidence: 0.9928]
+960.			Entities: [entity: input_value, value: Hyundai]
+961.		Message_78
+962.			Text: this is the value never put off until tomorrow what you can do today
+963.			Intent: [name: fillGenericField - confidence: 0.4164]
+964.			Entities: [entity: input_value, value: never], [entity: input_value, value: today]
+965.		Message_79
+966.			Text: yes, please
+967.			Intent: [name: affirm - confidence: 0.3281]
+968.			Entities: 
+
+969.	IV-Statistics
+970.		Convergence Rate:
+971.			total number of turns: t = 161
+972.			total number of fields: n = 15
+973.			total number of spelling fields: m = 4
+974.			total number of spelling turns: m_k factor = 36
+975.			convergence rate: c = 0.5901
+976.			adjustded convergence rate: c_adj = 0.3714
+977.		Normalized Convergence Rate:
+978.			total number of required fields: n_2 = 4
+979.			total number of spelling fields: m_2 = 2
+980.			total number of required spelling turns: m_k_2 factor = 24
+981.			normalized convergence rate: c_2 = 0.3292
+983.		Natural Language Flexibility Coefficient:
+984.			number of required turns: v = 45 turns
+985.			number of user's turns: w = 80 turns
+986.			natural language flexibility coefficient: f = 0.5625
+987.			adjusted flexibility coefficient: f_adj = 0.9375
+
+988.	--- DIALOGUE 5 ---
+
+989.	I- Form element
+
+990.		The window have been closed, so we cannot give you the form elements, sorry
+
+991.	II- Slots
+
+992.		[slot_name: first name - slot_value: ViMikaere - required: True - spelling: True - description: your first name]
+993.		[slot_name: password - slot_value: Heikapu&m - required: True - spelling: False - description: None]
+994.		[slot_name: email address - slot_value: xnoahgv@gmail.uk - required: False - spelling: False - description: the email we should use to contact you]
+995.		[slot_name: birthday - slot_value: 10-01-1990 - required: False - spelling: False - description: None]
+996.		[slot_name: arrival time - slot_value: 21:19 - required: False - spelling: False - description: the time you expect to arrive at the conference]
+997.		[Web Form info -- title: registration form sample - description: presents various fields types in order to test the different kinds of input we can have and different actions]
+
+998.	III-Messages
+
+999.		Message_0
+1000.			Text: i lost myself, did you cite the field Arrival Date in the list
+1001.			Intent: [name: repeatValueField - confidence: 0.7385]
+1002.			Entities: [entity: input_value, value: i lost myself, did you cite], [entity: input_field, value: Arrival Date]
+1003.		Message_1
+1004.			Text: i want to reset everything and restart
+1005.			Intent: [name: resetAllFields - confidence: 1.0000]
+1006.			Entities: 
+1007.		Message_2
+1008.			Text: which are the fields necessary to allow me to complete the process and submit?
+1009.			Intent: [name: fillForm - confidence: 0.4166]
+1010.			Entities: 
+1011.		Message_3
+1012.			Text: pass
+1013.			Intent: [name: skipField - confidence: 0.9842]
+1014.			Entities: 
+1015.		Message_4
+1016.			Text: sure, go ahead
+1017.			Intent: [name: affirm - confidence: 0.5556]
+1018.			Entities: 
+1019.		Message_5
+1020.			Text: i would like to know what i still have to complete in tem of optional or not required field
+1021.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9995]
+1022.			Entities: 
+1023.		Message_6
+1024.			Text: go on with the filling
+1025.			Intent: [name: fillForm - confidence: 0.9960]
+1026.			Entities: 
+1027.		Message_7
+1028.			Text: Heikapu&m
+1029.			Intent: [name: fillGenericField - confidence: 0.9280]
+1030.			Entities: [entity: input_value, value: Heikapu&m]
+1031.		Message_8
+1032.			Text: would it be possible to have the remaining fields list?
+1033.			Intent: [name: giveAllRemainingFields - confidence: 0.4237]
+1034.			Entities: 
+1035.		Message_9
+1036.			Text: email address is xnoahgv@gmail.uk
+1037.			Intent: [name: fillGenericField - confidence: 0.9997]
+1038.			Entities: [entity: input_field, value: email address], [entity: input_value, value: xnoahgv@gmail.uk]
+1039.		Message_10
+1040.			Text: i want to insert the value 10-01-1990 for the field birthday
+1041.			Intent: [name: fillGenericField - confidence: 1.0000]
+1042.			Entities: [entity: input_value, value: 10-01-1990], [entity: input_field, value: birthday]
+1043.		Message_11
+1044.			Text: 09.19 pm should be inserted for the field arrival time
+1045.			Intent: [name: fillGenericField - confidence: 1.0000]
+1046.			Entities: [entity: input_value, value: 09.19 pm], [entity: input_field, value: arrival time]
+1047.		Message_12
+1048.			Text: is it possible to have the fields list again?
+1049.			Intent: [name: repeatAllFields - confidence: 0.4459]
+1050.			Entities: 
+1051.		Message_13
+1052.			Text: V
+1053.			Intent: [name: spelling - confidence: 0.9978]
+1054.			Entities: [entity: spelling, value: V]
+1055.		Message_14
+1056.			Text: i
+1057.			Intent: [name: spelling - confidence: 0.9769]
+1058.			Entities: [entity: spelling, value: i]
+1059.		Message_15
+1060.			Text: yes, thanks
+1061.			Intent: [name: affirm - confidence: 0.9102]
+1062.			Entities: 
+1063.		Message_16
+1064.			Text: which value did i insert for first name?
+1065.			Intent: [name: repeatValueField - confidence: 0.9946]
+1066.			Entities: [entity: input_field, value: first name]
+1067.		Message_17
+1068.			Text: no, i did it by mistake
+1069.			Intent: [name: fillGenericField - confidence: 0.9201]
+1070.			Entities: [entity: input_value, value: it by mistake]
+1071.		Message_18
+1072.			Text: yes, i do
+1073.			Intent: [name: affirm - confidence: 0.9573]
+1074.			Entities: 
+1075.		Message_19
+1076.			Text: a description about this form please
+1077.			Intent: [name: fillGenericField - confidence: 0.6871]
+1078.			Entities: 
+1079.		Message_20
+1080.			Text: Oscar
+1081.			Intent: [name: fillGenericField - confidence: 0.9721]
+1082.			Entities: [entity: input_value, value: Oscar]
+1083.		Message_21
+1084.			Text: i would like to know what i have to complete in term of not obligatory or optional field
+1085.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9669]
+1086.			Entities: 
+1087.		Message_22
+1088.			Text: M
+1089.			Intent: [name: spelling - confidence: 0.9919]
+1090.			Entities: [entity: spelling, value: M]
+1091.		Message_23
+1092.			Text: i
+1093.			Intent: [name: spelling - confidence: 0.9769]
+1094.			Entities: [entity: spelling, value: i]
+1095.		Message_24
+1096.			Text: k
+1097.			Intent: [name: spelling - confidence: 0.9928]
+1098.			Entities: [entity: spelling, value: k]
+1099.		Message_25
+1100.			Text: a
+1101.			Intent: [name: spelling - confidence: 0.9931]
+1102.			Entities: [entity: spelling, value: a]
+1103.		Message_26
+1104.			Text: e
+1105.			Intent: [name: spelling - confidence: 0.9927]
+1106.			Entities: [entity: spelling, value: e]
+1107.		Message_27
+1108.			Text: r
+1109.			Intent: [name: spelling - confidence: 0.9963]
+1110.			Entities: [entity: spelling, value: r]
+1111.		Message_28
+1112.			Text: e
+1113.			Intent: [name: spelling - confidence: 0.9927]
+1114.			Entities: [entity: spelling, value: e]
+1115.		Message_29
+1116.			Text: close
+1117.			Intent: [name: spelling - confidence: 0.9611]
+1118.			Entities: [entity: spelling, value: close]
+1119.		Message_30
+1120.			Text: submit the form
+1121.			Intent: [name: submitForm - confidence: 0.9998]
+1122.			Entities: 
+
+1123.	IV-Statistics
+1124.		Convergence Rate:
+1125.			total number of turns: t = 63
+1126.			total number of fields: n = 5
+1127.			total number of spelling fields: m = 1
+1128.			total number of spelling turns: m_k factor = 10
+1129.			convergence rate: c = 0.4603
+1130.			adjustded convergence rate: c_adj = 0.2766
+1131.		Normalized Convergence Rate:
+1132.			total number of required fields: n_2 = 2
+1133.			total number of spelling fields: m_2 = 1
+1134.			total number of required spelling turns: m_k_2 factor = 10
+1135.			normalized convergence rate: c_2 = 0.3651
+1137.		Natural Language Flexibility Coefficient:
+1138.			number of required turns: v = 14 turns
+1139.			number of user's turns: w = 31 turns
+1140.			natural language flexibility coefficient: f = 0.4516
+1141.			adjusted flexibility coefficient: f_adj = 0.9545
+
+1142.	--- DIALOGUE 6 ---
+
+1143.	I- Form element
+
+1144.		The window have been closed, so we cannot give you the form elements, sorry
+
+1145.	II- Slots
+
+1146.		[slot_name: first name - slot_value: Nina - required: True - spelling: True - description: your first name]
+1147.		[slot_name: last name - slot_value: Siyabonga - required: False - spelling: True - description: your family name]
+1148.		[slot_name: mark - slot_value: 18,52 - required: False - spelling: False - description: None]
+1149.		[slot_name: password - slot_value: dnMattia& - required: False - spelling: False - description: None]
+1150.		[slot_name: email address - slot_value: y91oliver@yahoo.com - required: True - spelling: False - description: the email we should use to contact you]
+1151.		[Web Form info -- title: None - description: None]
+
+1152.	III-Messages
+
+1153.		Message_0
+1154.			Text: what are the remaining fields?
+1155.			Intent: [name: giveAllRemainingFields - confidence: 0.9995]
+1156.			Entities: 
+1157.		Message_1
+1158.			Text: got to the next field
+1159.			Intent: [name: fillGenericField - confidence: 0.2745]
+1160.			Entities: 
+1161.		Message_2
+1162.			Text: modify the field first name inserting Departure City
+1163.			Intent: [name: modifyValueGenericField - confidence: 1.0000]
+1164.			Entities: [entity: input_field, value: first name], [entity: input_field, value: Departure City]
+1165.		Message_3
+1166.			Text: give me the optional fields remaining
+1167.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9991]
+1168.			Entities: 
+1169.		Message_4
+1170.			Text: yes, go on
+1171.			Intent: [name: affirm - confidence: 0.9994]
+1172.			Entities: 
+1173.		Message_5
+1174.			Text: i want a recap
+1175.			Intent: [name: submitForm - confidence: 0.4192]
+1176.			Entities: 
+1177.		Message_6
+1178.			Text: yes, go on
+1179.			Intent: [name: affirm - confidence: 0.9994]
+1180.			Entities: 
+1181.		Message_7
+1182.			Text: what are the fields in this form
+1183.			Intent: [name: repeatAllFields - confidence: 0.9950]
+1184.			Entities: 
+1185.		Message_8
+1186.			Text: sure
+1187.			Intent: [name: spelling - confidence: 0.9668]
+1188.			Entities: [entity: input_value, value: sure]
+1189.		Message_9
+1190.			Text: N
+1191.			Intent: [name: spelling - confidence: 0.9576]
+1192.			Entities: [entity: spelling, value: N]
+1193.		Message_10
+1194.			Text: yes, continue
+1195.			Intent: [name: affirm - confidence: 0.9970]
+1196.			Entities: 
+1197.		Message_11
+1198.			Text: reset
+1199.			Intent: [name: resetAllFields - confidence: 1.0000]
+1200.			Entities: 
+1201.		Message_12
+1202.			Text: please give me the required fields to be completed
+1203.			Intent: [name: repeatRequiredFields - confidence: 0.9214]
+1204.			Entities: [entity: input_value, value: to be completed]
+1205.		Message_13
+1206.			Text: yes, thanks
+1207.			Intent: [name: affirm - confidence: 0.9102]
+1208.			Entities: 
+1209.		Message_14
+1210.			Text: i did not get well all, is there Cell Phone?
+1211.			Intent: [name: repeatValueField - confidence: 0.5153]
+1212.			Entities: [entity: input_value, value: Phone]
+1213.		Message_15
+1214.			Text: i
+1215.			Intent: [name: spelling - confidence: 0.9769]
+1216.			Entities: [entity: spelling, value: i]
+1217.		Message_16
+1218.			Text: n
+1219.			Intent: [name: spelling - confidence: 0.9576]
+1220.			Entities: [entity: spelling, value: n]
+1221.		Message_17
+1222.			Text: a
+1223.			Intent: [name: spelling - confidence: 0.9931]
+1224.			Entities: [entity: spelling, value: a]
+1225.		Message_18
+1226.			Text: halt
+1227.			Intent: [name: spelling - confidence: 0.9972]
+1228.			Entities: [entity: spelling, value: halt]
+1229.		Message_19
+1230.			Text: yes
+1231.			Intent: [name: affirm - confidence: 0.9761]
+1232.			Entities: 
+1233.		Message_20
+1234.			Text: i want to do what is necessary to complete the procedure
+1235.			Intent: [name: fillForm - confidence: 0.9973]
+1236.			Entities: 
+1237.		Message_21
+1238.			Text: please tell the value of last name again
+1239.			Intent: [name: repeatValueField - confidence: 0.9989]
+1240.			Entities: [entity: input_field, value: last name]
+1241.		Message_22
+1242.			Text: it would be kind of you if you provide me the madatory fields for completing the form
+1243.			Intent: [name: fillForm - confidence: 0.7733]
+1244.			Entities: [entity: input_value, value: it would be kind of you if you provide]
+1245.		Message_23
+1246.			Text: i would like to submit the form
+1247.			Intent: [name: submitForm - confidence: 0.9999]
+1248.			Entities: 
+1249.		Message_24
+1250.			Text: no, it was an error
+1251.			Intent: [name: fillGenericField - confidence: 0.9029]
+1252.			Entities: [entity: input_value, value: error]
+1253.		Message_25
+1254.			Text: about this form, please some explanations
+1255.			Intent: [name: repeatFormExplanation - confidence: 0.9774]
+1256.			Entities: [entity: input_value, value: some explanations]
+1257.		Message_26
+1258.			Text: i would like to complete my registration
+1259.			Intent: [name: fillForm - confidence: 0.9990]
+1260.			Entities: 
+1261.		Message_27
+1262.			Text: S
+1263.			Intent: [name: spelling - confidence: 0.9544]
+1264.			Entities: [entity: spelling, value: S]
+1265.		Message_28
+1266.			Text: i
+1267.			Intent: [name: spelling - confidence: 0.9769]
+1268.			Entities: [entity: spelling, value: i]
+1269.		Message_29
+1270.			Text: y
+1271.			Intent: [name: spelling - confidence: 0.9893]
+1272.			Entities: [entity: spelling, value: y]
+1273.		Message_30
+1274.			Text: a
+1275.			Intent: [name: spelling - confidence: 0.9931]
+1276.			Entities: [entity: spelling, value: a]
+1277.		Message_31
+1278.			Text: b
+1279.			Intent: [name: spelling - confidence: 0.9965]
+1280.			Entities: [entity: spelling, value: b]
+1281.		Message_32
+1282.			Text: o
+1283.			Intent: [name: spelling - confidence: 0.9238]
+1284.			Entities: [entity: input_value, value: o]
+1285.		Message_33
+1286.			Text: n
+1287.			Intent: [name: spelling - confidence: 0.9576]
+1288.			Entities: [entity: spelling, value: n]
+1289.		Message_34
+1290.			Text: g
+1291.			Intent: [name: spelling - confidence: 0.9860]
+1292.			Entities: [entity: spelling, value: g]
+1293.		Message_35
+1294.			Text: a
+1295.			Intent: [name: spelling - confidence: 0.9931]
+1296.			Entities: [entity: spelling, value: a]
+1297.		Message_36
+1298.			Text: finished
+1299.			Intent: [name: spelling - confidence: 0.9903]
+1300.			Entities: [entity: spelling, value: finished]
+1301.		Message_37
+1302.			Text: value 18,52 for mark
+1303.			Intent: [name: fillGenericField - confidence: 1.0000]
+1304.			Entities: [entity: input_value, value: 18,52], [entity: input_field, value: mark]
+1305.		Message_38
+1306.			Text: the value, here it is dnMattia&
+1307.			Intent: [name: fillGenericField - confidence: 0.9980]
+1308.			Entities: [entity: input_value, value: dnMattia&]
+1309.		Message_39
+1310.			Text: filling process
+1311.			Intent: [name: fillForm - confidence: 0.9961]
+1312.			Entities: 
+1313.		Message_40
+1314.			Text: no
+1315.			Intent: [name: deny - confidence: 0.9971]
+1316.			Entities: 
+1317.		Message_41
+1318.			Text: complete email address with the value y91oliver@yahoo.com
+1319.			Intent: [name: fillGenericField - confidence: 0.9999]
+1320.			Entities: [entity: input_field, value: email address], [entity: input_value, value: y91oliver@yahoo.com]
+1321.		Message_42
+1322.			Text: can you explain what is first name?
+1323.			Intent: [name: explainField - confidence: 1.0000]
+1324.			Entities: [entity: input_field, value: first name]
+1325.		Message_43
+1326.			Text: yes, go on
+1327.			Intent: [name: affirm - confidence: 0.9994]
+1328.			Entities: 
+
+1329.	IV-Statistics
+1330.		Convergence Rate:
+1331.			total number of turns: t = 89
+1332.			total number of fields: n = 5
+1333.			total number of spelling fields: m = 2
+1334.			total number of spelling turns: m_k factor = 15
+1335.			convergence rate: c = 0.4157
+1336.			adjustded convergence rate: c_adj = 0.2239
+1337.		Normalized Convergence Rate:
+1338.			total number of required fields: n_2 = 2
+1339.			total number of spelling fields: m_2 = 1
+1340.			total number of required spelling turns: m_k_2 factor = 5
+1341.			normalized convergence rate: c_2 = 0.1461
+1343.		Natural Language Flexibility Coefficient:
+1344.			number of required turns: v = 18 turns
+1345.			number of user's turns: w = 44 turns
+1346.			natural language flexibility coefficient: f = 0.4091
+1347.			adjusted flexibility coefficient: f_adj = 0.9677
+
+1348.	--- DIALOGUE 7 ---
+
+1349.	I- Form element
+
+1350.		The window have been closed, so we cannot give you the form elements, sorry
+
+1351.	II- Slots
+
+1352.		[slot_name: number of persons - slot_value: 0 - required: False - spelling: False - description: the number of persons coming with you]
+1353.		[slot_name: phone number - slot_value: +199363500 - required: False - spelling: True - description: None]
+1354.		[slot_name: birthday - slot_value: 12-11-1998 - required: False - spelling: False - description: None]
+1355.		[slot_name: arrival time - slot_value: 14:28 - required: False - spelling: False - description: the time you exprct to arrive at the conference]
+1356.		[Web Form info -- title: test form sample number 2 - description: presents various fields types in order to test the different kind of input we can have and different actions]
+
+1357.	III-Messages
+
+1358.		Message_0
+1359.			Text: no
+1360.			Intent: [name: deny - confidence: 0.9971]
+1361.			Entities: 
+1362.		Message_1
+1363.			Text: i want to submit
+1364.			Intent: [name: submitForm - confidence: 0.9997]
+1365.			Entities: 
+1366.		Message_2
+1367.			Text: give me the remaining fields
+1368.			Intent: [name: giveAllRemainingFields - confidence: 0.9996]
+1369.			Entities: 
+1370.		Message_3
+1371.			Text: point of the situation
+1372.			Intent: [name: fillGenericField - confidence: 0.3864]
+1373.			Entities: 
+1374.		Message_4
+1375.			Text: for the field number of persons the value i want to insert is 0
+1376.			Intent: [name: fillGenericField - confidence: 1.0000]
+1377.			Entities: [entity: input_field, value: number of persons], [entity: input_value, value: 0]
+1378.		Message_5
+1379.			Text: sure, go ahead
+1380.			Intent: [name: affirm - confidence: 0.5556]
+1381.			Entities: 
+1382.		Message_6
+1383.			Text: yes, go on
+1384.			Intent: [name: affirm - confidence: 0.9994]
+1385.			Entities: 
+1386.		Message_7
+1387.			Text: fill later
+1388.			Intent: [name: modifyValueGenericField - confidence: 0.6332]
+1389.			Entities: [entity: input_value, value: later]
+1390.		Message_8
+1391.			Text: may i repeat the process, i would like to change all the values?
+1392.			Intent: [name: modifyValueGenericField - confidence: 0.9932]
+1393.			Entities: 
+1394.		Message_9
+1395.			Text: the value, here it is +2060727590
+1396.			Intent: [name: fillGenericField - confidence: 0.9995]
+1397.			Entities: [entity: input_value, value: +2060727590]
+1398.		Message_10
+1399.			Text: the value for the field is +26777617909
+1400.			Intent: [name: fillGenericField - confidence: 1.0000]
+1401.			Entities: [entity: input_value, value: +26777617909]
+1402.		Message_11
+1403.			Text: what are optional the fields that i didn't complete yet?
+1404.			Intent: [name: giveRemainingOptionalFields - confidence: 0.8360]
+1405.			Entities: 
+1406.		Message_12
+1407.			Text: can i have the list of the fields?
+1408.			Intent: [name: repeatAllFields - confidence: 0.9743]
+1409.			Entities: 
+1410.		Message_13
+1411.			Text: go on with the filling
+1412.			Intent: [name: fillForm - confidence: 0.9960]
+1413.			Entities: 
+1414.		Message_14
+1415.			Text: may i submit now?
+1416.			Intent: [name: fillGenericField - confidence: 0.8436]
+1417.			Entities: 
+1418.		Message_15
+1419.			Text: i want to do what is necessary to complete the procedure
+1420.			Intent: [name: fillForm - confidence: 0.9973]
+1421.			Entities: 
+1422.		Message_16
+1423.			Text: please the not obligatory fields
+1424.			Intent: [name: repeatOptionalFields - confidence: 0.9231]
+1425.			Entities: 
+1426.		Message_17
+1427.			Text: plus
+1428.			Intent: [name: spelling - confidence: 0.9879]
+1429.			Entities: [entity: spelling, value: plus]
+1430.		Message_18
+1431.			Text: yes, i do
+1432.			Intent: [name: affirm - confidence: 0.9573]
+1433.			Entities: 
+1434.		Message_19
+1435.			Text: give me the required fields
+1436.			Intent: [name: repeatRequiredFields - confidence: 1.0000]
+1437.			Entities: 
+1438.		Message_20
+1439.			Text: yes, go on
+1440.			Intent: [name: affirm - confidence: 0.9994]
+1441.			Entities: 
+1442.		Message_21
+1443.			Text: can you give me some explanation about the form?
+1444.			Intent: [name: explainField - confidence: 0.8061]
+1445.			Entities: 
+1446.		Message_22
+1447.			Text: 1
+1448.			Intent: [name: spelling - confidence: 0.9997]
+1449.			Entities: [entity: input_value, value: 1]
+1450.		Message_23
+1451.			Text: 9
+1452.			Intent: [name: spelling - confidence: 0.9997]
+1453.			Entities: [entity: input_value, value: 9]
+1454.		Message_24
+1455.			Text: 9
+1456.			Intent: [name: spelling - confidence: 0.9997]
+1457.			Entities: [entity: input_value, value: 9]
+1458.		Message_25
+1459.			Text: 3
+1460.			Intent: [name: spelling - confidence: 0.9997]
+1461.			Entities: [entity: input_value, value: 3]
+1462.		Message_26
+1463.			Text: 6
+1464.			Intent: [name: spelling - confidence: 0.9997]
+1465.			Entities: [entity: input_value, value: 6]
+1466.		Message_27
+1467.			Text: 3
+1468.			Intent: [name: spelling - confidence: 0.9997]
+1469.			Entities: [entity: input_value, value: 3]
+1470.		Message_28
+1471.			Text: 5
+1472.			Intent: [name: spelling - confidence: 0.9997]
+1473.			Entities: [entity: input_value, value: 5]
+1474.		Message_29
+1475.			Text: 0
+1476.			Intent: [name: spelling - confidence: 0.9997]
+1477.			Entities: [entity: input_value, value: 0]
+1478.		Message_30
+1479.			Text: 0
+1480.			Intent: [name: spelling - confidence: 0.9997]
+1481.			Entities: [entity: input_value, value: 0]
+1482.		Message_31
+1483.			Text: terminator
+1484.			Intent: [name: spelling - confidence: 0.9946]
+1485.			Entities: [entity: spelling, value: terminator]
+1486.		Message_32
+1487.			Text: 12/11/1998
+1488.			Intent: [name: fillGenericField - confidence: 0.9949]
+1489.			Entities: [entity: input_value, value: 12/11/1998]
+1490.		Message_33
+1491.			Text: i want to insert the value 2:28 pm
+1492.			Intent: [name: fillGenericField - confidence: 0.9991]
+1493.			Entities: [entity: input_value, value: 2:28 pm]
+1494.		Message_34
+1495.			Text: yes
+1496.			Intent: [name: affirm - confidence: 0.9761]
+1497.			Entities: 
+
+1498.	IV-Statistics
+1499.		Convergence Rate:
+1500.			total number of turns: t = 71
+1501.			total number of fields: n = 4
+1502.			total number of spelling fields: m = 1
+1503.			total number of spelling turns: m_k factor = 11
+1504.			convergence rate: c = 0.4085
+1505.			adjustded convergence rate: c_adj = 0.2075
+1506.		Normalized Convergence Rate:
+1507.			total number of required fields: n_2 = 0
+1508.			total number of spelling fields: m_2 = 0
+1509.			total number of required spelling turns: m_k_2 factor = 0
+1510.			normalized convergence rate: c_2 = 0.0141
+1512.		Natural Language Flexibility Coefficient:
+1513.			number of required turns: v = 12 turns
+1514.			number of user's turns: w = 35 turns
+1515.			natural language flexibility coefficient: f = 0.3429
+1516.			adjusted flexibility coefficient: f_adj = 0.8800
+
+1517.	--- DIALOGUE 8 ---
+
+1518.	I- Form element
+
+1519.		The window have been closed, so we cannot give you the form elements, sorry
+
+1520.	II- Slots
+
+1521.		[slot_name: gender - slot_value: other - required: True - spelling: False - description: None - choice_list: ['male', 'female', 'other']]
+1522.		[slot_name: electronic devices - slot_value: computer - required: False - spelling: False - description: the electronic devices that you own - choice_list: ['none', 'computer', 'smartphone', 'tablet', 'smart watch', 'smart tv', 'blutooth earphones', 'camera', 'smart glasses']]
+1523.		[slot_name: car - slot_value: chevrolet - required: False - spelling: False - description: the car brand your prefer - choice_list: ['volvo', 'saab', 'fiat', 'audi', 'citroen', 'ford', 'bmw', 'chevrolet', 'honda', 'kia', 'toyota', 'lexus', 'hyundai']]
+1524.		[slot_name: message - slot_value: some silver living - required: False - spelling: False - description: your suggestions or precisions]
+1525.		[Web Form info -- title: test form sample number 3 - description: presents various fields types in order to test the different kind of input we can have and different actions]
+
+1526.	III-Messages
+
+1527.		Message_0
+1528.			Text: about this form, please some explanations
+1529.			Intent: [name: repeatFormExplanation - confidence: 0.9774]
+1530.			Entities: [entity: input_value, value: some explanations]
+1531.		Message_1
+1532.			Text: sure, continue
+1533.			Intent: [name: affirm - confidence: 0.4728]
+1534.			Entities: 
+1535.		Message_2
+1536.			Text: yes, i do
+1537.			Intent: [name: affirm - confidence: 0.9573]
+1538.			Entities: 
+1539.		Message_3
+1540.			Text: gender has value other
+1541.			Intent: [name: fillGenericField - confidence: 0.9999]
+1542.			Entities: [entity: input_field, value: gender], [entity: input_value, value: other]
+1543.		Message_4
+1544.			Text: please give me the required fields still to be completed
+1545.			Intent: [name: giveRemainingRequiredFields - confidence: 0.9959]
+1546.			Entities: 
+1547.		Message_5
+1548.			Text: insert the value of computer
+1549.			Intent: [name: fillGenericField - confidence: 0.5718]
+1550.			Entities: [entity: input_value, value: computer]
+1551.		Message_6
+1552.			Text: i want to submit
+1553.			Intent: [name: submitForm - confidence: 0.9997]
+1554.			Entities: 
+1555.		Message_7
+1556.			Text: tell me something about the field already completed
+1557.			Intent: [name: verifyValueFilledFields - confidence: 0.9631]
+1558.			Entities: 
+1559.		Message_8
+1560.			Text: Chevrolet for the field car
+1561.			Intent: [name: fillGenericField - confidence: 0.9999]
+1562.			Entities: [entity: input_value, value: Chevrolet], [entity: input_field, value: car]
+1563.		Message_9
+1564.			Text: submit the form
+1565.			Intent: [name: submitForm - confidence: 0.9998]
+1566.			Entities: 
+1567.		Message_10
+1568.			Text: i did not get well all, is there Link?
+1569.			Intent: [name: giveAllRemainingFields - confidence: 0.2537]
+1570.			Entities: 
+1571.		Message_11
+1572.			Text: they are too many mistakes, i want to restart
+1573.			Intent: [name: resetAllFields - confidence: 0.9567]
+1574.			Entities: 
+1575.		Message_12
+1576.			Text: time and tide wait for no man is my message
+1577.			Intent: [name: fillGenericField - confidence: 1.0000]
+1578.			Entities: [entity: input_field, value: time], [entity: input_value, value: man], [entity: input_field, value: message]
+1579.		Message_13
+1580.			Text: i would like to insert the value some silver living
+1581.			Intent: [name: fillGenericField - confidence: 0.5369]
+1582.			Entities: [entity: input_value, value: some silver living]
+1583.		Message_14
+1584.			Text: yes, please
+1585.			Intent: [name: affirm - confidence: 0.3281]
+1586.			Entities: 
+
+1587.	IV-Statistics
+1588.		Convergence Rate:
+1589.			total number of turns: t = 31
+1590.			total number of fields: n = 4
+1591.			total number of spelling fields: m = 0
+1592.			total number of spelling turns: m_k factor = 0
+1593.			convergence rate: c = 0.2903
+1594.			adjustded convergence rate: c_adj = 0.2903
+1595.		Normalized Convergence Rate:
+1596.			total number of required fields: n_2 = 1
+1597.			total number of spelling fields: m_2 = 0
+1598.			total number of required spelling turns: m_k_2 factor = 0
+1599.			normalized convergence rate: c_2 = 0.0968
+1601.		Natural Language Flexibility Coefficient:
+1602.			number of required turns: v = 5 turns
+1603.			number of user's turns: w = 15 turns
+1604.			natural language flexibility coefficient: f = 0.3333
+1605.			adjusted flexibility coefficient: f_adj = 1.0000
+
+1606.	--- DIALOGUE 9 ---
+
+1607.	I- Form element
+
+1608.		The window have been closed, so we cannot give you the form elements, sorry
+
+1609.	II- Slots
+
+1610.		[slot_name: first name - slot_value: Jian - required: False - spelling: True - description: your first name]
+1611.		[slot_name: last name - slot_value: Tapuarii - required: False - spelling: True - description: your family name]
+1612.		[slot_name: mark - slot_value: 21,07 - required: False - spelling: False - description: None]
+1613.		[slot_name: password - slot_value: 0lzVaead - required: False - spelling: False - description: None]
+1614.		[slot_name: email address - slot_value: milagn@yahoo.com - required: True - spelling: True - description: the email we should use to contact you]
+1615.		[slot_name: phone number - slot_value: 0038641293217 - required: False - spelling: False - description: None]
+1616.		[slot_name: number of persons - slot_value: 4 - required: True - spelling: False - description: None]
+1617.		[slot_name: passengers - slot_value: 1 - required: False - spelling: False - description: None]
+1618.		[slot_name: birthday - slot_value: 10-03-1995 - required: False - spelling: False - description: None]
+1619.		[slot_name: arrival time - slot_value: 18:00 - required: True - spelling: True - description: the time you exprct to arrive at the conference]
+1620.		[slot_name: living address - slot_value: viale W. B. Yeats 47 - required: True - spelling: False - description: None]
+1621.		[slot_name: gender - slot_value: other - required: False - spelling: False - description: None - choice_list: ['male', 'female', 'other']]
+1622.		[slot_name: electronic devices - slot_value: smartphone - required: False - spelling: False - description: the electronic devices that you own - choice_list: ['none', 'computer', 'smartphone', 'tablet', 'smart watch', 'smart tv', 'blutooth earphones', 'camera', 'smart glasses']]
+1623.		[slot_name: car - slot_value: hyundai - required: False - spelling: False - description: the car brand your prefer - choice_list: ['volvo', 'saab', 'fiat', 'audi', 'citroen', 'ford', 'bmw', 'chevrolet', 'honda', 'kia', 'toyota', 'lexus', 'hyundai']]
+1624.		[slot_name: message - slot_value: all good things come to an end - required: False - spelling: False - description: None]
+1625.		[Web Form info -- title: registration form sample - description: presents various fields types in order to test the different kind of input we can have and different actions]
+
+1626.	III-Messages
+
+1627.		Message_0
+1628.			Text: H
+1629.			Intent: [name: spelling - confidence: 0.9966]
+1630.			Entities: [entity: spelling, value: H]
+1631.		Message_1
+1632.			Text: yes, thanks
+1633.			Intent: [name: affirm - confidence: 0.9102]
+1634.			Entities: 
+1635.		Message_2
+1636.			Text: reset all fields
+1637.			Intent: [name: resetAllFields - confidence: 0.9980]
+1638.			Entities: 
+1639.		Message_3
+1640.			Text: could you repeat the required fields please?
+1641.			Intent: [name: repeatRequiredFields - confidence: 1.0000]
+1642.			Entities: 
+1643.		Message_4
+1644.			Text: no, i don't
+1645.			Intent: [name: deny - confidence: 1.0000]
+1646.			Entities: 
+1647.		Message_5
+1648.			Text: may i ammend the value of first name?
+1649.			Intent: [name: fillGenericField - confidence: 0.9997]
+1650.			Entities: [entity: input_field, value: first name]
+1651.		Message_6
+1652.			Text: J
+1653.			Intent: [name: spelling - confidence: 0.9965]
+1654.			Entities: [entity: spelling, value: J]
+1655.		Message_7
+1656.			Text: i
+1657.			Intent: [name: spelling - confidence: 0.9769]
+1658.			Entities: [entity: spelling, value: i]
+1659.		Message_8
+1660.			Text: a
+1661.			Intent: [name: spelling - confidence: 0.9931]
+1662.			Entities: [entity: spelling, value: a]
+1663.		Message_9
+1664.			Text: n
+1665.			Intent: [name: spelling - confidence: 0.9576]
+1666.			Entities: [entity: spelling, value: n]
+1667.		Message_10
+1668.			Text: halt
+1669.			Intent: [name: spelling - confidence: 0.9972]
+1670.			Entities: [entity: spelling, value: halt]
+1671.		Message_11
+1672.			Text: T
+1673.			Intent: [name: spelling - confidence: 0.9962]
+1674.			Entities: [entity: spelling, value: T]
+1675.		Message_12
+1676.			Text: a
+1677.			Intent: [name: spelling - confidence: 0.9931]
+1678.			Entities: [entity: spelling, value: a]
+1679.		Message_13
+1680.			Text: p
+1681.			Intent: [name: spelling - confidence: 0.9908]
+1682.			Entities: [entity: spelling, value: p]
+1683.		Message_14
+1684.			Text: u
+1685.			Intent: [name: spelling - confidence: 0.9967]
+1686.			Entities: [entity: spelling, value: u]
+1687.		Message_15
+1688.			Text: a
+1689.			Intent: [name: spelling - confidence: 0.9931]
+1690.			Entities: [entity: spelling, value: a]
+1691.		Message_16
+1692.			Text: r
+1693.			Intent: [name: spelling - confidence: 0.9963]
+1694.			Entities: [entity: spelling, value: r]
+1695.		Message_17
+1696.			Text: i
+1697.			Intent: [name: spelling - confidence: 0.9769]
+1698.			Entities: [entity: spelling, value: i]
+1699.		Message_18
+1700.			Text: i
+1701.			Intent: [name: spelling - confidence: 0.9769]
+1702.			Entities: [entity: spelling, value: i]
+1703.		Message_19
+1704.			Text: terminator
+1705.			Intent: [name: spelling - confidence: 0.9946]
+1706.			Entities: [entity: spelling, value: terminator]
+1707.		Message_20
+1708.			Text: can i have the list of the not obligatory fields?
+1709.			Intent: [name: repeatAllFields - confidence: 0.1938]
+1710.			Entities: 
+1711.		Message_21
+1712.			Text: in this form which are the fields to complete?
+1713.			Intent: [name: fillForm - confidence: 0.9883]
+1714.			Entities: 
+1715.		Message_22
+1716.			Text: more explanation about the form please
+1717.			Intent: [name: repeatFormExplanation - confidence: 0.5069]
+1718.			Entities: 
+1719.		Message_23
+1720.			Text: value 21,072 for mark
+1721.			Intent: [name: fillGenericField - confidence: 1.0000]
+1722.			Entities: [entity: input_value, value: 21,072], [entity: input_field, value: mark]
+1723.		Message_24
+1724.			Text: can i have the list of the obligatory remaining fields
+1725.			Intent: [name: giveRemainingRequiredFields - confidence: 0.9558]
+1726.			Entities: 
+1727.		Message_25
+1728.			Text: can i submit the form now?
+1729.			Intent: [name: submitForm - confidence: 0.8278]
+1730.			Entities: [entity: input_value, value: now]
+1731.		Message_26
+1732.			Text: password has value 0lzVaead
+1733.			Intent: [name: fillGenericField - confidence: 0.9999]
+1734.			Entities: [entity: input_field, value: password], [entity: input_value, value: 0lzVaead]
+1735.		Message_27
+1736.			Text: no, i did it by mistake
+1737.			Intent: [name: fillGenericField - confidence: 0.9201]
+1738.			Entities: [entity: input_value, value: it by mistake]
+1739.		Message_28
+1740.			Text: can i submit the form now?
+1741.			Intent: [name: submitForm - confidence: 0.8278]
+1742.			Entities: [entity: input_value, value: now]
+1743.		Message_29
+1744.			Text: can i have a summary of what have been done so far?
+1745.			Intent: [name: giveRemainingOptionalFields - confidence: 0.4786]
+1746.			Entities: [entity: input_value, value: been done so far]
+1747.		Message_30
+1748.			Text: can you explain what is living address?
+1749.			Intent: [name: explainField - confidence: 1.0000]
+1750.			Entities: [entity: input_field, value: living address]
+1751.		Message_31
+1752.			Text: give me the next field
+1753.			Intent: [name: repeatValueField - confidence: 0.5277]
+1754.			Entities: 
+1755.		Message_32
+1756.			Text: continue the process
+1757.			Intent: [name: fillForm - confidence: 0.9319]
+1758.			Entities: 
+1759.		Message_33
+1760.			Text: did you say Departure Country?
+1761.			Intent: [name: fillGenericField - confidence: 0.9783]
+1762.			Entities: [entity: input_value, value: did you say Departure Country]
+1763.		Message_34
+1764.			Text: could you please give me the list of remaining fields for the ones not mandatrory for the completion of the procedure?
+1765.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9393]
+1766.			Entities: 
+1767.		Message_35
+1768.			Text: are there still many fields to complete?
+1769.			Intent: [name: giveAllRemainingFields - confidence: 0.9463]
+1770.			Entities: 
+1771.		Message_36
+1772.			Text: yes
+1773.			Intent: [name: affirm - confidence: 0.9761]
+1774.			Entities: 
+1775.		Message_37
+1776.			Text: m
+1777.			Intent: [name: spelling - confidence: 0.9919]
+1778.			Entities: [entity: spelling, value: m]
+1779.		Message_38
+1780.			Text: i
+1781.			Intent: [name: spelling - confidence: 0.9769]
+1782.			Entities: [entity: spelling, value: i]
+1783.		Message_39
+1784.			Text: l
+1785.			Intent: [name: spelling - confidence: 0.9985]
+1786.			Entities: [entity: spelling, value: l]
+1787.		Message_40
+1788.			Text: a
+1789.			Intent: [name: spelling - confidence: 0.9931]
+1790.			Entities: [entity: spelling, value: a]
+1791.		Message_41
+1792.			Text: g
+1793.			Intent: [name: spelling - confidence: 0.9860]
+1794.			Entities: [entity: spelling, value: g]
+1795.		Message_42
+1796.			Text: n
+1797.			Intent: [name: spelling - confidence: 0.9576]
+1798.			Entities: [entity: spelling, value: n]
+1799.		Message_43
+1800.			Text: at
+1801.			Intent: [name: spelling - confidence: 0.9925]
+1802.			Entities: [entity: spelling, value: at]
+1803.		Message_44
+1804.			Text: y
+1805.			Intent: [name: spelling - confidence: 0.9893]
+1806.			Entities: [entity: spelling, value: y]
+1807.		Message_45
+1808.			Text: a
+1809.			Intent: [name: spelling - confidence: 0.9931]
+1810.			Entities: [entity: spelling, value: a]
+1811.		Message_46
+1812.			Text: h
+1813.			Intent: [name: spelling - confidence: 0.9966]
+1814.			Entities: [entity: spelling, value: h]
+1815.		Message_47
+1816.			Text: o
+1817.			Intent: [name: spelling - confidence: 0.9238]
+1818.			Entities: [entity: input_value, value: o]
+1819.		Message_48
+1820.			Text: o
+1821.			Intent: [name: spelling - confidence: 0.9238]
+1822.			Entities: [entity: input_value, value: o]
+1823.		Message_49
+1824.			Text: dot
+1825.			Intent: [name: spelling - confidence: 0.9868]
+1826.			Entities: [entity: spelling, value: dot]
+1827.		Message_50
+1828.			Text: c
+1829.			Intent: [name: spelling - confidence: 0.9979]
+1830.			Entities: [entity: spelling, value: c]
+1831.		Message_51
+1832.			Text: o
+1833.			Intent: [name: spelling - confidence: 0.9238]
+1834.			Entities: [entity: input_value, value: o]
+1835.		Message_52
+1836.			Text: m
+1837.			Intent: [name: spelling - confidence: 0.9919]
+1838.			Entities: [entity: spelling, value: m]
+1839.		Message_53
+1840.			Text: end
+1841.			Intent: [name: spelling - confidence: 0.9914]
+1842.			Entities: [entity: spelling, value: end]
+1843.		Message_54
+1844.			Text: may i submit now?
+1845.			Intent: [name: fillGenericField - confidence: 0.8436]
+1846.			Entities: 
+1847.		Message_55
+1848.			Text: 0038641293217 is the phone number
+1849.			Intent: [name: fillGenericField - confidence: 0.9994]
+1850.			Entities: [entity: input_value, value: 0038641293217], [entity: input_field, value: phone number]
+1851.		Message_56
+1852.			Text: number of persons has value 4
+1853.			Intent: [name: fillGenericField - confidence: 1.0000]
+1854.			Entities: [entity: input_field, value: number of persons], [entity: input_value, value: 4]
+1855.		Message_57
+1856.			Text: no, i do not
+1857.			Intent: [name: deny - confidence: 1.0000]
+1858.			Entities: 
+1859.		Message_58
+1860.			Text: i want to submit
+1861.			Intent: [name: submitForm - confidence: 0.9997]
+1862.			Entities: 
+1863.		Message_59
+1864.			Text: 1 is the value for the field passengers
+1865.			Intent: [name: fillGenericField - confidence: 1.0000]
+1866.			Entities: [entity: input_value, value: 1], [entity: input_field, value: passengers]
+1867.		Message_60
+1868.			Text: i prefer not
+1869.			Intent: [name: deny - confidence: 0.5827]
+1870.			Entities: 
+1871.		Message_61
+1872.			Text: no, i don't
+1873.			Intent: [name: deny - confidence: 1.0000]
+1874.			Entities: 
+1875.		Message_62
+1876.			Text: please the value of the field living address
+1877.			Intent: [name: repeatValueField - confidence: 0.7770]
+1878.			Entities: [entity: input_field, value: living address]
+1879.		Message_63
+1880.			Text: no, i do not
+1881.			Intent: [name: deny - confidence: 1.0000]
+1882.			Entities: 
+1883.		Message_64
+1884.			Text: no, it was an error
+1885.			Intent: [name: fillGenericField - confidence: 0.9029]
+1886.			Entities: [entity: input_value, value: error]
+1887.		Message_65
+1888.			Text: continue to submit the form
+1889.			Intent: [name: fillForm - confidence: 0.9913]
+1890.			Entities: 
+1891.		Message_66
+1892.			Text: the value i want to insert is 10/03/1995
+1893.			Intent: [name: fillGenericField - confidence: 0.9997]
+1894.			Entities: [entity: input_value, value: 10/03/1995]
+1895.		Message_67
+1896.			Text: 2
+1897.			Intent: [name: spelling - confidence: 0.9997]
+1898.			Entities: [entity: input_value, value: 2]
+1899.		Message_68
+1900.			Text: 1
+1901.			Intent: [name: spelling - confidence: 0.9997]
+1902.			Entities: [entity: input_value, value: 1]
+1903.		Message_69
+1904.			Text: space
+1905.			Intent: [name: spelling - confidence: 0.9959]
+1906.			Entities: [entity: spelling, value: space]
+1907.		Message_70
+1908.			Text: o
+1909.			Intent: [name: spelling - confidence: 0.9238]
+1910.			Entities: [entity: input_value, value: o]
+1911.		Message_71
+1912.			Text: underscore
+1913.			Intent: [name: spelling - confidence: 0.9972]
+1914.			Entities: [entity: spelling, value: underscore]
+1915.		Message_72
+1916.			Text: c
+1917.			Intent: [name: spelling - confidence: 0.9979]
+1918.			Entities: [entity: spelling, value: c]
+1919.		Message_73
+1920.			Text: l
+1921.			Intent: [name: spelling - confidence: 0.9985]
+1922.			Entities: [entity: spelling, value: l]
+1923.		Message_74
+1924.			Text: o
+1925.			Intent: [name: spelling - confidence: 0.9238]
+1926.			Entities: [entity: input_value, value: o]
+1927.		Message_75
+1928.			Text: c
+1929.			Intent: [name: spelling - confidence: 0.9979]
+1930.			Entities: [entity: spelling, value: c]
+1931.		Message_76
+1932.			Text: k
+1933.			Intent: [name: spelling - confidence: 0.9928]
+1934.			Entities: [entity: spelling, value: k]
+1935.		Message_77
+1936.			Text: terminator
+1937.			Intent: [name: spelling - confidence: 0.9946]
+1938.			Entities: [entity: spelling, value: terminator]
+1939.		Message_78
+1940.			Text: 6
+1941.			Intent: [name: spelling - confidence: 0.9997]
+1942.			Entities: [entity: input_value, value: 6]
+1943.		Message_79
+1944.			Text: colon
+1945.			Intent: [name: spelling - confidence: 0.9993]
+1946.			Entities: [entity: spelling, value: colon]
+1947.		Message_80
+1948.			Text: 0
+1949.			Intent: [name: spelling - confidence: 0.9997]
+1950.			Entities: [entity: input_value, value: 0]
+1951.		Message_81
+1952.			Text: 0
+1953.			Intent: [name: spelling - confidence: 0.9997]
+1954.			Entities: [entity: input_value, value: 0]
+1955.		Message_82
+1956.			Text: space
+1957.			Intent: [name: spelling - confidence: 0.9959]
+1958.			Entities: [entity: spelling, value: space]
+1959.		Message_83
+1960.			Text: p
+1961.			Intent: [name: spelling - confidence: 0.9908]
+1962.			Entities: [entity: spelling, value: p]
+1963.		Message_84
+1964.			Text: m
+1965.			Intent: [name: spelling - confidence: 0.9919]
+1966.			Entities: [entity: spelling, value: m]
+1967.		Message_85
+1968.			Text: halt
+1969.			Intent: [name: spelling - confidence: 0.9972]
+1970.			Entities: [entity: spelling, value: halt]
+1971.		Message_86
+1972.			Text: the value viale W. B. Yeats 47 is for living address
+1973.			Intent: [name: fillGenericField - confidence: 1.0000]
+1974.			Entities: [entity: input_value, value: viale W. B. Yeats 47], [entity: input_field, value: living address]
+1975.		Message_87
+1976.			Text: insert the other
+1977.			Intent: [name: modifyValueGenericField - confidence: 0.6007]
+1978.			Entities: [entity: input_value, value: other]
+1979.		Message_88
+1980.			Text: i want to insert the value for the field smartphone
+1981.			Intent: [name: fillGenericField - confidence: 1.0000]
+1982.			Entities: [entity: input_value, value: smartphone]
+1983.		Message_89
+1984.			Text: Hyundai is my car
+1985.			Intent: [name: fillGenericField - confidence: 0.9981]
+1986.			Entities: [entity: input_value, value: Hyundai], [entity: input_field, value: car]
+1987.		Message_90
+1988.			Text: here is the value for the field: all good things come to an end
+1989.			Intent: [name: fillGenericField - confidence: 0.9985]
+1990.			Entities: [entity: input_value, value: all good things come to an end]
+1991.		Message_91
+1992.			Text: yes, go ahead
+1993.			Intent: [name: affirm - confidence: 0.9984]
+1994.			Entities: 
+
+1995.	IV-Statistics
+1996.		Convergence Rate:
+1997.			total number of turns: t = 185
+1998.			total number of fields: n = 15
+1999.			total number of spelling fields: m = 4
+2000.			total number of spelling turns: m_k factor = 51
+2001.			convergence rate: c = 0.6757
+2002.			adjustded convergence rate: c_adj = 0.3939
+2003.		Normalized Convergence Rate:
+2004.			total number of required fields: n_2 = 4
+2005.			total number of spelling fields: m_2 = 2
+2006.			total number of required spelling turns: m_k_2 factor = 23
+2007.			normalized convergence rate: c_2 = 0.2757
+2009.		Natural Language Flexibility Coefficient:
+2010.			number of required turns: v = 61 turns
+2011.			number of user's turns: w = 92 turns
+2012.			natural language flexibility coefficient: f = 0.6630
+2013.			adjusted flexibility coefficient: f_adj = 0.9556
+
+2014.	--- DIALOGUE 10 ---
+
+2015.	I- Form element
+
+2016.		The window have been closed, so we cannot give you the form elements, sorry
+
+2017.	II- Slots
+
+2018.		[slot_name: first name - slot_value: Jian - required: True - spelling: True - description: your first name]
+2019.		[slot_name: password - slot_value: Arikix - required: True - spelling: False - description: None]
+2020.		[slot_name: email address - slot_value: xvfaith@polimi.fr - required: False - spelling: False - description: the email we should use to contact you]
+2021.		[slot_name: birthday - slot_value: 11-08-1969 - required: False - spelling: False - description: None]
+2022.		[slot_name: arrival time - slot_value: 02:00 - required: False - spelling: False - description: the time you expect to arrive at the conference]
+2023.		[Web Form info -- title: registration form sample - description: presents various fields types in order to test the different kinds of input we can have and different actions]
+
+2024.	III-Messages
+
+2025.		Message_0
+2026.			Text: what are obligatory the fields that i didn't complete yet?
+2027.			Intent: [name: giveRemainingRequiredFields - confidence: 0.9972]
+2028.			Entities: 
+2029.		Message_1
+2030.			Text: what is first name?
+2031.			Intent: [name: explainField - confidence: 0.9964]
+2032.			Entities: [entity: input_field, value: first name]
+2033.		Message_2
+2034.			Text: i want to know the fields remaining if they are optional
+2035.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9648]
+2036.			Entities: [entity: input_value, value: if they are optional]
+2037.		Message_3
+2038.			Text: please can i submit the form?
+2039.			Intent: [name: submitForm - confidence: 0.5977]
+2040.			Entities: 
+2041.		Message_4
+2042.			Text: it would be kind of you if you provide me the fields remaining completing the form
+2043.			Intent: [name: fillForm - confidence: 0.9541]
+2044.			Entities: [entity: input_value, value: it would be kind of you if you provide]
+2045.		Message_5
+2046.			Text: is the field Your Message also present?
+2047.			Intent: [name: verifyPresenceOfField - confidence: 0.9996]
+2048.			Entities: [entity: input_field, value: Your], [entity: input_field, value: Message]
+2049.		Message_6
+2050.			Text: yes, thanks
+2051.			Intent: [name: affirm - confidence: 0.9102]
+2052.			Entities: 
+2053.		Message_7
+2054.			Text: let us return into the procedure
+2055.			Intent: [name: fillForm - confidence: 0.9980]
+2056.			Entities: 
+2057.		Message_8
+2058.			Text: pass
+2059.			Intent: [name: skipField - confidence: 0.9842]
+2060.			Entities: 
+2061.		Message_9
+2062.			Text: it would be kind of you if you provide me the fields for completing the form
+2063.			Intent: [name: fillForm - confidence: 0.8393]
+2064.			Entities: [entity: input_value, value: it would be kind of you if you provide]
+2065.		Message_10
+2066.			Text: give me the required fields
+2067.			Intent: [name: repeatRequiredFields - confidence: 1.0000]
+2068.			Entities: 
+2069.		Message_11
+2070.			Text: i want to continue
+2071.			Intent: [name: fillForm - confidence: 0.9892]
+2072.			Entities: 
+2073.		Message_12
+2074.			Text: i want to modify the field first name with the value Verify Password
+2075.			Intent: [name: modifyValueGenericField - confidence: 1.0000]
+2076.			Entities: [entity: input_field, value: first name], [entity: input_field, value: Password]
+2077.		Message_13
+2078.			Text: password: Arikix
+2079.			Intent: [name: fillGenericField - confidence: 0.9901]
+2080.			Entities: [entity: input_field, value: password], [entity: input_value, value: Arikix]
+2081.		Message_14
+2082.			Text: xvfaith@polimi.fr
+2083.			Intent: [name: fillGenericField - confidence: 0.9604]
+2084.			Entities: [entity: input_value, value: xvfaith@polimi.fr]
+2085.		Message_15
+2086.			Text: submit
+2087.			Intent: [name: submitForm - confidence: 0.9992]
+2088.			Entities: 
+2089.		Message_16
+2090.			Text: please can i submit the form?
+2091.			Intent: [name: submitForm - confidence: 0.5977]
+2092.			Entities: 
+2093.		Message_17
+2094.			Text: August 11 1969
+2095.			Intent: [name: fillGenericField - confidence: 0.4817]
+2096.			Entities: [entity: input_value, value: August 11 1969]
+2097.		Message_18
+2098.			Text: go on with the filling
+2099.			Intent: [name: fillForm - confidence: 0.9960]
+2100.			Entities: 
+2101.		Message_19
+2102.			Text: here is the value for the field: 2
+2103.			Intent: [name: fillGenericField - confidence: 1.0000]
+2104.			Entities: [entity: input_value, value: 2]
+2105.		Message_20
+2106.			Text: please give me some explanations about this form
+2107.			Intent: [name: repeatFormExplanation - confidence: 0.9787]
+2108.			Entities: 
+2109.		Message_21
+2110.			Text: J
+2111.			Intent: [name: spelling - confidence: 0.9965]
+2112.			Entities: [entity: spelling, value: J]
+2113.		Message_22
+2114.			Text: sure, go ahead
+2115.			Intent: [name: affirm - confidence: 0.5556]
+2116.			Entities: 
+2117.		Message_23
+2118.			Text: no, it was an error
+2119.			Intent: [name: fillGenericField - confidence: 0.9029]
+2120.			Entities: [entity: input_value, value: error]
+2121.		Message_24
+2122.			Text: my first name is Hao
+2123.			Intent: [name: fillGenericField - confidence: 0.9908]
+2124.			Entities: [entity: input_field, value: first name], [entity: input_value, value: Hao]
+2125.		Message_25
+2126.			Text: sure
+2127.			Intent: [name: spelling - confidence: 0.9668]
+2128.			Entities: [entity: input_value, value: sure]
+2129.		Message_26
+2130.			Text: sure
+2131.			Intent: [name: spelling - confidence: 0.9668]
+2132.			Entities: [entity: input_value, value: sure]
+2133.		Message_27
+2134.			Text: sure, continue
+2135.			Intent: [name: affirm - confidence: 0.4728]
+2136.			Entities: 
+2137.		Message_28
+2138.			Text: can i submit the form now?
+2139.			Intent: [name: submitForm - confidence: 0.8278]
+2140.			Entities: [entity: input_value, value: now]
+2141.		Message_29
+2142.			Text: i
+2143.			Intent: [name: spelling - confidence: 0.9769]
+2144.			Entities: [entity: spelling, value: i]
+2145.		Message_30
+2146.			Text: a
+2147.			Intent: [name: spelling - confidence: 0.9931]
+2148.			Entities: [entity: spelling, value: a]
+2149.		Message_31
+2150.			Text: n
+2151.			Intent: [name: spelling - confidence: 0.9576]
+2152.			Entities: [entity: spelling, value: n]
+2153.		Message_32
+2154.			Text: end
+2155.			Intent: [name: spelling - confidence: 0.9914]
+2156.			Entities: [entity: spelling, value: end]
+2157.		Message_33
+2158.			Text: i would like to complete my registration
+2159.			Intent: [name: fillForm - confidence: 0.9990]
+2160.			Entities: 
+2161.		Message_34
+2162.			Text: can i have a summary of what have been done so far?
+2163.			Intent: [name: giveRemainingOptionalFields - confidence: 0.4786]
+2164.			Entities: [entity: input_value, value: been done so far]
+2165.		Message_35
+2166.			Text: i want to continue
+2167.			Intent: [name: fillForm - confidence: 0.9892]
+2168.			Entities: 
+2169.		Message_36
+2170.			Text: yes, thanks
+2171.			Intent: [name: affirm - confidence: 0.9102]
+2172.			Entities: 
+
+2173.	IV-Statistics
+2174.		Convergence Rate:
+2175.			total number of turns: t = 75
+2176.			total number of fields: n = 5
+2177.			total number of spelling fields: m = 1
+2178.			total number of spelling turns: m_k factor = 5
+2179.			convergence rate: c = 0.2533
+2180.			adjustded convergence rate: c_adj = 0.1884
+2181.		Normalized Convergence Rate:
+2182.			total number of required fields: n_2 = 2
+2183.			total number of spelling fields: m_2 = 1
+2184.			total number of required spelling turns: m_k_2 factor = 5
+2185.			normalized convergence rate: c_2 = 0.1733
+2187.		Natural Language Flexibility Coefficient:
+2188.			number of required turns: v = 9 turns
+2189.			number of user's turns: w = 37 turns
+2190.			natural language flexibility coefficient: f = 0.2432
+2191.			adjusted flexibility coefficient: f_adj = 0.9697
+
+2192.	--- DIALOGUE 11 ---
+
+2193.	I- Form element
+
+2194.		The window have been closed, so we cannot give you the form elements, sorry
+
+2195.	II- Slots
+
+2196.		[slot_name: first name - slot_value: AmCharlotte - required: True - spelling: True - description: your first name]
+2197.		[slot_name: last name - slot_value: aia - required: False - spelling: True - description: your family name]
+2198.		[slot_name: mark - slot_value: 20,68 - required: False - spelling: False - description: None]
+2199.		[slot_name: password - slot_value: Michaelw - required: False - spelling: False - description: None]
+2200.		[slot_name: email address - slot_value: rt7yingo@outlook.uk - required: True - spelling: False - description: the email we should use to contact you]
+2201.		[Web Form info -- title: None - description: None]
+
+2202.	III-Messages
+
+2203.		Message_0
+2204.			Text: what are the obligatory fields that i didn't complete yet?
+2205.			Intent: [name: giveRemainingRequiredFields - confidence: 0.9972]
+2206.			Entities: 
+2207.		Message_1
+2208.			Text: i want to verify the value of the completed fields
+2209.			Intent: [name: verifyValueFilledFields - confidence: 0.9998]
+2210.			Entities: 
+2211.		Message_2
+2212.			Text: give me the next field
+2213.			Intent: [name: repeatValueField - confidence: 0.5277]
+2214.			Entities: 
+2215.		Message_3
+2216.			Text: A
+2217.			Intent: [name: spelling - confidence: 0.9931]
+2218.			Entities: [entity: spelling, value: A]
+2219.		Message_4
+2220.			Text: yes, go ahead
+2221.			Intent: [name: affirm - confidence: 0.9984]
+2222.			Entities: 
+2223.		Message_5
+2224.			Text: what are not obligatory the fields that i didn't complete yet?
+2225.			Intent: [name: giveRemainingRequiredFields - confidence: 0.4392]
+2226.			Entities: 
+2227.		Message_6
+2228.			Text: m
+2229.			Intent: [name: spelling - confidence: 0.9919]
+2230.			Entities: [entity: spelling, value: m]
+2231.		Message_7
+2232.			Text: yes, continue
+2233.			Intent: [name: affirm - confidence: 0.9970]
+2234.			Entities: 
+2235.		Message_8
+2236.			Text: modify the last name
+2237.			Intent: [name: modifyValueGenericField - confidence: 0.9998]
+2238.			Entities: [entity: input_field, value: last name]
+2239.		Message_9
+2240.			Text: could you please give me the list of remaining fields for the ones not mandatrory for the completion of the procedure?
+2241.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9393]
+2242.			Entities: 
+2243.		Message_10
+2244.			Text: tell me if am mistaking but i think the field Phone is there
+2245.			Intent: [name: verifyPresenceOfField - confidence: 0.6836]
+2246.			Entities: [entity: input_value, value: if am mistaking], [entity: input_field, value: Phone]
+2247.		Message_11
+2248.			Text: no, i did it by mistake
+2249.			Intent: [name: fillGenericField - confidence: 0.9201]
+2250.			Entities: [entity: input_value, value: it by mistake]
+2251.		Message_12
+2252.			Text: what is the field's value?
+2253.			Intent: [name: repeatValueField - confidence: 0.9972]
+2254.			Entities: 
+2255.		Message_13
+2256.			Text: please explain what is last name
+2257.			Intent: [name: explainField - confidence: 1.0000]
+2258.			Entities: [entity: input_field, value: last name]
+2259.		Message_14
+2260.			Text: yes, go on
+2261.			Intent: [name: affirm - confidence: 0.9994]
+2262.			Entities: 
+2263.		Message_15
+2264.			Text: please the fields
+2265.			Intent: [name: repeatAllFields - confidence: 0.9861]
+2266.			Entities: 
+2267.		Message_16
+2268.			Text: submit
+2269.			Intent: [name: submitForm - confidence: 0.9992]
+2270.			Entities: 
+2271.		Message_17
+2272.			Text: give me the remaining fields
+2273.			Intent: [name: giveAllRemainingFields - confidence: 0.9996]
+2274.			Entities: 
+2275.		Message_18
+2276.			Text: no, it was an error
+2277.			Intent: [name: fillGenericField - confidence: 0.9029]
+2278.			Entities: [entity: input_value, value: error]
+2279.		Message_19
+2280.			Text: no
+2281.			Intent: [name: deny - confidence: 0.9971]
+2282.			Entities: 
+2283.		Message_20
+2284.			Text: a
+2285.			Intent: [name: spelling - confidence: 0.9931]
+2286.			Entities: [entity: spelling, value: a]
+2287.		Message_21
+2288.			Text: i
+2289.			Intent: [name: spelling - confidence: 0.9769]
+2290.			Entities: [entity: spelling, value: i]
+2291.		Message_22
+2292.			Text: a
+2293.			Intent: [name: spelling - confidence: 0.9931]
+2294.			Entities: [entity: spelling, value: a]
+2295.		Message_23
+2296.			Text: close
+2297.			Intent: [name: spelling - confidence: 0.9611]
+2298.			Entities: [entity: spelling, value: close]
+2299.		Message_24
+2300.			Text: they are too many mistakes, i want to restart
+2301.			Intent: [name: resetAllFields - confidence: 0.9567]
+2302.			Entities: 
+2303.		Message_25
+2304.			Text: no, i don't
+2305.			Intent: [name: deny - confidence: 1.0000]
+2306.			Entities: 
+2307.		Message_26
+2308.			Text: 20.68
+2309.			Intent: [name: fillGenericField - confidence: 0.9998]
+2310.			Entities: [entity: input_value, value: 20.68]
+2311.		Message_27
+2312.			Text: the value i want to insert is Michaelw
+2313.			Intent: [name: fillGenericField - confidence: 0.8586]
+2314.			Entities: [entity: input_value, value: Michaelw]
+2315.		Message_28
+2316.			Text: i would like to complete this process
+2317.			Intent: [name: fillForm - confidence: 0.9988]
+2318.			Entities: 
+2319.		Message_29
+2320.			Text: the value, here it is rt7yingo@outlook.uk
+2321.			Intent: [name: fillGenericField - confidence: 0.9989]
+2322.			Entities: [entity: input_value, value: rt7yingo@outlook.uk]
+2323.		Message_30
+2324.			Text: C
+2325.			Intent: [name: spelling - confidence: 0.9979]
+2326.			Entities: [entity: spelling, value: C]
+2327.		Message_31
+2328.			Text: h
+2329.			Intent: [name: spelling - confidence: 0.9966]
+2330.			Entities: [entity: spelling, value: h]
+2331.		Message_32
+2332.			Text: a
+2333.			Intent: [name: spelling - confidence: 0.9931]
+2334.			Entities: [entity: spelling, value: a]
+2335.		Message_33
+2336.			Text: r
+2337.			Intent: [name: spelling - confidence: 0.9963]
+2338.			Entities: [entity: spelling, value: r]
+2339.		Message_34
+2340.			Text: l
+2341.			Intent: [name: spelling - confidence: 0.9985]
+2342.			Entities: [entity: spelling, value: l]
+2343.		Message_35
+2344.			Text: o
+2345.			Intent: [name: spelling - confidence: 0.9238]
+2346.			Entities: [entity: input_value, value: o]
+2347.		Message_36
+2348.			Text: t
+2349.			Intent: [name: spelling - confidence: 0.9962]
+2350.			Entities: [entity: spelling, value: t]
+2351.		Message_37
+2352.			Text: t
+2353.			Intent: [name: spelling - confidence: 0.9962]
+2354.			Entities: [entity: spelling, value: t]
+2355.		Message_38
+2356.			Text: e
+2357.			Intent: [name: spelling - confidence: 0.9927]
+2358.			Entities: [entity: spelling, value: e]
+2359.		Message_39
+2360.			Text: halt
+2361.			Intent: [name: spelling - confidence: 0.9972]
+2362.			Entities: [entity: spelling, value: halt]
+2363.		Message_40
+2364.			Text: go on with the filling
+2365.			Intent: [name: fillForm - confidence: 0.9960]
+2366.			Entities: 
+2367.		Message_41
+2368.			Text: can i submit the form now?
+2369.			Intent: [name: submitForm - confidence: 0.8278]
+2370.			Entities: [entity: input_value, value: now]
+
+2371.	IV-Statistics
+2372.		Convergence Rate:
+2373.			total number of turns: t = 85
+2374.			total number of fields: n = 5
+2375.			total number of spelling fields: m = 2
+2376.			total number of spelling turns: m_k factor = 16
+2377.			convergence rate: c = 0.4588
+2378.			adjustded convergence rate: c_adj = 0.2459
+2379.		Normalized Convergence Rate:
+2380.			total number of required fields: n_2 = 2
+2381.			total number of spelling fields: m_2 = 1
+2382.			total number of required spelling turns: m_k_2 factor = 12
+2383.			normalized convergence rate: c_2 = 0.3176
+2385.		Natural Language Flexibility Coefficient:
+2386.			number of required turns: v = 18 turns
+2387.			number of user's turns: w = 42 turns
+2388.			natural language flexibility coefficient: f = 0.4286
+2389.			adjusted flexibility coefficient: f_adj = 0.9286
+
+2390.	--- DIALOGUE 12 ---
+
+2391.	I- Form element
+
+2392.		The window have been closed, so we cannot give you the form elements, sorry
+
+2393.	II- Slots
+
+2394.		[slot_name: number of persons - slot_value: 3 - required: False - spelling: False - description: the number of persons coming with you]
+2395.		[slot_name: phone number - slot_value: 0068055045901 - required: False - spelling: True - description: None]
+2396.		[slot_name: birthday - slot_value: 25-05-2006 - required: False - spelling: False - description: None]
+2397.		[slot_name: arrival time - slot_value: 01:18 - required: False - spelling: False - description: the time you exprct to arrive at the conference]
+2398.		[Web Form info -- title: test form sample number 2 - description: presents various fields types in order to test the different kind of input we can have and different actions]
+
+2399.	III-Messages
+
+2400.		Message_0
+2401.			Text: is it possible to have some explanations about the form?
+2402.			Intent: [name: repeatFormExplanation - confidence: 0.5453]
+2403.			Entities: 
+2404.		Message_1
+2405.			Text: value 3 for number of persons
+2406.			Intent: [name: fillGenericField - confidence: 1.0000]
+2407.			Entities: [entity: input_value, value: 3], [entity: input_field, value: number of persons]
+2408.		Message_2
+2409.			Text: sure, continue
+2410.			Intent: [name: affirm - confidence: 0.4728]
+2411.			Entities: 
+2412.		Message_3
+2413.			Text: yes
+2414.			Intent: [name: affirm - confidence: 0.9761]
+2415.			Entities: 
+2416.		Message_4
+2417.			Text: they are too many mistakes, i want to restart
+2418.			Intent: [name: resetAllFields - confidence: 0.9567]
+2419.			Entities: 
+2420.		Message_5
+2421.			Text: can i have the list of the optional remaining fields
+2422.			Intent: [name: giveRemainingOptionalFields - confidence: 0.8842]
+2423.			Entities: 
+2424.		Message_6
+2425.			Text: 0
+2426.			Intent: [name: spelling - confidence: 0.9997]
+2427.			Entities: [entity: input_value, value: 0]
+2428.		Message_7
+2429.			Text: i prefer not
+2430.			Intent: [name: deny - confidence: 0.5827]
+2431.			Entities: 
+2432.		Message_8
+2433.			Text: got to the next field
+2434.			Intent: [name: fillGenericField - confidence: 0.2745]
+2435.			Entities: 
+2436.		Message_9
+2437.			Text: are there many obligatory fields to complete?
+2438.			Intent: [name: repeatRequiredFields - confidence: 0.9963]
+2439.			Entities: 
+2440.		Message_10
+2441.			Text: 0
+2442.			Intent: [name: spelling - confidence: 0.9997]
+2443.			Entities: [entity: input_value, value: 0]
+2444.		Message_11
+2445.			Text: yes
+2446.			Intent: [name: affirm - confidence: 0.9761]
+2447.			Entities: 
+2448.		Message_12
+2449.			Text: is the field Residence also present?
+2450.			Intent: [name: verifyPresenceOfField - confidence: 0.9998]
+2451.			Entities: [entity: input_field, value: Residence also]
+2452.		Message_13
+2453.			Text: 0
+2454.			Intent: [name: spelling - confidence: 0.9997]
+2455.			Entities: [entity: input_value, value: 0]
+2456.		Message_14
+2457.			Text: 6
+2458.			Intent: [name: spelling - confidence: 0.9997]
+2459.			Entities: [entity: input_value, value: 6]
+2460.		Message_15
+2461.			Text: 8
+2462.			Intent: [name: spelling - confidence: 0.9997]
+2463.			Entities: [entity: input_value, value: 8]
+2464.		Message_16
+2465.			Text: 0
+2466.			Intent: [name: spelling - confidence: 0.9997]
+2467.			Entities: [entity: input_value, value: 0]
+2468.		Message_17
+2469.			Text: 5
+2470.			Intent: [name: spelling - confidence: 0.9997]
+2471.			Entities: [entity: input_value, value: 5]
+2472.		Message_18
+2473.			Text: 5
+2474.			Intent: [name: spelling - confidence: 0.9997]
+2475.			Entities: [entity: input_value, value: 5]
+2476.		Message_19
+2477.			Text: 0
+2478.			Intent: [name: spelling - confidence: 0.9997]
+2479.			Entities: [entity: input_value, value: 0]
+2480.		Message_20
+2481.			Text: 4
+2482.			Intent: [name: spelling - confidence: 0.9997]
+2483.			Entities: [entity: input_value, value: 4]
+2484.		Message_21
+2485.			Text: 5
+2486.			Intent: [name: spelling - confidence: 0.9997]
+2487.			Entities: [entity: input_value, value: 5]
+2488.		Message_22
+2489.			Text: 9
+2490.			Intent: [name: spelling - confidence: 0.9997]
+2491.			Entities: [entity: input_value, value: 9]
+2492.		Message_23
+2493.			Text: 0
+2494.			Intent: [name: spelling - confidence: 0.9997]
+2495.			Entities: [entity: input_value, value: 0]
+2496.		Message_24
+2497.			Text: 1
+2498.			Intent: [name: spelling - confidence: 0.9997]
+2499.			Entities: [entity: input_value, value: 1]
+2500.		Message_25
+2501.			Text: terminator
+2502.			Intent: [name: spelling - confidence: 0.9946]
+2503.			Entities: [entity: spelling, value: terminator]
+2504.		Message_26
+2505.			Text: are there many fields to complete?
+2506.			Intent: [name: verifyPresenceOfField - confidence: 0.3336]
+2507.			Entities: 
+2508.		Message_27
+2509.			Text: tell me something about the field already completed
+2510.			Intent: [name: verifyValueFilledFields - confidence: 0.9631]
+2511.			Entities: 
+2512.		Message_28
+2513.			Text: could you please give me the list of remaining fields?
+2514.			Intent: [name: giveAllRemainingFields - confidence: 0.9536]
+2515.			Entities: 
+2516.		Message_29
+2517.			Text: here is the value for the field: 25052006
+2518.			Intent: [name: fillGenericField - confidence: 1.0000]
+2519.			Entities: [entity: input_value, value: 25052006]
+2520.		Message_30
+2521.			Text: i would like to know what i have to complete in term of not obligatory or optional field
+2522.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9669]
+2523.			Entities: 
+2524.		Message_31
+2525.			Text: here it is 01:18 o_clock
+2526.			Intent: [name: fillGenericField - confidence: 0.9935]
+2527.			Entities: [entity: input_value, value: 01:18 o_clock]
+2528.		Message_32
+2529.			Text: i want to complete the process
+2530.			Intent: [name: fillForm - confidence: 0.9993]
+2531.			Entities: 
+2532.		Message_33
+2533.			Text: what are obligatory the fields that i didn't complete yet?
+2534.			Intent: [name: giveRemainingRequiredFields - confidence: 0.9972]
+2535.			Entities: 
+2536.		Message_34
+2537.			Text: let us return into the procedure
+2538.			Intent: [name: fillForm - confidence: 0.9980]
+2539.			Entities: 
+2540.		Message_35
+2541.			Text: continue what i started
+2542.			Intent: [name: fillForm - confidence: 0.9982]
+2543.			Entities: 
+2544.		Message_36
+2545.			Text: sure, continue
+2546.			Intent: [name: affirm - confidence: 0.4728]
+2547.			Entities: 
+
+2548.	IV-Statistics
+2549.		Convergence Rate:
+2550.			total number of turns: t = 75
+2551.			total number of fields: n = 4
+2552.			total number of spelling fields: m = 1
+2553.			total number of spelling turns: m_k factor = 15
+2554.			convergence rate: c = 0.4933
+2555.			adjustded convergence rate: c_adj = 0.2245
+2556.		Normalized Convergence Rate:
+2557.			total number of required fields: n_2 = 0
+2558.			total number of spelling fields: m_2 = 0
+2559.			total number of required spelling turns: m_k_2 factor = 0
+2560.			normalized convergence rate: c_2 = 0.0133
+2562.		Natural Language Flexibility Coefficient:
+2563.			number of required turns: v = 19 turns
+2564.			number of user's turns: w = 37 turns
+2565.			natural language flexibility coefficient: f = 0.5135
+2566.			adjusted flexibility coefficient: f_adj = 1.0000
+
+2567.	--- DIALOGUE 13 ---
+
+2568.	I- Form element
+
+2569.		The window have been closed, so we cannot give you the form elements, sorry
+
+2570.	II- Slots
+
+2571.		[slot_name: gender - slot_value: female - required: True - spelling: False - description: None - choice_list: ['male', 'female', 'other']]
+2572.		[slot_name: electronic devices - slot_value: tablet - required: False - spelling: False - description: the electronic devices that you own - choice_list: ['none', 'computer', 'smartphone', 'tablet', 'smart watch', 'smart tv', 'blutooth earphones', 'camera', 'smart glasses']]
+2573.		[slot_name: car - slot_value: saab - required: False - spelling: False - description: the car brand your prefer - choice_list: ['volvo', 'saab', 'fiat', 'audi', 'citroen', 'ford', 'bmw', 'chevrolet', 'honda', 'kia', 'toyota', 'lexus', 'hyundai']]
+2574.		[slot_name: message - slot_value: familiarity breeds contempt - required: False - spelling: False - description: your suggestions or precisions]
+2575.		[Web Form info -- title: test form sample number 3 - description: presents various fields types in order to test the different kind of input we can have and different actions]
+
+2576.	III-Messages
+
+2577.		Message_0
+2578.			Text: point of the situation
+2579.			Intent: [name: fillGenericField - confidence: 0.3864]
+2580.			Entities: 
+2581.		Message_1
+2582.			Text: move to the next field
+2583.			Intent: [name: fillGenericField - confidence: 0.5895]
+2584.			Entities: 
+2585.		Message_2
+2586.			Text: what are the remaining fields which are optional
+2587.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9967]
+2588.			Entities: 
+2589.		Message_3
+2590.			Text: no, i don't
+2591.			Intent: [name: deny - confidence: 1.0000]
+2592.			Entities: 
+2593.		Message_4
+2594.			Text: no, i don't
+2595.			Intent: [name: deny - confidence: 1.0000]
+2596.			Entities: 
+2597.		Message_5
+2598.			Text: female is the gender
+2599.			Intent: [name: fillGenericField - confidence: 0.9995]
+2600.			Entities: [entity: input_value, value: female], [entity: input_field, value: gender]
+2601.		Message_6
+2602.			Text: may i complete electronic devices with tablet?
+2603.			Intent: [name: fillGenericField - confidence: 0.9999]
+2604.			Entities: [entity: input_field, value: electronic devices], [entity: input_value, value: tablet]
+2605.		Message_7
+2606.			Text: reset all fields
+2607.			Intent: [name: resetAllFields - confidence: 0.9980]
+2608.			Entities: 
+2609.		Message_8
+2610.			Text: is it possible to have the optional fields list again?
+2611.			Intent: [name: fillGenericField - confidence: 0.2509]
+2612.			Entities: 
+2613.		Message_9
+2614.			Text: give me the required remaining fields
+2615.			Intent: [name: giveRemainingRequiredFields - confidence: 0.9984]
+2616.			Entities: 
+2617.		Message_10
+2618.			Text: can i submit the form now?
+2619.			Intent: [name: submitForm - confidence: 0.8278]
+2620.			Entities: [entity: input_value, value: now]
+2621.		Message_11
+2622.			Text: give me all the fields which are required
+2623.			Intent: [name: repeatRequiredFields - confidence: 0.9919]
+2624.			Entities: 
+2625.		Message_12
+2626.			Text: i didn't get well the fields
+2627.			Intent: [name: repeatAllFields - confidence: 0.7851]
+2628.			Entities: 
+2629.		Message_13
+2630.			Text: Saab is my car
+2631.			Intent: [name: fillGenericField - confidence: 0.9974]
+2632.			Entities: [entity: input_value, value: Saab], [entity: input_field, value: car]
+2633.		Message_14
+2634.			Text: could you please give me the list of remaining fields?
+2635.			Intent: [name: giveAllRemainingFields - confidence: 0.9536]
+2636.			Entities: 
+2637.		Message_15
+2638.			Text: familiarity breeds contempt for the field message
+2639.			Intent: [name: fillGenericField - confidence: 0.9997]
+2640.			Entities: [entity: input_value, value: familiarity breeds contempt], [entity: input_field, value: message]
+2641.		Message_16
+2642.			Text: no, i did it by mistake
+2643.			Intent: [name: fillGenericField - confidence: 0.9201]
+2644.			Entities: [entity: input_value, value: it by mistake]
+2645.		Message_17
+2646.			Text: go on with the filling
+2647.			Intent: [name: fillForm - confidence: 0.9960]
+2648.			Entities: 
+2649.		Message_18
+2650.			Text: is there a description for this form?
+2651.			Intent: [name: fillGenericField - confidence: 0.6072]
+2652.			Entities: [entity: input_field, value: description]
+2653.		Message_19
+2654.			Text: no, i do not
+2655.			Intent: [name: deny - confidence: 1.0000]
+2656.			Entities: 
+2657.		Message_20
+2658.			Text: i want to submit
+2659.			Intent: [name: submitForm - confidence: 0.9997]
+2660.			Entities: 
+2661.		Message_21
+2662.			Text: may i submit now?
+2663.			Intent: [name: fillGenericField - confidence: 0.8436]
+2664.			Entities: 
+2665.		Message_22
+2666.			Text: no, it was an error
+2667.			Intent: [name: fillGenericField - confidence: 0.9029]
+2668.			Entities: [entity: input_value, value: error]
+2669.		Message_23
+2670.			Text: i want to continue
+2671.			Intent: [name: fillForm - confidence: 0.9892]
+2672.			Entities: 
+2673.		Message_24
+2674.			Text: sorry, the field Eye color is in the list of ields?
+2675.			Intent: [name: verifyPresenceOfField - confidence: 0.2790]
+2676.			Entities: [entity: input_field, value: Eye color]
+2677.		Message_25
+2678.			Text: i want to do what is necessary to complete the procedure
+2679.			Intent: [name: fillForm - confidence: 0.9973]
+2680.			Entities: 
+2681.		Message_26
+2682.			Text: submit
+2683.			Intent: [name: submitForm - confidence: 0.9992]
+2684.			Entities: 
+
+2685.	IV-Statistics
+2686.		Convergence Rate:
+2687.			total number of turns: t = 55
+2688.			total number of fields: n = 4
+2689.			total number of spelling fields: m = 0
+2690.			total number of spelling turns: m_k factor = 0
+2691.			convergence rate: c = 0.1636
+2692.			adjustded convergence rate: c_adj = 0.1636
+2693.		Normalized Convergence Rate:
+2694.			total number of required fields: n_2 = 1
+2695.			total number of spelling fields: m_2 = 0
+2696.			total number of required spelling turns: m_k_2 factor = 0
+2697.			normalized convergence rate: c_2 = 0.0545
+2699.		Natural Language Flexibility Coefficient:
+2700.			number of required turns: v = 5 turns
+2701.			number of user's turns: w = 27 turns
+2702.			natural language flexibility coefficient: f = 0.1852
+2703.			adjusted flexibility coefficient: f_adj = 1.0000
+
+2704.	--- DIALOGUE 14 ---
+
+2705.	I- Form element
+
+2706.		The window have been closed, so we cannot give you the form elements, sorry
+
+2707.	II- Slots
+
+2708.		[slot_name: first name - slot_value: AKaia - required: False - spelling: True - description: your first name]
+2709.		[slot_name: last name - slot_value: Linda - required: False - spelling: True - description: your family name]
+2710.		[slot_name: mark - slot_value: 28,03 - required: False - spelling: False - description: None]
+2711.		[slot_name: password - slot_value: Lethabo - required: False - spelling: False - description: None]
+2712.		[slot_name: email address - slot_value: muhammad@yahoo.it - required: True - spelling: True - description: the email we should use to contact you]
+2713.		[slot_name: phone number - slot_value: +24161292737 - required: False - spelling: False - description: None]
+2714.		[slot_name: number of persons - slot_value: 5 - required: True - spelling: False - description: None]
+2715.		[slot_name: passengers - slot_value: 3 - required: False - spelling: False - description: None]
+2716.		[slot_name: birthday - slot_value: 18-04-1927 - required: False - spelling: False - description: None]
+2717.		[slot_name: arrival time - slot_value: 04:00 - required: True - spelling: True - description: the time you exprct to arrive at the conference]
+2718.		[slot_name: living address - slot_value: 17 place Jose de Sousa Saramago - required: True - spelling: False - description: None]
+2719.		[slot_name: gender - slot_value: other - required: False - spelling: False - description: None - choice_list: ['male', 'female', 'other']]
+2720.		[slot_name: electronic devices - slot_value: none - required: False - spelling: False - description: the electronic devices that you own - choice_list: ['none', 'computer', 'smartphone', 'tablet', 'smart watch', 'smart tv', 'blutooth earphones', 'camera', 'smart glasses']]
+2721.		[slot_name: car - slot_value: honda - required: False - spelling: False - description: the car brand your prefer - choice_list: ['volvo', 'saab', 'fiat', 'audi', 'citroen', 'ford', 'bmw', 'chevrolet', 'honda', 'kia', 'toyota', 'lexus', 'hyundai']]
+2722.		[slot_name: message - slot_value: doughnut - required: False - spelling: False - description: None]
+2723.		[Web Form info -- title: registration form sample - description: presents various fields types in order to test the different kind of input we can have and different actions]
+
+2724.	III-Messages
+
+2725.		Message_0
+2726.			Text: A
+2727.			Intent: [name: spelling - confidence: 0.9931]
+2728.			Entities: [entity: spelling, value: A]
+2729.		Message_1
+2730.			Text: yes, please
+2731.			Intent: [name: affirm - confidence: 0.3281]
+2732.			Entities: 
+2733.		Message_2
+2734.			Text: are there many fields to complete?
+2735.			Intent: [name: verifyPresenceOfField - confidence: 0.3336]
+2736.			Entities: 
+2737.		Message_3
+2738.			Text: i want to do what is necessary to complete the procedure
+2739.			Intent: [name: fillForm - confidence: 0.9973]
+2740.			Entities: 
+2741.		Message_4
+2742.			Text: no, it was an error
+2743.			Intent: [name: fillGenericField - confidence: 0.9029]
+2744.			Entities: [entity: input_value, value: error]
+2745.		Message_5
+2746.			Text: yes, continue
+2747.			Intent: [name: affirm - confidence: 0.9970]
+2748.			Entities: 
+2749.		Message_6
+2750.			Text: i want to reset everything and restart
+2751.			Intent: [name: resetAllFields - confidence: 1.0000]
+2752.			Entities: 
+2753.		Message_7
+2754.			Text: i want to modify the last name and first name
+2755.			Intent: [name: modifyValueGenericField - confidence: 0.9989]
+2756.			Entities: [entity: input_field, value: last name], [entity: input_field, value: first name]
+2757.		Message_8
+2758.			Text: K
+2759.			Intent: [name: spelling - confidence: 0.9928]
+2760.			Entities: [entity: spelling, value: K]
+2761.		Message_9
+2762.			Text: a
+2763.			Intent: [name: spelling - confidence: 0.9931]
+2764.			Entities: [entity: spelling, value: a]
+2765.		Message_10
+2766.			Text: i
+2767.			Intent: [name: spelling - confidence: 0.9769]
+2768.			Entities: [entity: spelling, value: i]
+2769.		Message_11
+2770.			Text: a
+2771.			Intent: [name: spelling - confidence: 0.9931]
+2772.			Entities: [entity: spelling, value: a]
+2773.		Message_12
+2774.			Text: terminator
+2775.			Intent: [name: spelling - confidence: 0.9946]
+2776.			Entities: [entity: spelling, value: terminator]
+2777.		Message_13
+2778.			Text: yes, please
+2779.			Intent: [name: affirm - confidence: 0.3281]
+2780.			Entities: 
+2781.		Message_14
+2782.			Text: skip
+2783.			Intent: [name: skipField - confidence: 0.9937]
+2784.			Entities: 
+2785.		Message_15
+2786.			Text: the value is 28.03
+2787.			Intent: [name: fillGenericField - confidence: 0.9998]
+2788.			Entities: [entity: input_value, value: 28.03]
+2789.		Message_16
+2790.			Text: would it be possible to have the optional remaining fields list?
+2791.			Intent: [name: giveRemainingOptionalFields - confidence: 0.7299]
+2792.			Entities: 
+2793.		Message_17
+2794.			Text: please tell the value again
+2795.			Intent: [name: repeatValueField - confidence: 1.0000]
+2796.			Entities: 
+2797.		Message_18
+2798.			Text: Lethabo is the password
+2799.			Intent: [name: fillGenericField - confidence: 0.9975]
+2800.			Entities: [entity: input_value, value: Lethabo], [entity: input_field, value: password]
+2801.		Message_19
+2802.			Text: no, it was an error
+2803.			Intent: [name: fillGenericField - confidence: 0.9029]
+2804.			Entities: [entity: input_value, value: error]
+2805.		Message_20
+2806.			Text: could you repeat the required fields please?
+2807.			Intent: [name: repeatRequiredFields - confidence: 1.0000]
+2808.			Entities: 
+2809.		Message_21
+2810.			Text: m
+2811.			Intent: [name: spelling - confidence: 0.9919]
+2812.			Entities: [entity: spelling, value: m]
+2813.		Message_22
+2814.			Text: u
+2815.			Intent: [name: spelling - confidence: 0.9967]
+2816.			Entities: [entity: spelling, value: u]
+2817.		Message_23
+2818.			Text: h
+2819.			Intent: [name: spelling - confidence: 0.9966]
+2820.			Entities: [entity: spelling, value: h]
+2821.		Message_24
+2822.			Text: a
+2823.			Intent: [name: spelling - confidence: 0.9931]
+2824.			Entities: [entity: spelling, value: a]
+2825.		Message_25
+2826.			Text: m
+2827.			Intent: [name: spelling - confidence: 0.9919]
+2828.			Entities: [entity: spelling, value: m]
+2829.		Message_26
+2830.			Text: m
+2831.			Intent: [name: spelling - confidence: 0.9919]
+2832.			Entities: [entity: spelling, value: m]
+2833.		Message_27
+2834.			Text: a
+2835.			Intent: [name: spelling - confidence: 0.9931]
+2836.			Entities: [entity: spelling, value: a]
+2837.		Message_28
+2838.			Text: d
+2839.			Intent: [name: spelling - confidence: 0.9950]
+2840.			Entities: [entity: input_value, value: d]
+2841.		Message_29
+2842.			Text: at
+2843.			Intent: [name: spelling - confidence: 0.9925]
+2844.			Entities: [entity: spelling, value: at]
+2845.		Message_30
+2846.			Text: y
+2847.			Intent: [name: spelling - confidence: 0.9893]
+2848.			Entities: [entity: spelling, value: y]
+2849.		Message_31
+2850.			Text: a
+2851.			Intent: [name: spelling - confidence: 0.9931]
+2852.			Entities: [entity: spelling, value: a]
+2853.		Message_32
+2854.			Text: h
+2855.			Intent: [name: spelling - confidence: 0.9966]
+2856.			Entities: [entity: spelling, value: h]
+2857.		Message_33
+2858.			Text: o
+2859.			Intent: [name: spelling - confidence: 0.9238]
+2860.			Entities: [entity: input_value, value: o]
+2861.		Message_34
+2862.			Text: o
+2863.			Intent: [name: spelling - confidence: 0.9238]
+2864.			Entities: [entity: input_value, value: o]
+2865.		Message_35
+2866.			Text: dot
+2867.			Intent: [name: spelling - confidence: 0.9868]
+2868.			Entities: [entity: spelling, value: dot]
+2869.		Message_36
+2870.			Text: i
+2871.			Intent: [name: spelling - confidence: 0.9769]
+2872.			Entities: [entity: spelling, value: i]
+2873.		Message_37
+2874.			Text: t
+2875.			Intent: [name: spelling - confidence: 0.9962]
+2876.			Entities: [entity: spelling, value: t]
+2877.		Message_38
+2878.			Text: terminator
+2879.			Intent: [name: spelling - confidence: 0.9946]
+2880.			Entities: [entity: spelling, value: terminator]
+2881.		Message_39
+2882.			Text: +24161292737 for the field phone number
+2883.			Intent: [name: fillGenericField - confidence: 1.0000]
+2884.			Entities: [entity: input_value, value: +24161292737], [entity: input_field, value: phone number]
+2885.		Message_40
+2886.			Text: please i want the list of all the fields which are mandatory that remain
+2887.			Intent: [name: giveRemainingRequiredFields - confidence: 0.8083]
+2888.			Entities: 
+2889.		Message_41
+2890.			Text: 5 for number of persons
+2891.			Intent: [name: fillGenericField - confidence: 0.9999]
+2892.			Entities: [entity: input_value, value: 5], [entity: input_field, value: number of persons]
+2893.		Message_42
+2894.			Text: the value 3 is for passengers
+2895.			Intent: [name: fillGenericField - confidence: 1.0000]
+2896.			Entities: [entity: input_value, value: 3], [entity: input_field, value: passengers]
+2897.		Message_43
+2898.			Text: no, it was an error
+2899.			Intent: [name: fillGenericField - confidence: 0.9029]
+2900.			Entities: [entity: input_value, value: error]
+2901.		Message_44
+2902.			Text: yes, go ahead
+2903.			Intent: [name: affirm - confidence: 0.9984]
+2904.			Entities: 
+2905.		Message_45
+2906.			Text: April 18 1927 for birthday
+2907.			Intent: [name: fillGenericField - confidence: 1.0000]
+2908.			Entities: [entity: input_value, value: April 18 1927], [entity: input_field, value: birthday]
+2909.		Message_46
+2910.			Text: it would be kind of you if you provide me the madatory fields remaining for completing the form
+2911.			Intent: [name: fillForm - confidence: 0.8211]
+2912.			Entities: [entity: input_value, value: it would be kind of you if you provide]
+2913.		Message_47
+2914.			Text: value of completed fields
+2915.			Intent: [name: verifyValueFilledFields - confidence: 0.9998]
+2916.			Entities: 
+2917.		Message_48
+2918.			Text: i would like to know what i still have to complete
+2919.			Intent: [name: fillForm - confidence: 0.7682]
+2920.			Entities: 
+2921.		Message_49
+2922.			Text: 4
+2923.			Intent: [name: spelling - confidence: 0.9997]
+2924.			Entities: [entity: input_value, value: 4]
+2925.		Message_50
+2926.			Text: space
+2927.			Intent: [name: spelling - confidence: 0.9959]
+2928.			Entities: [entity: spelling, value: space]
+2929.		Message_51
+2930.			Text: o
+2931.			Intent: [name: spelling - confidence: 0.9238]
+2932.			Entities: [entity: input_value, value: o]
+2933.		Message_52
+2934.			Text: underscore
+2935.			Intent: [name: spelling - confidence: 0.9972]
+2936.			Entities: [entity: spelling, value: underscore]
+2937.		Message_53
+2938.			Text: c
+2939.			Intent: [name: spelling - confidence: 0.9979]
+2940.			Entities: [entity: spelling, value: c]
+2941.		Message_54
+2942.			Text: l
+2943.			Intent: [name: spelling - confidence: 0.9985]
+2944.			Entities: [entity: spelling, value: l]
+2945.		Message_55
+2946.			Text: o
+2947.			Intent: [name: spelling - confidence: 0.9238]
+2948.			Entities: [entity: input_value, value: o]
+2949.		Message_56
+2950.			Text: c
+2951.			Intent: [name: spelling - confidence: 0.9979]
+2952.			Entities: [entity: spelling, value: c]
+2953.		Message_57
+2954.			Text: k
+2955.			Intent: [name: spelling - confidence: 0.9928]
+2956.			Entities: [entity: spelling, value: k]
+2957.		Message_58
+2958.			Text: conclude
+2959.			Intent: [name: spelling - confidence: 0.9816]
+2960.			Entities: [entity: spelling, value: conclude]
+2961.		Message_59
+2962.			Text: please remind me what the form is about
+2963.			Intent: [name: explainField - confidence: 0.4364]
+2964.			Entities: [entity: input_value, value: about]
+2965.		Message_60
+2966.			Text: the value for the field is 17 place Jose de Sousa Saramago
+2967.			Intent: [name: fillGenericField - confidence: 1.0000]
+2968.			Entities: [entity: input_value, value: 17 place Jose de Sousa Saramago]
+2969.		Message_61
+2970.			Text: continue to submit the form
+2971.			Intent: [name: fillForm - confidence: 0.9913]
+2972.			Entities: 
+2973.		Message_62
+2974.			Text: for the gender i want to insert other
+2975.			Intent: [name: fillGenericField - confidence: 0.9972]
+2976.			Entities: [entity: input_field, value: gender], [entity: input_value, value: other]
+2977.		Message_63
+2978.			Text: let's go on
+2979.			Intent: [name: fillForm - confidence: 0.9874]
+2980.			Entities: 
+2981.		Message_64
+2982.			Text: could you give me an explanation about the field last name?
+2983.			Intent: [name: explainField - confidence: 0.9999]
+2984.			Entities: [entity: input_field, value: last name]
+2985.		Message_65
+2986.			Text: insert the none
+2987.			Intent: [name: modifyValueGenericField - confidence: 0.6619]
+2988.			Entities: [entity: input_value, value: none]
+2989.		Message_66
+2990.			Text: complete Honda
+2991.			Intent: [name: fillGenericField - confidence: 0.9638]
+2992.			Entities: [entity: input_value, value: Honda]
+2993.		Message_67
+2994.			Text: the proof of the pudding is in the eating for message
+2995.			Intent: [name: fillForm - confidence: 0.9807]
+2996.			Entities: [entity: input_value, value: in the eating], [entity: input_field, value: message]
+2997.		Message_68
+2998.			Text: the value grief divided is made lighter is for message
+2999.			Intent: [name: fillGenericField - confidence: 1.0000]
+3000.			Entities: [entity: input_field, value: message]
+3001.		Message_69
+3002.			Text: message: watch the doughnut, and not the hole
+3003.			Intent: [name: fillGenericField - confidence: 0.9927]
+3004.			Entities: [entity: input_field, value: message], [entity: input_value, value: doughnut], [entity: input_value, value: hole]
+3005.		Message_70
+3006.			Text: L
+3007.			Intent: [name: spelling - confidence: 0.9985]
+3008.			Entities: [entity: spelling, value: L]
+3009.		Message_71
+3010.			Text: i
+3011.			Intent: [name: spelling - confidence: 0.9769]
+3012.			Entities: [entity: spelling, value: i]
+3013.		Message_72
+3014.			Text: n
+3015.			Intent: [name: spelling - confidence: 0.9576]
+3016.			Entities: [entity: spelling, value: n]
+3017.		Message_73
+3018.			Text: d
+3019.			Intent: [name: spelling - confidence: 0.9950]
+3020.			Entities: [entity: input_value, value: d]
+3021.		Message_74
+3022.			Text: a
+3023.			Intent: [name: spelling - confidence: 0.9931]
+3024.			Entities: [entity: spelling, value: a]
+3025.		Message_75
+3026.			Text: close
+3027.			Intent: [name: spelling - confidence: 0.9611]
+3028.			Entities: [entity: spelling, value: close]
+3029.		Message_76
+3030.			Text: yes, go on
+3031.			Intent: [name: affirm - confidence: 0.9994]
+3032.			Entities: 
+
+3033.	IV-Statistics
+3034.		Convergence Rate:
+3035.			total number of turns: t = 155
+3036.			total number of fields: n = 15
+3037.			total number of spelling fields: m = 4
+3038.			total number of spelling turns: m_k factor = 40
+3039.			convergence rate: c = 0.6645
+3040.			adjustded convergence rate: c_adj = 0.4286
+3041.		Normalized Convergence Rate:
+3042.			total number of required fields: n_2 = 4
+3043.			total number of spelling fields: m_2 = 2
+3044.			total number of required spelling turns: m_k_2 factor = 24
+3045.			normalized convergence rate: c_2 = 0.3419
+3047.		Natural Language Flexibility Coefficient:
+3048.			number of required turns: v = 50 turns
+3049.			number of user's turns: w = 77 turns
+3050.			natural language flexibility coefficient: f = 0.6494
+3051.			adjusted flexibility coefficient: f_adj = 0.9512
+
+3052.	--- DIALOGUE 15 ---
+
+3053.	I- Form element
+
+3054.		The window have been closed, so we cannot give you the form elements, sorry
+
+3055.	II- Slots
+
+3056.		[slot_name: first name - slot_value: Sofia - required: True - spelling: True - description: your first name]
+3057.		[slot_name: password - slot_value: Xiaomei - required: True - spelling: False - description: None]
+3058.		[slot_name: email address - slot_value: 1maeva@polimi.it - required: False - spelling: False - description: the email we should use to contact you]
+3059.		[slot_name: birthday - slot_value: 31-03-1916 - required: False - spelling: False - description: None]
+3060.		[slot_name: arrival time - slot_value: 03:55 - required: False - spelling: False - description: the time you expect to arrive at the conference]
+3061.		[Web Form info -- title: registration form sample - description: presents various fields types in order to test the different kinds of input we can have and different actions]
+
+3062.	III-Messages
+
+3063.		Message_0
+3064.			Text: i want to verify the value of the completed fields
+3065.			Intent: [name: verifyValueFilledFields - confidence: 0.9998]
+3066.			Entities: 
+3067.		Message_1
+3068.			Text: give the value
+3069.			Intent: [name: repeatValueField - confidence: 1.0000]
+3070.			Entities: 
+3071.		Message_2
+3072.			Text: A
+3073.			Intent: [name: spelling - confidence: 0.9931]
+3074.			Entities: [entity: spelling, value: A]
+3075.		Message_3
+3076.			Text: sure, go ahead
+3077.			Intent: [name: affirm - confidence: 0.5556]
+3078.			Entities: 
+3079.		Message_4
+3080.			Text: no, i do not
+3081.			Intent: [name: deny - confidence: 1.0000]
+3082.			Entities: 
+3083.		Message_5
+3084.			Text: yes, continue
+3085.			Intent: [name: affirm - confidence: 0.9970]
+3086.			Entities: 
+3087.		Message_6
+3088.			Text: reset everything
+3089.			Intent: [name: resetAllFields - confidence: 1.0000]
+3090.			Entities: 
+3091.		Message_7
+3092.			Text: could you repeat the fields please?
+3093.			Intent: [name: repeatAllFields - confidence: 0.9858]
+3094.			Entities: 
+3095.		Message_8
+3096.			Text: n
+3097.			Intent: [name: spelling - confidence: 0.9576]
+3098.			Entities: [entity: spelling, value: n]
+3099.		Message_9
+3100.			Text: d
+3101.			Intent: [name: spelling - confidence: 0.9950]
+3102.			Entities: [entity: input_value, value: d]
+3103.		Message_10
+3104.			Text: r
+3105.			Intent: [name: spelling - confidence: 0.9963]
+3106.			Entities: [entity: spelling, value: r]
+3107.		Message_11
+3108.			Text: e
+3109.			Intent: [name: spelling - confidence: 0.9927]
+3110.			Entities: [entity: spelling, value: e]
+3111.		Message_12
+3112.			Text: a
+3113.			Intent: [name: spelling - confidence: 0.9931]
+3114.			Entities: [entity: spelling, value: a]
+3115.		Message_13
+3116.			Text: terminate
+3117.			Intent: [name: spelling - confidence: 0.9975]
+3118.			Entities: [entity: spelling, value: terminate]
+3119.		Message_14
+3120.			Text: can i have the list of the obligatory fields?
+3121.			Intent: [name: repeatRequiredFields - confidence: 0.9997]
+3122.			Entities: 
+3123.		Message_15
+3124.			Text: please what is first name?
+3125.			Intent: [name: explainField - confidence: 0.9888]
+3126.			Entities: [entity: input_field, value: first name]
+3127.		Message_16
+3128.			Text: for the field password the value i want to insert is Xiaomei
+3129.			Intent: [name: fillGenericField - confidence: 1.0000]
+3130.			Entities: [entity: input_field, value: password], [entity: input_value, value: Xiaomei]
+3131.		Message_17
+3132.			Text: sure
+3133.			Intent: [name: fillGenericField - confidence: 0.9668]
+3134.			Entities: [entity: input_value, value: sure]
+3135.		Message_18
+3136.			Text: 1maeva@polimi.it for email address
+3137.			Intent: [name: fillGenericField - confidence: 1.0000]
+3138.			Entities: [entity: input_value, value: 1maeva@polimi.it], [entity: input_field, value: email address]
+3139.		Message_19
+3140.			Text: ammend first name with the value Credit Card Type
+3141.			Intent: [name: fillGenericField - confidence: 0.7491]
+3142.			Entities: [entity: input_field, value: first name], [entity: input_value, value: Credit Card Type]
+3143.		Message_20
+3144.			Text: give me the not required remaining fields
+3145.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9994]
+3146.			Entities: 
+3147.		Message_21
+3148.			Text: S
+3149.			Intent: [name: spelling - confidence: 0.9544]
+3150.			Entities: [entity: spelling, value: S]
+3151.		Message_22
+3152.			Text: o
+3153.			Intent: [name: spelling - confidence: 0.9238]
+3154.			Entities: [entity: input_value, value: o]
+3155.		Message_23
+3156.			Text: f
+3157.			Intent: [name: spelling - confidence: 0.9907]
+3158.			Entities: [entity: spelling, value: f]
+3159.		Message_24
+3160.			Text: i
+3161.			Intent: [name: spelling - confidence: 0.9769]
+3162.			Entities: [entity: spelling, value: i]
+3163.		Message_25
+3164.			Text: a
+3165.			Intent: [name: spelling - confidence: 0.9931]
+3166.			Entities: [entity: spelling, value: a]
+3167.		Message_26
+3168.			Text: conclude
+3169.			Intent: [name: spelling - confidence: 0.9816]
+3170.			Entities: [entity: spelling, value: conclude]
+3171.		Message_27
+3172.			Text: i would like to complete this process
+3173.			Intent: [name: fillForm - confidence: 0.9988]
+3174.			Entities: 
+3175.		Message_28
+3176.			Text: for the field birthday the value i want to insert is march 31 1916
+3177.			Intent: [name: fillGenericField - confidence: 1.0000]
+3178.			Entities: [entity: input_field, value: birthday], [entity: input_value, value: march 31 1916]
+3179.		Message_29
+3180.			Text: no, i do not
+3181.			Intent: [name: deny - confidence: 1.0000]
+3182.			Entities: 
+3183.		Message_30
+3184.			Text: the value, here it is 20
+3185.			Intent: [name: fillGenericField - confidence: 0.9981]
+3186.			Entities: [entity: input_value, value: 20]
+3187.		Message_31
+3188.			Text: i did not get well the optional fields, could you repeat it please?
+3189.			Intent: [name: repeatOptionalFields - confidence: 0.8029]
+3190.			Entities: 
+3191.		Message_32
+3192.			Text: is there a description for this form?
+3193.			Intent: [name: fillGenericField - confidence: 0.6072]
+3194.			Entities: [entity: input_field, value: description]
+3195.		Message_33
+3196.			Text: the value i want to insert is 3:55 o_clock
+3197.			Intent: [name: fillGenericField - confidence: 0.9999]
+3198.			Entities: [entity: input_value, value: 3:55 o_clock]
+3199.		Message_34
+3200.			Text: yes, go on
+3201.			Intent: [name: affirm - confidence: 0.9994]
+3202.			Entities: 
+
+3203.	IV-Statistics
+3204.		Convergence Rate:
+3205.			total number of turns: t = 71
+3206.			total number of fields: n = 5
+3207.			total number of spelling fields: m = 1
+3208.			total number of spelling turns: m_k factor = 13
+3209.			convergence rate: c = 0.4930
+3210.			adjustded convergence rate: c_adj = 0.2653
+3211.		Normalized Convergence Rate:
+3212.			total number of required fields: n_2 = 2
+3213.			total number of spelling fields: m_2 = 1
+3214.			total number of required spelling turns: m_k_2 factor = 6
+3215.			normalized convergence rate: c_2 = 0.2113
+3217.		Natural Language Flexibility Coefficient:
+3218.			number of required turns: v = 18 turns
+3219.			number of user's turns: w = 35 turns
+3220.			natural language flexibility coefficient: f = 0.5143
+3221.			adjusted flexibility coefficient: f_adj = 1.0000
+
+3222.	--- DIALOGUE 16 ---
+
+3223.	I- Form element
+
+3224.		The window have been closed, so we cannot give you the form elements, sorry
+
+3225.	II- Slots
+
+3226.		[slot_name: first name - slot_value: TLucia - required: True - spelling: True - description: your first name]
+3227.		[slot_name: last name - slot_value: eura - required: False - spelling: True - description: your family name]
+3228.		[slot_name: mark - slot_value: 25,84 - required: False - spelling: False - description: None]
+3229.		[slot_name: password - slot_value: Princess - required: False - spelling: False - description: None]
+3230.		[slot_name: email address - slot_value: iwjun@polimi.uk - required: True - spelling: False - description: the email we should use to contact you]
+3231.		[Web Form info -- title: None - description: None]
+
+3232.	III-Messages
+
+3233.		Message_0
+3234.			Text: give me all the remaining fields
+3235.			Intent: [name: giveAllRemainingFields - confidence: 0.9999]
+3236.			Entities: 
+3237.		Message_1
+3238.			Text: i did not get well all, is there Country?
+3239.			Intent: [name: giveRemainingOptionalFields - confidence: 0.7989]
+3240.			Entities: 
+3241.		Message_2
+3242.			Text: i want to skip
+3243.			Intent: [name: skipField - confidence: 0.8342]
+3244.			Entities: 
+3245.		Message_3
+3246.			Text: what are the values inserted for last name and first name?
+3247.			Intent: [name: repeatValueField - confidence: 0.9987]
+3248.			Entities: [entity: input_field, value: last name], [entity: input_field, value: first name]
+3249.		Message_4
+3250.			Text: what are the values of the completed fields
+3251.			Intent: [name: verifyValueFilledFields - confidence: 0.9989]
+3252.			Entities: 
+3253.		Message_5
+3254.			Text: what are obligatory the fields that i didn't complete yet?
+3255.			Intent: [name: giveRemainingRequiredFields - confidence: 0.9972]
+3256.			Entities: 
+3257.		Message_6
+3258.			Text: T
+3259.			Intent: [name: spelling - confidence: 0.9962]
+3260.			Entities: [entity: spelling, value: T]
+3261.		Message_7
+3262.			Text: sure, go ahead
+3263.			Intent: [name: affirm - confidence: 0.5556]
+3264.			Entities: 
+3265.		Message_8
+3266.			Text: yes, thanks
+3267.			Intent: [name: affirm - confidence: 0.9102]
+3268.			Entities: 
+3269.		Message_9
+3270.			Text: can you give me some explanation about the form?
+3271.			Intent: [name: explainField - confidence: 0.8061]
+3272.			Entities: 
+3273.		Message_10
+3274.			Text: i want to fill the remaining fields
+3275.			Intent: [name: fillForm - confidence: 0.9893]
+3276.			Entities: 
+3277.		Message_11
+3278.			Text: could you please give me the list of fields for the completion of the procedure?
+3279.			Intent: [name: repeatAllFields - confidence: 0.6941]
+3280.			Entities: 
+3281.		Message_12
+3282.			Text: e
+3283.			Intent: [name: spelling - confidence: 0.9927]
+3284.			Entities: [entity: spelling, value: e]
+3285.		Message_13
+3286.			Text: u
+3287.			Intent: [name: spelling - confidence: 0.9967]
+3288.			Entities: [entity: spelling, value: u]
+3289.		Message_14
+3290.			Text: r
+3291.			Intent: [name: spelling - confidence: 0.9963]
+3292.			Entities: [entity: spelling, value: r]
+3293.		Message_15
+3294.			Text: yes, please
+3295.			Intent: [name: affirm - confidence: 0.3281]
+3296.			Entities: 
+3297.		Message_16
+3298.			Text: is it possible to change a value?
+3299.			Intent: [name: modifyValueGenericField - confidence: 0.9998]
+3300.			Entities: 
+3301.		Message_17
+3302.			Text: i would like you to repeat the optional fields for me
+3303.			Intent: [name: repeatOptionalFields - confidence: 0.9207]
+3304.			Entities: 
+3305.		Message_18
+3306.			Text: a
+3307.			Intent: [name: spelling - confidence: 0.9931]
+3308.			Entities: [entity: spelling, value: a]
+3309.		Message_19
+3310.			Text: finished
+3311.			Intent: [name: spelling - confidence: 0.9903]
+3312.			Entities: [entity: spelling, value: finished]
+3313.		Message_20
+3314.			Text: please restart the process form the beginning
+3315.			Intent: [name: modifyValueGenericField - confidence: 0.3478]
+3316.			Entities: [entity: input_value, value: beginning]
+3317.		Message_21
+3318.			Text: sure, go ahead
+3319.			Intent: [name: affirm - confidence: 0.5556]
+3320.			Entities: 
+3321.		Message_22
+3322.			Text: i want to complete the process
+3323.			Intent: [name: fillForm - confidence: 0.9993]
+3324.			Entities: 
+3325.		Message_23
+3326.			Text: 25,8435 is the mark
+3327.			Intent: [name: fillGenericField - confidence: 0.9990]
+3328.			Entities: [entity: input_value, value: 25,8435], [entity: input_field, value: mark]
+3329.		Message_24
+3330.			Text: please can i submit the form?
+3331.			Intent: [name: submitForm - confidence: 0.5977]
+3332.			Entities: 
+3333.		Message_25
+3334.			Text: i don't get well what is first name
+3335.			Intent: [name: explainField - confidence: 0.9968]
+3336.			Entities: [entity: input_field, value: first name]
+3337.		Message_26
+3338.			Text: for password insert Princess
+3339.			Intent: [name: fillGenericField - confidence: 0.9949]
+3340.			Entities: [entity: input_field, value: password], [entity: input_value, value: Princess]
+3341.		Message_27
+3342.			Text: iwjun@polimi.uk is my email address
+3343.			Intent: [name: fillGenericField - confidence: 0.9986]
+3344.			Entities: [entity: input_value, value: iwjun@polimi.uk], [entity: input_field, value: email address]
+3345.		Message_28
+3346.			Text: L
+3347.			Intent: [name: spelling - confidence: 0.9985]
+3348.			Entities: [entity: spelling, value: L]
+3349.		Message_29
+3350.			Text: u
+3351.			Intent: [name: spelling - confidence: 0.9967]
+3352.			Entities: [entity: spelling, value: u]
+3353.		Message_30
+3354.			Text: c
+3355.			Intent: [name: spelling - confidence: 0.9979]
+3356.			Entities: [entity: spelling, value: c]
+3357.		Message_31
+3358.			Text: i
+3359.			Intent: [name: spelling - confidence: 0.9769]
+3360.			Entities: [entity: spelling, value: i]
+3361.		Message_32
+3362.			Text: a
+3363.			Intent: [name: spelling - confidence: 0.9931]
+3364.			Entities: [entity: spelling, value: a]
+3365.		Message_33
+3366.			Text: end
+3367.			Intent: [name: spelling - confidence: 0.9914]
+3368.			Entities: [entity: spelling, value: end]
+3369.		Message_34
+3370.			Text: continue what i started
+3371.			Intent: [name: fillForm - confidence: 0.9982]
+3372.			Entities: 
+3373.		Message_35
+3374.			Text: i want to submit
+3375.			Intent: [name: submitForm - confidence: 0.9997]
+3376.			Entities: 
+
+3377.	IV-Statistics
+3378.		Convergence Rate:
+3379.			total number of turns: t = 73
+3380.			total number of fields: n = 5
+3381.			total number of spelling fields: m = 2
+3382.			total number of spelling turns: m_k factor = 12
+3383.			convergence rate: c = 0.4247
+3384.			adjustded convergence rate: c_adj = 0.2632
+3385.		Normalized Convergence Rate:
+3386.			total number of required fields: n_2 = 2
+3387.			total number of spelling fields: m_2 = 1
+3388.			total number of required spelling turns: m_k_2 factor = 7
+3389.			normalized convergence rate: c_2 = 0.2329
+3391.		Natural Language Flexibility Coefficient:
+3392.			number of required turns: v = 15 turns
+3393.			number of user's turns: w = 36 turns
+3394.			natural language flexibility coefficient: f = 0.4167
+3395.			adjusted flexibility coefficient: f_adj = 0.9615
+
+3396.	--- DIALOGUE 17 ---
+
+3397.	I- Form element
+
+3398.		The window have been closed, so we cannot give you the form elements, sorry
+
+3399.	II- Slots
+
+3400.		[slot_name: number of persons - slot_value: 1 - required: False - spelling: False - description: the number of persons coming with you]
+3401.		[slot_name: phone number - slot_value: 0038005037426 - required: False - spelling: True - description: None]
+3402.		[slot_name: birthday - slot_value: 21-06-1909 - required: False - spelling: False - description: None]
+3403.		[slot_name: arrival time - slot_value: None - required: False - spelling: False - description: the time you exprct to arrive at the conference]
+3404.		[Web Form info -- title: test form sample number 2 - description: presents various fields types in order to test the different kind of input we can have and different actions]
+
+3405.	III-Messages
+
+3406.		Message_0
+3407.			Text: is Expires also there?
+3408.			Intent: [name: verifyPresenceOfField - confidence: 1.0000]
+3409.			Entities: [entity: input_value, value: Expires]
+3410.		Message_1
+3411.			Text: i would like to know what i have to complete in term of not obligatory or optional field
+3412.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9669]
+3413.			Entities: 
+3414.		Message_2
+3415.			Text: may i skip?
+3416.			Intent: [name: fillGenericField - confidence: 0.9603]
+3417.			Entities: 
+3418.		Message_3
+3419.			Text: would it be possible to have the obligatory fields list?
+3420.			Intent: [name: repeatRequiredFields - confidence: 0.9995]
+3421.			Entities: 
+3422.		Message_4
+3423.			Text: i want to fill the remaining fields
+3424.			Intent: [name: fillForm - confidence: 0.9893]
+3425.			Entities: 
+3426.		Message_5
+3427.			Text: 1
+3428.			Intent: [name: fillGenericField - confidence: 0.9997]
+3429.			Entities: [entity: input_value, value: 1]
+3430.		Message_6
+3431.			Text: please give me some explanations about this form
+3432.			Intent: [name: repeatFormExplanation - confidence: 0.9787]
+3433.			Entities: 
+3434.		Message_7
+3435.			Text: 0
+3436.			Intent: [name: spelling - confidence: 0.9997]
+3437.			Entities: [entity: input_value, value: 0]
+3438.		Message_8
+3439.			Text: 0
+3440.			Intent: [name: spelling - confidence: 0.9997]
+3441.			Entities: [entity: input_value, value: 0]
+3442.		Message_9
+3443.			Text: 3
+3444.			Intent: [name: spelling - confidence: 0.9997]
+3445.			Entities: [entity: input_value, value: 3]
+3446.		Message_10
+3447.			Text: yes
+3448.			Intent: [name: affirm - confidence: 0.9761]
+3449.			Entities: 
+3450.		Message_11
+3451.			Text: are there still many fields to complete?
+3452.			Intent: [name: giveAllRemainingFields - confidence: 0.9463]
+3453.			Entities: 
+3454.		Message_12
+3455.			Text: yes, thanks
+3456.			Intent: [name: affirm - confidence: 0.9102]
+3457.			Entities: 
+3458.		Message_13
+3459.			Text: can i have the list of the optional remaining fields
+3460.			Intent: [name: giveRemainingOptionalFields - confidence: 0.8842]
+3461.			Entities: 
+3462.		Message_14
+3463.			Text: 8
+3464.			Intent: [name: spelling - confidence: 0.9997]
+3465.			Entities: [entity: input_value, value: 8]
+3466.		Message_15
+3467.			Text: 0
+3468.			Intent: [name: spelling - confidence: 0.9997]
+3469.			Entities: [entity: input_value, value: 0]
+3470.		Message_16
+3471.			Text: 0
+3472.			Intent: [name: spelling - confidence: 0.9997]
+3473.			Entities: [entity: input_value, value: 0]
+3474.		Message_17
+3475.			Text: 5
+3476.			Intent: [name: spelling - confidence: 0.9997]
+3477.			Entities: [entity: input_value, value: 5]
+3478.		Message_18
+3479.			Text: 0
+3480.			Intent: [name: spelling - confidence: 0.9997]
+3481.			Entities: [entity: input_value, value: 0]
+3482.		Message_19
+3483.			Text: 3
+3484.			Intent: [name: spelling - confidence: 0.9997]
+3485.			Entities: [entity: input_value, value: 3]
+3486.		Message_20
+3487.			Text: 7
+3488.			Intent: [name: spelling - confidence: 0.9997]
+3489.			Entities: [entity: input_value, value: 7]
+3490.		Message_21
+3491.			Text: 4
+3492.			Intent: [name: spelling - confidence: 0.9997]
+3493.			Entities: [entity: input_value, value: 4]
+3494.		Message_22
+3495.			Text: 2
+3496.			Intent: [name: spelling - confidence: 0.9997]
+3497.			Entities: [entity: input_value, value: 2]
+3498.		Message_23
+3499.			Text: 6
+3500.			Intent: [name: spelling - confidence: 0.9997]
+3501.			Entities: [entity: input_value, value: 6]
+3502.		Message_24
+3503.			Text: end
+3504.			Intent: [name: spelling - confidence: 0.9914]
+3505.			Entities: [entity: spelling, value: end]
+3506.		Message_25
+3507.			Text: may i submit now?
+3508.			Intent: [name: fillGenericField - confidence: 0.8436]
+3509.			Entities: 
+3510.		Message_26
+3511.			Text: the value for the field is 21 June 1909
+3512.			Intent: [name: fillGenericField - confidence: 1.0000]
+3513.			Entities: [entity: input_value, value: 21 June 1909]
+3514.		Message_27
+3515.			Text: they are too many mistakes, i want to restart
+3516.			Intent: [name: resetAllFields - confidence: 0.9567]
+3517.			Entities: 
+3518.		Message_28
+3519.			Text: no, it was an error
+3520.			Intent: [name: fillGenericField - confidence: 0.9029]
+3521.			Entities: [entity: input_value, value: error]
+3522.		Message_29
+3523.			Text: this is the value 01 o_clock
+3524.			Intent: [name: fillGenericField - confidence: 1.0000]
+3525.			Entities: [entity: input_value, value: 01 o_clock]
+3526.		Message_30
+3527.			Text: i would like to submit the form
+3528.			Intent: [name: submitForm - confidence: 0.9999]
+3529.			Entities: 
+3530.		Message_31
+3531.			Text: submit the form
+3532.			Intent: [name: submitForm - confidence: 0.9998]
+3533.			Entities: 
+
+3534.	IV-Statistics
+3535.		Convergence Rate:
+3536.			total number of turns: t = 65
+3537.			total number of fields: n = 4
+3538.			total number of spelling fields: m = 1
+3539.			total number of spelling turns: m_k factor = 14
+3540.			convergence rate: c = 0.5385
+3541.			adjustded convergence rate: c_adj = 0.2683
+3542.		Normalized Convergence Rate:
+3543.			total number of required fields: n_2 = 0
+3544.			total number of spelling fields: m_2 = 0
+3545.			total number of required spelling turns: m_k_2 factor = 0
+3546.			normalized convergence rate: c_2 = 0.0154
+3548.		Natural Language Flexibility Coefficient:
+3549.			number of required turns: v = 18 turns
+3550.			number of user's turns: w = 32 turns
+3551.			natural language flexibility coefficient: f = 0.5625
+3552.			adjusted flexibility coefficient: f_adj = 1.0000
+
+3553.	--- DIALOGUE 18 ---
+
+3554.	I- Form element
+
+3555.		The window have been closed, so we cannot give you the form elements, sorry
+
+3556.	II- Slots
+
+3557.		[slot_name: gender - slot_value: male - required: True - spelling: False - description: None - choice_list: ['male', 'female', 'other']]
+3558.		[slot_name: electronic devices - slot_value: none - required: False - spelling: False - description: the electronic devices that you own - choice_list: ['none', 'computer', 'smartphone', 'tablet', 'smart watch', 'smart tv', 'blutooth earphones', 'camera', 'smart glasses']]
+3559.		[slot_name: car - slot_value: ford - required: False - spelling: False - description: the car brand your prefer - choice_list: ['volvo', 'saab', 'fiat', 'audi', 'citroen', 'ford', 'bmw', 'chevrolet', 'honda', 'kia', 'toyota', 'lexus', 'hyundai']]
+3560.		[slot_name: message - slot_value: bite the hand that feeds you - required: False - spelling: False - description: your suggestions or precisions]
+3561.		[Web Form info -- title: test form sample number 3 - description: presents various fields types in order to test the different kind of input we can have and different actions]
+
+3562.	III-Messages
+
+3563.		Message_0
+3564.			Text: i would like to complete this process
+3565.			Intent: [name: fillForm - confidence: 0.9988]
+3566.			Entities: 
+3567.		Message_1
+3568.			Text: tell me something about the field already completed
+3569.			Intent: [name: verifyValueFilledFields - confidence: 0.9631]
+3570.			Entities: 
+3571.		Message_2
+3572.			Text: give me the remaining fields
+3573.			Intent: [name: giveAllRemainingFields - confidence: 0.9996]
+3574.			Entities: 
+3575.		Message_3
+3576.			Text: give me the not required remaining fields
+3577.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9994]
+3578.			Entities: 
+3579.		Message_4
+3580.			Text: can you give me some explanation about the form?
+3581.			Intent: [name: explainField - confidence: 0.8061]
+3582.			Entities: 
+3583.		Message_5
+3584.			Text: i didn't get well the fields
+3585.			Intent: [name: repeatAllFields - confidence: 0.7851]
+3586.			Entities: 
+3587.		Message_6
+3588.			Text: please can i submit the form?
+3589.			Intent: [name: submitForm - confidence: 0.5977]
+3590.			Entities: 
+3591.		Message_7
+3592.			Text: it would be kind of you if you provide me the madatory fields remaining for completing the form
+3593.			Intent: [name: fillForm - confidence: 0.8211]
+3594.			Entities: [entity: input_value, value: it would be kind of you if you provide]
+3595.		Message_8
+3596.			Text: i want to reset everything and restart
+3597.			Intent: [name: resetAllFields - confidence: 1.0000]
+3598.			Entities: 
+3599.		Message_9
+3600.			Text: yes, continue
+3601.			Intent: [name: affirm - confidence: 0.9970]
+3602.			Entities: 
+3603.		Message_10
+3604.			Text: the value male is for gender
+3605.			Intent: [name: fillGenericField - confidence: 1.0000]
+3606.			Entities: [entity: input_value, value: male], [entity: input_field, value: gender]
+3607.		Message_11
+3608.			Text: fill electronic devices with none
+3609.			Intent: [name: modifyValueGenericField - confidence: 0.5017]
+3610.			Entities: [entity: input_field, value: electronic devices], [entity: input_value, value: none]
+3611.		Message_12
+3612.			Text: is there Age in this form?
+3613.			Intent: [name: verifyPresenceOfField - confidence: 0.9994]
+3614.			Entities: 
+3615.		Message_13
+3616.			Text: i would like you to repeat the optional fields for me
+3617.			Intent: [name: repeatOptionalFields - confidence: 0.9207]
+3618.			Entities: 
+3619.		Message_14
+3620.			Text: complete the Ford
+3621.			Intent: [name: fillGenericField - confidence: 0.6379]
+3622.			Entities: [entity: input_value, value: Ford]
+3623.		Message_15
+3624.			Text: no, i don't
+3625.			Intent: [name: deny - confidence: 1.0000]
+3626.			Entities: 
+3627.		Message_16
+3628.			Text: persuasion is better than force is the value for the field message
+3629.			Intent: [name: fillGenericField - confidence: 1.0000]
+3630.			Entities: [entity: input_field, value: message]
+3631.		Message_17
+3632.			Text: the value for the field is every dog has his day
+3633.			Intent: [name: fillGenericField - confidence: 1.0000]
+3634.			Entities: [entity: input_value, value: every dog has], [entity: input_field, value: day]
+3635.		Message_18
+3636.			Text: move to the next field
+3637.			Intent: [name: fillGenericField - confidence: 0.5895]
+3638.			Entities: 
+3639.		Message_19
+3640.			Text: i want to insert the value don't bite the hand that feeds you
+3641.			Intent: [name: fillGenericField - confidence: 0.7878]
+3642.			Entities: [entity: input_value, value: bite the hand that feeds you]
+3643.		Message_20
+3644.			Text: yes, continue
+3645.			Intent: [name: affirm - confidence: 0.9970]
+3646.			Entities: 
+
+3647.	IV-Statistics
+3648.		Convergence Rate:
+3649.			total number of turns: t = 43
+3650.			total number of fields: n = 4
+3651.			total number of spelling fields: m = 0
+3652.			total number of spelling turns: m_k factor = 0
+3653.			convergence rate: c = 0.2093
+3654.			adjustded convergence rate: c_adj = 0.2093
+3655.		Normalized Convergence Rate:
+3656.			total number of required fields: n_2 = 1
+3657.			total number of spelling fields: m_2 = 0
+3658.			total number of required spelling turns: m_k_2 factor = 0
+3659.			normalized convergence rate: c_2 = 0.0698
+3661.		Natural Language Flexibility Coefficient:
+3662.			number of required turns: v = 5 turns
+3663.			number of user's turns: w = 21 turns
+3664.			natural language flexibility coefficient: f = 0.2381
+3665.			adjusted flexibility coefficient: f_adj = 1.0000
+
+3666.	--- DIALOGUE 19 ---
+
+3667.	I- Form element
+
+3668.		The window have been closed, so we cannot give you the form elements, sorry
+
+3669.	II- Slots
+
+3670.		[slot_name: first name - slot_value: Alba - required: False - spelling: True - description: your first name]
+3671.		[slot_name: last name - slot_value: Ying - required: False - spelling: True - description: your family name]
+3672.		[slot_name: mark - slot_value: 28,26 - required: False - spelling: False - description: None]
+3673.		[slot_name: password - slot_value: @9Barbara - required: False - spelling: False - description: None]
+3674.		[slot_name: email address - slot_value: elizabeth@polimi.fr - required: True - spelling: True - description: the email we should use to contact you]
+3675.		[slot_name: phone number - slot_value: 0035728626052 - required: False - spelling: False - description: None]
+3676.		[slot_name: number of persons - slot_value: 2 - required: True - spelling: False - description: None]
+3677.		[slot_name: passengers - slot_value: 0 - required: False - spelling: False - description: None]
+3678.		[slot_name: birthday - slot_value: 01-09-1971 - required: False - spelling: False - description: None]
+3679.		[slot_name: arrival time - slot_value: 14:54 - required: True - spelling: True - description: the time you exprct to arrive at the conference]
+3680.		[slot_name: living address - slot_value: 24 place Alice Munro - required: True - spelling: False - description: None]
+3681.		[slot_name: gender - slot_value: other - required: False - spelling: False - description: None - choice_list: ['male', 'female', 'other']]
+3682.		[slot_name: electronic devices - slot_value: ['computer', 'smart', 'tv'] - required: False - spelling: False - description: the electronic devices that you own - choice_list: ['none', 'computer', 'smartphone', 'tablet', 'smart watch', 'smart tv', 'blutooth earphones', 'camera', 'smart glasses']]
+3683.		[slot_name: car - slot_value: ford - required: False - spelling: False - description: the car brand your prefer - choice_list: ['volvo', 'saab', 'fiat', 'audi', 'citroen', 'ford', 'bmw', 'chevrolet', 'honda', 'kia', 'toyota', 'lexus', 'hyundai']]
+3684.		[slot_name: message - slot_value: ignorance - required: False - spelling: False - description: None]
+3685.		[Web Form info -- title: registration form sample - description: presents various fields types in order to test the different kind of input we can have and different actions]
+
+3686.	III-Messages
+
+3687.		Message_0
+3688.			Text: fill later
+3689.			Intent: [name: modifyValueGenericField - confidence: 0.6332]
+3690.			Entities: [entity: input_value, value: later]
+3691.		Message_1
+3692.			Text: reset everything
+3693.			Intent: [name: resetAllFields - confidence: 1.0000]
+3694.			Entities: 
+3695.		Message_2
+3696.			Text: could you please give me the list of remaining fields for the ones mandatrory for the completion of the procedure?
+3697.			Intent: [name: giveRemainingRequiredFields - confidence: 0.7775]
+3698.			Entities: [entity: input_value, value: mandatrory]
+3699.		Message_3
+3700.			Text: B
+3701.			Intent: [name: spelling - confidence: 0.9965]
+3702.			Entities: [entity: spelling, value: B]
+3703.		Message_4
+3704.			Text: no, i do not
+3705.			Intent: [name: deny - confidence: 1.0000]
+3706.			Entities: 
+3707.		Message_5
+3708.			Text: is VAT Number also there?
+3709.			Intent: [name: verifyPresenceOfField - confidence: 1.0000]
+3710.			Entities: [entity: input_field, value: VAT Number]
+3711.		Message_6
+3712.			Text: may i submit now?
+3713.			Intent: [name: fillGenericField - confidence: 0.8436]
+3714.			Entities: 
+3715.		Message_7
+3716.			Text: give me the fields remaining
+3717.			Intent: [name: giveAllRemainingFields - confidence: 0.9996]
+3718.			Entities: 
+3719.		Message_8
+3720.			Text: sure, go ahead
+3721.			Intent: [name: affirm - confidence: 0.5556]
+3722.			Entities: 
+3723.		Message_9
+3724.			Text: give me the optional fields
+3725.			Intent: [name: repeatOptionalFields - confidence: 0.9995]
+3726.			Entities: 
+3727.		Message_10
+3728.			Text: i want to know the fields, all the fields
+3729.			Intent: [name: repeatAllFields - confidence: 0.9993]
+3730.			Entities: 
+3731.		Message_11
+3732.			Text: may i submit now?
+3733.			Intent: [name: fillGenericField - confidence: 0.8436]
+3734.			Entities: 
+3735.		Message_12
+3736.			Text: what are the remaining fields which are optional
+3737.			Intent: [name: giveRemainingOptionalFields - confidence: 0.9967]
+3738.			Entities: 
+3739.		Message_13
+3740.			Text: A
+3741.			Intent: [name: spelling - confidence: 0.9931]
+3742.			Entities: [entity: spelling, value: A]
+3743.		Message_14
+3744.			Text: yes, i do
+3745.			Intent: [name: affirm - confidence: 0.9573]
+3746.			Entities: 
+3747.		Message_15
+3748.			Text: yes, go on
+3749.			Intent: [name: affirm - confidence: 0.9994]
+3750.			Entities: 
+3751.		Message_16
+3752.			Text: please repeat the value of the field living address
+3753.			Intent: [name: repeatValueField - confidence: 0.9999]
+3754.			Entities: [entity: input_field, value: living address]
+3755.		Message_17
+3756.			Text: l
+3757.			Intent: [name: spelling - confidence: 0.9985]
+3758.			Entities: [entity: spelling, value: l]
+3759.		Message_18
+3760.			Text: b
+3761.			Intent: [name: spelling - confidence: 0.9965]
+3762.			Entities: [entity: spelling, value: b]
+3763.		Message_19
+3764.			Text: a
+3765.			Intent: [name: spelling - confidence: 0.9931]
+3766.			Entities: [entity: spelling, value: a]
+3767.		Message_20
+3768.			Text: terminator
+3769.			Intent: [name: spelling - confidence: 0.9946]
+3770.			Entities: [entity: spelling, value: terminator]
+3771.		Message_21
+3772.			Text: i want a recap
+3773.			Intent: [name: submitForm - confidence: 0.4192]
+3774.			Entities: 
+3775.		Message_22
+3776.			Text: what are the fields which are obligatory
+3777.			Intent: [name: repeatRequiredFields - confidence: 1.0000]
+3778.			Entities: 
+3779.		Message_23
+3780.			Text: submit the form
+3781.			Intent: [name: submitForm - confidence: 0.9998]
+3782.			Entities: 
+3783.		Message_24
+3784.			Text: i want to fill the remaining fields
+3785.			Intent: [name: fillForm - confidence: 0.9893]
+3786.			Entities: 
+3787.		Message_25
+3788.			Text: please can i submit the form?
+3789.			Intent: [name: submitForm - confidence: 0.5977]
+3790.			Entities: 
+3791.		Message_26
+3792.			Text: sure, continue
+3793.			Intent: [name: affirm - confidence: 0.4728]
+3794.			Entities: 
+3795.		Message_27
+3796.			Text: let's complete what remains
+3797.			Intent: [name: fillForm - confidence: 0.9994]
+3798.			Entities: 
+3799.		Message_28
+3800.			Text: i prefer not
+3801.			Intent: [name: deny - confidence: 0.5827]
+3802.			Entities: 
+3803.		Message_29
+3804.			Text: modify
+3805.			Intent: [name: modifyValueGenericField - confidence: 0.9998]
+3806.			Entities: 
+3807.		Message_30
+3808.			Text: yes
+3809.			Intent: [name: affirm - confidence: 0.9761]
+3810.			Entities: 
+3811.		Message_31
+3812.			Text: submit the form
+3813.			Intent: [name: submitForm - confidence: 0.9998]
+3814.			Entities: 
+3815.		Message_32
+3816.			Text: Y
+3817.			Intent: [name: spelling - confidence: 0.9893]
+3818.			Entities: [entity: spelling, value: Y]
+3819.		Message_33
+3820.			Text: i
+3821.			Intent: [name: spelling - confidence: 0.9769]
+3822.			Entities: [entity: spelling, value: i]
+3823.		Message_34
+3824.			Text: n
+3825.			Intent: [name: spelling - confidence: 0.9576]
+3826.			Entities: [entity: spelling, value: n]
+3827.		Message_35
+3828.			Text: g
+3829.			Intent: [name: spelling - confidence: 0.9860]
+3830.			Entities: [entity: spelling, value: g]
+3831.		Message_36
+3832.			Text: finish
+3833.			Intent: [name: spelling - confidence: 0.9991]
+3834.			Entities: [entity: spelling, value: finish]
+3835.		Message_37
+3836.			Text: here is the value 28.264
+3837.			Intent: [name: fillGenericField - confidence: 0.9994]
+3838.			Entities: [entity: input_value, value: 28.264]
+3839.		Message_38
+3840.			Text: no, i did it by mistake
+3841.			Intent: [name: fillGenericField - confidence: 0.9201]
+3842.			Entities: [entity: input_value, value: it by mistake]
+3843.		Message_39
+3844.			Text: i want to insert the value @9Barbara for the field password
+3845.			Intent: [name: fillGenericField - confidence: 1.0000]
+3846.			Entities: [entity: input_value, value: @9Barbara], [entity: input_field, value: password]
+3847.		Message_40
+3848.			Text: submit
+3849.			Intent: [name: submitForm - confidence: 0.9992]
+3850.			Entities: 
+3851.		Message_41
+3852.			Text: i don't get well what is last name
+3853.			Intent: [name: explainField - confidence: 0.9994]
+3854.			Entities: [entity: input_field, value: last name]
+3855.		Message_42
+3856.			Text: about this form, please some explanations
+3857.			Intent: [name: repeatFormExplanation - confidence: 0.9774]
+3858.			Entities: [entity: input_value, value: some explanations]
+3859.		Message_43
+3860.			Text: e
+3861.			Intent: [name: spelling - confidence: 0.9927]
+3862.			Entities: [entity: spelling, value: e]
+3863.		Message_44
+3864.			Text: l
+3865.			Intent: [name: spelling - confidence: 0.9985]
+3866.			Entities: [entity: spelling, value: l]
+3867.		Message_45
+3868.			Text: i
+3869.			Intent: [name: spelling - confidence: 0.9769]
+3870.			Entities: [entity: spelling, value: i]
+3871.		Message_46
+3872.			Text: z
+3873.			Intent: [name: spelling - confidence: 0.9992]
+3874.			Entities: [entity: spelling, value: z]
+3875.		Message_47
+3876.			Text: a
+3877.			Intent: [name: spelling - confidence: 0.9931]
+3878.			Entities: [entity: spelling, value: a]
+3879.		Message_48
+3880.			Text: b
+3881.			Intent: [name: spelling - confidence: 0.9965]
+3882.			Entities: [entity: spelling, value: b]
+3883.		Message_49
+3884.			Text: e
+3885.			Intent: [name: spelling - confidence: 0.9927]
+3886.			Entities: [entity: spelling, value: e]
+3887.		Message_50
+3888.			Text: t
+3889.			Intent: [name: spelling - confidence: 0.9962]
+3890.			Entities: [entity: spelling, value: t]
+3891.		Message_51
+3892.			Text: h
+3893.			Intent: [name: spelling - confidence: 0.9966]
+3894.			Entities: [entity: spelling, value: h]
+3895.		Message_52
+3896.			Text: at
+3897.			Intent: [name: spelling - confidence: 0.9925]
+3898.			Entities: [entity: spelling, value: at]
+3899.		Message_53
+3900.			Text: p
+3901.			Intent: [name: spelling - confidence: 0.9908]
+3902.			Entities: [entity: spelling, value: p]
+3903.		Message_54
+3904.			Text: o
+3905.			Intent: [name: spelling - confidence: 0.9238]
+3906.			Entities: [entity: input_value, value: o]
+3907.		Message_55
+3908.			Text: l
+3909.			Intent: [name: spelling - confidence: 0.9985]
+3910.			Entities: [entity: spelling, value: l]
+3911.		Message_56
+3912.			Text: i
+3913.			Intent: [name: spelling - confidence: 0.9769]
+3914.			Entities: [entity: spelling, value: i]
+3915.		Message_57
+3916.			Text: m
+3917.			Intent: [name: spelling - confidence: 0.9919]
+3918.			Entities: [entity: spelling, value: m]
+3919.		Message_58
+3920.			Text: i
+3921.			Intent: [name: spelling - confidence: 0.9769]
+3922.			Entities: [entity: spelling, value: i]
+3923.		Message_59
+3924.			Text: dot
+3925.			Intent: [name: spelling - confidence: 0.9868]
+3926.			Entities: [entity: spelling, value: dot]
+3927.		Message_60
+3928.			Text: f
+3929.			Intent: [name: spelling - confidence: 0.9907]
+3930.			Entities: [entity: spelling, value: f]
+3931.		Message_61
+3932.			Text: r
+3933.			Intent: [name: spelling - confidence: 0.9963]
+3934.			Entities: [entity: spelling, value: r]
+3935.		Message_62
+3936.			Text: halt
+3937.			Intent: [name: spelling - confidence: 0.9972]
+3938.			Entities: [entity: spelling, value: halt]
+3939.		Message_63
+3940.			Text: the phone number is 0035728626052
+3941.			Intent: [name: fillGenericField - confidence: 0.9994]
+3942.			Entities: [entity: input_field, value: phone number], [entity: input_value, value: 0035728626052]
+3943.		Message_64
+3944.			Text: value 2 for number of persons
+3945.			Intent: [name: fillGenericField - confidence: 1.0000]
+3946.			Entities: [entity: input_value, value: 2], [entity: input_field, value: number of persons]
+3947.		Message_65
+3948.			Text: here is the value 0
+3949.			Intent: [name: fillGenericField - confidence: 0.9995]
+3950.			Entities: [entity: input_value, value: 0]
+3951.		Message_66
+3952.			Text: birthday 01-09-1971
+3953.			Intent: [name: fillGenericField - confidence: 0.9542]
+3954.			Entities: [entity: input_field, value: birthday], [entity: input_value, value: 01-09-1971]
+3955.		Message_67
+3956.			Text: 0
+3957.			Intent: [name: spelling - confidence: 0.9997]
+3958.			Entities: [entity: input_value, value: 0]
+3959.		Message_68
+3960.			Text: 2
+3961.			Intent: [name: spelling - confidence: 0.9997]
+3962.			Entities: [entity: input_value, value: 2]
+3963.		Message_69
+3964.			Text: dot
+3965.			Intent: [name: spelling - confidence: 0.9868]
+3966.			Entities: [entity: spelling, value: dot]
+3967.		Message_70
+3968.			Text: 5
+3969.			Intent: [name: spelling - confidence: 0.9997]
+3970.			Entities: [entity: input_value, value: 5]
+3971.		Message_71
+3972.			Text: 4
+3973.			Intent: [name: spelling - confidence: 0.9997]
+3974.			Entities: [entity: input_value, value: 4]
+3975.		Message_72
+3976.			Text: space
+3977.			Intent: [name: spelling - confidence: 0.9959]
+3978.			Entities: [entity: spelling, value: space]
+3979.		Message_73
+3980.			Text: p
+3981.			Intent: [name: spelling - confidence: 0.9908]
+3982.			Entities: [entity: spelling, value: p]
+3983.		Message_74
+3984.			Text: m
+3985.			Intent: [name: spelling - confidence: 0.9919]
+3986.			Entities: [entity: spelling, value: m]
+3987.		Message_75
+3988.			Text: halt
+3989.			Intent: [name: spelling - confidence: 0.9972]
+3990.			Entities: [entity: spelling, value: halt]
+3991.		Message_76
+3992.			Text: i want to insert the value 24 place Alice Munro
+3993.			Intent: [name: modifyValueGenericField - confidence: 0.7221]
+3994.			Entities: [entity: input_value, value: 24 place Alice Munro]
+3995.		Message_77
+3996.			Text: complete gender with the value other
+3997.			Intent: [name: fillGenericField - confidence: 0.9998]
+3998.			Entities: [entity: input_field, value: gender], [entity: input_value, value: other]
+3999.		Message_78
+4000.			Text: i want to complete the value of blutooth earphones
+4001.			Intent: [name: fillGenericField - confidence: 0.9999]
+4002.			Entities: [entity: input_value, value: of blutooth earphones]
+4003.		Message_79
+4004.			Text: the field electronic devices is computer, smart tv
+4005.			Intent: [name: fillGenericField - confidence: 0.9995]
+4006.			Entities: [entity: input_field, value: electronic devices], [entity: input_value, value: computer], [entity: input_value, value: smart], [entity: input_value, value: tv]
+4007.		Message_80
+4008.			Text: Ford is the value of car
+4009.			Intent: [name: fillGenericField - confidence: 1.0000]
+4010.			Entities: [entity: input_value, value: Ford], [entity: input_field, value: car]
+4011.		Message_81
+4012.			Text: this is the value ignorance is bliss
+4013.			Intent: [name: fillGenericField - confidence: 0.9996]
+4014.			Entities: [entity: input_value, value: ignorance], [entity: input_value, value: bliss]
+4015.		Message_82
+4016.			Text: yes, go on
+4017.			Intent: [name: affirm - confidence: 0.9994]
+4018.			Entities: 
+
+4019.	IV-Statistics
+4020.		Convergence Rate:
+4021.			total number of turns: t = 167
+4022.			total number of fields: n = 15
+4023.			total number of spelling fields: m = 4
+4024.			total number of spelling turns: m_k factor = 40
+4025.			convergence rate: c = 0.6168
+4026.			adjustded convergence rate: c_adj = 0.3786
+4027.		Normalized Convergence Rate:
+4028.			total number of required fields: n_2 = 4
+4029.			total number of spelling fields: m_2 = 2
+4030.			total number of required spelling turns: m_k_2 factor = 26
+4031.			normalized convergence rate: c_2 = 0.3413
+4033.		Natural Language Flexibility Coefficient:
+4034.			number of required turns: v = 50 turns
+4035.			number of user's turns: w = 83 turns
+4036.			natural language flexibility coefficient: f = 0.6024
+4037.			adjusted flexibility coefficient: f_adj = 0.9574
+
+4038.	--- DIALOGUE 20 ---
+
+4039.	I- Form element
+
+4040.		The window have been closed, so we cannot give you the form elements, sorry
+
+4041.	II- Slots
+
+4042.		[slot_name: first name - slot_value: Poema - required: True - spelling: True - description: your first name]
+4043.		[slot_name: password - slot_value: Jenniferg - required: True - spelling: False - description: None]
+4044.		[slot_name: email address - slot_value: titaina@outlook.uk - required: False - spelling: False - description: the email we should use to contact you]
+4045.		[slot_name: birthday - slot_value: 30-03-1977 - required: False - spelling: False - description: None]
+4046.		[slot_name: arrival time - slot_value: 03:00 - required: False - spelling: False - description: the time you expect to arrive at the conference]
+4047.		[Web Form info -- title: registration form sample - description: presents various fields types in order to test the different kinds of input we can have and different actions]
+
+4048.	III-Messages
+
+4049.		Message_0
+4050.			Text: please i want the list of all the fields
+4051.			Intent: [name: repeatAllFields - confidence: 0.9916]
+4052.			Entities: 
+4053.		Message_1
+4054.			Text: pass
+4055.			Intent: [name: skipField - confidence: 0.9842]
+4056.			Entities: 
+4057.		Message_2
+4058.			Text: it would be kind of you if you provide me the madatory fields for completing the form
+4059.			Intent: [name: fillForm - confidence: 0.7733]
+4060.			Entities: [entity: input_value, value: it would be kind of you if you provide]
+4061.		Message_3
+4062.			Text: sure
+4063.			Intent: [name: fillGenericField - confidence: 0.9668]
+4064.			Entities: [entity: input_value, value: sure]
+4065.		Message_4
+4066.			Text: i don't understand what is first name
+4067.			Intent: [name: explainField - confidence: 0.9871]
+4068.			Entities: [entity: input_field, value: first name]
+4069.		Message_5
+4070.			Text: turn where i was in the procedure
+4071.			Intent: [name: fillForm - confidence: 0.9922]
+4072.			Entities: 
+4073.		Message_6
+4074.			Text: Jenniferg is my password
+4075.			Intent: [name: fillGenericField - confidence: 0.9831]
+4076.			Entities: [entity: input_value, value: Jenniferg], [entity: input_field, value: password]
+4077.		Message_7
+4078.			Text: yes, go on
+4079.			Intent: [name: affirm - confidence: 0.9994]
+4080.			Entities: 
+4081.		Message_8
+4082.			Text: change first name by Verify Email
+4083.			Intent: [name: modifyValueGenericField - confidence: 0.9999]
+4084.			Entities: [entity: input_field, value: first name], [entity: input_field, value: Email]
+4085.		Message_9
+4086.			Text: the value for the field is titaina@outlook.uk
+4087.			Intent: [name: fillGenericField - confidence: 1.0000]
+4088.			Entities: [entity: input_value, value: titaina@outlook.uk]
+4089.		Message_10
+4090.			Text: 30 march 1977 for birthday
+4091.			Intent: [name: fillGenericField - confidence: 1.0000]
+4092.			Entities: [entity: input_value, value: 30 march 1977], [entity: input_field, value: birthday]
+4093.		Message_11
+4094.			Text: for the field arrival time the value i want to insert is 06 am
+4095.			Intent: [name: fillGenericField - confidence: 1.0000]
+4096.			Entities: [entity: input_field, value: arrival time], [entity: input_value, value: 06 am]
+4097.		Message_12
+4098.			Text: here is the value 20 o_clock
+4099.			Intent: [name: fillGenericField - confidence: 0.9999]
+4100.			Entities: [entity: input_value, value: 20 o_clock]
+4101.		Message_13
+4102.			Text: is there a description for this form?
+4103.			Intent: [name: fillGenericField - confidence: 0.6072]
+4104.			Entities: [entity: input_field, value: description]
+4105.		Message_14
+4106.			Text: is it possible to have the point of the situation?
+4107.			Intent: [name: fillGenericField - confidence: 0.6207]
+4108.			Entities: 
+4109.		Message_15
+4110.			Text: they are too many mistakes, i want to restart
+4111.			Intent: [name: resetAllFields - confidence: 0.9567]
+4112.			Entities: 
+4113.		Message_16
+4114.			Text: may i have the list of compulsory fields please?
+4115.			Intent: [name: repeatRequiredFields - confidence: 0.9985]
+4116.			Entities: 
+4117.		Message_17
+4118.			Text: i want to insert the value 3 o_clock for the field arrival time
+4119.			Intent: [name: fillGenericField - confidence: 1.0000]
+4120.			Entities: [entity: input_value, value: 3 o_clock], [entity: input_field, value: arrival time]
+4121.		Message_18
+4122.			Text: no
+4123.			Intent: [name: deny - confidence: 0.9971]
+4124.			Entities: 
+4125.		Message_19
+4126.			Text: are there still many obligatory fields to complete?
+4127.			Intent: [name: giveRemainingRequiredFields - confidence: 0.9935]
+4128.			Entities: 
+4129.		Message_20
+4130.			Text: P
+4131.			Intent: [name: spelling - confidence: 0.9908]
+4132.			Entities: [entity: spelling, value: P]
+4133.		Message_21
+4134.			Text: sure, go ahead
+4135.			Intent: [name: affirm - confidence: 0.5556]
+4136.			Entities: 
+4137.		Message_22
+4138.			Text: can i submit the form now?
+4139.			Intent: [name: submitForm - confidence: 0.8278]
+4140.			Entities: [entity: input_value, value: now]
+4141.		Message_23
+4142.			Text: o
+4143.			Intent: [name: spelling - confidence: 0.9238]
+4144.			Entities: [entity: input_value, value: o]
+4145.		Message_24
+4146.			Text: sure, continue
+4147.			Intent: [name: affirm - confidence: 0.4728]
+4148.			Entities: 
+4149.		Message_25
+4150.			Text: please the value
+4151.			Intent: [name: repeatValueField - confidence: 0.9995]
+4152.			Entities: 
+4153.		Message_26
+4154.			Text: e
+4155.			Intent: [name: spelling - confidence: 0.9927]
+4156.			Entities: [entity: spelling, value: e]
+4157.		Message_27
+4158.			Text: m
+4159.			Intent: [name: spelling - confidence: 0.9919]
+4160.			Entities: [entity: spelling, value: m]
+4161.		Message_28
+4162.			Text: a
+4163.			Intent: [name: spelling - confidence: 0.9931]
+4164.			Entities: [entity: spelling, value: a]
+4165.		Message_29
+4166.			Text: conclude
+4167.			Intent: [name: spelling - confidence: 0.9816]
+4168.			Entities: [entity: spelling, value: conclude]
+4169.		Message_30
+4170.			Text: give me the fields remaining
+4171.			Intent: [name: giveAllRemainingFields - confidence: 0.9996]
+4172.			Entities: 
+4173.		Message_31
+4174.			Text: i would like to submit the form
+4175.			Intent: [name: submitForm - confidence: 0.9999]
+4176.			Entities: 
+
+4177.	IV-Statistics
+4178.		Convergence Rate:
+4179.			total number of turns: t = 65
+4180.			total number of fields: n = 5
+4181.			total number of spelling fields: m = 1
+4182.			total number of spelling turns: m_k factor = 6
+4183.			convergence rate: c = 0.3231
+4184.			adjustded convergence rate: c_adj = 0.2281
+4185.		Normalized Convergence Rate:
+4186.			total number of required fields: n_2 = 2
+4187.			total number of spelling fields: m_2 = 1
+4188.			total number of required spelling turns: m_k_2 factor = 6
+4189.			normalized convergence rate: c_2 = 0.2308
+4191.		Natural Language Flexibility Coefficient:
+4192.			number of required turns: v = 11 turns
+4193.			number of user's turns: w = 32 turns
+4194.			natural language flexibility coefficient: f = 0.3438
+4195.			adjusted flexibility coefficient: f_adj = 1.0000
+
+
