@@ -41,9 +41,9 @@ def start_compilation(root_folder, excel_file, prefix=''):
             while True or counter < u.MAX_DIALOGUES:
                 # we are in a new row
                 r_t_value = dcp.extract_value(string_log, dcp.r_t_key)
-                cummul_r_t_value = dcp.extract_value(string_log, dcp.cummul_r_t_key)
-                cummul_z_t_value = dcp.extract_value(string_log, dcp.cummul_z_t_key)
-                e_t_value = int(cummul_r_t_value) + int(cummul_z_t_value)
+                cumul_r_t_value = dcp.extract_value(string_log, dcp.cumul_r_t_key)
+                cumul_z_t_value = dcp.extract_value(string_log, dcp.cumul_z_t_key)
+                e_t_value = int(cumul_r_t_value) + int(cumul_z_t_value)
                 if prefix == '':
                     c_key = dcp.c_key
                     f_key = dcp.f_key

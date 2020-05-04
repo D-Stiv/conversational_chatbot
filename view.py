@@ -20,8 +20,8 @@ class View:
             text = f"{counter}. {self.marker} - {text}"
             if counter == 0:
                 # it is the chatbot
-                # we initialize the cummulative response time 
-                self.initialize_cummulative_times()
+                # we initialize the cumulative response time 
+                self.initialize_cumulative_times()
                 self.set_starting_time(datetime.now())               
             if self.marker == u.chatbot_marker:
                 # we compute the interval between the request and the response

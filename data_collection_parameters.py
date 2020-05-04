@@ -20,8 +20,8 @@ indicator = 'DIALOGUE'  # helps to cut the dialogues
 
 # parameters keyword
 r_t_key = 'rage response time:'  # average response time
-cummul_r_t_key = 'tive response time:' # cummulative response time
-cummul_z_t_key = 'tive thinking time:'   # cummulative thinking time
+cumul_r_t_key = 'tive response time:' # cumulative response time
+cumul_z_t_key = 'tive thinking time:'   # cumulative thinking time
 c_key = 'c =' # convergence rate
 c_adj_key = 'c_adj =' # adjusted convergence rate
 f_key = 'f =' # natural language flexibility

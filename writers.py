@@ -279,7 +279,7 @@ class ReportWriter(Writer):
             print('Fail to get the spelling slots')
             raise Exception
 
-    def get_cummulative_values(self, slots, required=False):
+    def get_cumulative_values(self, slots, required=False):
         try:
             sum_length = 0
             for slot in slots:
@@ -290,7 +290,7 @@ class ReportWriter(Writer):
                     sum_length += 1 + len(slot[u.slot_value])
             return sum_length
         except:
-            print('Fail to compute cummulative values')
+            print('Fail to compute cumulative values')
             raise Exception
 
     def get_convergence_rate(self, state,tab):
@@ -302,14 +302,14 @@ class ReportWriter(Writer):
             total_fields = len(slots) - 1
             spelling_slots = self.get_spelling_slots(slots)
             total_spelling = len(spelling_slots)
-            cummulative_spelling_values = self.get_cummulative_values(spelling_slots)
-            m_k_factor = max(self.spelling_length, cummulative_spelling_values)
+            cumulative_spelling_values = self.get_cumulative_values(spelling_slots)
+            m_k_factor = max(self.spelling_length, cumulative_spelling_values)
             user_turns = total_fields - total_spelling + m_k_factor
 
             total_required_fields = len(self.get_required_slots(slots))
             total_required_spelling = len(self.get_required_slots(spelling_slots, spelling=True))
-            cummulative_required_spelling_values = self.get_cummulative_values(spelling_slots, required=True)
-            m_k_required_factor = cummulative_required_spelling_values
+            cumulative_required_spelling_values = self.get_cumulative_values(spelling_slots, required=True)
+            m_k_required_factor = cumulative_required_spelling_values
             required_user_turns = total_required_fields - total_required_spelling + m_k_required_factor
 
             line_text = 'Convergence Rate:'
@@ -355,8 +355,8 @@ class ReportWriter(Writer):
             total_slots = len(slots) # we do not remove one because we count the submit request          
             spelling_slots = self.get_spelling_slots(slots)
             total_spelling = len(spelling_slots)
-            cummulative_spelling_values = self.get_cummulative_values(spelling_slots)
-            m_k_factor = max(self.spelling_length, cummulative_spelling_values)
+            cumulative_spelling_values = self.get_cumulative_values(spelling_slots)
+            m_k_factor = max(self.spelling_length, cumulative_spelling_values)
             flexibility_num = total_slots - total_spelling + m_k_factor - number_not_handled
             flexibility_denom = len(state.message_history)
             k = 2   # minimum number of user turns in case of spelling
