@@ -689,7 +689,7 @@ class State:
                     else:
                         please_style = styles.get_please()
                         string = (f'{string}\nSince it is a field requiring the spelling, we are going to take' +
-                                f' its value one character at a time.\n{please_style} insert the first character')
+                                f' its value one character at a time.\n{please_style} insert the first character:')
                         # possible next action is spelling
                         self.set_possible_next_action(u.spelling_action)
                         return string

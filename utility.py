@@ -10,21 +10,21 @@ EXCEPTION_MESSAGE = "Something went wrong during the handling of this message.\n
 DEBUG = False
 
 # maximum number of dialogues
-MAX_DIALOGUES = 20
+MAX_DIALOGUES = 1
 
 # frequency control: interval for being able to manually stop the simulation in term of number of message exchanged
-CONTROL_FREQUENCE = 500
+CONTROL_FREQUENCE = 50
 
 # frequence to see the change in the slots in term of interactions
 NOTIFICATION_FREQUENCE = 10
 
 # coefficient used to regule the dialogue and the notifications
-COEFF = 500
+COEFF = 3
 
 REQUESTED_SLOT = "requested_slot"
 CANCELED = "canceled"
 VOID = ''
-USE_SPELLING = True  # True when we are ready to manage the spelling correctly
+USE_SPELLING = False  # True when we are ready to manage the spelling correctly
 # when USE_SPELLING is False, fillSpellingField calls fillGenericField
 tag_registration_form = "registration_form_tag"
 
@@ -32,11 +32,11 @@ tag_registration_form = "registration_form_tag"
 train_model = False
 
 # decides whether or not write the log and the report
-write_log = True
-write_report = True
+write_log = False
+write_report = False
 
 # whether or not we use the simulator
-simulation_enabled = True
+simulation_enabled = False
 
 # defines whether or not we get the URL from the user
 ask_url = False
