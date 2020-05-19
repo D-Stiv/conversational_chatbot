@@ -243,7 +243,7 @@ class State:
         try:
             slots = self.form_slots()
             for slot in slots:
-                if slot[u.slot_name] == slot_name:
+                if slot[u.slot_name].lower() == slot_name.lower():
                     return slot
             # the field we are looking for is not in the form
             if u.DEBUG:

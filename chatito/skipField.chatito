@@ -1,4 +1,4 @@
-// skip a camp and go to the next one
+// skip a field and go to the next one
 
 import ./common_alias.chatito
 import ./common_slots_name.chatito
@@ -6,6 +6,11 @@ import ./common_slots_value.chatito
 
 %[skipField]('training': '8000', 'testing': '2000')
     *[2] ~[skip] ~[it?]
-    *[1] ~[i] ~[want] ~[to] ~[skip] ~[this] ~[camp]
-    *[1] ~[skip] ~[this] ~[camp]
-    *[1] ~[skip] ~[the] ~[camp]
+    *[1] ~[i] ~[want] ~[to] ~[skip] ~[this] ~[field]
+    *[1] ~[skip] ~[this] ~[field]
+    *[2] ~[skip] ~[the?] ~[field]
+    *[1] ~[no] ~[value]
+    *[1] ~[no] ~[values]
+    *[1] ~[no] @[input_field]
+    *[2] ~[do] ~[it?] ~[later]
+    *[2] ~[leave] ~[it?] ~[for] ~[now]

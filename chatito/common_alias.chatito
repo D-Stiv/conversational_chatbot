@@ -1,10 +1,28 @@
 // Common entities to be imported and reused
 
+
+~[do]
+    do
+
+~[leave]
+    leave
+
+~[now]
+    now
+    the moment
+
+~[later]
+    later
+    after
+    in the future
+
 ~[recap]
     recap
     summary
     point of the situation
     point
+    resume
+    book in
 
 ~[place_indication]
     road
@@ -419,6 +437,7 @@
 ~[skip]
     skip
     pass
+    jump
 
 ~[all]
     all
@@ -467,6 +486,13 @@
     insert
     fill
     replace
+    ~[erase]
+
+~[erase]
+    erase
+    cancel
+    dismiss
+
 
 ~[up_to_now]
     up to now
