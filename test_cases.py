@@ -2273,8 +2273,497 @@ structural_test_cases = [
         },
         result_expected: 'The email should contain the character <{dot_sign}>'
     },
+
     {
         message_id: "075",
+        test_form_number: 1,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: first_name,
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
+        test_case_message: {
+            entities: [
+                {
+                    entity: input_value,
+                    value: 'harry.potter@gmailcm'
+                },
+                {
+                    entity: input_field,
+                    value: email_address
+                }
+            ],
+            intent: {
+                name: complete_field,
+                confidence: 1
+            },
+            text: 'harry.potter@gmailcm is my email address'
+        },
+        result_expected: 'There should be at least one character <{dot_sign}> after the character <{at_sign}>'
+    },
+    {
+        message_id: "076",
+        test_form_number: 3,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: car,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: gender,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: electronic_devices,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: message,
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
+        test_case_message: {
+            entities: [],
+            intent: {
+                name: complete_field,
+                confidence: 1
+            },
+            text: 'I want the required fields'
+        },
+        result_expected: 'There is one required field in this form which is {gender}'
+    },
+    {
+        message_id: "077",
+        test_form_number: 2,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: phone_number,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: number_persons,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: birthday,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: arrival_time,
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
+        test_case_message: {
+            entities: [],
+            intent: {
+                name: repeat_required_fields,
+                confidence: 1
+            },
+            text: 'which are the required fields?'
+        },
+        result_expected: 'There is no required field in this form'
+    },
+    {
+        message_id: "078",
+        test_form_number: 1,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: first_name,
+                    u.slot_value: 'Elena'
+                },
+                {
+                    u.slot_name: last_name,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: mark,
+                    u.slot_value: '28'
+                },
+                {
+                    u.slot_name: password,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: email_address,
+                    u.slot_value: 'silver@stone.com'
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
+        test_case_message: {
+            entities: [],
+            intent: {
+                name: give_remaining_required_fields,
+                confidence: 1
+            },
+            text: 'Can i have the remaining the remaining required fields?'
+        },
+        result_expected: 'There is no required field remaining'
+    },
+    {
+        message_id: "079",
+        test_form_number: 1,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: first_name,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: last_name,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: mark,
+                    u.slot_value: '27'
+                },
+                {
+                    u.slot_name: password,
+                    u.slot_value: 'pass04real11'
+                },
+                {
+                    u.slot_name: email_address,
+                    u.slot_value: 'em_ail@ego.it'
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
+        test_case_message: {
+            entities: [],
+            intent: {
+                name: give_remaining_required_fields,
+                confidence: 1
+            },
+            text: 'which are the remaining required fields?'
+        },
+        result_expected: 'The only required field that remains is {first name}'
+    },
+    {
+        message_id: "080",
+        test_form_number: 1,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: first_name,
+                    u.slot_value: 'elvis'
+                },
+                {
+                    u.slot_name: last_name,
+                    u.slot_value: 'jones'
+                },
+                {
+                    u.slot_name: mark,
+                    u.slot_value: '24'
+                },
+                {
+                    u.slot_name: password,
+                    u.slot_value: 'my_pass0wr0'
+                },
+                {
+                    u.slot_name: email_address,
+                    u.slot_value: 'email@mail.it'
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
+        test_case_message: {
+            entities: [],
+            intent: {
+                name: give_all_remaining_fields,
+                confidence: 1
+            },
+            text: 'i want the remaining fields'
+        },
+        result_expected: 'There is no field remaining'
+    },
+    {
+        message_id: "081",
+        test_form_number: 1,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: first_name,
+                    u.slot_value: 'donald'
+                },
+                {
+                    u.slot_name: last_name,
+                    u.slot_value: 'duck'
+                },
+                {
+                    u.slot_name: mark,
+                    u.slot_value: '26'
+                },
+                {
+                    u.slot_name: password,
+                    u.slot_value: 'platform_password'
+                },
+                {
+                    u.slot_name: email_address,
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
+        test_case_message: {
+            entities: [],
+            intent: {
+                name: give_all_remaining_fields,
+                confidence: 1
+            },
+            text: 'what are the remaining fields?'
+        },
+        result_expected: 'There is one field remaining and it is {email address}'
+    },
+    {
+        message_id: "082",
+        test_form_number: 1,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: first_name,
+                    u.slot_value: 'abdel'
+                },
+                {
+                    u.slot_name: last_name,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: mark,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: email_address,
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
+        test_case_message: {
+            entities: [],
+            intent: {
+                name: submit_form,
+                confidence: 1
+            },
+            text: 'submit'
+        },
+        result_expected: '...You should complete the field {email address}.'
+    },
+    {
+        message_id: "083",
+        test_form_number: 1,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: first_name,
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
+        test_case_message: {
+            entities: [
+                {
+                    entity: input_value,
+                    value: '.harry@gmailcm'
+                },
+                {
+                    entity: input_field,
+                    value: email_address
+                }
+            ],
+            intent: {
+                name: complete_field,
+                confidence: 1
+            },
+            text: '.harry@gmailcm is my email address'
+        },
+        result_expected: 'The email should not start with the character < {dot_sign} >'
+    },
+    {
+        message_id: "084",
+        test_form_number: 1,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: first_name,
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
+        test_case_message: {
+            entities: [
+                {
+                    entity: input_value,
+                    value: 'harry@gmailcm.'
+                },
+                {
+                    entity: input_field,
+                    value: email_address
+                }
+            ],
+            intent: {
+                name: complete_field,
+                confidence: 1
+            },
+            text: 'harry@gmailcm. is my email address'
+        },
+        result_expected: 'The email should not end with the character < {dot_sign} >'
+    },
+    
+    {
+        message_id: "085",
         test_form_number: 1,
         initial_state: {
             machine_parameters: {
@@ -2294,7 +2783,7 @@ structural_test_cases = [
         result_expected: '{good} you have been moved to the page with title {title}'
     },
     {
-        message_id: "076",
+        message_id: "086",
         test_form_number: 2,
         initial_state: {
             spelling_state: {
@@ -4763,7 +5252,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 22
+                    u.slot_value: '22'
                 },
                 {
                     u.slot_name: password,
@@ -5067,7 +5556,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 22
+                    u.slot_value: '22'
                 },
                 {
                     u.slot_name: password,
@@ -5305,7 +5794,7 @@ functional_test_cases = [
                 },
                 {
                     entity: input_value,
-                    value: 18
+                    value: "18"
                 },
                 {
                     entity: input_value,
@@ -5495,7 +5984,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 27
+                    u.slot_value: '27'
                 },
                 {
                     u.slot_name: password,
@@ -5547,7 +6036,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 22
+                    u.slot_value: '22'
                 },
                 {
                     u.slot_name: password,
@@ -5583,6 +6072,63 @@ functional_test_cases = [
             text: 'no, i prefer not'
         },
         result_expected: 'The next field is password, alarm desabled'
+    },
+    {
+        message_id: "096",
+        test_form_number: 1,
+        initial_state: {
+            u.slots: [
+                {
+                    u.slot_name: first_name,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: last_name,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: mark,
+                    u.slot_value: None
+                },
+                {
+                    u.slot_name: password,
+                    u.slot_value: None
+                }
+            ],
+            spelling_state: {
+                u.close_prompt_enabled: False,
+                u.current_spelling_input_value: '',
+                u.spelling_list: [],
+                u.waiting_message: None,
+                u.saved_spelling_fields: [],
+                u.saved_spelling_values: []
+            },
+            machine_parameters: {
+                u.submit_done: False,
+                u.reset_alarm_enabled: False,
+                u.submit_alarm_enabled: False,
+                u.possible_next_action: None,
+                u.warning_message: ''
+            }
+        },
+        test_case_message: {
+            entities: [
+                {
+                    entity: input_field,
+                    value: arrival_time
+                },
+                {
+                    entity: input_value,
+                    value: '08:05 am'
+                }
+            ],
+            intent: {
+                name: complete_field,
+                confidence: 1
+            },
+            text: 'What is this form about?'
+        },
+        result_expected: 'This form does not have any explanation'
     },
     {
         message_id: "097",
@@ -5703,7 +6249,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 21
+                    u.slot_value: '21'
                 },
                 {
                     u.slot_name: password,
@@ -5864,7 +6410,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 20
+                    u.slot_value: '20'
                 },
                 {
                     u.slot_name: password,
@@ -5921,7 +6467,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 20
+                    u.slot_value: '20'
                 },
                 {
                     u.slot_name: password,
@@ -5978,7 +6524,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 20
+                    u.slot_value: '20'
                 },
                 {
                     u.slot_name: password,
@@ -6035,7 +6581,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 20
+                    u.slot_value: '20'
                 },
                 {
                     u.slot_name: password,
@@ -6092,7 +6638,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 20
+                    u.slot_value: '20'
                 },
                 {
                     u.slot_name: password,
@@ -6149,7 +6695,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 20
+                    u.slot_value: '20'
                 },
                 {
                     u.slot_name: password,
@@ -6206,7 +6752,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 18
+                    u.slot_value: '18'
                 },
                 {
                     u.slot_name: password,
@@ -6315,7 +6861,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 22
+                    u.slot_value: '22'
                 },
                 {
                     u.slot_name: password,
@@ -6376,7 +6922,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 27
+                    u.slot_value: '27'
                 },
                 {
                     u.slot_name: password,
@@ -6506,7 +7052,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 19
+                    u.slot_value: '19'
                 },
                 {
                     u.slot_name: password,
@@ -6541,7 +7087,7 @@ functional_test_cases = [
                 },
                 {
                     entity: input_value,
-                    value: 25
+                    value: '25'
                 },
                 {
                     entity: input_field,
@@ -6575,7 +7121,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: mark,
-                    u.slot_value: 30
+                    u.slot_value: '30'
                 },
                 {
                     u.slot_name: password,
@@ -6783,7 +7329,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: number_persons,
-                    u.slot_value: 3
+                    u.slot_value: '3'
                 },
                 {
                     u.slot_name: arrival_time,
@@ -6831,7 +7377,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: number_persons,
-                    u.slot_value: 2
+                    u.slot_value: '2'
                 },
                 {
                     u.slot_name: arrival_time,
@@ -6884,7 +7430,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: number_persons,
-                    u.slot_value: 2
+                    u.slot_value: '2'
                 },
                 {
                     u.slot_name: arrival_time,
@@ -7085,7 +7631,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: number_persons,
-                    u.slot_value: 2
+                    u.slot_value: '2'
                 },
                 {
                     u.slot_name: arrival_time,
@@ -7181,7 +7727,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: number_persons,
-                    u.slot_value: 4
+                    u.slot_value: '4'
                 },
                 {
                     u.slot_name: arrival_time,
@@ -7229,7 +7775,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: number_persons,
-                    u.slot_value: 3
+                    u.slot_value: '3'
                 },
                 {
                     u.slot_name: arrival_time,
@@ -7277,7 +7823,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: number_persons,
-                    u.slot_value: 3
+                    u.slot_value: '3'
                 },
                 {
                     u.slot_name: arrival_time,
@@ -7325,7 +7871,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: number_persons,
-                    u.slot_value: 3
+                    u.slot_value: '3'
                 },
                 {
                     u.slot_name: arrival_time,
@@ -7373,7 +7919,7 @@ functional_test_cases = [
                 },
                 {
                     u.slot_name: number_persons,
-                    u.slot_value: 3
+                    u.slot_value: '3'
                 },
                 {
                     u.slot_name: arrival_time,
@@ -7950,63 +8496,6 @@ functional_test_cases = [
     },
     {
         message_id: "142",
-        test_form_number: 1,
-        initial_state: {
-            u.slots: [
-                {
-                    u.slot_name: first_name,
-                    u.slot_value: None
-                },
-                {
-                    u.slot_name: last_name,
-                    u.slot_value: None
-                },
-                {
-                    u.slot_name: mark,
-                    u.slot_value: None
-                },
-                {
-                    u.slot_name: password,
-                    u.slot_value: None
-                }
-            ],
-            spelling_state: {
-                u.close_prompt_enabled: False,
-                u.current_spelling_input_value: '',
-                u.spelling_list: [],
-                u.waiting_message: None,
-                u.saved_spelling_fields: [],
-                u.saved_spelling_values: []
-            },
-            machine_parameters: {
-                u.submit_done: False,
-                u.reset_alarm_enabled: False,
-                u.submit_alarm_enabled: False,
-                u.possible_next_action: None,
-                u.warning_message: ''
-            }
-        },
-        test_case_message: {
-            entities: [
-                {
-                    entity: input_field,
-                    value: arrival_time
-                },
-                {
-                    entity: input_value,
-                    value: '08:05 am'
-                }
-            ],
-            intent: {
-                name: complete_field,
-                confidence: 1
-            },
-            text: 'What is this form about?'
-        },
-        result_expected: 'This form does not have any explanation'
-    },
-    {
-        message_id: "143",
         test_form_number: 3,
         initial_state: {
             u.slots: [
@@ -8054,7 +8543,7 @@ functional_test_cases = [
         result_expected: 'The car brand that you prefer. The next field is car'
     },
     {
-        message_id: "144",
+        message_id: "143",
         test_form_number: 3,
         initial_state: {
             u.slots: [
@@ -8107,7 +8596,7 @@ functional_test_cases = [
         result_expected: 'The electronic devices you own. The next field is car'
     },
     {
-        message_id: "145",
+        message_id: "144",
         test_form_number: 3,
         initial_state: {
             u.slots: [
@@ -8155,7 +8644,7 @@ functional_test_cases = [
         result_expected: 'could you precise the action that you want to perform? The next field is car'
     },
     {
-        message_id: "146",
+        message_id: "145",
         test_form_number: 2,
         initial_state: {
             u.slots: [
@@ -8208,7 +8697,7 @@ functional_test_cases = [
         result_expected: 'Do you want to save the spelling information?'
     },
     {
-        message_id: "147",
+        message_id: "146",
         test_form_number: 2,
         initial_state: {
             u.slots: [
