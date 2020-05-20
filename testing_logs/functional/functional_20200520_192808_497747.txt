@@ -1,0 +1,1194 @@
+HEADER	The value of S have not been specified.
+
+	Date and Hour: 2020-05-20 19:28:08.497747
+
+	Testing log for *functional* test cases
+
+CONVERSATION LOG
+
+<000> functional test case - 0
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericField, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: the email address is alice@mail.it] 
+	[Result expected: The email address becomes alice@mail.it and next field is first name] 
+	[Result obtained: (effects: Modified fields -  *email address : alice@mail.it) 
+	(response: The values of the fields email address have successsfully been inserted.  complete the first name. This field is required.)]
+<001> functional test case - 1
+	[Initial situation: Fields -  *first name : bob;  last name : None;  mark : 25,85;  password : None;  *email address : alice@mail.it
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: resetAllFields, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: yes] 
+	[Result expected: all the fields are reset (value=None) and the next field is first name] 
+	[Result obtained: (effects: Modified fields -  *first name : None;  mark : None;  *email address : None
+		Modified machine parameters - reset_alarm_enabled: False, possible_next_action: fillGenericField) 
+	(response: All the fields have been reset, now we restart the process.  put the last name. This field is optional.)]
+<002> functional test case - 2
+	[Initial situation: Fields -  *first name : robert;  last name : None;  mark : None;  password : p088w0r0;  *email address : alice@bob.it
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: no] 
+	[Result expected: submit alarm is disabled, state 05] 
+	[Result obtained: (effects: Modified machine parameters - submit_alarm_enabled: False) 
+	(response:  give the last name. This field is optional. otherwise, you can ask the list of the remaining required fields)]
+<003> functional test case - 3
+	[Initial situation: Fields -  *first name : lucie;  last name : None;  mark : None;  password : p088w0r0;  *email address : dear_alice@bob.it
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: submit] 
+	[Result expected: The submit alarm will be enabledand we have to confirm the action] 
+	[Result obtained: (effects: Modified machine parameters - submit_alarm_enabled: True, possible_next_action: submitForm) 
+	(response:  *first name : lucie  last name : None  mark : None  password : p088w0r0  *email address : dear_alice@bob.it If you would like to change something, let me know, otherwise confirm that you really want to continue with the submission?)]
+<004> functional test case - 4
+	[Initial situation: Fields -  *first name : lucie;  last name : None;  mark : 27,2;  password : p088w0r0;  *email address : alice@bob.it
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: reset] 
+	[Result expected: The reset alarm is enabled and we have to confirm the action] 
+	[Result obtained: (effects: Modified machine parameters - reset_alarm_enabled: True, submit_alarm_enabled: False, possible_next_action: resetAllFields) 
+	(response: we are about to reset all the fields and restart the process.  are you sure you want to continue with this action?)]
+<005> functional test case - 5
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: adama, spelling_interrupted: False, spelling_list: ['last name'], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: spelling, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: terminate] 
+	[Result expected: The value adama is set for the last name, the next field is mark] 
+	[Result obtained: (effects: Modified spelling attributes - spelling_list: []
+		Modified machine parameters - reset_alarm_enabled: False, warning_present: True, possible_next_action: None, warning_message:  i do not understand your request, could you reformulate please? otherwise, you can skip this field or submit the Web Form if all the required fields are completed) 
+	(response:  i do not understand your request, could you reformulate please? otherwise, you can skip this field or submit the Web Form if all the required fields are completed)]
+<006> functional test case - 6
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : 28;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: I want to modify the mark putting the value 30 instead] 
+	[Result expected: The mark becomes 30, the next field is password] 
+	[Result obtained: (effects: Modified machine parameters - warning_message: sorry i do not understand your request, could you reformulate ? otherwise, you can skip this field or submit the Web Form if all the required fields are completed) 
+	(response: sorry i do not understand your request, could you reformulate ? otherwise, you can skip this field or submit the Web Form if all the required fields are completed)]
+<007> functional test case - 7
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: 22/02/2000] 
+	[Result expected: The birthday becomes 22/02/2000, the next field is arrival time] 
+	[Result obtained: (response: The value for the  field number of persons have not been inserted! sorry the value 22/02/2000 is not an integer, please give a valid value.  put the number of persons. This field is optional. The value should be a number between 0 and 5.)]
+<008> functional test case - 8
+	[Initial situation: Fields -  number of persons : 2;  phone number : 00237651322430;  birthday : None;  arrival time : 07:00
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: birthday, next_slot_required: False] 
+	[Test case message: Could you please repeat the arrival time for me?] 
+	[Result expected: Gives the value 07:00 of the arrival time, the next field is birthday] 
+	[Result obtained: (response: Here is the answer for you:   arrival time : 07:00 Do you want to modify this value? if not you can ask to resume the filling procedure and restart from where you stopped)]
+<009> functional test case - 9
+	[Initial situation: Fields -  number of persons : 2;  phone number : 00237651322430;  birthday : None;  arrival time : 07:00
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: birthday, next_slot_required: False] 
+	[Test case message: which are the fields of this form?] 
+	[Result expected: lists the five fields from phone number to card expiration date, the next field is birthday] 
+	[Result obtained: (response: The fields present in this form are the following: number of persons, phone number, birthday, arrival time.  fill the birthday. This field is optional.)]
+<010> functional test case - 10
+	[Initial situation: Fields -  number of persons : 2;  phone number : 00237651322430;  birthday : None;  arrival time : 07:00
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: birthday, next_slot_required: False] 
+	[Test case message: which are the required fields of this form?] 
+	[Result expected: lists zero field, the next field is birthday] 
+	[Result obtained: (response: There is no required field in this form  complete the birthday. This field is optional.)]
+<011> functional test case - 11
+	[Initial situation: Fields -  number of persons : 2;  phone number : 00237651322430;  birthday : None;  arrival time : 07:00
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: birthday, next_slot_required: False] 
+	[Test case message: which are the optional fields?] 
+	[Result expected: Gives the list of all the fields, they are all optimal. The next field is birthday] 
+	[Result obtained: (response:  the optional fields are the following number of persons, phone number, birthday, arrival time.  fill the birthday. This field is optional.)]
+<012> functional test case - 12
+	[Initial situation: Fields -  number of persons : None;  phone number : +223615342345;  birthday : 31-05-1990;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: which are the fields still to be completed?] 
+	[Result expected: Number of persons, arrival time. The next field is number of persons] 
+	[Result obtained: (response:  the remaining fields present in this form are the following: number of persons, arrival time.  insert the number of persons. This field is optional. The value should be a number between 0 and 5.)]
+<013> functional test case - 13
+	[Initial situation: Fields -  number of persons : None;  phone number : +223615342345;  birthday : 31-05-1990;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: are there required remaining fields?] 
+	[Result expected: No remaining required field. The next field is number of persons] 
+	[Result obtained: (response: There is no required field remaining  please complete the number of persons. This field is optional. The value should be a number between 0 and 5.)]
+<014> functional test case - 14
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : 31-05-1990;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: which are the remaining optional fields?] 
+	[Result expected: Phone number, number of persons, arrival time] 
+	[Result obtained: (response: sure the remaining optional fields are the following number of persons, phone number, arrival time.  fill the number of persons. This field is optional. The value should be a number between 0 and 5.)]
+<015> functional test case - 15
+	[Initial situation: Fields -  *gender : None;  electronic devices : None;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: None, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case message: audi] 
+	[Result expected: Car has value audi. The next field is gender] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The value for the  field gender have not been inserted! sorry the choice audi is not valid for the field genderplease choose one in the following list: ['male', 'female', 'other'])]
+<016> functional test case - 16
+	[Initial situation: Fields -  *gender : None;  electronic devices : None;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: False, possible_next_action: fillGenericField, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case message: skip] 
+	[Result expected: The next field is electronic devices] 
+	[Result obtained: (effects: Modified machine parameters - next_slot: electronic devices, next_slot_required: False) 
+	(response: The gender has been skipped. Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional.)]
+<017> functional test case - 17
+	[Initial situation: Fields -  *gender : male;  electronic devices : None;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: electronic devices, next_slot_required: False] 
+	[Test case message: is the field family name present in this form?] 
+	[Result expected: The field family name is not present. The next field is electronic devices] 
+	[Result obtained: (response: sorry the field family name is not present in this form. The fields of this form are the following: gender, electronic devices, car, message Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional.)]
+<018> functional test case - 18
+	[Initial situation: Fields -  *gender : male;  electronic devices : smartphone;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: can i have a point of the situation?] 
+	[Result expected: Gives the paires field-value. The next field is message] 
+	[Result obtained: (response: The fields you already completed are the following:   *gender : male  electronic devices : smartphone If you see some stars, they indicate the required fields. Select the car in the following list Volvo, Saab, Fiat, Audi, Citroen, Ford, BMW, Chevrolet, Honda, Kia, Toyota, Lexus, Hyundai. This field is optional.)]
+<019> functional test case - 19
+	[Initial situation: Fields -  *gender : male;  electronic devices : smartphone;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: can you tell me again what is this form about?] 
+	[Result expected: Gives the form description. The next field is message] 
+	[Result obtained: (response:  here it is: presents various fields types in order to test the different kind of input we can have and different actions. Select the car in the following list Volvo, Saab, Fiat, Audi, Citroen, Ford, BMW, Chevrolet, Honda, Kia, Toyota, Lexus, Hyundai. This field is optional.)]
+<020> functional test case - 20
+	[Initial situation: Fields -  *gender : male;  electronic devices : smartphone;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: what is message?] 
+	[Result expected: Explains message. The next field is message] 
+	[Result obtained: (response: Here is the explanation provided for the message: your suggestions or precisions Select the car in the following list Volvo, Saab, Fiat, Audi, Citroen, Ford, BMW, Chevrolet, Honda, Kia, Toyota, Lexus, Hyundai. This field is optional.)]
+<021> functional test case - 21
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: sorry i do not understand your request, could you reformulate ? otherwise, you can skip this field or submit the Web Form if all the required fields are completed, next_slot: last name, next_slot_required: False] 
+	[Test case message: jack] 
+	[Result expected: First name is jack. The next field is mark] 
+	[Result obtained: (effects: Modified fields -  last name : jack
+		Modified machine parameters - next_slot: mark) 
+	(response: Value for the field last name successfully inserted, please complete the mark. This field is optional. The value should be a number between 18.0 and 30.0.)]
+<022> functional test case - 22
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: sorry i do not understand your request, could you reformulate ? otherwise, you can skip this field or submit the Web Form if all the required fields are completed, next_slot: mark, next_slot_required: False] 
+	[Test case message: i want to odify the first name with jack bauer] 
+	[Result expected: First name is jack bauer. The next field is mark] 
+	[Result obtained: (effects: Modified fields -  *first name : jack bauer) 
+	(response: The values of the fields first name have successsfully been inserted. please put the mark. This field is optional. The value should be a number between 18.0 and 30.0.)]
+<023> functional test case - 23
+	[Initial situation: Fields -  *first name : jack bauer;  last name : jack;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: sorry i do not understand your request, could you reformulate ? otherwise, you can skip this field or submit the Web Form if all the required fields are completed, next_slot: mark, next_slot_required: False] 
+	[Test case message: my first name is estelle laure harris] 
+	[Result expected: First name is estelle laure harris. The next slot is mark] 
+	[Result obtained: (effects: Modified fields -  *first name : estelle laure harris) 
+	(response: The values of the fields first name have successsfully been inserted.  give the mark. This field is optional. The value should be a number between 18.0 and 30.0.)]
+<024> functional test case - 24
+	[Initial situation: Fields -  *first name : estelle laure harris;  last name : jack;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: sorry i do not understand your request, could you reformulate ? otherwise, you can skip this field or submit the Web Form if all the required fields are completed, next_slot: mark, next_slot_required: False] 
+	[Test case message: my mark is 28] 
+	[Result expected: The mark is 28, the next field is password] 
+	[Result obtained: (effects: Modified fields -  mark : 28
+		Modified machine parameters - next_slot: password) 
+	(response: The values of the fields mark have successsfully been inserted.  put the password. This field is optional.)]
+<025> functional test case - 25
+	[Initial situation: Fields -  *first name : estelle laure harris;  last name : jack;  mark : 28;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: sorry i do not understand your request, could you reformulate ? otherwise, you can skip this field or submit the Web Form if all the required fields are completed, next_slot: password, next_slot_required: False] 
+	[Test case message: my mark is 28,1] 
+	[Result expected: The mark is 28,1. The next field is password] 
+	[Result obtained: (effects: Modified fields -  mark : 28,1) 
+	(response: The values of the fields mark have successsfully been inserted.  fill the password. This field is optional.)]
+<026> functional test case - 26
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: my mark is 28,45] 
+	[Result expected: The mark is 28,45. The next field is password] 
+	[Result obtained: (effects: Modified fields -  mark : 28,45
+		Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The values of the fields mark have successsfully been inserted.  fill the password. This field is optional.)]
+<027> functional test case - 27
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 28,45;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: my mark is 28,654] 
+	[Result expected: The mark is 28,654. The next field is password] 
+	[Result obtained: (effects: Modified fields -  mark : 28,65) 
+	(response: The values of the fields mark have successsfully been inserted. please put the password. This field is optional.)]
+<028> functional test case - 28
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 28,65;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: my mark is 280] 
+	[Result expected: The mark is above the maximum, the next field is password] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response:  The value for the  field mark have not been inserted!  the value inserted is more than the maximum value acceptable 30.0. please put the password. This field is optional.  fill the password. This field is optional.)]
+<029> functional test case - 29
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 28,65;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: mark 24,4567] 
+	[Result expected: The mark is 24,45] 
+	[Result obtained: (effects: Modified fields -  mark : 24,45) 
+	(response: The values of the fields mark have successsfully been inserted.  fill the password. This field is optional.)]
+<030> functional test case - 30
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 24,45;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: mark 2.001.002] 
+	[Result expected: the mark is above the maximum] 
+	[Result obtained: (response:  The value for the  field mark have not been inserted! sorry the value inserted is more than the maximum value acceptable 30.0. please fill the password. This field is optional. please fill the password. This field is optional.)]
+<031> functional test case - 31
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 24,45;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: mark 3.000,54] 
+	[Result expected: The mark is above the maximum] 
+	[Result obtained: (response:  The value for the  field mark have not been inserted!  the value inserted is more than the maximum value acceptable 30.0. please fill the password. This field is optional. please fill the password. This field is optional.)]
+<032> functional test case - 32
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 24,45;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: mark 23.211] 
+	[Result expected: The mark is 23,211] 
+	[Result obtained: (effects: Modified fields -  mark : 23,21) 
+	(response: The values of the fields mark have successsfully been inserted. please fill the password. This field is optional.)]
+<033> functional test case - 33
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 23,21;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: mark 17,002.98] 
+	[Result expected: The is above the maximum] 
+	[Result obtained: (response:  The value for the  field mark have not been inserted! sorry the value inserted is more than the maximum value acceptable 30.0.  insert the password. This field is optional. please insert the password. This field is optional.)]
+<034> functional test case - 34
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 23,21;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: the password is pass] 
+	[Result expected: The value is too short] 
+	[Result obtained: (response:  The value for the  field password have not been inserted! The password you proposed is too short. The minimum number of characters accepted is 5  fill the password. This field is optional.  put the password. This field is optional.)]
+<035> functional test case - 35
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 23,21;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: pass_word is the password] 
+	[Result expected: The password is pass_word] 
+	[Result obtained: (effects: Modified fields -  password : pass_word
+		Modified machine parameters - next_slot: email address, next_slot_required: True) 
+	(response: The values of the fields password have successsfully been inserted.  put the email address. This field is required.)]
+<036> functional test case - 36
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 23,21;  password : pass_word;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: my password is p!@ss#w$%^r&d*_] 
+	[Result expected: The password is p!@ss#w$%^r&d*_] 
+	[Result obtained: (effects: Modified fields -  password : p!@ss#w$%^r&d*_) 
+	(response: The values of the fields password have successsfully been inserted. please give the email address. This field is required.)]
+<037> functional test case - 37
+	[Initial situation: Fields -  *gender : male;  electronic devices : smartphone;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: what is the title of this form?] 
+	[Result expected: Gives the form title. The next field is message] 
+	[Result obtained: (response: The title of this form is test form sample number 3. Select the car in the following list Volvo, Saab, Fiat, Audi, Citroen, Ford, BMW, Chevrolet, Honda, Kia, Toyota, Lexus, Hyundai. This field is optional.)]
+<038> functional test case - 38
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 23,21;  password : p!@ss#w$%^r&d*_;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: email address em@il.it] 
+	[Result expected: Email address is em@il.it] 
+	[Result obtained: (effects: Modified fields -  *email address : em@il.it
+		Modified machine parameters - next_slot: first name) 
+	(response: The values of the fields email address have successsfully been inserted. please fill the first name. This field is required.)]
+<039> functional test case - 39
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 23,21;  password : p!@ss#w$%^r&d*_;  *email address : em@il.it
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: the email address is em_ail] 
+	[Result expected: There should be the at sign] 
+	[Result obtained: (response:  The value for the  field email address have not been inserted! The email should contain the character < . >  give the first name. This field is required. please fill the first name. This field is required.)]
+<040> functional test case - 40
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 23,21;  password : p!@ss#w$%^r&d*_;  *email address : em@il.it
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: my email address is e@m@il.it] 
+	[Result expected: There should be only one at sign] 
+	[Result obtained: (response:  The value for the  field email address have not been inserted! The email should contain only one character < @ > please put the first name. This field is required. please complete the first name. This field is required.)]
+<041> functional test case - 41
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 23,21;  password : p!@ss#w$%^r&d*_;  *email address : em@il.it
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: the email address is em@il.mail.it] 
+	[Result expected: Te email address is em@il.mail.it] 
+	[Result obtained: (effects: Modified fields -  *email address : em@il.mail.it) 
+	(response: The values of the fields email address have successsfully been inserted.  put the first name. This field is required.)]
+<042> functional test case - 42
+	[Initial situation: Fields -  *first name : None;  last name : jack;  mark : 23,21;  password : p!@ss#w$%^r&d*_;  *email address : em@il.mail.it
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: my email address is my_em@il.mail.polimi.it] 
+	[Result expected: The email address is my_em@il.mail.polimi.it] 
+	[Result obtained: (effects: Modified fields -  *email address : my_em@il.mail.polimi.it) 
+	(response: The values of the fields email address have successsfully been inserted.  complete the first name. This field is required.)]
+<043> functional test case - 43
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : 31-05-1990;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the email address is em@il] 
+	[Result expected: There should be the dot_sign] 
+	[Result obtained: (response:  the field email address is not present in this form. The fields of this form are the following: number of persons, phone number, birthday, arrival time  give the number of persons. This field is optional. The value should be a number between 0 and 5.)]
+<044> functional test case - 44
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: phone number 00393545345566] 
+	[Result expected: The value of the phone number becomes 00393545345566] 
+	[Result obtained: (effects: Modified fields -  phone number : 00393545345566) 
+	(response: The values of the fields phone number have successsfully been inserted.  give the number of persons. This field is optional. The value should be a number between 0 and 5.)]
+<045> functional test case - 45
+	[Initial situation: Fields -  number of persons : None;  phone number : 00393545345566;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the phone number is +393454566789] 
+	[Result expected: The value of phone number becomes +393454566789] 
+	[Result obtained: (effects: Modified fields -  phone number : +393454566789) 
+	(response: The values of the fields phone number have successsfully been inserted.  give the number of persons. This field is optional. The value should be a number between 0 and 5.)]
+<046> functional test case - 46
+	[Initial situation: Fields -  number of persons : None;  phone number : +393454566789;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the phone number is +39+2376758933] 
+	[Result expected: There should be at most one <+>] 
+	[Result obtained: (response:  The value for the  field phone number have not been inserted! A telephone number should not contain the character < + > several times  complete the number of persons. This field is optional. The value should be a number between 0 and 5. please complete the number of persons. This field is optional. The value should be a number between 0 and 5.)]
+<047> functional test case - 47
+	[Initial situation: Fields -  number of persons : None;  phone number : +393454566789;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the phone number is 14] 
+	[Result expected: Too short phone number] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response:  The value for the  field phone number have not been inserted! sorry the value 14 is not valid,  fill a valid phone number  fill the number of persons. This field is optional. The value should be a number between 0 and 5. please insert the number of persons. This field is optional. The value should be a number between 0 and 5.)]
+<048> functional test case - 48
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the phone number is +237899755421345456] 
+	[Result expected: Too long phone number] 
+	[Result obtained: (effects: Modified fields -  phone number : +237899755421345456) 
+	(response: The values of the fields phone number have successsfully been inserted. please give the number of persons. This field is optional. The value should be a number between 0 and 5.)]
+<049> functional test case - 49
+	[Initial situation: Fields -  number of persons : None;  phone number : +237899755421345456;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the number of persons is -2] 
+	[Result expected: Value lower than the minimum] 
+	[Result obtained: (response:  The value for the  field number of persons have not been inserted! sorry the value inserted is less than the minimum value acceptable 0.  put the number of persons. This field is optional. The value should be a number between 0 and 5. please fill the number of persons. This field is optional. The value should be a number between 0 and 5.)]
+<050> functional test case - 50
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: number of persons, next_slot_required: False] 
+	[Test case message: the number of persons is 4] 
+	[Result expected: The value of number of persons is 4] 
+	[Result obtained: (effects: Modified fields -  number of persons : 4
+		Modified machine parameters - possible_next_action: fillGenericField, next_slot: phone number) 
+	(response: The values of the fields number of persons have successsfully been inserted.  complete the phone number. This field is optional.)]
+<051> functional test case - 51
+	[Initial situation: Fields -  number of persons : 4;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: The number of persons is 4,5] 
+	[Result expected: 4,5 is not an integer number] 
+	[Result obtained: (response:  The value for the  field number of persons have not been inserted! sorry the value 4,5 is not an integer,  insert a valid value.  insert the phone number. This field is optional.  give the phone number. This field is optional.)]
+<052> functional test case - 52
+	[Initial situation: Fields -  number of persons : 4;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the number of persons is 2,000] 
+	[Result expected: Number above the maximum] 
+	[Result obtained: (response:  The value for the  field number of persons have not been inserted! sorry the value inserted is more than the maximum value acceptable 5. please give the phone number. This field is optional. please fill the phone number. This field is optional.)]
+<053> functional test case - 53
+	[Initial situation: Fields -  number of persons : 4;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the number of persons is 1.000] 
+	[Result expected: The number is above the maximum] 
+	[Result obtained: (response:  The value for the  field number of persons have not been inserted! sorry the value inserted is more than the maximum value acceptable 5. please insert the phone number. This field is optional. please put the phone number. This field is optional.)]
+<054> functional test case - 54
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the birthday is 2010-02-15] 
+	[Result expected: The birthday is 15/02/2010] 
+	[Result obtained: (effects: Modified fields -  birthday : 15-02-2010
+		Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The values of the fields birthday have successsfully been inserted. please give the phone number. This field is optional.)]
+<055> functional test case - 55
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : 15-02-2010;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the birthday is 12-10-1995] 
+	[Result expected: The birthday is 12/10/1995] 
+	[Result obtained: (effects: Modified fields -  birthday : 12-10-1995) 
+	(response: The values of the fields birthday have successsfully been inserted. please insert the phone number. This field is optional.)]
+<056> functional test case - 56
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : 12-10-1995;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the birthday is 08-15-2005] 
+	[Result expected: The birthday is 15/08/2005] 
+	[Result obtained: (effects: Modified fields -  birthday : 15-08-2005) 
+	(response: The values of the fields birthday have successsfully been inserted. please give the phone number. This field is optional.)]
+<057> functional test case - 57
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : 15-08-2005;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the birthday is 15032002] 
+	[Result expected: The birthday is 15/03/2002] 
+	[Result obtained: (effects: Modified fields -  birthday : 15-03-2002) 
+	(response: The values of the fields birthday have successsfully been inserted. please fill the phone number. This field is optional.)]
+<058> functional test case - 58
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the birthday is 02 january 1988] 
+	[Result expected: The birthday is 02/01/1988] 
+	[Result obtained: (effects: Modified fields -  birthday : 02-01-1988
+		Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The values of the fields birthday have successsfully been inserted.  give the phone number. This field is optional.)]
+<059> functional test case - 59
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : 02-01-1988;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the birthday is February 28 2020] 
+	[Result expected: The birthday is 28/02/2020] 
+	[Result obtained: (effects: Modified fields -  birthday : 28-02-2020) 
+	(response: The values of the fields birthday have successsfully been inserted. please insert the phone number. This field is optional.)]
+<060> functional test case - 60
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : 28-02-2020;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the arrival time is 15:10] 
+	[Result expected: The arrival time is 15:10] 
+	[Result obtained: (effects: Modified fields -  arrival time : 15:10) 
+	(response: The values of the fields arrival time have successsfully been inserted.  give the phone number. This field is optional.)]
+<061> functional test case - 61
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : 28-02-2020;  arrival time : 15:10
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the arrival time is 1230] 
+	[Result expected: The arrival time is 12:30] 
+	[Result obtained: (effects: Modified fields -  arrival time : 12:30) 
+	(response: The values of the fields arrival time have successsfully been inserted.  fill the phone number. This field is optional.)]
+<062> functional test case - 62
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the arrival time is 08:05 am] 
+	[Result expected: The arrival time is 08:05] 
+	[Result obtained: (effects: Modified fields -  arrival time : 08:05
+		Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The values of the fields arrival time have successsfully been inserted.  give the phone number. This field is optional.)]
+<063> functional test case - 63
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : 08:05
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the arrival time is 5 pm] 
+	[Result expected: The arrival time is 17:00] 
+	[Result obtained: (effects: Modified fields -  arrival time : 17:00) 
+	(response: The values of the fields arrival time have successsfully been inserted.  insert the phone number. This field is optional.)]
+<064> functional test case - 64
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : 17:00
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the arrival time is 4:15] 
+	[Result expected: The arrival time is 04:15] 
+	[Result obtained: (effects: Modified fields -  arrival time : 04:15) 
+	(response: The values of the fields arrival time have successsfully been inserted.  put the phone number. This field is optional.)]
+<065> functional test case - 65
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : 04:15
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the arrival time is 2:20 pm] 
+	[Result expected: The arrival time is 14:20] 
+	[Result obtained: (effects: Modified fields -  arrival time : 14:20) 
+	(response: The values of the fields arrival time have successsfully been inserted.  complete the phone number. This field is optional.)]
+<066> functional test case - 66
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: phone number, next_slot_required: False] 
+	[Test case message: the arrival time is 7] 
+	[Result expected: The arrival time is 07:00] 
+	[Result obtained: (effects: Modified fields -  arrival time : 07:00
+		Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The values of the fields arrival time have successsfully been inserted. please give the phone number. This field is optional.)]
+<067> functional test case - 67
+	[Initial situation: Fields -  *gender : None;  electronic devices : smartphone;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the message is if the mountain won't come to muhammad, muhammad must go to the mountain] 
+	[Result expected: message becomes 'if the mountain won't come to muhammad, muhammad must go to the mountain'] 
+	[Result obtained: (effects: Modified fields -  message : if the mountain won't come to muhammad, muhammad must go to the mountain) 
+	(response: The values of the fields message have successsfully been inserted. Select the car in the following list Volvo, Saab, Fiat, Audi, Citroen, Ford, BMW, Chevrolet, Honda, Kia, Toyota, Lexus, Hyundai. This field is optional.)]
+<068> functional test case - 68
+	[Initial situation: Fields -  *gender : None;  electronic devices : smartphone;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the message is adversity and loss make a man wise. a journey of thousand miles begins with a single step.] 
+	[Result expected: The message becomes 'adversity and loss make a man wise. a journey of thousand miles begins with a single step.'] 
+	[Result obtained: (effects: Modified fields -  message : adversity and loss make a man wise. a journey of thousand miles begins with a single step.) 
+	(response: The values of the fields message have successsfully been inserted. Select the car in the following list Volvo, Saab, Fiat, Audi, Citroen, Ford, BMW, Chevrolet, Honda, Kia, Toyota, Lexus, Hyundai. This field is optional.)]
+<069> functional test case - 69
+	[Initial situation: Fields -  *gender : None;  electronic devices : smartphone;  car : None;  message : adversity and loss make a man wise. a journey of thousand miles begins with a single step.
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the message is better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait.] 
+	[Result expected: the message becomes 'better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait.'] 
+	[Result obtained: (effects: Modified fields -  message : better late than never, appearances can be deceptive, fall seven times stand up eight, good things come to those who wait.) 
+	(response: The values of the fields message have successsfully been inserted. Select the car in the following list Volvo, Saab, Fiat, Audi, Citroen, Ford, BMW, Chevrolet, Honda, Kia, Toyota, Lexus, Hyundai. This field is optional.)]
+<070> functional test case - 70
+	[Initial situation: Fields -  *gender : None;  electronic devices : None;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: car, next_slot_required: False] 
+	[Test case message: the car is citroen] 
+	[Result expected: The car is citroen] 
+	[Result obtained: (effects: Modified fields -  car : citroen
+		Modified machine parameters - next_slot: message) 
+	(response: The values of the fields car have successsfully been inserted. please give the message. This field is optional.)]
+<071> functional test case - 71
+	[Initial situation: Fields -  *gender : None;  electronic devices : None;  car : citroen;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: message, next_slot_required: False] 
+	[Test case message: the choices for car are ford and bmw] 
+	[Result expected: The car becomes ford, bmw is not a choice for gender.] 
+	[Result obtained: (effects: Modified fields -  car : ford) 
+	(response: The values of the fields car have successsfully been inserted. The value bmw has not been taken into consideration because it is not associated to any field  give the message. This field is optional.)]
+<072> functional test case - 72
+	[Initial situation: Fields -  *gender : None;  electronic devices : None;  car : ford;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: message, next_slot_required: False] 
+	[Test case message: the gender is male] 
+	[Result expected: gender is male] 
+	[Result obtained: (effects: Modified fields -  *gender : male) 
+	(response: The values of the fields gender have successsfully been inserted. please fill the message. This field is optional.)]
+<073> functional test case - 73
+	[Initial situation: Fields -  *gender : None;  electronic devices : None;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: message, next_slot_required: False] 
+	[Test case message: the choices for the gender are female and male] 
+	[Result expected: gender becomes female, none is not a choice for electronic devices] 
+	[Result obtained: (effects: Modified fields -  *gender : female) 
+	(response: The values of the fields gender have successsfully been inserted. The value none has not been taken into consideration because it is not associated to any field please insert the message. This field is optional.)]
+<074> functional test case - 74
+	[Initial situation: Fields -  *gender : female;  electronic devices : None;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: message, next_slot_required: False] 
+	[Test case message: the electronic devices ares smartphone] 
+	[Result expected: electronic devices becomes smartphone] 
+	[Result obtained: (effects: Modified fields -  electronic devices : smartphone) 
+	(response: The values of the fields electronic devices have successsfully been inserted. please give the message. This field is optional.)]
+<075> functional test case - 75
+	[Initial situation: Fields -  *gender : female;  electronic devices : smartphone;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: message, next_slot_required: False] 
+	[Test case message: the electronic devices are sartphone and tablet] 
+	[Result expected: The electronic devices become [smartphone, tablets]] 
+	[Result obtained: (effects: Modified fields -  electronic devices : ['smartphone', 'tablet']) 
+	(response:  give the message. This field is optional.)]
+<076> functional test case - 76
+	[Initial situation: Fields -  *gender : female;  electronic devices : ['smartphone', 'tablet'];  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: message, next_slot_required: False] 
+	[Test case message: the electronic devices are computer, smart watch, smart tv] 
+	[Result expected: The electronic devices become [computer, smart watch, smart tv]] 
+	[Result obtained: (effects: Modified fields -  electronic devices : ['computer', 'smart watch', 'smart tv']) 
+	(response: please complete the message. This field is optional.)]
+<077> functional test case - 77
+	[Initial situation: Fields -  *gender : None;  electronic devices : ['computer', 'smart watch', 'smart tv'];  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: message, next_slot_required: False] 
+	[Test case message: the message is if the mountain] 
+	[Result expected: message becomes "if the mountain"] 
+	[Result obtained: (effects: Modified fields -  message : if the mountain
+		Modified machine parameters - next_slot: gender, next_slot_required: True) 
+	(response: The values of the fields message have successsfully been inserted. Choose your gender in the following list male, female, other. This field is required.)]
+<078> functional test case - 78
+	[Initial situation: Fields -  *gender : None;  electronic devices : ['computer', 'smart watch', 'smart tv'];  car : None;  message : if the mountain
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case message: the message is if the mountain won't come to muhammad] 
+	[Result expected: message becomes 'if the mountain won't come to muhammad'] 
+	[Result obtained: (effects: Modified fields -  message : if the mountain won't come to muhammad) 
+	(response: The values of the fields message have successsfully been inserted. Choose your gender in the following list male, female, other. This field is required.)]
+<079> functional test case - 79
+	[Initial situation: Fields -  *gender : None;  electronic devices : ['computer', 'smart watch', 'smart tv'];  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [], saved_spelling_values: []
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: gender, next_slot_required: True] 
+	[Test case message: the message is if the mountain won't come to muhammad, muhammad must go] 
+	[Result expected: message becomes 'if the mountain won't come to muhammad, muhammad must go'] 
+	[Result obtained: (effects: Modified fields -  message : if the mountain won't come to muhammad, muhammad must go) 
+	(response: The values of the fields message have successsfully been inserted. Choose your gender in the following list male, female, other. This field is required.)]
+<080> functional test case - 80
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: i would like to complete a field] 
+	[Result expected: which field do you want to complete?] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: Which field exactly do you want to revise, and which value do you want to complete for that field?)]
+<081> functional test case - 81
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: i would like to complete the mark] 
+	[Result expected: insert the value of the field mark] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField, next_slot: mark, next_slot_required: False) 
+	(response:  fill the mark. This field is optional. The value should be a number between 18.0 and 30.0.)]
+<082> functional test case - 82
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : 22;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: my_password8ere] 
+	[Result expected: The password value becomes my_password8ere] 
+	[Result obtained: (effects: Modified fields -  password : my_password8ere
+		Modified machine parameters - possible_next_action: fillGenericField, next_slot: email address, next_slot_required: True) 
+	(response: Value for the field password successfully inserted,  complete the email address. This field is required.)]
+<083> functional test case - 83
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: i would like to complete the first name and the last name] 
+	[Result expected: you are going to fill the first name and last name, we start by the first name. insert the first character... the spelling list contains first name and last name] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response:  The fields first name, last name have not been taken into consideration because no values are provided for them please give the email address. This field is required.)]
+<084> functional test case - 84
+	[Initial situation: Fields -  *first name : bob;  last name : alice;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: 26 and alice@pass_good] 
+	[Result expected: the value of the mark have been inserted but alice@pass_good have not been taken into consideration since it is not associated to any field] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response:  The values bob, alice have not beem taken into consideration because they are not associted to any field please put the email address. This field is required.)]
+<085> functional test case - 85
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: the email address is bob@alice.polimi.it] 
+	[Result expected: The email address becomes bob@alice.polimi.it] 
+	[Result obtained: (effects: Modified fields -  *email address : bob@alice.polimi.it
+		Modified machine parameters - possible_next_action: fillGenericField, next_slot: first name) 
+	(response: The values of the fields email address have successsfully been inserted.  fill the first name. This field is required.)]
+<086> functional test case - 86
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: the mark is 24, i want to complete the password] 
+	[Result expected: the password have not been taken into consideration because it is not associated to any value. The mark becomes 24] 
+	[Result obtained: (effects: Modified fields -  mark : 24
+		Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The values of the fields mark have successsfully been inserted. The field password has not been taken into consideration because no value is given for it  put the first name. This field is required.)]
+<087> functional test case - 87
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : 22;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: the mark is 28, continue inserting alicebob@polimi.it] 
+	[Result expected: The mark becomes 28. the value alicebob@polimi.it has not been taken into consideration because it was not associated to any field] 
+	[Result obtained: (effects: Modified fields -  mark : 28
+		Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The values of the fields mark have successsfully been inserted. The value alicebob@polimi.it has not been taken into consideration because it is not associated to any field please fill the first name. This field is required.)]
+<088> functional test case - 88
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: the password is the#pa@ssw0r0 and the email address is my_email@address.pop] 
+	[Result expected: The password and email address are modified. insert the value of the first name] 
+	[Result obtained: (effects: Modified fields -  password : the#pa@ssw0r0;  *email address : my_email@address.pop
+		Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The values of the fields password, email address have successsfully been inserted. please give the first name. This field is required.)]
+<089> functional test case - 89
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: the password is pq88W0r9, i would like to complete the email address and the mark too] 
+	[Result expected: The password is updated, email address and mark have not been taken into consideration. insert the value of the emmail address] 
+	[Result obtained: (effects: Modified fields -  password : pq88W0r9
+		Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The values of the fields password have successsfully been inserted. The fields email address, mark have not been taken into consideration because no values are provided for them  fill the first name. This field is required.)]
+<090> functional test case - 90
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: first name, next_slot_required: True] 
+	[Test case message: the mark is 18, insert the values pass_w0r8 and email_address@mail.com] 
+	[Result expected: The mark is updated, pass_w0r8 and email_address@mail.com ot taken into consideration. the next field is password] 
+	[Result obtained: (effects: Modified fields -  mark : 18
+		Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The values of the fields mark have successsfully been inserted. The values pass_w0r8, email_address@mail.com have not beem taken into consideration because they are not associted to any field please complete the first name. This field is required.)]
+<091> functional test case - 91
+	[Initial situation: Fields -  *first name : alexander;  last name : brown;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: no i don't] 
+	[Result expected: Could you precise the action you would like to perform?] 
+	[Result obtained: (response: please complete the password. This field is optional. otherwise, you can ask the list of the remaining required fields)]
+<092> functional test case - 92
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: spelling, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: no] 
+	[Result expected: could you precise the action that you would like to perform?] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: please give the password. This field is optional. otherwise, you can ask the list of the remaining required fields)]
+<093> functional test case - 93
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: adam, spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: no] 
+	[Result expected: Would you like to save the spelling data?] 
+	[Result obtained: (effects: Modified spelling attributes - spelling_interrupted: True, waiting_message: {'entities': [], 'intent': {'name': 'deny', 'confidence': 1}, 'text': 'no'}
+		Modified machine parameters - warning_message: Do you want to save the state of the field that you started spelling?
+In case of negative response, that input will simply be canceled) 
+	(response: Do you want to save the state of the field that you started spelling? In case of negative response, that input will simply be canceled)]
+<094> functional test case - 94
+	[Initial situation: Fields -  *first name : rob;  last name : sunday;  mark : 27;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: True, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: no] 
+	[Result expected: next field is password, no modification of the actual fields, alarm disabled] 
+	[Result obtained: (effects: Modified spelling attributes - spelling_interrupted: False
+		Modified machine parameters - reset_alarm_enabled: False) 
+	(response: )]
+<095> functional test case - 95
+	[Initial situation: Fields -  *first name : mody;  last name : friz;  mark : 22;  password : None;  *email address : johm@ala.net
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: submitForm, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: no, i prefer not] 
+	[Result expected: The next field is password, alarm desabled] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: please fill the password. This field is optional. otherwise, you can ask the list of the remaining required fields)]
+<096> functional test case - 96
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : johm@ala.net
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: What is this form about?] 
+	[Result expected: This form does not have any explanation] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response:  the field arrival time is not present in this form. The fields of this form are the following: first name, last name, mark, password, email address  give the password. This field is optional.)]
+<097> functional test case - 97
+	[Initial situation: Fields -  *first name : roman;  last name : mathiew;  mark : None;  password : None;  *email address : mathiew@kenyan.uk
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: may i submit?] 
+	[Result expected: we are about to submit, do you confirm?] 
+	[Result obtained: (effects: Modified machine parameters - submit_alarm_enabled: True, possible_next_action: submitForm) 
+	(response:  *first name : roman  last name : mathiew  mark : None  password : None  *email address : mathiew@kenyan.uk If you would like to change something, let me know, otherwise confirm that you really want to continue with the submission?)]
+<098> functional test case - 98
+	[Initial situation: Fields -  *first name : beta;  last name : free;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: i want to submit] 
+	[Result expected: Not all the required fields are completed, you still have to fill the email address] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: Not all the required fields are completed. You should complete the field email address. please complete the password. This field is optional.)]
+<099> functional test case - 99
+	[Initial situation: Fields -  *first name : berty;  last name : ngono;  mark : 21;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: i want to restart from the beginning] 
+	[Result expected: reset alarm is enabled. We are going to reset, do you confirm the action?] 
+	[Result obtained: (effects: Modified machine parameters - reset_alarm_enabled: True, possible_next_action: resetAllFields) 
+	(response: we are about to reset all the fields and restart the process.  are you sure you want to continue with this action?)]
+<100> functional test case - 100
+	[Initial situation: Fields -  *first name : edgar;  last name : bolsonaro;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: password, next_slot_required: False] 
+	[Test case message: I want to reset all the fields] 
+	[Result expected: All the fields reset] 
+	[Result obtained: (effects: Modified fields -  *first name : None;  last name : None
+		Modified machine parameters - reset_alarm_enabled: False, possible_next_action: fillGenericField, next_slot: mark) 
+	(response: All the fields have been reset, now we restart the process.  put the mark. This field is optional. The value should be a number between 18.0 and 30.0.)]
+<101> functional test case - 101
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: ad, spelling_interrupted: False, spelling_list: ['first name'], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: spelling, warning_message: , next_slot: mark, next_slot_required: False] 
+	[Test case message: a] 
+	[Result expected: current spelling string: ada. Insert the next character] 
+	[Result obtained: (effects: Modified spelling attributes - spelling_list: []
+		Modified machine parameters - possible_next_action: None, warning_message:  i do not understand your request, could you reformulate please? otherwise, you can skip this field or submit the Web Form if all the required fields are completed) 
+	(response:  i do not understand your request, could you reformulate please? otherwise, you can skip this field or submit the Web Form if all the required fields are completed)]
+<102> functional test case - 102
+	[Initial situation: Fields -  *first name : anna;  last name : richards;  mark : 20;  password : ombrella;  *email address : None
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: en, spelling_interrupted: False, spelling_list: ['email address'], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: 1] 
+	[Result expected: the current spelling value: en1. Insert the next character] 
+	[Result obtained: (effects: Modified spelling attributes - spelling_list: []
+		Modified machine parameters - warning_message: sorry i do not understand your request, could you reformulate please? otherwise, you can ask the explanation of a field or decide to complete a different field) 
+	(response: sorry i do not understand your request, could you reformulate please? otherwise, you can ask the explanation of a field or decide to complete a different field)]
+<103> functional test case - 103
+	[Initial situation: Fields -  *first name : anna;  last name : richards;  mark : 20;  password : ombrella;  *email address : None
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: en, spelling_interrupted: False, spelling_list: ['email address'], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: 98] 
+	[Result expected: the current spelling value: en98. Insert the next character] 
+	[Result obtained: (effects: Modified spelling attributes - spelling_list: []
+		Modified machine parameters - warning_message: sorry i do not understand your request, could you reformulate please? otherwise, you can ask the explanation of a field or decide to complete a different field) 
+	(response: sorry i do not understand your request, could you reformulate please? otherwise, you can ask the explanation of a field or decide to complete a different field)]
+<104> functional test case - 104
+	[Initial situation: Fields -  *first name : anna;  last name : richards;  mark : 20;  password : ombrella;  *email address : None
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: en, spelling_interrupted: False, spelling_list: ['email address'], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: 348] 
+	[Result expected: the current spelling value: en348. Insert the next character] 
+	[Result obtained: (effects: Modified spelling attributes - spelling_list: []
+		Modified machine parameters - warning_message: sorry i do not understand your request, could you reformulate please? otherwise, you can ask the explanation of a field or decide to complete a different field) 
+	(response: sorry i do not understand your request, could you reformulate please? otherwise, you can ask the explanation of a field or decide to complete a different field)]
+<105> functional test case - 105
+	[Initial situation: Fields -  *first name : anna;  last name : richards;  mark : 20;  password : ombrella;  *email address : None
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: en, spelling_interrupted: False, spelling_list: ['email address'], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: at] 
+	[Result expected: the current spelling value: en@. Insert the next character] 
+	[Result obtained: (effects: Modified spelling attributes - spelling_list: []
+		Modified machine parameters - warning_message:  i do not understand your request, could you reformulate ? otherwise, you can ask the explanation of a field or decide to complete a different field) 
+	(response:  i do not understand your request, could you reformulate ? otherwise, you can ask the explanation of a field or decide to complete a different field)]
+<106> functional test case - 106
+	[Initial situation: Fields -  *first name : anna;  last name : richards;  mark : 20;  password : ombrella;  *email address : None
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: en, spelling_interrupted: False, spelling_list: ['email address'], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: @] 
+	[Result expected: the current spelling value: en@. Insert the next character] 
+	[Result obtained: (effects: Modified spelling attributes - spelling_list: []
+		Modified machine parameters - warning_message: sorry i do not understand your request, could you reformulate ? otherwise, you can ask the explanation of a field or decide to complete a different field) 
+	(response: sorry i do not understand your request, could you reformulate ? otherwise, you can ask the explanation of a field or decide to complete a different field)]
+<107> functional test case - 107
+	[Initial situation: Fields -  *first name : anna;  last name : richards;  mark : 20;  password : ombrella;  *email address : None
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: en, spelling_interrupted: False, spelling_list: ['email address'], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: (] 
+	[Result expected: the current spelling value: en. Character not accepted. Insert the next character] 
+	[Result obtained: (effects: Modified spelling attributes - spelling_list: []
+		Modified machine parameters - warning_message: sorry i do not understand your request, could you reformulate please? otherwise, you can ask the explanation of a field or decide to complete a different field) 
+	(response: sorry i do not understand your request, could you reformulate please? otherwise, you can ask the explanation of a field or decide to complete a different field)]
+<108> functional test case - 108
+	[Initial situation: Fields -  *first name : alan;  last name : demur;  mark : 18;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: i want to modify a field] 
+	[Result expected: which field do you want to modify and which value for it?] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: Which field exactly do you want to modify, and which value do you want to complete for that field?)]
+<109> functional test case - 109
+	[Initial situation: Fields -  *first name : vincent;  last name : eliot;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: i want to change the first name] 
+	[Result expected: Insert the value of the first name] 
+	[Result obtained: (effects: Modified machine parameters - warning_message:  i do not understand your request, could you reformulate please? otherwise, you can ask the explanation of a field or decide to complete a different field) 
+	(response:  i do not understand your request, could you reformulate please? otherwise, you can ask the explanation of a field or decide to complete a different field)]
+<110> functional test case - 110
+	[Initial situation: Fields -  *first name : henry;  last name : gomez;  mark : 22;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: modify the first name and the mark] 
+	[Result expected: Insert the value of the first name] 
+	[Result obtained: (effects: Modified machine parameters - warning_message: sorry i do not understand your request, could you reformulate ? otherwise, you can ask the explanation of a field or decide to complete a different field) 
+	(response: sorry i do not understand your request, could you reformulate ? otherwise, you can ask the explanation of a field or decide to complete a different field)]
+<111> functional test case - 111
+	[Initial situation: Fields -  *first name : alfred;  last name : sacker;  mark : 27;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: i want to modify the mark, inserting 30] 
+	[Result expected: The mark becomes 30, The next field is password.] 
+	[Result obtained: (effects: Modified machine parameters - warning_message:  i do not understand your request, could you reformulate ? otherwise, you can ask the explanation of a field or decide to complete a different field) 
+	(response:  i do not understand your request, could you reformulate ? otherwise, you can ask the explanation of a field or decide to complete a different field)]
+<112> functional test case - 112
+	[Initial situation: Fields -  *first name : dummy;  last name : season;  mark : None;  password : pwd98star;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: modify the password and insert my_pwd98stra, modify also the mark and the email address] 
+	[Result expected: password modified, the next field is mark] 
+	[Result obtained: (effects: Modified machine parameters - warning_message: sorry i do not understand your request, could you reformulate ? otherwise, you can ask the explanation of a field or decide to complete a different field) 
+	(response: sorry i do not understand your request, could you reformulate ? otherwise, you can ask the explanation of a field or decide to complete a different field)]
+<113> functional test case - 113
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : 19;  password : pourtine;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: modify the mark with 25 and modify the password with new_passw] 
+	[Result expected: The mark and he password are modified. the next field is email address] 
+	[Result obtained: (effects: Modified machine parameters - warning_message:  i do not understand your request, could you reformulate ? otherwise, you can ask the explanation of a field or decide to complete a different field) 
+	(response:  i do not understand your request, could you reformulate ? otherwise, you can ask the explanation of a field or decide to complete a different field)]
+<114> functional test case - 114
+	[Initial situation: Fields -  *first name : None;  last name : bradley;  mark : 30;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: which are the remaining required fields?] 
+	[Result expected: The remaining required fields are first name and email address. The next field is password] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: sure the remaining required fields are the following: first name, email address.   give the email address. This field is required.)]
+<115> functional test case - 115
+	[Initial situation: Fields -  *first name : ronald;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: email address, next_slot_required: True] 
+	[Test case message: which are the required fields that remain to fill?] 
+	[Result expected: there is one remaining required fieldand it is email address. The next field is last name] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The only required field that remains is email address   insert the email address. This field is required.)]
+<116> functional test case - 116
+	[Initial situation: Fields -  *first name : wonder;  last name : None;  mark : None;  password : None;  *email address : won@der.com
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: please i would like to know the remaining requiered fields] 
+	[Result expected: There is no requiered field remaining. The next field is last name] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: There is no required field remaining  please complete the last name. This field is optional.)]
+<117> functional test case - 117
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: could you please repeat the required fields?] 
+	[Result expected: The required fields are first name and email address. The next field is first name] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response:  the required fields are the following: first name, email address.  give the last name. This field is optional.)]
+<118> functional test case - 118
+	[Initial situation: Fields -  number of persons : 3;  phone number : 1040059566;  birthday : 12-04-1992;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: What is the value of the field?] 
+	[Result expected: Which field are interested into?] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: Here is the answer for you:  Do you want to modify this value? if not you can ask to resume the filling procedure and restart from where you stopped)]
+<119> functional test case - 119
+	[Initial situation: Fields -  number of persons : 2;  phone number : 9838743844422;  birthday : 10-09-1988;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: what is the value of the field phone number?] 
+	[Result expected: phone number: 9838743844422. The next field is arrvival time] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: Here is the answer for you:   phone number : 9838743844422 Do you want to modify this value? if not you can ask to resume the filling procedure and restart from where you stopped)]
+<120> functional test case - 120
+	[Initial situation: Fields -  number of persons : 2;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: What are the values of the fields number of persons and arrival time] 
+	[Result expected: nunmber of persons: 2, arrival time: no value. The next field is arrival time] 
+	[Result obtained: (effects: Modified machine parameters - submit_alarm_enabled: True, possible_next_action: submitForm) 
+	(response:  The fields number of persons, arrival time have not been taken into consideration because no values are provided for them All the fields have been completed. Here is the summary:   number of persons : 2  phone number : None  birthday : None  arrival time : None  Is everything good for the submission? If yes, give a positive answer otherwise tell me the fields that you would like to change.. The stars indicate the required fields)]
+<121> functional test case - 121
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: could you repeat the fields please] 
+	[Result expected: The fields are birthday, phone number, number of persons, arrival time. The next field is birthday] 
+	[Result obtained: (effects: Modified machine parameters - submit_alarm_enabled: True, possible_next_action: submitForm) 
+	(response: The fields present in this form are the following: number of persons, phone number, birthday, arrival time. All the fields have been completed. Here is the summary:   number of persons : None  phone number : None  birthday : None  arrival time : None  Is everything correct for the submission? If yes, give a positive answer otherwise tell me the fields that you would like to change.. The stars indicate the required fields)]
+<122> functional test case - 122
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: which are the required fields please?] 
+	[Result expected: There is no required field in this form. The next field is birthday] 
+	[Result obtained: (effects: Modified machine parameters - submit_alarm_enabled: True, possible_next_action: submitForm) 
+	(response: There is no required field in this form All the fields have been completed. Here is the summary:   number of persons : None  phone number : None  birthday : None  arrival time : None  Is everything good for the submission? If yes, give a positive answer otherwise tell me the fields that you would like to change.. The stars indicate the required fields)]
+<123> functional test case - 123
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: Which are the optional fields?] 
+	[Result expected: The optional fields are birthday, phone number, number of persons, arrival time. The next field is birthday] 
+	[Result obtained: (effects: Modified machine parameters - submit_alarm_enabled: True, possible_next_action: submitForm) 
+	(response: sure the optional fields are the following number of persons, phone number, birthday, arrival time. All the fields have been completed. Here is the summary:   number of persons : None  phone number : None  birthday : None  arrival time : None  Is everything good for the submission? If yes, give a positive answer otherwise tell me the fields that you would like to change.. The stars indicate the required fields)]
+<124> functional test case - 124
+	[Initial situation: Fields -  number of persons : 2;  phone number : 5653792873;  birthday : 02-02-2001;  arrival time : 05:00
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: which are the remaining fields?] 
+	[Result expected: There is no remaining field. Here is the recap, do you want to submit?] 
+	[Result obtained: (effects: Modified machine parameters - submit_alarm_enabled: True, possible_next_action: submitForm) 
+	(response: There is no field remaining All the fields have been completed. Here is the summary:   number of persons : 2  phone number : 5653792873  birthday : 02-02-2001  arrival time : 05:00  Is everything okay for the submission? If yes, give a positive answer otherwise tell me the fields that you would like to change.. The stars indicate the required fields)]
+<125> functional test case - 125
+	[Initial situation: Fields -  number of persons : None;  phone number : 1235364321;  birthday : 03-05-1992;  arrival time : 20:28
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: Please which re the remaining fields?] 
+	[Result expected: There is one remaining field and it is number of persons. The next field is number of persons] 
+	[Result obtained: (effects: Modified machine parameters - submit_alarm_enabled: True, possible_next_action: submitForm) 
+	(response: There is one field remaining and it is number of persons All the fields have been completed. Here is the summary:   number of persons : None  phone number : 1235364321  birthday : 03-05-1992  arrival time : 20:28  Is everything correct for the submission? If yes, give a positive answer otherwise tell me the fields that you would like to change.. The stars indicate the required fields)]
+<126> functional test case - 126
+	[Initial situation: Fields -  number of persons : 4;  phone number : None;  birthday : None;  arrival time : 15:46
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: please could you give me the remaining fields?] 
+	[Result expected: the remaining fields are birthday and phone number. The next field is birthday] 
+	[Result obtained: (effects: Modified machine parameters - submit_alarm_enabled: True, possible_next_action: submitForm) 
+	(response:  the remaining fields present in this form are the following: phone number, birthday. All the fields have been completed. Here is the summary:   number of persons : 4  phone number : None  birthday : None  arrival time : 15:46  Is everything fine for the submission? If yes, give a positive answer otherwise tell me the fields that you would like to change.. The stars indicate the required fields)]
+<127> functional test case - 127
+	[Initial situation: Fields -  number of persons : 3;  phone number : None;  birthday : 06-07-1999;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: what are the remaining optional fields] 
+	[Result expected: The remaining optional fields are phone number and arrival time] 
+	[Result obtained: (effects: Modified machine parameters - submit_alarm_enabled: True, possible_next_action: submitForm) 
+	(response:  the remaining optional fields are the following phone number, arrival time. All the fields have been completed. Here is the summary:   number of persons : 3  phone number : None  birthday : 06-07-1999  arrival time : None  Is everything well for the submission? If yes, give a positive answer otherwise tell me the fields that you would like to change.. The stars indicate the required fields)]
+<128> functional test case - 128
+	[Initial situation: Fields -  number of persons : 3;  phone number : 983789234180;  birthday : None;  arrival time : 13:33
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: which are the remaining fields that are optional] 
+	[Result expected: There is one remaining optional field ant it is the birthday. The next field is birthday] 
+	[Result obtained: (effects: Modified machine parameters - submit_alarm_enabled: True, possible_next_action: submitForm) 
+	(response: sure the remaining optional fields are the following birthday. All the fields have been completed. Here is the summary:   number of persons : 3  phone number : 983789234180  birthday : None  arrival time : 13:33  Is everything correct for the submission? If yes, give a positive answer otherwise tell me the fields that you would like to change.. The stars indicate the required fields)]
+<129> functional test case - 129
+	[Initial situation: Fields -  number of persons : 3;  phone number : 85759849202;  birthday : 12-07-2010;  arrival time : 18:30
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: Which are the remaining optional fields?] 
+	[Result expected: There is no optional field. Here is the recap, do you want to submit?] 
+	[Result obtained: (effects: Modified machine parameters - submit_alarm_enabled: True, possible_next_action: submitForm) 
+	(response: sure the remaining optional fields are the following . All the fields have been completed. Here is the summary:   number of persons : 3  phone number : 85759849202  birthday : 12-07-2010  arrival time : 18:30  Is everything fine for the submission? If yes, give a positive answer otherwise tell me the fields that you would like to change.. The stars indicate the required fields)]
+<130> functional test case - 130
+	[Initial situation: Fields -  number of persons : 3;  phone number : None;  birthday : 25-07-2003;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: True, warning_present: False, all_required_filled: True, possible_next_action: submitForm, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: yes] 
+	[Result expected: submit done] 
+	[Result obtained: (effects: Modified machine parameters - submit_done: True, submit_alarm_enabled: False, possible_next_action: None) 
+	(response: Submission done)]
+<131> functional test case - 131
+	[Initial situation: Fields -  *gender : male;  electronic devices : smartphone;  car : volvo;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[]], saved_spelling_values: [[]]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: True, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: resetAllFields, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: yes] 
+	[Result expected: The fields have been reset] 
+	[Result obtained: (effects: Modified fields -  *gender : None;  electronic devices : None;  car : None
+		Modified machine parameters - reset_alarm_enabled: False, possible_next_action: fillGenericField, next_slot: message, next_slot_required: False) 
+	(response: All the fields have been reset, now we restart the process.  put the message. This field is optional.)]
+<132> functional test case - 132
+	[Initial situation: Fields -  *gender : female;  electronic devices : None;  car : kia;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], []], saved_spelling_values: [[], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: message, next_slot_required: False] 
+	[Test case message: Could you repeat de required felds please?] 
+	[Result expected: There is one required field and it is gender] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: There is one required field in this form which is gender  insert the message. This field is optional.)]
+<133> functional test case - 133
+	[Initial situation: Fields -  *gender : other;  electronic devices : None;  car : lexus;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], []], saved_spelling_values: [[], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: message, next_slot_required: False] 
+	[Test case message: next field please] 
+	[Result expected: The next field is message] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField, next_slot: electronic devices) 
+	(response: If you want, you can submit the Web Form if all the required fields are completed, otherwise Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional.)]
+<134> functional test case - 134
+	[Initial situation: Fields -  *gender : None;  electronic devices : None;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], []], saved_spelling_values: [[], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: electronic devices, next_slot_required: False] 
+	[Test case message: Is the field universtity present?] 
+	[Result expected: The field university is not present . The next field is car] 
+	[Result obtained: (effects: Modified machine parameters - warning_present: True, warning_message: please indicate which field you are interested to, otherwise, you can submit the Web Form if all the required fields are completed, verify if there is a given field in this Web Form or skip this field) 
+	(response: please indicate which field you are interested to, otherwise, you can submit the Web Form if all the required fields are completed, verify if there is a given field in this Web Form or skip this field)]
+<135> functional test case - 135
+	[Initial situation: Fields -  *gender : None;  electronic devices : None;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], []], saved_spelling_values: [[], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: electronic devices, next_slot_required: False] 
+	[Test case message: are the fields car and gender present in this form?] 
+	[Result expected: Car is present, gender is present. The next field is car] 
+	[Result obtained: (effects: Modified machine parameters - warning_message: please indicate which field you are interested to, otherwise, you can submit the Web Form if all the required fields are completed, verify if there is a given field in this Web Form or skip this field) 
+	(response: please indicate which field you are interested to, otherwise, you can submit the Web Form if all the required fields are completed, verify if there is a given field in this Web Form or skip this field)]
+<136> functional test case - 136
+	[Initial situation: Fields -  *gender : female;  electronic devices : computer;  car : ford;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: message, next_slot_required: False] 
+	[Test case message: what is the value of the field car] 
+	[Result expected: car: ford. The next field is message] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The fields you already completed are the following:   *gender : female  electronic devices : computer  car : ford If you see some stars, they indicate the required fields. please fill the message. This field is optional.)]
+<137> functional test case - 137
+	[Initial situation: Fields -  *gender : male;  electronic devices : computer;  car : fiat;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: message, next_slot_required: False] 
+	[Test case message: What is the value of the field?] 
+	[Result expected: To which field are you interested to?] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The fields you already completed are the following:   *gender : male  electronic devices : computer  car : fiat If you see some stars, they indicate the required fields.  put the message. This field is optional.)]
+<138> functional test case - 138
+	[Initial situation: Fields -  *gender : female;  electronic devices : smart watch;  car : honda;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: message, next_slot_required: False] 
+	[Test case message: What is the value of the fields car and gender] 
+	[Result expected: Car: honda, gender: female. The next field is message] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The fields you already completed are the following:   *gender : female  electronic devices : smart watch  car : honda If you see some stars, they indicate the required fields.  put the message. This field is optional.)]
+<139> functional test case - 139
+	[Initial situation: Fields -  *gender : other;  electronic devices : None;  car : bmw;  message : i am happy to be here
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: electronic devices, next_slot_required: False] 
+	[Test case message: what is the title of this form?] 
+	[Result expected: The title is test form sample number 3. The next field is electronic devices] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The title of this form is test form sample number 3. Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional.)]
+<140> functional test case - 140
+	[Initial situation: Fields -  *first name : None;  last name : None;  mark : None;  password : None;  *email address : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: last name, next_slot_required: False] 
+	[Test case message: Please give me the title of the form] 
+	[Result expected: This form does not have a title. The next field is first name.] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: The title of this form is  there is no title provided for this form.  complete the last name. This field is optional.)]
+<141> functional test case - 141
+	[Initial situation: Fields -  *gender : None;  electronic devices : None;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: electronic devices, next_slot_required: False] 
+	[Test case message: What is this form about?] 
+	[Result expected: This form presents various fields ... The next field is car] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: sure here it is: presents various fields types in order to test the different kind of input we can have and different actions. Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional.)]
+<142> functional test case - 142
+	[Initial situation: Fields -  *gender : None;  electronic devices : None;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: electronic devices, next_slot_required: False] 
+	[Test case message: What is it?] 
+	[Result expected: The car brand that you prefer. The next field is car] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: Here is the explanation provided for the electronic devices: the electronic devices that you own Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional.)]
+<143> functional test case - 143
+	[Initial situation: Fields -  *gender : None;  electronic devices : None;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: None, warning_message: , next_slot: electronic devices, next_slot_required: False] 
+	[Test case message: What is electronic devices?] 
+	[Result expected: The electronic devices you own. The next field is car] 
+	[Result obtained: (effects: Modified machine parameters - possible_next_action: fillGenericField) 
+	(response: Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional.)]
+<144> functional test case - 144
+	[Initial situation: Fields -  *gender : None;  electronic devices : None;  car : None;  message : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: False, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: fillGenericField, warning_message: , next_slot: electronic devices, next_slot_required: False] 
+	[Test case message: yes] 
+	[Result expected: could you precise the action that you want to perform? The next field is car] 
+	[Result obtained: (response: Select the electronic devices in the following list none, computer, smartphone, tablet, smart watch, smart tv, blutooth earphones, camera, smart glasses. This field is optional. otherwise, you can request the list of fields present in this Web Form, ask the list of the remaining required fields or skip this field )]
+<145> functional test case - 145
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: True, current_spelling_input_value: 354252, spelling_interrupted: False, spelling_list: ['phone number'], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: False, all_required_filled: True, possible_next_action: spelling, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: yes] 
+	[Result expected: Do you want to save the spelling information?] 
+	[Result obtained: (effects: Modified spelling attributes - spelling_interrupted: True, waiting_message: {'entities': [{'entity': 'input_value', 'value': 4}], 'intent': {'name': 'affirm', 'confidence': 1}, 'text': 'yes'}
+		Modified machine parameters - warning_present: True, possible_next_action: None, warning_message: Do you want to save the state of the field that you started spelling?
+In case of negative response, that input will simply be canceled) 
+	(response: Do you want to save the state of the field that you started spelling? In case of negative response, that input will simply be canceled)]
+<146> functional test case - 146
+	[Initial situation: Fields -  number of persons : None;  phone number : None;  birthday : None;  arrival time : None
+		Spelling state - close_prompt_enabled: False, current_spelling_input_value: , spelling_interrupted: True, spelling_list: [], after_spelling: False, waiting_message: None, saved_spelling_fields: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], saved_spelling_values: [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+		Machine parameters - filling_started: False, submit_done: False, reset_alarm_enabled: False, submit_alarm_enabled: False, warning_present: True, all_required_filled: True, possible_next_action: spelling, warning_message: , next_slot: None, next_slot_required: None] 
+	[Test case message: sure i want] 
+	[Result expected: Which action exactly do you want to perform?] 
+	[Result obtained: (effects: Modified spelling attributes - spelling_interrupted: False
+		Modified machine parameters - possible_next_action: None) 
+	(response: )]
+

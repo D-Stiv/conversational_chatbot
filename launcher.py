@@ -21,7 +21,7 @@ def initial_parsing(url, browser, s=None):
 
 s_values = [0, 2, 4, 8, 16, 32]
 my_list = [16,32] + s_values + s_values + s_values + s_values + s_values 
-for s in my_list:
+for s in [0]:
     # At the beginning of the parsing of the whole Web paage
     # Access Level
     if u.interactive_enabled:

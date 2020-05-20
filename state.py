@@ -248,9 +248,7 @@ class State:
             # the field we are looking for is not in the form
             if u.DEBUG:
                 print(f'The field {slot_name} is not in the form')
-            sorry_style = styles.get_sorry()
-            please_style = styles.get_please()
-            text = f"{sorry_style} the field {slot_name} is not present in this form.{please_style} could you precise the action you want to perform?"
+            text = fn.verify_presence(slot_name, slots, only_text=True)
             self.set_warning_message(text)
             raise Exception
         except:
@@ -264,7 +262,7 @@ class State:
             exists = False
             slots = self.form_slots()
             for existing_slot in slots:
-                if slot_name == existing_slot[u.slot_name]:
+                if slot_name.lower() == existing_slot[u.slot_name].lower():
                     exists = True
                     existing_slot[u.slot_value] = slot_value
                     break
@@ -364,6 +362,7 @@ class State:
         try:
             types_with_options = u.choices_type_list
             slot = self.get_slot(slot_name)
+            useful_info = ''
             value_type = slot[u.value_type]
             required_string = fn.get_required_string(slot_required)
             if value_type in types_with_options:
@@ -377,9 +376,13 @@ class State:
                     print("choice list")
                     print(choice_list)
             else:
+                # we construct some useful info.
+                if value_type in [u.number, u.decimal, u.integer]:
+                    useful_info = f'\nThe value should be a number between {slot[u.min_value]} and {slot[u.max_value]}.'
                 insert_style = styles.get_insert()
                 please_style = styles.get_please()
-                string = f"{please_style} {insert_style} the value for the field {slot_name}. {required_string}"
+                string = f"{please_style} {insert_style} the {slot_name}. {required_string}"
+            string = f'{string}{useful_info}'
             return string
         except:
             print("ERROR: Fail to extract the text for the next slot")
@@ -648,7 +651,7 @@ class State:
                 text = f"There is no explanation provided for the field {field} {sorry_style}"
                 return text
             # the description is present in the html file
-            text = f'{field}: {desc}'
+            text = f'Here is the explanation provided for the {field}: {desc}'
             return text
         except:
             print(f'ERROR: Fail to get the description of the field {field}')
@@ -659,7 +662,7 @@ class State:
             first = "All the fields have been completed."
             values = fn.get_pairs(slots=self.form_slots())
             okay_style = styles.get_good()
-            stringSubmit = f"Is everything {okay_style} for the submission?"
+            stringSubmit = f"Is everything {okay_style} for the submission? If yes, give a positive answer otherwise tell me the fields that you would like to change."
             string = f"{first} Here is the summary: \n{values} \n{stringSubmit}.\nThe stars indicate the required fields"
             return string
         except:
@@ -784,8 +787,9 @@ class State:
             self.decrease_num_required_remaining()
             if self.get_num_required_remaining() == 0:
                 self.set_all_required_filled(True)
-                text = ("All the required fields have been completed, from now on you can" +
-                            " submit")
+                remaining_fields = self.get_fields_list(remaining=True)
+                ready_to_submit_text = f'\nAll the required fields have been completed, from now on you can submit the Web Form if you wish but we give you the possibility to complete the remaining optional fields {remaining_fields} if you would like to.'
+                text = f"The value of {slot_name} have been inserted.{ready_to_submit_text}"
                 next_step_string = self.manage_next_step()
                 string = f'{text}\n{next_step_string}'
                 return string
@@ -803,18 +807,14 @@ class State:
                 # we prepare the slot for the next value coming
                 self.set_next_slot(slot_name)
                 string = self.manage_next_step()
-                return True, string
+                return string
             if numValue >= numSlot:
-                correct, string = self.fill_slots_more_values(
+                string = self.fill_slots_more_values(
                     slot_name_list, slot_value_list)
             else:
-                correct, string = self.fill_slots_more_names(
+                string = self.fill_slots_more_names(
                     slot_name_list, slot_value_list)
-            if correct:
-                string = f'Web Form updated. {string}'
-            else:
-                string = f'The Web Form has not been updated, problem of validity.\n{string}'
-            return correct, string
+            return string
         except:
             if not self.get_warning_present():
                 print("ERROR: Fail to fill the slots")
@@ -828,56 +828,47 @@ class State:
             particular_case = self.managed_particular_case(
                 slot_name_list, slot_value_list)
             if particular_case:
-                return True, self.manage_next_step()
+                return self.manage_next_step()
             # we are not in a checkbox with more than one choice_value made
-            ready_to_submit = False
+            all_required_filled_before = self.get_all_required_filled()
             numSlot = len(slot_name_list)
             numValue = len(slot_value_list)
+            not_inserted_text = []
+            inserted_list = []
             for index in range(numSlot):
                 # we fill in sequence the fields with values
                 slot_name = slot_name_list[index]
                 slot_value = slot_value_list[index]
                 if u.DEBUG:
                     print(f"field label: {slot_name}, field value: {slot_value}")
-                slot_value, comment = self.fill_input(slot_name, slot_value)
-                if slot_value is None:
+                string = self.filling_procedure(slot_name, slot_value)
+                if 'inserted!' in string.lower() and 'not' in string.lower():
                     # incompatibility observed, the comment contains the next_step_string
-                    return False, comment
-                self.set_slot(slot_name, slot_value)
-                text = self.update(slot_name)
-                if text != u.VOID:  # slot value is not None so text != u.CANCELED
-                    ready_to_submit = True
-                    string = text                
-            for index in range(numSlot, numValue):
-                # we want to complete in sequence the empty fields with the values not
-                # explicitely associated to any field
-                slots = self.form_slots()
-                for slot in slots:
-                    slot_name = slot[u.slot_name]
-                    if slot_name != u.REQUESTED_SLOT:
-                        slot_value = slot[u.slot_value]
-                        spelling = slot[u.spelling]
-                        if slot_value is None and not spelling:
-                            slot_value, comment = self.fill_input(
-                                slot_name, slot_value_list[index])
-                            if slot_value is None:
-                                # incompatibility observed, the comment contains the next_step_string
-                                return False, comment
-                            # the Web form has been updated correctly and now we update the slots
-                            self.set_slot(slot_name, slot_value)
-                            text = self.update(slot_name)
-                            # update returns a message when we just completed the last required field
-                            if text != u.VOID:
-                                ready_to_submit = True
-                                string = text
-                            break
+                    not_inserted_text.append(string)
+                else:
+                    inserted_list.append(slot_name)
+            not_considered = slot_value_list[numSlot:numValue]
+            text_not_considered = ''
+            if not_considered != []:
+                if len(not_considered) == 1:
+                    text_not_considered = f'\nThe value {not_considered[0]} has not been taken into consideration because it is not associated to any field'
+                else:
+                    text_not_considered = f'\nThe values {fn.get_string_from_list(not_considered)} have not beem taken into consideration because they are not associted to any field'
             next_step_string = self.manage_next_step()
-            if ready_to_submit:
-                next_slot_name = self.get_next_slot(only_name=True)    # return also if the next slot is required or not
-                if next_slot_name is not None:
-                    return True, string
-            string = next_step_string
-            return True, string
+            all_required_filled_after = self.get_all_required_filled()
+            text_inserted = ''
+            text_not_inserted = ''
+            if inserted_list != []:
+                text_inserted = f'The values of the fields {fn.get_string_from_list(inserted_list)} have successsfully been inserted.'
+            if not_inserted_text != []:
+                text_not_inserted = f'\n{fn.get_string_from_list(not_inserted_text)}'
+            ready_to_submit_text = ''
+            if not all_required_filled_before and all_required_filled_after:
+                remaining_fields = self.get_fields_list(remaining=True)
+                ready_to_submit_text = f'\nAll the required fields have been completed, from now on you can submit the Web Form if you wish but we give you the possibility to complete the remaining optional fields {remaining_fields} if you would like to.'
+            next_step_string = self.manage_next_step()
+            string = f'{text_inserted}{text_not_inserted}{text_not_considered}{ready_to_submit_text}\n{next_step_string}'
+            return string
         except:
             if not self.get_warning_present():
                 print('ERROR: Fail to fill the slots when there are more values than fields names')
@@ -885,50 +876,47 @@ class State:
 
     def fill_slots_more_names(self, slot_name_list, slot_value_list):
         try:
+            all_required_filled_before = self.get_all_required_filled()
             empty_slots_names = []
             # there are strictly less values than fields, so it is possible to have empty fields at
             # the end
-            ready_to_submit = False
             numSlot = len(slot_name_list)
             numValue = len(slot_value_list)
+            not_inserted_text = []
+            inserted_list = []
             for index in range(numValue):
                 # we fill in sequencw the fields with values
                 slot_name = slot_name_list[index]
                 slot_value = slot_value_list[index]
-                slot_value, comment = self.fill_input(slot_name, slot_value)
-                if slot_value is None:
+                string = self.filling_procedure(slot_name, slot_value)
+                if 'inserted!' in string.lower() and 'not' in string.lower():
                     # incompatibility observed, the comment contains the next_step_string
-                    return False, comment
-                self.set_slot(slot_name, slot_value)
-                text = self.update(slot_name)
-                if text != u.VOID:
-                    ready_to_submit = True
-                    string = text
+                    not_inserted_text.append(string)
+                else:
+                    inserted_list.append(slot_name)
+            text_inserted = ''
+            text_not_inserted = ''
+            if inserted_list != []:
+                text_inserted = f'The values of the fields {fn.get_string_from_list(inserted_list)} have successsfully been inserted.'
+            if not_inserted_text != []:
+                text_not_inserted = f'\n{fn.get_string_from_list(not_inserted_text)}'
             for index in range(numValue, numSlot):
                 slot_name = slot_name_list[index]
                 empty_slots_names.append(slot_name)
-            # the choie here is to reset all the fields that the user wanted to modify but did not give the
-            # values. Another choice_value could be to leave them as they are
-            for slot_name in empty_slots_names:
-                self.fill_input(slot_name, slot_value=None)
-                self.set_slot(slot_name, slot_value=None)
-                text = self.update(slot_name)
-                # update return u.CANCELED when we just reset the value of a required slot
-                if text == u.CANCELED:
-                    # one required value have been canceled
-                    ready_to_submit = False
-            # now we prepare the output string
+            text_not_considered = ''
+            if empty_slots_names != []:
+                if len(empty_slots_names) == 1:
+                    text_not_considered = f'\nThe field {empty_slots_names[0]} has not been taken into consideration because no value is given for it'
+                else:
+                    text_not_considered = f'\nThe fields {fn.get_string_from_list(empty_slots_names)} have not been taken into consideration because no values are provided for them'
+            all_required_filled_after = self.get_all_required_filled()
+            ready_to_submit_text = ''
+            if not all_required_filled_before and all_required_filled_after:
+                remaining_fields = self.get_fields_list(remaining=True)
+                ready_to_submit_text = f'\nAll the required fields have been completed, from now on you can submit the Web Form if you wish but we give you the possibility to complete the remaining optional fields {remaining_fields} if you would like to.'
             next_step_string = self.manage_next_step()
-            fields = fn.get_string_from_list(empty_slots_names)
-            modify_style = styles.get_modify()
-            intro = (f"You wanted to {modify_style} the fields {fields} but you did not insert their values")
-            if ready_to_submit:
-                next_slot_name = self.get_next_slot(only_name=True)    # return also if the next slot is required or not
-                if next_slot_name is not None:
-                    string = f'{intro}\n{string}\n{next_step_string}'
-                    return True, string
-            string = f"{intro}\n{next_step_string}"
-            return True, string
+            string = f'{text_inserted}{text_not_inserted}{text_not_considered}{ready_to_submit_text}\n{next_step_string}'
+            return string
         except:
             if not self.get_warning_present():
                 print('ERROR: Fail to fill slots when there are more names than values')
@@ -939,7 +927,7 @@ class State:
             # returns True if all the fields are present and False otherwise. In ca of false retruns also the next_step string
             string =''
             for slot_name in slot_name_list:
-                present = fn.verify_presence(slot_name, self.form_slots(), only_presence=True)
+                present = fn.verify_presence(slot_name.lower(), self.form_slots(), only_presence=True)
                 if not present:
                     sorry_style = styles.get_sorry()
                     list_fields = self.get_fields_list()
@@ -968,20 +956,25 @@ class State:
                     string = u.VOID
                 if string in [u.VOID, u.CANCELED] and not interrupt:
                     next_step_string = self.manage_next_step()
-                    return True, next_step_string
-                return True, string
+                    if string == u.CANCELED:
+                        string = f'Value of {slot_name} canceled, {next_step_string}'
+                        return string
+                    return next_step_string
+                return string
             # we update the Web Form
             slot_value, comment = self.fill_input(slot_name, slot_value)
             if slot_value is None:
                 # incompatibility observed, the comment contains the next_step_string
-                return False, comment
+                string = f'The value for the  field {slot_name} have not been inserted! {comment}'
+                return string
             # Everything went fine so we update the internal structure
             self.set_slot(slot_name=slot_name, slot_value=slot_value)
             string = self.update(slot_name)
             if string in [u.VOID, u.CANCELED]:
                 next_step_string = self.manage_next_step()
-                return True, next_step_string
-            return True, string
+                string = f'Value for the field {slot_name} successfully inserted, {next_step_string}'
+                return string
+            return string
         except:
             if not self.get_warning_present():
                 print('ERROR: Fail to complete the filling procedure')

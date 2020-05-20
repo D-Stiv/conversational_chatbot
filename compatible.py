@@ -19,7 +19,7 @@ def verify_compatibility_generic(value):
 
 def verify_compatibility_email(value):
     try:
-        text = value
+        text = value.lower()
         # we should not have the space in the value
         if ' ' in value:
             text = "The character SPACE should not be present in this value type"
@@ -64,11 +64,22 @@ def verify_compatibility_number(value, min_value=-float('inf'), max_value=float(
     try:
         value = value.replace(' ', '')
         int_value = get_integer(value)
+        interval_text = ''
+        if min_value != -float('inf'):
+            interval_text = f'The minimum value for this field is {min_value}. '
+        if max_value != float('inf'):
+            interval_text = f'{interval_text}The maximum value for this field is {max_value}.'
         if int_value is None:
             sorry_style = styles.get_sorry()
             insert_style = styles.get_insert()
             please_style = styles.get_please()
             text = f'{sorry_style} the value {value} is not a number, {please_style} {insert_style} a valid value.'
+            return False, text
+        if int_value < min_value or int_value > max_value:
+            if int_value < min_value:
+                text = f'{sorry_style} the value inserted is less than the minimum value acceptable {min_value}.'
+            else:
+                text = f'{sorry_style} the value inserted is more than the maximum value acceptable {max_value}.'
             return False, text
         return True, value
     except:
@@ -89,9 +100,9 @@ def verify_compatibility_integer(value, min_value=-float('inf'), max_value=float
         number = int(int_value)
         if number < min_value or number > max_value:
             if number < min_value:
-                text = f'{sorry_style} the value inserted is less than the minimum value acceptable {min_value}'
+                text = f'{sorry_style} the value inserted is less than the minimum value acceptable {min_value}.'
             else:
-                text = f'{sorry_style} the value inserted is more than the maximum value acceptable {max_value}'
+                text = f'{sorry_style} the value inserted is more than the maximum value acceptable {max_value}.'
             return False, text
         return True, int_value
     except:
@@ -114,9 +125,9 @@ def verify_compatibility_decimal(value, precision=2, min_value=-float('inf'), ma
         number = float(dec_value.replace(',', '.'))
         if number < min_value or number > max_value:
             if number < min_value:
-                text = f'{sorry_style} the value inserted is less than the minimum value acceptable {min_value}'
+                text = f'{sorry_style} the value inserted is less than the minimum value acceptable {min_value}.'
             else:
-                text = f'{sorry_style} the value inserted is more than the maximum value acceptable {max_value}'
+                text = f'{sorry_style} the value inserted is more than the maximum value acceptable {max_value}.'
             return False, text
         if ',' not in dec_value:
             return True, dec_value

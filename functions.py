@@ -131,7 +131,7 @@ def get_pairs(slots, only_filled=False):
             slot_name = slot[u.slot_name]
             if slot_name != u.REQUESTED_SLOT:
                 if slot[u.required]:
-                    slot_name = slot_name + ' **'
+                    slot_name = f'*{slot_name}'
                 slot_value = slot[u.slot_value]
                 if slot_value is not None or not only_filled:
                     # we do not enter when we are searching for only completed fields (only_filled = True) and the value is None
@@ -165,7 +165,10 @@ def verify_presence(name, slots, only_presence=False, only_text=False):
                 alternatives.append(pos)
         if len(alternatives) > 0:
             string_alt = get_string_from_list(alternatives)
-            text = f"The field {name} is not present but you have these alternatives {string_alt}."
+            if len(alternatives) == 1:
+                text = f"The field {name} is not present but you have this alternative {string_alt}."
+            else:
+                text = f"The field {name} is not present but you have these alternatives {string_alt}."
             if only_presence:
                 return False
             elif only_text:
@@ -362,4 +365,18 @@ def next_char_string():
         return string
     except:
         print('Fail to get the string for asking the next character')
+        raise Exception
+
+
+def get_fuunctionalities_list():
+    try:
+        text_functionalities = ''
+        for fun in u.functionalities_list:
+            if text_functionalities == '':
+                text_functionalities = f'- {fun}'
+            else:
+                text_functionalities = f'{text_functionalities}\n- {fun}'
+        return text_functionalities
+    except:
+        print('Fail to get the list of functionalities')
         raise Exception

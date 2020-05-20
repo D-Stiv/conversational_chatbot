@@ -98,6 +98,18 @@ class RegistrationForm(Form):
                     self.state.set_possible_next_action(u.spelling_action)
                 else:
                     string = self.state.manage_next_step()
+                    _, required = self.state.get_next_slot()
+                    if not required:
+                        string = f'{string} otherwise, you can {u.fun_all_fields}, {u.fun_remaining_required_fields} or {u.fun_skip} '
+                    else:
+                        string = f'{string} otherwise, you can {u.fun_modify_field}'
+                    already_filled = fn.get_pairs(self.state.form_slots(), only_filled=True)
+                    fields_to_complete = self.state.get_fields_list(remaining=True)
+                    if len(fields_to_complete) > 0:
+                        if already_filled != '':
+                            string = f'You are filling a Web Form and you still have to complete the following fields {fields_to_complete}.\nHere are the fields that you already completed:\n{already_filled}.\n{string}'
+                        else:
+                            string = f'You are filling a Web Form and you still have to complete the following fields {fields_to_complete}.\n{string}'                        
                 return string
             # the filling did not start
             self.state.set_filling_started()
@@ -149,7 +161,6 @@ class RegistrationForm(Form):
             slot_name_list, slot_value_list = self.state.set_spelling_list(
                 slot_name_list, slot_value_list)
             # the spelling list have been set and we can continue
-            correct = True
             if len(slot_value_list) + len(slot_name_list) == 0:
                 string = self.fillSpellingField()
                 return string
@@ -167,31 +178,33 @@ class RegistrationForm(Form):
                     slot_value = slot_value_list[0]
                     # the slot value can change, being put in the right format
                     # we go to the filling procedure insuring that the field is not spelling
-                    correct, string = self.state.filling_procedure(slot_name, slot_value)
+                    string = self.state.filling_procedure(slot_name, slot_value)
                 elif self.state.get_possible_next_action() != u.fill_field_action and intent != u.fill_field_action:
                     # probably bad destination due to misinterpretation
                     sorry_style = styles.get_sorry()
                     please_style = styles.get_please()
                     text = f'{sorry_style} i do not understand your request, could you reformulate {please_style}?'
+                    _, required = self.state.get_next_slot()
+                    if not required:
+                        text = f'{text} otherwise, you can {u.fun_skip} or {u.fun_submit}'
+                    else:
+                        text = f'{text} otherwise, you can {u.fun_explain_field} or {u.fun_complete_field}'
                     self.state.set_warning_message(text)
                     raise Exception
                 else:
                     # we have a list of fields with their values
-                    correct, string = self.state.fill_generic_slots(slot_name_list=slot_name_list,
+                    string = self.state.fill_generic_slots(slot_name_list=slot_name_list,
                                                      slot_value_list=slot_value_list)
             next_field_before = self.state.get_next_slot(only_name=True)
             # we verify if the spelling_list is empty or not
             if len(self.state.get_spelling_list()) != 0:
-                text = self.fillSpellingField()
+                string_spelling = self.fillSpellingField()
                 next_field_after = self.state.get_next_slot(only_name=True)
                 if next_field_before == next_field_after:
                     # the spelling did not modified the Web page, we return the string from the non spelling fields
                     return string
                 # the spelling mofified the Web Form, so we use its string
-                if correct:
-                    string = f'Web Form updated. {text}'
-                else:
-                    string = f'The Web Form has not been updated due to a non acceptable value. {text}'
+                return string_spelling
             return string
         except:
             if not self.state.get_warning_present():
@@ -204,6 +217,11 @@ class RegistrationForm(Form):
             if len(self.state.get_spelling_list()) == 0:
                 # misinterpretation
                 text = 'I did not get you well, could you precise your action please?'
+                _, required = self.state.get_next_slot()
+                if not required:
+                    text = f'{text} otherwise, you can {u.fun_skip}, {u.fun_reset} or {u.fun_submit}'
+                else:
+                    text = f'{text} otherwise, you can {u.fun_remaining_fields} or {u.fun_modify_field}'
                 self.state.set_warning_message(text)
                 raise Exception
             # we have to verify if we just finished the spelling of a field
@@ -213,8 +231,8 @@ class RegistrationForm(Form):
                 slot_name = self.state.get_next_slot(only_name=True)
                 slot_value = self.state.get_current_spelling_input_value()
                 # we go to the filling procedure. The spelling list can be modified in this phase
-                correct, string = self.state.filling_procedure(slot_name, slot_value)
-                if not correct:
+                string = self.state.filling_procedure(slot_name, slot_value)
+                if 'inserted!' in string.lower() and 'not' in string.lower():
                     self.state.reset_current_spelling_input_value()
                     return string
                 # verify if all the fields in spelling list have been completed
@@ -331,8 +349,13 @@ class RegistrationForm(Form):
             if count == 0:
                 # in principle should never occur given the training
                 please_style = styles.get_please()
-                text = f"{please_style} indicate which field you are interested to"
-                selt.state.set_warning_message(text)
+                text = f"{please_style} indicate which field you are interested to,"
+                _, required = self.state.get_next_slot()
+                if not required:
+                    text = f'{text} otherwise, you can {u.fun_submit}, {u.fun_verify_presence_field} or {u.fun_skip}'
+                else:
+                    text = f'{text} otherwise, you can {u.fun_verify_value} or {u.fun_form_description}'
+                self.state.set_warning_message(text)
                 raise Exception
             slot_name_list = fn.extract_fields_names_and_values(
                 entities, only_names=True)
@@ -358,15 +381,15 @@ class RegistrationForm(Form):
         try:
             entities = self.state.get_latest_message()["entities"]
             count = len(entities)
-            if count == 0:
+            slot_name_list = fn.extract_fields_names_and_values(
+                entities, only_names=True)
+            if count == 0 or len(slot_name_list) == 0:
                 # the user wants to explain the current field (next slot)
                 field = self.state.get_next_slot(only_name=True)   # return also if the next slot is required or not
                 field_desc = self.state.get_field_description(field)
                 next_step_string = self.state.manage_next_step()
                 string = f'{field_desc}\n{next_step_string}'
                 return string
-            slot_name_list = fn.extract_fields_names_and_values(
-                entities, only_names=True)
             # we first verify if each slot_name corresponds to a field in the dorm
             correct, string = self.state.all_fields_present(slot_name_list)
             if not correct:
@@ -399,10 +422,15 @@ class RegistrationForm(Form):
                 return string
             elif action_name is None:
                 sorry_style = styles.get_sorry()
-                text = f'{sorry_style} what exactly do you want to do ?'
+                text = f'{sorry_style} what exactly do you want to do? If you want, you can:\n{fn.get_functionalities_list()}'
                 self.state.set_warning_message(text)
                 raise Exception            
             string = self.state.manage_next_step()
+            _, required = self.state.get_next_slot()
+            if not required:
+                string = f'{string} otherwise, you can {u.fun_all_fields}, {u.fun_remaining_required_fields} or {u.fun_skip} '
+            else:
+                string = f'{string} otherwise, you can {u.fun_remaining_required_fields} or {u.fun_form_title}'
             return string
         except:
             if not self.state.get_warning_present():
@@ -417,9 +445,14 @@ class RegistrationForm(Form):
             # another choice can be simply to ask the user what he wants to do.
             if self.state.get_next_slot(only_name=True) is not None:
                 string = self.state.manage_next_step()
+                _, required = self.state.get_next_slot()
+                if not required:
+                    string = f'{string} otherwise, you can {u.fun_remaining_required_fields}'
+                else:
+                    string = f'{string} otherwise, you can {u.fun_recap} or {u.fun_verify_value}'
                 return string
             good_style = styles.get_good()
-            string = f"{good_style}, what do you want to do now?"
+            string = f"{good_style}, what do you want to do now? you can:\n{fn.get_fuunctionalities_list()}"
             return string
         except:
             if not self.state.get_warning_present():
@@ -444,9 +477,8 @@ class RegistrationForm(Form):
                     else:
                         value = slot_value
                     string = f'{string}\n\t{text.format(slot_name, value)}'
-            
-            next_step_string = self.state.manage_next_step()
-            string = f'{string}\n{next_step_string}'
+            self.state.set_possible_next_action(u.fill_field_action)
+            string = f'{string}\nDo you want to modify this value? if not you can {u.fun_resume}'
             return string
         except:
             if not self.state.get_warning_present():
@@ -464,15 +496,21 @@ class RegistrationForm(Form):
             if actual_slot_name == next_slot_name:
                 sorry_style = styles.get_sorry()
                 text = f"{sorry_style} this field is the last one remaining."
-                opt = ""
                 if not next_slot_required:
-                    opt = "do you want to submit now?"
+                    opt = "Do you want to submit now?"
                     self.state.set_possible_next_action(u.submit_action)
-                string = (f"{text} it is required to be able to submit the form.\n" +
-                          f"{self.fillForm()}\n{opt}")
+                    string = f'{text}{opt} If yes, give an affirmative response otherwise {self.state.manage_next_step()}'
+                else:
+                    string = (f"{text} it is required to be able to submit the Web Form.\n" +
+                            f"{self.fillForm()}")
                 return string
             # we got to the next step
             string = self.state.manage_next_step()
+            fields_remaining = self.state.get_fields_list(remaining=True)
+            if self.state.get_all_required_filled() and len(fields_remaining) <= 2:
+                string = f'If you want, you can {u.fun_submit}, otherwise {string}'
+            else:
+                string = f'The {actual_slot_name} has been skipped.\n{string}'
             return string
         except:
             if not self.state.get_warning_present():
@@ -607,7 +645,7 @@ class RegistrationForm(Form):
                 string = f'{sorry_style} up to now you did not complete any field\n{next_step_string}'
             else:
                 string = (f"The fields you already completed are the following: \n{filled_string}\n" +
-                        f"The stars indicate the required fields\n{next_step_string}")
+                        f"If you see some stars, they indicate the required fields.\n{next_step_string}")
             return string
         except:
             if not self.state.get_warning_present():
@@ -634,15 +672,19 @@ class RegistrationForm(Form):
     def repeatFormExplanation(self):
         try:
             form_desc = self.state.get_form_description()
+            next_step_string = self.state.manage_next_step()
             if form_desc is None:
                 sorry_style = styles.get_sorry()
-                string = "{} this form does not have a description.".format(
-                    sorry_style)
+                string = f"{sorry_style} this form does not have a description.\n{next_step_string}"
+                _, required = self.state.get_next_slot()
+                if not required:
+                    string = f'{string} otherwise, you can {u.fun_skip}'
+                else:
+                    string = f'{string} otherwise, you can {u.fun_recap} or {u.fun_verify_value}. In any case you will have to complete this field in order to submit'
             else:
                 sure_style = styles.get_sure()
-                string = "{} here it is: {}.".format(sure_style, form_desc)
-            next_step_string = self.state.manage_next_step()
-            string = f'{string}\n{next_step_string}'
+                string = f"{sure_style} here it is: {form_desc}."
+                string = f'{string}\n{next_step_string}'
             return string
         except:
             if not self.state.get_warning_present():
@@ -704,7 +746,8 @@ class RegistrationForm(Form):
             if u.DEBUG or not self.state.get_all_required_filled(): 
                 print("inside submitForm")
             if not self.state.get_submit_alarm_enabled():
-                string = "we are about to submit, are you sure you want to continue with this action?"
+                recap = fn.get_pairs(self.state.form_slots())
+                string = f"{recap}\nIf you would like to change something, let me know, otherwise confirm that you really want to continue with the submission?"
                 self.state.set_possible_next_action(u.submit_action)
                 # we enable the alarm
                 self.state.set_submit_alarm_enabled()

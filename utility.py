@@ -45,7 +45,7 @@ ask_url = False
 url_new = "http://localhost/ecobusiness/new-project-form/"
 url_test = "http://localhost/ecobusiness/test-project-form/"
 
-form_url = url_test
+form_url = url_new
 
 # URLs for the test Web Forms
 url_1 = 'http://localhost/ecobusiness/test-form-1/'
@@ -76,7 +76,7 @@ nlu_config_file = 'nlu_config.yml'
 
 
 # string to stop the session
-stop = 'stop'
+stop = 'leave'
 
 # minimum and maximum year acceptable for the date
 min_year = 1500
@@ -286,3 +286,27 @@ number_not_handled = 'number_not_handled'
 # restricted actions, not self defining actions, need state to decide what to do
 restricted_actions = [affirm_action, deny_action]
 
+# funzionalities
+fun_explain_field = 'ask the explanation of a field'
+fun_remaining_fields = 'ask the list of remaining fields'
+fun_remaining_required_fields = 'ask the list of the remaining required fields'
+fun_remaining_optional_fields = 'ask the list of remaining optional fields'
+fun_all_fields = 'request the list of fields present in this Web Form'
+fun_required_fields = 'request the required fields of this Web Form'
+fun_optional_fields = 'request the list of the optional fields ontained in the Web Form'
+fun_modify_field = 'modify the value inserted for a field'
+fun_recap = 'ask the recap for the fields inserted'
+fun_skip = 'skip this field'
+fun_reset = 'restart the process from the beginning'
+fun_submit = 'submit the Web Form if all the required fields are completed'
+fun_verify_value = 'verify the value of a field'
+fun_complete_field = 'decide to complete a different field'
+fun_form_description = 'ask the Web Form description'
+fun_form_title = 'request the title of this Web Form'
+fun_verify_presence_field = 'verify if there is a given field in this Web Form'
+fun_resume = 'ask to resume the filling procedure and restart from where you stopped'
+
+functionalities_list = [fun_explain_field, fun_remaining_fields, fun_remaining_required_fields, fun_remaining_optional_fields, 
+    fun_all_fields, fun_required_fields, fun_optional_fields, fun_modify_field, fun_recap, fun_skip, fun_submit, fun_reset, 
+    fun_verify_value, fun_complete_field, fun_form_description, fun_form_title
+]
