@@ -63,7 +63,7 @@ def verify_compatibility_email(value):
 def verify_compatibility_number(value, min_value=-float('inf'), max_value=float('inf')):
     try:
         value = value.replace(' ', '')
-        int_value = get_integer(value)
+        int_value = int(get_integer(value))
         interval_text = ''
         if min_value != -float('inf'):
             interval_text = f'The minimum value for this field is {min_value}. '
