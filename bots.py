@@ -747,7 +747,7 @@ class RegistrationForm(Form):
                 print("inside submitForm")
             if not self.state.get_submit_alarm_enabled():
                 recap = fn.get_pairs(self.state.form_slots())
-                string = f"{recap}\nIf you would like to change something, let me know, otherwise confirm that you really want to continue with the submission?"
+                string = f"\n{recap}\nIf you would like to change something, let me know, otherwise confirm that you really want to continue with the submission?"
                 self.state.set_possible_next_action(u.submit_action)
                 # we enable the alarm
                 self.state.set_submit_alarm_enabled()
