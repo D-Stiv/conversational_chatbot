@@ -49,8 +49,12 @@ class Form:
                     self.state.set_reset_alarm_enabled(False)
             elif self.state.get_submit_alarm_enabled():
                 # we disable the alarm mainly in case intent not in [affirm, submit_form]
-                if intent not in [u.affirm_action, u.submit_action]:                        
-                    self.state.set_submit_alarm_enabled(False)
+                if intent not in [u.affirm_action, u.submit_action]: 
+                    # In case all the fields are completed, we tend to submit the Web Form
+                    if self.state.get_next_slot(only_name=True) is None :
+                        intent = u.affirm_action
+                    else:                 
+                        self.state.set_submit_alarm_enabled(False)
             if self.state.get_spelling_interrupted():
                 # In the past the user interrupted a spelling and we wait for the response on whether to save the state or not
                 if intent not in [u.affirm_action, u.deny_action]:
