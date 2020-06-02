@@ -1,0 +1,121 @@
+HEADER	S = 0.
+
+	Date and Hour: 2020-06-02 15:04:30.757370
+
+SUMMARY
+
+	There is 1 completed dialogue
+
+REPORT LOG
+
+
+0.	--- DIALOGUE 1 ---
+
+1.	I- Form element
+
+2.		The window have been closed, so we cannot give you the form elements, sorry
+
+3.	II- Slots
+
+4.		[slot_name: first name - slot_value: Maeva - required: True - spelling: True - description: your first name]
+5.		[slot_name: last name - slot_value: Mareva - required: False - spelling: True - description: your family name]
+6.		[slot_name: mark - slot_value: 23,52 - required: False - spelling: False - description: None]
+7.		[slot_name: password - slot_value: jPoema - required: False - spelling: False - description: None]
+8.		[slot_name: email address - slot_value: george@hotmail.it - required: True - spelling: False - description: the email we should use to contact you]
+9.		[Web Form info -- title: None - description: None]
+
+10.	III-Messages
+
+11.		Message_0
+12.			Text: M
+13.			Intent: [name: spelling - confidence: 0.9619]
+14.			Entities: [entity: spelling, value: M]
+15.		Message_1
+16.			Text: a
+17.			Intent: [name: spelling - confidence: 0.9484]
+18.			Entities: [entity: input_value, value: a]
+19.		Message_2
+20.			Text: e
+21.			Intent: [name: spelling - confidence: 0.9587]
+22.			Entities: [entity: spelling, value: e]
+23.		Message_3
+24.			Text: v
+25.			Intent: [name: spelling - confidence: 0.9642]
+26.			Entities: [entity: input_value, value: v]
+27.		Message_4
+28.			Text: a
+29.			Intent: [name: spelling - confidence: 0.9484]
+30.			Entities: [entity: input_value, value: a]
+31.		Message_5
+32.			Text: terminate
+33.			Intent: [name: spelling - confidence: 0.8108]
+34.			Entities: [entity: spelling, value: terminate]
+35.		Message_6
+36.			Text: M
+37.			Intent: [name: spelling - confidence: 0.9619]
+38.			Entities: [entity: spelling, value: M]
+39.		Message_7
+40.			Text: a
+41.			Intent: [name: spelling - confidence: 0.9484]
+42.			Entities: [entity: input_value, value: a]
+43.		Message_8
+44.			Text: r
+45.			Intent: [name: spelling - confidence: 0.9751]
+46.			Entities: [entity: spelling, value: r]
+47.		Message_9
+48.			Text: e
+49.			Intent: [name: spelling - confidence: 0.9587]
+50.			Entities: [entity: spelling, value: e]
+51.		Message_10
+52.			Text: v
+53.			Intent: [name: spelling - confidence: 0.9642]
+54.			Entities: [entity: input_value, value: v]
+55.		Message_11
+56.			Text: a
+57.			Intent: [name: spelling - confidence: 0.9484]
+58.			Entities: [entity: input_value, value: a]
+59.		Message_12
+60.			Text: conclude
+61.			Intent: [name: spelling - confidence: 0.9760]
+62.			Entities: [entity: spelling, value: conclude]
+63.		Message_13
+64.			Text: mark: 30.68516
+65.			Intent: [name: fillGenericField - confidence: 0.9369]
+66.			Entities: [entity: input_field, value: mark], [entity: input_value, value: 30.68516]
+67.		Message_14
+68.			Text: 23.52 is the value for the field mark
+69.			Intent: [name: fillGenericField - confidence: 1.0000]
+70.			Entities: [entity: input_value, value: 23.52], [entity: input_field, value: mark]
+71.		Message_15
+72.			Text: may i complete password with jPoema$?
+73.			Intent: [name: fillGenericField - confidence: 1.0000]
+74.			Entities: [entity: input_field, value: password], [entity: input_value, value: jPoema]
+75.		Message_16
+76.			Text: the value, here it is george@hotmail.it
+77.			Intent: [name: fillGenericField - confidence: 0.9962]
+78.			Entities: [entity: input_value, value: george@hotmail.it]
+79.		Message_17
+80.			Text: yes
+81.			Intent: [name: affirm - confidence: 0.9414]
+82.			Entities: 
+
+83.	IV-Statistics
+84.		Convergence Rate:
+85.			total number of turns: t = 37
+86.			total number of fields: n = 5
+87.			total number of spelling fields: m = 2
+88.			total number of spelling turns: m_k factor = 13
+89.			convergence rate: c = 0.8919
+90.			adjustded convergence rate: c_adj = 0.7895
+91.		Normalized Convergence Rate:
+92.			total number of required fields: n_2 = 2
+93.			total number of spelling fields: m_2 = 1
+94.			total number of required spelling turns: m_k_2 factor = 6
+95.			normalized convergence rate: c_2 = 0.4054
+97.		Natural Language Flexibility Coefficient:
+98.			number of required turns: v = 17 turns
+99.			number of user's turns: w = 18 turns
+100.			natural language flexibility coefficient: f = 0.9444
+101.			adjusted flexibility coefficient: f_adj = 1.0000
+
+
