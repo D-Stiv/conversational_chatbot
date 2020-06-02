@@ -5997,6 +5997,7 @@ functional_test_cases = [
             ],
             spelling_state: {
                 u.close_prompt_enabled: False,
+                u.spelling_interrupted: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
                 u.waiting_message: None,
@@ -8720,6 +8721,7 @@ functional_test_cases = [
             ],
             spelling_state: {
                 u.close_prompt_enabled: False,
+                u.spelling_interrupted: False,
                 u.current_spelling_input_value: '',
                 u.spelling_list: [],
                 u.waiting_message: None,
